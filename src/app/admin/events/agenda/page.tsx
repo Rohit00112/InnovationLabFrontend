@@ -1,5 +1,6 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import ManageList, { Column } from "@/components/Admin/ManageList";
+import EditShell from '@/components/Admin/EditShell';
 import { div } from "framer-motion/client";
 
 // 1. Define your individual view components
@@ -35,6 +36,7 @@ export default function ManageEventAgenda() {
     { id: "manage", label: "Manage" },
     { id: "add", label: "Add" },
     { id: "preview", label: "View as user" },
+    { id: "edit", label: "Edit" },
   ];
 
   return (
@@ -50,6 +52,7 @@ export default function ManageEventAgenda() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="Agenda" />,
         }}
       </AdminViewSwitcher>
     </div>

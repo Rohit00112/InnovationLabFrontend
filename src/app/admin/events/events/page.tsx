@@ -1,6 +1,7 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
+import EditShell from '@/components/Admin/EditShell';
 
 // 1. Define your individual view components
 function ManageView() {
@@ -58,6 +59,7 @@ export default function ManageEvents() {
     { id: "manage", label: "Manage" },
     { id: "add", label: "Add" },
     { id: "preview", label: "View as user" },
+    { id: "edit", label: "Edit" },
   ];
 
   return (
@@ -73,6 +75,7 @@ export default function ManageEvents() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="Event" />,
         }}
       </AdminViewSwitcher>
     </div>
