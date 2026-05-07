@@ -15,6 +15,7 @@ import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import CompanyListTable from "@/components/Company/CompanyListTable";
 import { FadeIn } from "@/components/Contacts/FadeIn";
+import TeamSection, { TeamMember } from "@/components/ui/team-section";
 
 export default function Partner() {
   const galleryItems = [
@@ -286,6 +287,57 @@ export default function Partner() {
     },
   ];
 
+  const TEAM_MEMBERS: TeamMember[] = [
+    {
+      avatar:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fHww",
+      name: "Magdalina",
+      role: "CEO",
+    },
+    {
+      avatar:
+        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVvcGxlfGVufDB8fDB8fHww",
+      name: "Jamie",
+      role: "CTO",
+    },
+    {
+      avatar:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+      name: "Emilio",
+      role: "CTO",
+    },
+    {
+      avatar:
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+      name: "Samia",
+      role: "COO",
+    },
+    {
+      avatar:
+        "https://images.unsplash.com/photo-1522556189639-b150ed9c4330?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+      name: "Alex",
+      role: "Engineer",
+    },
+    {
+      avatar:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDl8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+      name: "Ema",
+      role: "Head of Product",
+    },
+    {
+      avatar:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+      name: "Carlos",
+      role: "Engineer",
+    },
+    {
+      avatar:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+      name: "Campos",
+      role: "Engineer",
+    },
+  ];
+
   const signedCompanies = [...companies]
     .filter((company) => company.isMouSigned)
     .sort((a, b) => a.priority - b.priority);
@@ -357,6 +409,12 @@ export default function Partner() {
           />
         </section>
       </FadeIn>
+      {/**Section: MOU Companies */}
+      <TeamSection
+        members={TEAM_MEMBERS}
+        heading="MOU Signed"
+        highlight="Companies"
+      />
       {/*Section: Description*/}
       <FadeIn delay={0.4}>
         <section className="py-24 px-10 text-center max-w-4xl mx-auto">
