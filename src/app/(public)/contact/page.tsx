@@ -9,7 +9,7 @@ import Map from "@/components/Contacts/Map";
 import { Clock3, Mail, MapPin, Phone } from "lucide-react";
 import { publicContactText, publicPageTitles } from "@/constants/ui/public";
 import { useState } from "react";
-import { postApiV1Contacts } from "@/lib/services/generated/frontend";
+import { createContactMessage } from "@/lib/services/generated/frontend";
 import { t } from "@/lib/i18n/messages";
 
 export default function Contact() {
@@ -63,7 +63,7 @@ export default function Contact() {
 
                 setLoading(true);
                 try {
-                  await postApiV1Contacts({
+                  await createContactMessage({
                     name: values.name || null,
                     email: values.email || null,
                     subject: values.title || null,
