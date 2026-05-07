@@ -1,6 +1,7 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
+import EditShell from '@/components/Admin/EditShell';
 import { div } from "framer-motion/client";
 
 // Define your individual view components
@@ -61,6 +62,7 @@ export default function CompaniesPage() {
     { id: "manage", label: "Manage" },
     { id: "add", label: "Add" },
     { id: "preview", label: "View as user" },
+    { id: "edit", label: "Edit" },
   ];
 
   return (
@@ -73,6 +75,7 @@ export default function CompaniesPage() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="Company" />,
         }}
       </AdminViewSwitcher>
     </div>

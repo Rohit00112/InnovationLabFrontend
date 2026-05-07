@@ -397,7 +397,7 @@ function AddView() {
       title="Add [Resource]" 
       fields={formFields} 
       apiEndpoint={`/api/[endpoint]`}
-      format="multipart" | "json"
+      format="multipartBuild list display for all 11 resources " | "json"
     />
   );
 }
