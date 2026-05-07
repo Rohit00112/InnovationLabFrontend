@@ -62,12 +62,13 @@ export default function LoginFormCard() {
   };
 
   return (
-    <div className="w-full max-w-xl rounded-xl border border-(--neutral-200) bg-white p-6 shadow-sm md:p-8">
+    <div className="w-full max-w-md  -xl border border-gray-300 bg-white p-6 md:py-16 md:p-8">
+      <p className="text-2xl my-6">Login to your account</p>
       <form className="space-y-4" onSubmit={handleLogin}>
         <div>
           <label
             htmlFor="email"
-            className="mb-2 block text-sm font-medium text-(--neutral-700)"
+            className="mb-2 block text-sm font-medium text-gray-700"
           >
             Email
           </label>
@@ -79,7 +80,7 @@ export default function LoginFormCard() {
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="email"
             required
-            className="block w-full rounded-md border border-(--neutral-400) p-2.5 shadow-sm transition-colors focus:border-(--color-primary) focus:ring-(--color-primary)"
+            className="block w-full  -md border border-gray-300 p-2.5   -sm transition-colors focus:border-blue-500 focus:ring-blue-500"
             placeholder="you@example.com"
           />
         </div>
@@ -87,7 +88,7 @@ export default function LoginFormCard() {
         <div>
           <label
             htmlFor="password"
-            className="mb-2 block text-sm font-medium text-(--neutral-700)"
+            className="mb-2 block text-sm font-medium text-gray-700"
           >
             Password
           </label>
@@ -99,7 +100,7 @@ export default function LoginFormCard() {
             onChange={(event) => setPassword(event.target.value)}
             autoComplete="current-password"
             required
-            className="block w-full rounded-md border border-(--neutral-400) p-2.5 shadow-sm transition-colors focus:border-(--color-primary) focus:ring-(--color-primary)"
+            className="block w-full  -md border border-gray-300 p-2.5   -sm transition-colors focus:border-blue-500 focus:ring-blue-500"
             placeholder="Enter your password"
           />
         </div>
@@ -107,20 +108,20 @@ export default function LoginFormCard() {
         <button
           type="submit"
           disabled={isLoggingIn}
-          className="w-full rounded-md bg-(--color-primary) px-4 py-2.5 font-medium text-white transition-colors hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-(--color-primary) focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full  -md bg-black border-b-5 border-cyan-500 px-4 py-2.5 font-medium text-white transition-colors"
         >
           {isLoggingIn ? "Signing in..." : "Sign in"}
         </button>
       </form>
 
       {error && (
-        <div className="mt-4 rounded-md border border-error bg-error-background p-3 text-sm text-error">
+        <div className="mt-4  -md border border-error bg-error-background p-3 text-sm text-error">
           {error}
         </div>
       )}
 
       {success && (
-        <div className="mt-4 rounded-md border border-success bg-success-background p-3 text-sm text-success">
+        <div className="mt-4  -md border border-success bg-success-background p-3 text-sm text-success">
           {success}
         </div>
       )}
