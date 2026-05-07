@@ -135,13 +135,13 @@ export default function Navbar() {
               >
                 Company
               </Link>
-              <Link
+              {/* <Link
                 href={navigationRoutes.login}
                 onClick={closeMenu}
                 className="mt-2 border border-gray-300 px-3 py-2 text-left"
               >
                 login
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
