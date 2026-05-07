@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 
 export interface Column {
   key: string;
@@ -27,6 +28,8 @@ export default function ManageList({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     fetchItems();
@@ -136,6 +139,12 @@ export default function ManageList({
                     </td>
                   ))}
                   <td className="px-6 py-4 text-sm space-x-2">
+                    <button
+                      onClick={() => router.push(`${pathname}?view=edit&id=${item.id}`)}
+                      className="px-3 py-1.5 bg-[var(--color-primary)] text-white rounded-md text-xs font-medium hover:bg-[var(--color-primary-600)] transition-colors mr-2"
+                    >
+                      Edit
+                    </button>
                     <button
                       onClick={e => handleDelete(item.id, e)}
                       disabled={deletingId === item.id}
