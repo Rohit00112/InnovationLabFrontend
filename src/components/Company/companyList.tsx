@@ -18,10 +18,9 @@ interface CompanyListProps {
 }
 
 export default function companyList({ companies }: CompanyListProps) {
-  // Filter for only MoU signed companies, then sort by priority
-  const displayCompanies = companies
-    .filter(company => company.isMouSigned)
-    .sort((a, b) => a.priority - b.priority);
+  const displayCompanies = [...companies].sort(
+    (a, b) => a.priority - b.priority,
+  );
 
   return (
     <>

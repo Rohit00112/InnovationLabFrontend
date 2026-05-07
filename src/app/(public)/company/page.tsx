@@ -15,7 +15,7 @@ import Marquee from "react-fast-marquee";
 import Image from "next/image";
 import CompanyListTable from "@/components/Company/CompanyListTable";
 import { FadeIn } from "@/components/Contacts/FadeIn";
-import TeamSection, { TeamMember } from "@/components/ui/team-section";
+import MOUCompaniesScroll from "@/components/Company/MouCompaniesScroll";
 
 export default function Partner() {
   const galleryItems = [
@@ -55,7 +55,7 @@ export default function Partner() {
       about:
         "Building autonomous sensing systems for smart mobility and logistics.",
       priority: 1,
-      isMouSigned: true,
+      isMouSigned: false,
       isJobFair: false,
       contactEmail: "contact@aetherdynamics.com",
       websiteUrl: "https://example.com/aether",
@@ -69,7 +69,7 @@ export default function Partner() {
       about:
         "Applying machine learning to accelerate drug discovery and testing.",
       priority: 2,
-      isMouSigned: true,
+      isMouSigned: false,
       isJobFair: false,
       contactEmail: "hello@nexabiolabs.com",
       websiteUrl: "https://example.com/nexa",
@@ -83,8 +83,8 @@ export default function Partner() {
       about:
         "Designing modular robots for manufacturing and warehouse automation.",
       priority: 3,
-      isMouSigned: true,
-      isJobFair: true,
+      isMouSigned: false,
+      isJobFair: false,
       contactEmail: "careers@forgerobotics.com",
       websiteUrl: "https://example.com/forge",
       logoUrl:
@@ -97,7 +97,7 @@ export default function Partner() {
       about:
         "Creating energy analytics tools for efficient and resilient city grids.",
       priority: 4,
-      isMouSigned: true,
+      isMouSigned: false,
       isJobFair: false,
       contactEmail: "info@pulsegrid.net",
       websiteUrl: "https://example.com/pulse",
@@ -111,8 +111,8 @@ export default function Partner() {
       about:
         "Shipping secure cloud infrastructure for fast scaling startup teams.",
       priority: 5,
-      isMouSigned: true,
-      isJobFair: true,
+      isMouSigned: false,
+      isJobFair: false,
       contactEmail: "partners@cloudharbor.io",
       websiteUrl: "https://example.com/cloud",
       logoUrl:
@@ -125,7 +125,7 @@ export default function Partner() {
       about:
         "Developing sustainable materials for low waste product engineering.",
       priority: 6,
-      isMouSigned: true,
+      isMouSigned: false,
       isJobFair: false,
       contactEmail: "green@verdematerials.com",
       websiteUrl: "https://example.com/verde",
@@ -285,64 +285,26 @@ export default function Partner() {
       numberOfInterns: 8,
       numberOfVacancies: 4,
     },
-  ];
-
-  const TEAM_MEMBERS: TeamMember[] = [
     {
-      avatar:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fHww",
-      name: "Magdalina",
-      role: "CEO",
-    },
-    {
-      avatar:
-        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVvcGxlfGVufDB8fDB8fHww",
-      name: "Jamie",
-      role: "CTO",
-    },
-    {
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
-      name: "Emilio",
-      role: "CTO",
-    },
-    {
-      avatar:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
-      name: "Samia",
-      role: "COO",
-    },
-    {
-      avatar:
-        "https://images.unsplash.com/photo-1522556189639-b150ed9c4330?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
-      name: "Alex",
-      role: "Engineer",
-    },
-    {
-      avatar:
-        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDl8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
-      name: "Ema",
-      role: "Head of Product",
-    },
-    {
-      avatar:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDZ8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
-      name: "Carlos",
-      role: "Engineer",
-    },
-    {
-      avatar:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
-      name: "Campos",
-      role: "Engineer",
+      name: "Solstice Labs",
+      about: "Delivering climate-focused analytics for resilient communities.",
+      priority: 18,
+      isMouSigned: true,
+      isJobFair: false,
+      contactEmail: "hello@solsticelabs.io",
+      websiteUrl: "https://example.com/solstice",
+      logoUrl:
+        "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=900&q=80",
+      numberOfInterns: 4,
+      numberOfVacancies: 1,
     },
   ];
-
-  const signedCompanies = [...companies]
+  const internshipCompanies = [...companies]
+    .filter((company) => !company.isMouSigned && !company.isJobFair)
+    .sort((a, b) => a.priority - b.priority);
+  const mouCompanies = [...companies]
     .filter((company) => company.isMouSigned)
     .sort((a, b) => a.priority - b.priority);
-  const featuredCompanies = signedCompanies.slice(0, 6);
-  const remainingCompanies = signedCompanies.slice(6);
 
   const storiesData: StoryItem[] = [
     {
@@ -397,21 +359,21 @@ export default function Partner() {
               </h2>
             </div>
           </div>
-          <CompanyList companies={featuredCompanies} />
+          <CompanyList companies={internshipCompanies} />
         </section>
       </FadeIn>
       <FadeIn delay={0.35}>
         <section className="w-full px-4 pb-20 pt-12">
           <CompanyListTable
-            companies={remainingCompanies}
+            companies={mouCompanies}
             title="More Partners"
-            description="Explore the full list of MoU-signed companies and their internship offerings."
+            description="Explore the full list of companies where our students are working as interns"
           />
         </section>
       </FadeIn>
       {/**Section: MOU Companies */}
-      <TeamSection
-        members={TEAM_MEMBERS}
+      <MOUCompaniesScroll
+        companies={mouCompanies}
         heading="MOU Signed"
         highlight="Companies"
       />
