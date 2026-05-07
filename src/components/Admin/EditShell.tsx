@@ -1,39 +1,103 @@
 'use client';
 
-import React from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import AddForms, { FormField } from './AddForms';
 
 interface EditShellProps {
   resourceName?: string;
+  fields?: FormField[];
+  apiEndpoint?: string;
 }
 
-export default function EditShell({ resourceName = 'Item' }: EditShellProps) {
+export default function EditShell({ resourceName = 'Item', fields = [], apiEndpoint }: EditShellProps) {
   const params = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
   const id = params.get('id');
+  const [item, setItem] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  if (!id) {
+  useEffect(() => {
+    if (!id || !apiEndpoint) {
+      setLoading(false);
+      return;
+    }
+
+    const fetchItem = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`${apiEndpoint}/${id}`);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch ${resourceName}`);
+        }
+        const data = await response.json();
+        setItem(data);
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchItem();
+  }, [id, apiEndpoint, resourceName]);
+
+  if (!id || !apiEndpoint) {
     return (
-      <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-(--neutral-100)">
-        <div className="text-[var(--neutral-500)]">No {resourceName} selected for editing.</div>
+      <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+        <div className="text-[var(--neutral-500)]">
+          No {resourceName?.toLowerCase()} selected for editing.
+        </div>
       </div>
     );
   }
 
-  return (
-    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-(--neutral-100)">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold">Edit {resourceName}</h2>
-        <button
-          onClick={() => router.back()}
-          className="px-3 py-1.5 bg-[var(--neutral-100)] text-[var(--neutral-700)] rounded-md text-sm"
-        >
-          Back
-        </button>
+  if (loading) {
+    return (
+      <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+        <div className="text-[var(--neutral-500)]">
+          Loading {resourceName?.toLowerCase()}...
+        </div>
       </div>
+    );
+  }
 
-      <div className="text-[var(--neutral-700)]">Loading {resourceName} data for id: <span className="font-mono">{id}</span></div>
-      <div className="mt-4 text-[var(--neutral-500)]">Edit form will be loaded here.</div>
-    </div>
+  if (error) {
+    return (
+      <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+        <div className="p-4 bg-[#fef2f2] border border-[var(--color-error)] text-[var(--color-error)] rounded-md">
+          {error}
+        </div>
+      </div>
+    );
+  }
+
+  if (!item) {
+    return (
+      <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+        <div className="text-[var(--neutral-500)]">
+          {resourceName} not found.
+        </div>
+      </div>
+    );
+  }
+
+  const handleSuccess = () => {
+    router.push(`${pathname}?view=manage`);
+  };
+
+  return (
+    <AddForms
+      title={`Edit ${resourceName}`}
+      fields={fields}
+      apiEndpoint={apiEndpoint}
+      initialValues={item}
+      editId={id}
+      method="PATCH"
+      onSuccess={handleSuccess}
+    />
   );
 }

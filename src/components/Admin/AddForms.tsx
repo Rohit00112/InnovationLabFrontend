@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 
 export type FormField = {
   name: string;
@@ -19,12 +19,21 @@ interface AddFormsProps {
   apiEndpoint?: string;
   endpointBuilder?: (formData: FormData) => string;
   format?: 'multipart' | 'json'; // 'multipart' for FormData, 'json' for JSON
+  initialValues?: Record<string, any>;
+  editId?: string;
+  method?: 'POST' | 'PATCH';
+  onSuccess?: () => void;
 }
 
-export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, format = 'multipart' }: AddFormsProps) {
+export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, format = 'multipart', initialValues = {}, editId, method = 'POST', onSuccess }: AddFormsProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [formValues, setFormValues] = useState<Record<string, any>>(initialValues);
+
+  useEffect(() => {
+    setFormValues(initialValues);
+  }, [initialValues]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,9 +43,10 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
     const formData = new FormData(e.currentTarget);
 
     const resolvedEndpoint = endpointBuilder ? endpointBuilder(formData) : apiEndpoint;
+    const resolvedUrl = editId ? `${resolvedEndpoint}/${editId}` : resolvedEndpoint;
 
     // If no endpoint is provided, just log the data (useful for dev/debugging mode)
-    if (!resolvedEndpoint) {
+    if (!resolvedUrl) {
       console.log("Form submitted. Payload:", Object.fromEntries(formData.entries()));
       alert("Form submitted locally (Check console). Add apiEndpoint prop to connect to the backend.");
       return;
@@ -85,8 +95,8 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
         // Don't set Content-Type header for FormData - browser will do it automatically
       }
 
-      const response = await fetch(resolvedEndpoint, {
-        method: 'POST',
+      const response = await fetch(resolvedUrl, {
+        method: method,
         headers,
         body,
       });
@@ -96,7 +106,12 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
       }
 
       setSuccess(true);
-      (e.target as HTMLFormElement).reset(); // Clear the form on success
+      if (method === 'POST') {
+        (e.target as HTMLFormElement).reset(); // Clear the form on success for POST
+      }
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error: any) {
       console.error("Form submission error:", error);
       setErrorMsg(error.message || 'An error occurred during submission.');
@@ -137,6 +152,7 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
                 required={field.required}
                 placeholder={field.placeholder}
                 rows={4}
+                defaultValue={formValues[field.name] || ''}
                 className="block w-full border border-[var(--neutral-500)] rounded-md shadow-sm p-2.5 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-colors"
               ></textarea>
             ) : field.type === 'file' ? (
@@ -169,9 +185,10 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
                 name={field.name}
                 placeholder={field.placeholder}
                 required={field.required}
+                defaultValue={formValues[field.name] || ''}
                 className="block w-full border border-[var(--neutral-500)] rounded-md shadow-sm p-2.5 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-colors"
               />
-            )}
+            )}}
           </div>
         ))}
         
@@ -181,7 +198,7 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
             disabled={loading}
             className="w-full sm:w-auto px-6 py-2.5 bg-[var(--color-primary)] text-white font-medium rounded-md shadow-sm hover:bg-[var(--color-primary-600)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--color-primary)] disabled:opacity-50 transition-colors"
           >
-            {loading ? 'Submitting...' : 'Submit Form'}
+            {loading ? 'Submitting...' : (method === 'PATCH' ? 'Update' : 'Submit Form')}
           </button>
         </div>
       </form>

@@ -3,6 +3,44 @@ import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
 import EditShell from '@/components/Admin/EditShell';
 
+const bannerFields: FormField[] = [
+  {
+    name: "Image",
+    label: "Banner Image",
+    type: "file",
+    accept: "image/*",
+    required: true,
+  },
+  {
+    name: "Type",
+    label: "Type",
+    type: "text",
+    required: true,
+    placeholder: "e.g., Hero, Promo",
+  },
+  { name: "Title", label: "Title", type: "text", required: true },
+  { name: "SubTitle", label: "Subtitle", type: "text", required: false },
+  { name: "Caption", label: "Caption", type: "textarea", required: false },
+  { name: "Version", label: "Version", type: "number", required: false },
+  { name: "ParentId", label: "Parent ID", type: "text", required: false },
+  {
+    name: "ScheduledStart",
+    label: "Scheduled Start",
+    type: "text",
+    required: false,
+    placeholder: "YYYY-MM-DDTHH:MM:SS",
+  },
+  {
+    name: "ScheduledEnd",
+    label: "Scheduled End",
+    type: "text",
+    required: false,
+    placeholder: "YYYY-MM-DDTHH:MM:SS",
+  },
+];
+
+const bannerApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/banners`;
+
 // 1. Define your individual view components
 function ManageView() {
   const columns: Column[] = [
@@ -15,7 +53,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Banners"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/banners`}
+      apiEndpoint={bannerApiEndpoint}
       columns={columns}
       resourceName="Banner"
     />
@@ -23,47 +61,11 @@ function ManageView() {
 }
 
 function AddView() {
-  const formFields: FormField[] = [
-    {
-      name: "Image",
-      label: "Banner Image",
-      type: "file",
-      accept: "image/*",
-      required: true,
-    },
-    {
-      name: "Type",
-      label: "Type",
-      type: "text",
-      required: true,
-      placeholder: "e.g., Hero, Promo",
-    },
-    { name: "Title", label: "Title", type: "text", required: true },
-    { name: "SubTitle", label: "Subtitle", type: "text", required: false },
-    { name: "Caption", label: "Caption", type: "textarea", required: false },
-    { name: "Version", label: "Version", type: "number", required: false },
-    { name: "ParentId", label: "Parent ID", type: "text", required: false },
-    {
-      name: "ScheduledStart",
-      label: "Scheduled Start",
-      type: "text",
-      required: false,
-      placeholder: "YYYY-MM-DDTHH:MM:SS",
-    },
-    {
-      name: "ScheduledEnd",
-      label: "Scheduled End",
-      type: "text",
-      required: false,
-      placeholder: "YYYY-MM-DDTHH:MM:SS",
-    },
-  ];
-
   return (
     <AddForms
       title="Add Banner"
-      fields={formFields}
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/banners`}
+      fields={bannerFields}
+      apiEndpoint={bannerApiEndpoint}
     />
   );
 }
@@ -91,7 +93,7 @@ export default function ManageBanner() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Banner" />,
+          edit: <EditShell resourceName="Banner" fields={bannerFields} apiEndpoint={bannerApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>
