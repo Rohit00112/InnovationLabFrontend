@@ -98,14 +98,22 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
         // Don't set Content-Type header for FormData - browser will do it automatically
       }
 
+      console.log(`[AddForms] Sending ${method} request to:`, resolvedUrl);
+      console.log(`[AddForms] Request headers:`, headers);
+      
       const response = await fetch(resolvedUrl, {
         method: method,
         headers,
         body,
+        mode: 'cors',
+        credentials: 'include',
       });
 
+      console.log(`[AddForms] Response status:`, response.status);
+      
       if (!response.ok) {
-        throw new Error(`Submission failed with status: ${response.status}`);
+        const errorText = await response.text().catch(() => 'Unknown error');
+        throw new Error(`Submission failed with status: ${response.status}. Response: ${errorText}`);
       }
 
       setSuccess(true);
@@ -116,8 +124,10 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
         onSuccess();
       }
     } catch (error: any) {
-      console.error("Form submission error:", error);
-      setErrorMsg(error.message || 'An error occurred during submission.');
+      console.error("[AddForms] Submission error:", error);
+      const errorMsg = error?.message || error?.toString() || 'An error occurred during submission.';
+      console.error("[AddForms] Error message:", errorMsg);
+      setErrorMsg(errorMsg);
     } finally {
       setLoading(false);
     }
