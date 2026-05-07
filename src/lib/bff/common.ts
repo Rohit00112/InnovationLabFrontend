@@ -27,9 +27,12 @@ export function getRequestId(request: NextRequest): string {
 
 export function ensureBackendBaseUrl(requestId: string): NextResponse | null {
   if (process.env.BACKEND_API_BASE_URL) {
+    console.log(`[BFF] Request ${requestId} using BACKEND_API_BASE_URL:`, 
+      process.env.BACKEND_API_BASE_URL);
     return null;
   }
 
+  console.error(`[BFF] Request ${requestId} missing BACKEND_API_BASE_URL`);
   return failure(
     {
       code: "CONFIG_ERROR",
@@ -301,14 +304,25 @@ export function failure(
 }
 
 export function relay(result: RelayResult, requestId: string): NextResponse {
+  console.log(`[BFF] Request ${requestId} relay result:`, {
+    status: result.status,
+    dataType: typeof result.data,
+  });
+
   if (result.status >= 200 && result.status < 300) {
     return success(result.data, result.status, requestId);
   }
 
+  const errorMsg = extractBackendMessage(result.data);
+  console.error(`[BFF] Request ${requestId} backend error:`, {
+    status: result.status,
+    message: errorMsg,
+  });
+
   return failure(
     {
       code: "BACKEND_ERROR",
-      message: extractBackendMessage(result.data),
+      message: errorMsg,
       details: result.data,
     },
     result.status,
@@ -322,6 +336,11 @@ export function handleUnknownError(
 ): NextResponse {
   const message =
     error instanceof Error ? error.message : "Unexpected server error.";
+
+  console.error(`[BFF] Request ${requestId} error:`, {
+    message,
+    stack: error instanceof Error ? error.stack : undefined,
+  });
 
   return failure(
     {

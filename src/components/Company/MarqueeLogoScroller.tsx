@@ -18,10 +18,14 @@ interface Logo {
 }
 
 interface SelectedCompany {
-  imageUrl: string;
-  companyName: string;
-  companyDetails: string;
-  internsCount: number;
+  logoUrl: string;
+  name: string;
+  about: string;
+  numberOfInterns: number;
+  priority: number;
+  isMouSigned: boolean;
+  contactEmail: string;
+  websiteUrl: string;
 }
 
 // Define the props for the main component
@@ -109,16 +113,20 @@ const MarqueeLogoScroller = React.forwardRef<
                 if (!imageSrc) return null;
 
                 const companyPayload: SelectedCompany = {
-                  imageUrl: logo.imageUrl ?? imageSrc,
-                  companyName: logo.companyName ?? imageAlt,
-                  companyDetails: logo.companyDetails ?? "Details coming soon.",
-                  internsCount: logo.internsCount ?? 0,
+                  logoUrl: logo.imageUrl ?? imageSrc,
+                  name: logo.companyName ?? imageAlt,
+                  about: logo.companyDetails ?? "Details coming soon.",
+                  numberOfInterns: logo.internsCount ?? 0,
+                  priority: 0,
+                  isMouSigned: false,
+                  contactEmail: "",
+                  websiteUrl: "#",
                 };
 
                 return (
                   <AnimatedModal
                     key={index}
-                    title={companyPayload.companyName}
+                    title={companyPayload.name}
                     triggerClassName="group relative h-24 w-40 shrink-0"
                     overlayClassName="bg-black/35 backdrop-blur-sm"
                     viewportClassName="p-4"
@@ -156,16 +164,16 @@ const MarqueeLogoScroller = React.forwardRef<
                       </Dialog.Close>
                       <CompanyCard
                         topText="Partner"
-                        logoUrl={companyPayload.imageUrl}
-                        name={companyPayload.companyName}
-                        about={companyPayload.companyDetails}
-                        numberOfInterns={companyPayload.internsCount}
+                        logoUrl={companyPayload.logoUrl}
+                        name={companyPayload.name}
+                        about={companyPayload.about}
+                        priority={companyPayload.priority}
+                        isMouSigned={companyPayload.isMouSigned}
+                        contactEmail={companyPayload.contactEmail}
+                        websiteUrl={companyPayload.websiteUrl}
+                        numberOfInterns={companyPayload.numberOfInterns}
                         disableTilt={true}
                         className="bg-white"
-                        priority={0}
-                        isMouSigned={false}
-                        contactEmail=""
-                        websiteUrl="#"
                       />
                     </div>
                   </AnimatedModal>

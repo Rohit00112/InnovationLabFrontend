@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "@/styles/globals.css";
 import TransitionProvider from "@/components/TransitionProvider";
-import Navbar from "@/components/NavBar";
-import Footer from "@/components/Footer";
-import { Providers } from "@/lib/providers";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -23,13 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className={`${spaceGrotesk.className} min-h-full flex flex-col`}>
-        <Providers>
-          <TransitionProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </TransitionProvider>
-        </Providers>
+        <TransitionProvider>
+          {children}
+        </TransitionProvider>
       </body>
     </html>
   );
