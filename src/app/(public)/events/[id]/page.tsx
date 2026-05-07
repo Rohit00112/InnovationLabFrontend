@@ -1,9 +1,12 @@
+"use client";
+
+import { use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageLayout from "@/components/primitives/PageLayout";
 import PageHeader from "@/components/primitives/PageHeader";
-import { bffApi } from "@/lib/services/bff-client";
+import { useGetEventById } from "@/lib/services/generated/frontend";
 
 type EventDetailPageProps = {
   params: Promise<{
@@ -11,24 +14,30 @@ type EventDetailPageProps = {
   }>;
 };
 
-export default async function EventDetailPage({
+export default function EventDetailPage({
   params,
 }: EventDetailPageProps) {
-  const { id } = await params;
+  const { id } = use(params);
+  
+  const { data: response, isLoading, error } = useGetEventById(id);
 
-  let eventData;
-  try {
-    const response = await bffApi.events.getById(id);
-    eventData = response.data;
-  } catch (error) {
+  if (isLoading) {
+    return (
+      <PageLayout>
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <div className="text-xl font-bold uppercase tracking-widest text-neutral-400 animate-pulse">
+            Loading Event Details...
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  if (error || !response?.data) {
     notFound();
   }
 
-  if (!eventData) {
-    notFound();
-  }
-
-  const event = eventData;
+  const event = response.data;
 
   // Map highlights to focus areas and details
   const focusAreas = event.highlights || [];
@@ -217,4 +226,5 @@ export default async function EventDetailPage({
     </PageLayout>
   );
 }
+
 

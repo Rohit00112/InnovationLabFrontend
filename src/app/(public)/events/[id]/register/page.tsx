@@ -1,9 +1,12 @@
+"use client";
+
+import { use } from "react";
 import { notFound } from "next/navigation";
 import PageLayout from "@/components/primitives/PageLayout";
 import PageHeader from "@/components/primitives/PageHeader";
 import EventRegistrationForm from "@/components/Events/EventRegistrationForm";
 import Image from "next/image";
-import { bffApi } from "@/lib/services/bff-client";
+import { useGetEventById } from "@/lib/services/generated/frontend";
 
 type EventRegisterPageProps = {
   params: Promise<{
@@ -11,45 +14,30 @@ type EventRegisterPageProps = {
   }>;
 };
 
-export async function generateMetadata({ params }: EventRegisterPageProps) {
-  const { id } = await params;
-  
-  let event;
-  try {
-    const response = await bffApi.events.getById(id);
-    event = response.data;
-  } catch (error) {
-    return { title: "Event Not Found" };
-  }
-
-  if (!event) {
-    return {
-      title: "Event Not Found",
-    };
-  }
-
-  return {
-    title: `Register for ${event.title}`,
-    description: `Register to attend ${event.title} at Innovation Lab`,
-  };
-}
-
-export default async function EventRegisterPage({
+export default function EventRegisterPage({
   params,
 }: EventRegisterPageProps) {
-  const { id } = await params;
+  const { id } = use(params);
   
-  let event;
-  try {
-    const response = await bffApi.events.getById(id);
-    event = response.data;
-  } catch (error) {
+  const { data: response, isLoading, error } = useGetEventById(id);
+
+  if (isLoading) {
+    return (
+      <PageLayout>
+        <div className="flex min-h-[60vh] items-center justify-center">
+          <div className="text-xl font-bold uppercase tracking-widest text-neutral-400 animate-pulse">
+            Loading Registration Details...
+          </div>
+        </div>
+      </PageLayout>
+    );
+  }
+
+  if (error || !response?.data) {
     notFound();
   }
 
-  if (!event) {
-    notFound();
-  }
+  const event = response.data;
 
   return (
     <PageLayout>
