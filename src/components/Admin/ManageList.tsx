@@ -39,7 +39,23 @@ export default function ManageList({
     try {
       setLoading(true);
       setError(null);
-      const response = await fetch(apiEndpoint);
+      // Attach Authorization header from localStorage if available
+      const headers: HeadersInit = {};
+      try {
+        if (typeof window !== 'undefined') {
+          const token = localStorage.getItem('authToken') || localStorage.getItem('token') || localStorage.getItem('accessToken');
+          if (token) {
+            headers['authorization'] = `Bearer ${token}`;
+            // eslint-disable-next-line no-console
+            console.log('[ManageList] Authorization header added from localStorage');
+          }
+        }
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn('[ManageList] Error reading auth token from localStorage', e);
+      }
+
+      const response = await fetch(apiEndpoint, { headers, credentials: 'include', mode: 'cors' });
       if (!response.ok) {
         throw new Error(`Failed to fetch ${resourceName}`);
       }
@@ -89,8 +105,24 @@ export default function ManageList({
         await onDelete(id);
       } else {
         // Default delete behavior
+        const delHeaders: HeadersInit = {};
+        try {
+          if (typeof window !== 'undefined') {
+            const token = localStorage.getItem('authToken') || localStorage.getItem('token') || localStorage.getItem('accessToken');
+            if (token) {
+              delHeaders['authorization'] = `Bearer ${token}`;
+            }
+          }
+        } catch (e) {
+          // eslint-disable-next-line no-console
+          console.warn('[ManageList] Error reading auth token from localStorage', e);
+        }
+
         const response = await fetch(`${apiEndpoint}/${id}`, {
           method: 'DELETE',
+          headers: delHeaders,
+          credentials: 'include',
+          mode: 'cors',
         });
         if (!response.ok) {
           throw new Error(`Failed to delete ${resourceName}`);
