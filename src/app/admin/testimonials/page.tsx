@@ -34,8 +34,7 @@ function AddView() {
     <AddForms 
       title="Add Testimonial" 
       fields={formFields} 
-      // Pass the actual backend URL to the component
-      //apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/testimonials`}
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/testimonials`}
     />
   );
 }

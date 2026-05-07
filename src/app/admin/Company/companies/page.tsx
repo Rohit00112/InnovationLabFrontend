@@ -46,7 +46,7 @@ function AddView() {
     <AddForms
       title="Add Company"
       fields={formFields}
-      //apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/companies`}
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/companies`}
     />
   );
 }
