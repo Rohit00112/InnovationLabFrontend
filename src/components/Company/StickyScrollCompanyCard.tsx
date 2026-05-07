@@ -65,10 +65,14 @@ const Component = forwardRef<HTMLElement, CompanyCardListProps>(({ companies }, 
                   <div key={trueIndex} className='w-full'>
                     <CompanyCard
                       topText=""
-                      imageUrl={company.imageUrl}
-                      companyName={company.companyName}
-                      companyDetails={company.companyDetails}
-                      internsCount={company.internsCount}
+                      logoUrl={company.logoUrl}
+                      name={company.name}
+                      about={company.about}
+                      priority={company.priority}
+                      isMouSigned={company.isMouSigned}
+                      contactEmail={company.contactEmail}
+                      websiteUrl={company.websiteUrl}
+                      numberOfInterns={company.numberOfInterns}
                       className={`h-full ${getCardBgClass(trueIndex)}`}
                     />
                   </div>
@@ -88,10 +92,14 @@ const Component = forwardRef<HTMLElement, CompanyCardListProps>(({ companies }, 
                   <div key={trueIndex} className='w-full h-full'>
                     <CompanyCard
                       topText=""
-                      imageUrl={company.imageUrl}
-                      companyName={company.companyName}
-                      companyDetails={company.companyDetails}
-                      internsCount={company.internsCount}
+                      logoUrl={company.logoUrl}
+                      name={company.name}
+                      about={company.about}
+                      priority={company.priority}
+                      isMouSigned={company.isMouSigned}
+                      contactEmail={company.contactEmail}
+                      websiteUrl={company.websiteUrl}
+                      numberOfInterns={company.numberOfInterns}
                       compact={true}
                       className={`h-full border-t border-[#DFDFDF] ${getCardBgClass(trueIndex)}`}
                     />
@@ -106,10 +114,14 @@ const Component = forwardRef<HTMLElement, CompanyCardListProps>(({ companies }, 
                   <div key={trueIndex} className='w-full'>
                     <CompanyCard
                       topText=""
-                      imageUrl={company.imageUrl}
-                      companyName={company.companyName}
-                      companyDetails={company.companyDetails}
-                      internsCount={company.internsCount}
+                      logoUrl={company.logoUrl}
+                      name={company.name}
+                      about={company.about}
+                      priority={company.priority}
+                      isMouSigned={company.isMouSigned}
+                      contactEmail={company.contactEmail}
+                      websiteUrl={company.websiteUrl}
+                      numberOfInterns={company.numberOfInterns}
                       className={`h-full ${getCardBgClass(trueIndex)}`}
                     />
                   </div>

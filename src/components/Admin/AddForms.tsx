@@ -2,6 +2,8 @@
 
 import React, { FormEvent, useState, useEffect } from 'react';
 
+const EMPTY_INITIAL_VALUES: Record<string, any> = {};
+
 export type FormField = {
   name: string;
   label: string;
@@ -25,15 +27,16 @@ interface AddFormsProps {
   onSuccess?: () => void;
 }
 
-export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, format = 'multipart', initialValues = {}, editId, method = 'POST', onSuccess }: AddFormsProps) {
+export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, format = 'multipart', initialValues, editId, method = 'POST', onSuccess }: AddFormsProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [formValues, setFormValues] = useState<Record<string, any>>(initialValues);
+  const safeInitialValues = initialValues ?? EMPTY_INITIAL_VALUES;
+  const [formValues, setFormValues] = useState<Record<string, any>>(safeInitialValues);
 
   useEffect(() => {
-    setFormValues(initialValues);
-  }, [initialValues]);
+    setFormValues(safeInitialValues);
+  }, [safeInitialValues]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
