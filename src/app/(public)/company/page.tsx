@@ -135,6 +135,48 @@ export default function Partner() {
       numberOfVacancies: 0,
     },
     {
+      name: "Lumen Fabrication",
+      about:
+        "Prototyping precision components for clean energy startups.",
+      priority: 7,
+      isMouSigned: false,
+      isJobFair: false,
+      contactEmail: "hello@lumenfab.com",
+      websiteUrl: "https://example.com/lumenfab",
+      logoUrl:
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80",
+      numberOfInterns: 4,
+      numberOfVacancies: 1,
+    },
+    {
+      name: "Riverbend Analytics",
+      about:
+        "Building data pipelines for real-time operations intelligence.",
+      priority: 8,
+      isMouSigned: false,
+      isJobFair: false,
+      contactEmail: "team@riverbend.ai",
+      websiteUrl: "https://example.com/riverbend",
+      logoUrl:
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=80",
+      numberOfInterns: 5,
+      numberOfVacancies: 2,
+    },
+    {
+      name: "Atlas Learning",
+      about:
+        "Creating adaptive learning platforms for technical training.",
+      priority: 9,
+      isMouSigned: false,
+      isJobFair: false,
+      contactEmail: "contact@atlaslearning.io",
+      websiteUrl: "https://example.com/atlas",
+      logoUrl:
+        "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=900&q=80",
+      numberOfInterns: 3,
+      numberOfVacancies: 1,
+    },
+    {
       name: "Nova Quantum",
       about:
         "Exploring quantum computing solutions for next-generation cryptography.",
@@ -272,18 +314,18 @@ export default function Partner() {
       numberOfVacancies: 4,
     },
     {
-      name: "Zenith Motors",
+      name: "Prism Aero",
       about:
-        "Engineering electric mobility solutions for future transportation.",
+        "Developing UAV navigation and autonomy stacks for commercial fleets.",
       priority: 17,
       isMouSigned: true,
       isJobFair: true,
-      contactEmail: "careers@zenithmotors.com",
-      websiteUrl: "https://example.com/zenith",
+      contactEmail: "hello@prismaero.com",
+      websiteUrl: "https://example.com/prism",
       logoUrl:
-        "https://images.unsplash.com/photo-1493238792000-8113da705763?w=900&q=80",
-      numberOfInterns: 8,
-      numberOfVacancies: 4,
+        "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=900&q=80",
+      numberOfInterns: 6,
+      numberOfVacancies: 2,
     },
     {
       name: "Solstice Labs",
@@ -298,13 +340,45 @@ export default function Partner() {
       numberOfInterns: 4,
       numberOfVacancies: 1,
     },
+    {
+      name: "CivicGrid Labs",
+      about:
+        "Designing civic infrastructure platforms for resilient cities.",
+      priority: 19,
+      isMouSigned: true,
+      isJobFair: false,
+      contactEmail: "partners@civicgrid.com",
+      websiteUrl: "https://example.com/civicgrid",
+      logoUrl:
+        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=80",
+      numberOfInterns: 5,
+      numberOfVacancies: 2,
+    },
+    {
+      name: "HelioNav Systems",
+      about:
+        "Building navigation software for renewable energy asset fleets.",
+      priority: 20,
+      isMouSigned: true,
+      isJobFair: true,
+      contactEmail: "hello@helionav.io",
+      websiteUrl: "https://example.com/helionav",
+      logoUrl:
+        "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&q=80",
+      numberOfInterns: 6,
+      numberOfVacancies: 3,
+    },
   ];
   const internshipCompanies = [...companies]
     .filter((company) => !company.isMouSigned && !company.isJobFair)
     .sort((a, b) => a.priority - b.priority);
+  const featuredInternshipCompanies = internshipCompanies.slice(0, 6);
+  const moreInternshipCompanies = internshipCompanies.slice(6);
   const mouCompanies = [...companies]
     .filter((company) => company.isMouSigned)
     .sort((a, b) => a.priority - b.priority);
+  const featuredMouCompanies = mouCompanies.slice(0, 12);
+  const moreMouCompanies = mouCompanies.slice(12);
 
   const storiesData: StoryItem[] = [
     {
@@ -350,6 +424,7 @@ export default function Partner() {
         <div className="line-bg w-full md:h-16 h-6"></div>
         <div className="mt-ds-7"></div>
       </FadeIn>
+      {/* The companies which have both ismousigned and isjobfair false will be displayed here - top 6 and further companies will be displayed in companylisttable */}
       <FadeIn delay={0.3}>
         <section className="mx-ds-5 mt-10 antialiased">
           <div className="p-6 md:p-8 lg:p-10 bg-white border border-[#DFDFDF] border-b-0">
@@ -359,24 +434,37 @@ export default function Partner() {
               </h2>
             </div>
           </div>
-          <CompanyList companies={internshipCompanies} />
+          <CompanyList companies={featuredInternshipCompanies} />
         </section>
       </FadeIn>
+      {/* This section should have more companies providing internship instead of mou signed companies */}
       <FadeIn delay={0.35}>
         <section className="w-full px-4 pb-20 pt-12">
           <CompanyListTable
-            companies={mouCompanies}
-            title="More Partners"
+            companies={moreInternshipCompanies}
+            title="More Companies with interns"
             description="Explore the full list of companies where our students are working as interns"
+            variant="internship"
           />
         </section>
       </FadeIn>
-      {/**Section: MOU Companies */}
+      {/**Section: MOU Companieswhich are top 12 will be passed to this component and remainig will be sent to the company list table below it */}
       <MOUCompaniesScroll
-        companies={mouCompanies}
+        companies={featuredMouCompanies}
         heading="MOU Signed"
         highlight="Companies"
       />
+      {/**More MOU signed Companies */}
+      <FadeIn delay={0.4}>
+        <section className="w-full px-4 pb-20 pt-12">
+          <CompanyListTable
+            companies={moreMouCompanies}
+            title="More MOU signed companies"
+            description="Explore the full list of companies where college has MOU signed with"
+            variant="mou"
+          />
+        </section>
+      </FadeIn>
       {/*Section: Description*/}
       <FadeIn delay={0.4}>
         <section className="py-24 px-10 text-center max-w-4xl mx-auto">

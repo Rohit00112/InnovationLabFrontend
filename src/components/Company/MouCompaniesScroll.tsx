@@ -138,8 +138,8 @@ export function CompanyCard({
   className,
   ...props
 }: React.ComponentProps<'div'> & { company: CompanyListItem }) {
-  return (
-    <div className={cn('flex flex-col', className)} {...props}>
+  const cardContent = (
+    <>
       <div className="relative w-full flex-1 min-h-0">
         <Image
           src={company.logoUrl}
@@ -154,6 +154,23 @@ export function CompanyCard({
         <h4 className="text-sm text-[#515151]">{company.about}</h4>
         <p className="text-xs text-black">{company.contactEmail}</p>
       </div>
+    </>
+  );
+
+  return (
+    <div className={cn('flex flex-col', className)} {...props}>
+      {company.websiteUrl ? (
+        <a
+          href={company.websiteUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="flex h-full flex-col"
+        >
+          {cardContent}
+        </a>
+      ) : (
+        cardContent
+      )}
     </div>
   );
 }
