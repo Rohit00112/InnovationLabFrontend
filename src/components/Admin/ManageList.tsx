@@ -44,7 +44,31 @@ export default function ManageList({
         throw new Error(`Failed to fetch ${resourceName}`);
       }
       const data = await response.json();
-      setItems(Array.isArray(data) ? data : data.data || []);
+      // Defensive handling for different API shapes and helpful logging
+      // eslint-disable-next-line no-console
+      console.log(`[ManageList] Fetched from ${apiEndpoint}:`, data);
+
+      let itemsArray: any[] = [];
+      if (Array.isArray(data)) {
+        itemsArray = data;
+      } else if (Array.isArray((data as any).data)) {
+        itemsArray = (data as any).data;
+      } else if (Array.isArray((data as any).items)) {
+        itemsArray = (data as any).items;
+      } else if (Array.isArray((data as any).results)) {
+        itemsArray = (data as any).results;
+      } else if (Array.isArray((data as any).data?.items)) {
+        itemsArray = (data as any).data.items;
+      } else {
+        const firstArray = Object.values(data || {}).find((v) => Array.isArray(v));
+        if (Array.isArray(firstArray)) {
+          itemsArray = firstArray as any[];
+        } else {
+          itemsArray = [];
+        }
+      }
+
+      setItems(itemsArray);
     } catch (err: any) {
       setError(err.message || `Failed to load ${resourceName}`);
     } finally {

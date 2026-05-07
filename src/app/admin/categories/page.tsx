@@ -8,7 +8,7 @@ const categoryFields: FormField[] = [
   { name: "parentCategoryId", label: "Parent Category ID (Optional)", type: "text", required: false, placeholder: "UUID of parent category" },
 ];
 
-const categoryApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/categories`;
+const categoryApiEndpoint = `/api/categories`;
 
 // 1. Define your individual view components
 function ManageView() {

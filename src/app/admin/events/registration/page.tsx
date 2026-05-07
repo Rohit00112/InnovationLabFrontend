@@ -14,7 +14,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Registrations"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/events/registrations`}
+      apiEndpoint={`/api/events/registrations`}
       columns={columns}
       resourceName="Registration"
     />

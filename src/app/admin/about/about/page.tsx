@@ -13,7 +13,7 @@ const aboutFields: FormField[] = [
   { name: "ParentOrgWebsiteUrl", label: "Parent Organization Website URL", type: "text", required: true, placeholder: "https://example.com" },
 ];
 
-const aboutApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/about`;
+const aboutApiEndpoint = `/api/about`;
 
 // 1. Define your individual view components
 function ManageView() {

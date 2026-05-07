@@ -39,7 +39,7 @@ const bannerFields: FormField[] = [
   },
 ];
 
-const bannerApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/banners`;
+const bannerApiEndpoint = `/api/banners`;
 
 // 1. Define your individual view components
 function ManageView() {

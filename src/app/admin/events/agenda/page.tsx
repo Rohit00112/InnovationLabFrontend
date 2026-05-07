@@ -12,7 +12,7 @@ const agendaFields: FormField[] = [
   { name: "description", label: "Description", type: "textarea", required: false },
 ];
 
-const agendaApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/events/agenda`;
+const agendaApiEndpoint = `/api/events/agenda`;
 
 // 1. Define your individual view components
 function ManageView() {

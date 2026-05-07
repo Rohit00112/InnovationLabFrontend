@@ -14,7 +14,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Contacts"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/contacts`}
+      apiEndpoint={`/api/contacts`}
       columns={columns}
       resourceName="Contact"
     />

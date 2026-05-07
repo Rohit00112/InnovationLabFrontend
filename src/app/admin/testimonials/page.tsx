@@ -11,7 +11,7 @@ const testimonialFields: FormField[] = [
   { name: "ImageUrl", label: "Image (ImageUrl)", type: "file", accept: "image/*", required: true },
 ];
 
-const testimonialApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/testimonials`;
+const testimonialApiEndpoint = `/api/testimonials`;
 
 // Manage Testimonials
 function ManageView() {

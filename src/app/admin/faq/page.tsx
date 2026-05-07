@@ -9,7 +9,7 @@ const faqFields: FormField[] = [
   { name: "categoryId", label: "Category ID (Optional)", type: "text", required: false, placeholder: "UUID of category" },
 ];
 
-const faqApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/faqs`;
+const faqApiEndpoint = `/api/faqs`;
 
 // 1. Define your individual view components
 function ManageView() {

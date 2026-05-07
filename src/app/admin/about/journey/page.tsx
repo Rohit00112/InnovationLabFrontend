@@ -12,7 +12,7 @@ const journeyFields: FormField[] = [
   { name: "Order", label: "Order", type: "number", required: false },
 ];
 
-const journeyApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/journey`;
+const journeyApiEndpoint = `/api/journey`;
 
 // 1. Define your individual view components
 function ManageView() {

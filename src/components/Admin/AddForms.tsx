@@ -99,6 +99,21 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
       }
 
       console.log(`[AddForms] Sending ${method} request to:`, resolvedUrl);
+      // Attach Authorization header from localStorage if available (admin auth token)
+      try {
+        if (typeof window !== 'undefined') {
+          const token = localStorage.getItem('authToken') || localStorage.getItem('token') || localStorage.getItem('accessToken');
+          if (token) {
+            headers['authorization'] = `Bearer ${token}`;
+            console.log('[AddForms] Authorization header added from localStorage');
+          } else {
+            console.log('[AddForms] No auth token found in localStorage');
+          }
+        }
+      } catch (e) {
+        console.warn('[AddForms] Error reading auth token from localStorage', e);
+      }
+
       console.log(`[AddForms] Request headers:`, headers);
       
       const response = await fetch(resolvedUrl, {

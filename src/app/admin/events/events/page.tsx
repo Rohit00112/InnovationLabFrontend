@@ -20,7 +20,7 @@ const eventFields: FormField[] = [
   { name: "RegistrationEnd", label: "Registration End", type: "text", required: false, placeholder: "YYYY-MM-DDTHH:MM:SS" },
 ];
 
-const eventApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/events`;
+const eventApiEndpoint = `/api/events`;
 
 // 1. Define your individual view components
 function ManageView() {

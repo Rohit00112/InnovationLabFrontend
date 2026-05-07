@@ -11,7 +11,7 @@ const coreValueFields: FormField[] = [
   { name: "Order", label: "Order", type: "number", required: false },
 ];
 
-const coreValueApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/core-values`;
+const coreValueApiEndpoint = `/api/core-values`;
 
 // 1. Define your individual view components
 function ManageView() {

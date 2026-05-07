@@ -13,7 +13,7 @@ const companyFields: FormField[] = [
   { name: "Logo", label: "Logo (Image)", type: "file", accept: "image/*", required: true },
 ];
 
-const companyApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/companies`;
+const companyApiEndpoint = `/api/companies`;
 
 // Define your individual view components
 function ManageView() {
