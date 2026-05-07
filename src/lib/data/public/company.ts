@@ -34,100 +34,172 @@ export const companyGalleryItems = [
 
 export const partnerCompanies: CompanyListItem[] = [
   {
-    companyName: "Aether Dynamics",
-    companyDetails:
+    name: "Aether Dynamics",
+    about:
       "Building autonomous sensing systems for smart mobility and logistics.",
-    internsCount: 6,
-    imageUrl:
+    numberOfInterns: 6,
+    logoUrl:
       "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Nexa BioLabs",
-    companyDetails:
+    name: "Nexa BioLabs",
+    about:
       "Applying machine learning to accelerate drug discovery and testing.",
-    internsCount: 4,
-    imageUrl:
+    numberOfInterns: 4,
+    logoUrl:
       "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Forge Robotics",
-    companyDetails:
+    name: "Forge Robotics",
+    about:
       "Designing modular robots for manufacturing and warehouse automation.",
-    internsCount: 8,
-    imageUrl:
+    numberOfInterns: 8,
+    logoUrl:
       "https://images.unsplash.com/photo-1561144257-e32e8efc6c4f?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Pulse Grid",
-    companyDetails:
+    name: "Pulse Grid",
+    about:
       "Creating energy analytics tools for efficient and resilient city grids.",
-    internsCount: 5,
-    imageUrl:
+    numberOfInterns: 5,
+    logoUrl:
       "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Cloud Harbor",
-    companyDetails:
+    name: "Cloud Harbor",
+    about:
       "Shipping secure cloud infrastructure for fast scaling startup teams.",
-    internsCount: 7,
-    imageUrl:
+    numberOfInterns: 7,
+    logoUrl:
       "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Verde Materials",
-    companyDetails:
+    name: "Verde Materials",
+    about:
       "Developing sustainable materials for low waste product engineering.",
-    internsCount: 3,
-    imageUrl:
+    numberOfInterns: 3,
+    logoUrl:
       "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Vertex Health",
-    companyDetails:
+    name: "Vertex Health",
+    about:
       "Building AI-powered diagnostics and remote patient monitoring tools.",
-    internsCount: 5,
-    imageUrl:
+    numberOfInterns: 5,
+    logoUrl:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Orbit Fintech",
-    companyDetails:
+    name: "Orbit Fintech",
+    about:
       "Developing secure payment rails and analytics for digital-first finance teams.",
-    internsCount: 4,
-    imageUrl:
+    numberOfInterns: 4,
+    logoUrl:
       "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Vertex Health",
-    companyDetails:
+    name: "Vertex Health",
+    about:
       "Building AI-powered diagnostics and remote patient monitoring tools.",
-    internsCount: 5,
-    imageUrl:
+    numberOfInterns: 5,
+    logoUrl:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Orbit Fintech",
-    companyDetails:
+    name: "Orbit Fintech",
+    about:
       "Developing secure payment rails and analytics for digital-first finance teams.",
-    internsCount: 4,
-    imageUrl:
+    numberOfInterns: 4,
+    logoUrl:
       "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Vertex Health",
-    companyDetails:
+    name: "Vertex Health",
+    about:
       "Building AI-powered diagnostics and remote patient monitoring tools.",
-    internsCount: 5,
-    imageUrl:
+    numberOfInterns: 5,
+    logoUrl:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
   {
-    companyName: "Orbit Fintech",
-    companyDetails:
+    name: "Orbit Fintech",
+    about:
       "Developing secure payment rails and analytics for digital-first finance teams.",
-    internsCount: 4,
-    imageUrl:
+    numberOfInterns: 4,
+    logoUrl:
       "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=900&q=80",
+    priority: 0,
+    isMouSigned: false,
+    isJobFair: false,
+    contactEmail: "",
+    websiteUrl: "#",
+    numberOfVacancies: 0,
   },
 ];
 

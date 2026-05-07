@@ -10,8 +10,8 @@ import {
 } from "@/lib/bff/common";
 import { nodeApi } from "@/lib/services/server-api";
 import type {
-  CreateCategoryDto,
-  UpdateCategoryDto,
+  CategoryCreateDto,
+  CategoryUpdateDto,
 } from "@/lib/services/generated/node/schemas";
 
 export const runtime = "nodejs";
@@ -29,7 +29,10 @@ export async function GET(request: NextRequest, context: Context) {
       const headers = forwardedHeaders(request);
 
       if (segments.length === 0) {
-        return relay(await nodeApi.getAllCategories({ headers }), requestId);
+        return relay(
+          await nodeApi.getCategories(undefined, { headers }),
+          requestId,
+        );
       }
 
       if (segments.length === 1) {
@@ -59,7 +62,7 @@ export async function POST(request: NextRequest, context: Context) {
     context,
     async ({ request, requestId, segments }) => {
       if (segments.length === 0) {
-        const parsed = await parseJsonBodyAs<CreateCategoryDto>(request);
+        const parsed = await parseJsonBodyAs<CategoryCreateDto>(request);
         if (parsed.error) {
           return parsed.error;
         }
@@ -103,7 +106,7 @@ export async function PUT(request: NextRequest, context: Context) {
           return idError;
         }
 
-        const parsed = await parseJsonBodyAs<UpdateCategoryDto>(request);
+        const parsed = await parseJsonBodyAs<CategoryUpdateDto>(request);
         if (parsed.error) {
           return parsed.error;
         }
@@ -148,7 +151,7 @@ export async function DELETE(request: NextRequest, context: Context) {
         }
 
         return relay(
-          await nodeApi.deleteCategoryById(segments[0], {
+          await nodeApi.deleteCategory(segments[0], {
             headers: forwardedHeaders(request),
           }),
           requestId,

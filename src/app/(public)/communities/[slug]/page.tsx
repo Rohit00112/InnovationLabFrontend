@@ -64,8 +64,8 @@ export default function CommunityDetailPage({
               className={[
                 "border-b border-r border-black/10 p-6",
                 index % 2 === 0
-                  ? "bg-gradient-to-br from-cyan-400/10 to-white"
-                  : "bg-gradient-to-b from-cyan-400/6 to-white",
+                  ? "bg-linear-to-br from-cyan-400/10 to-white"
+                  : "bg-linear-to-b from-cyan-400/6 to-white",
               ].join(" ")}
             >
               <div className="relative h-44 w-full overflow-hidden border border-black/10">
