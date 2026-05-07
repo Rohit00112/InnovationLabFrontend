@@ -1,9 +1,24 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import ManageList, { Column } from "@/components/Admin/ManageList";
 import { div } from "framer-motion/client";
 
 // 1. Define your individual view components
 function ManageView() {
-  return <div>Code for the Manage table goes here...</div>;
+  const columns: Column[] = [
+    { key: 'Title', label: 'Title' },
+    { key: 'startTime', label: 'Start Time' },
+    { key: 'endTime', label: 'End Time' },
+    { key: 'description', label: 'Description' },
+  ];
+
+  return (
+    <ManageList
+      title="Manage Agendas"
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/events/agenda`}
+      columns={columns}
+      resourceName="Agenda"
+    />
+  );
 }
 
 function AddView() {

@@ -1,9 +1,24 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
+import ManageList, { Column } from "@/components/Admin/ManageList";
 
 // Manage Testimonials
 function ManageView() {
-  return <div>Code for the Manage table goes here...</div>;
+  const columns: Column[] = [
+    { key: 'Name', label: 'Name' },
+    { key: 'Designation', label: 'Designation' },
+    { key: 'Organization', label: 'Organization' },
+    { key: 'Text', label: 'Text' },
+  ];
+
+  return (
+    <ManageList
+      title="Manage Testimonials"
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/testimonials`}
+      columns={columns}
+      resourceName="Testimonial"
+    />
+  );
 }
 // Add Testimonials
 function AddView() {

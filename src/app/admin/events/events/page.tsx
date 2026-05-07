@@ -1,9 +1,25 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
+import ManageList, { Column } from "@/components/Admin/ManageList";
 
 // 1. Define your individual view components
 function ManageView() {
-  return <div>Code for the Manage table goes here...</div>;
+  const columns: Column[] = [
+    { key: 'Title', label: 'Title' },
+    { key: 'Location', label: 'Location' },
+    { key: 'StartTime', label: 'Start Time' },
+    { key: 'EndTime', label: 'End Time' },
+    { key: 'SeriesName', label: 'Series' },
+  ];
+
+  return (
+    <ManageList
+      title="Manage Events"
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/events`}
+      columns={columns}
+      resourceName="Event"
+    />
+  );
 }
 
 function AddView() {

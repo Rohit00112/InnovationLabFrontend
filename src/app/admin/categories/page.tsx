@@ -1,9 +1,22 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
+import ManageList, { Column } from "@/components/Admin/ManageList";
 
 // 1. Define your individual view components
 function ManageView() {
-  return <div>Code for the Manage table goes here...</div>;
+  const columns: Column[] = [
+    { key: 'name', label: 'Category Name' },
+    { key: 'parentCategoryId', label: 'Parent Category ID' },
+  ];
+
+  return (
+    <ManageList
+      title="Manage Categories"
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/categories`}
+      columns={columns}
+      resourceName="Category"
+    />
+  );
 }
 
 function AddView() {

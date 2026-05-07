@@ -1,9 +1,24 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
+import ManageList, { Column } from "@/components/Admin/ManageList";
 
 // 1. Define your individual view components
 function ManageView() {
-  return <div>Code for the Manage Banner goes here...</div>;
+  const columns: Column[] = [
+    { key: 'title', label: 'Title' },
+    { key: 'type', label: 'Type' },
+    { key: 'subtitle', label: 'Subtitle' },
+    { key: 'version', label: 'Version' },
+  ];
+
+  return (
+    <ManageList
+      title="Manage Banners"
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/banners`}
+      columns={columns}
+      resourceName="Banner"
+    />
+  );
 }
 
 function AddView() {

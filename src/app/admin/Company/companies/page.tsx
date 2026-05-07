@@ -1,10 +1,25 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
+import ManageList, { Column } from "@/components/Admin/ManageList";
 import { div } from "framer-motion/client";
 
 // Define your individual view components
 function ManageView() {
-  return <div> Manage Companies</div>;
+  const columns: Column[] = [
+    { key: 'Name', label: 'Company Name' },
+    { key: 'Address', label: 'Address' },
+    { key: 'ContactEmail', label: 'Contact Email' },
+    { key: 'Priority', label: 'Priority' },
+  ];
+
+  return (
+    <ManageList
+      title="Manage Companies"
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/companies`}
+      columns={columns}
+      resourceName="Company"
+    />
+  );
 }
 
 function AddView() {

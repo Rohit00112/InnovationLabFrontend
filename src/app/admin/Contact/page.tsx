@@ -1,8 +1,23 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import ManageList, { Column } from "@/components/Admin/ManageList";
 
 // 1. Define your individual view components
 function ManageView() {
-  return <div>Code for the Manage table goes here...</div>;
+  const columns: Column[] = [
+    { key: 'name', label: 'Name' },
+    { key: 'email', label: 'Email' },
+    { key: 'message', label: 'Message' },
+    { key: 'createdAt', label: 'Submitted At' },
+  ];
+
+  return (
+    <ManageList
+      title="Manage Contacts"
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/contacts`}
+      columns={columns}
+      resourceName="Contact"
+    />
+  );
 }
 
 function AddView() {

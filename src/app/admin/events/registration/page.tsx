@@ -1,8 +1,23 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import ManageList, { Column } from "@/components/Admin/ManageList";
 
 // 1. Define your individual view components
 function ManageView() {
-  return <div>Code for the Manage table goes here...</div>;
+  const columns: Column[] = [
+    { key: 'eventId', label: 'Event ID' },
+    { key: 'userId', label: 'User ID' },
+    { key: 'status', label: 'Status' },
+    { key: 'createdAt', label: 'Registered At' },
+  ];
+
+  return (
+    <ManageList
+      title="Manage Registrations"
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/events/registrations`}
+      columns={columns}
+      resourceName="Registration"
+    />
+  );
 }
 
 function AddView() {
