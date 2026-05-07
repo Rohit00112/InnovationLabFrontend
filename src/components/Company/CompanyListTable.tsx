@@ -16,13 +16,20 @@ interface CompanyListTableProps {
   companies: CompanyListItem[];
   title: string;
   description: string;
+  variant?: "internship" | "mou";
+  columns?: ColumnDef<CompanyListItem>[];
 }
 
-export default function CompanyListTable({ companies, title, description }: CompanyListTableProps) {
+export default function CompanyListTable({
+  companies,
+  title,
+  description,
+  variant = "mou",
+  columns,
+}: CompanyListTableProps) {
   const pageSize = 10;
   const [page, setPage] = React.useState(1);
-  // Update this array to add/remove columns later.
-  const columns: ColumnDef<CompanyListItem>[] = [
+  const defaultColumns: ColumnDef<CompanyListItem>[] = [
     {
       header: "Logo",
       width: "80px",
@@ -38,7 +45,19 @@ export default function CompanyListTable({ companies, title, description }: Comp
       width: "1.4fr",
       className: "min-w-[200px] text-[15px] font-semibold text-neutral-900",
       headerClassName: "min-w-[200px]",
-      cell: (company) => <span>{company.name}</span>,
+      cell: (company) =>
+        company.websiteUrl ? (
+          <a
+            href={company.websiteUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="text-accent transition hover:underline"
+          >
+            {company.name}
+          </a>
+        ) : (
+          <span>{company.name}</span>
+        ),
     },
     {
       header: "Contact",
@@ -56,24 +75,52 @@ export default function CompanyListTable({ companies, title, description }: Comp
           <span className="text-neutral-400">N/A</span>
         ),
     },
-    {
-      header: "Interns",
-      width: "140px",
-      className: "w-[140px] flex justify-center",
-      headerClassName: "flex justify-center",
-      cell: (company) => (
-        <span className="inline-flex items-center justify-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-          {company.numberOfInterns ?? 0}
-        </span>
-      ),
-    },
   ];
+  const variantColumns: ColumnDef<CompanyListItem>[] =
+    variant === "internship"
+      ? [
+          ...defaultColumns,
+          {
+            header: "Interns",
+            width: "140px",
+            className: "w-[140px] flex justify-center",
+            headerClassName: "flex justify-center",
+            cell: (company) => (
+              <span className="inline-flex items-center justify-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                {company.numberOfInterns ?? 0}
+              </span>
+            ),
+          },
+        ]
+      : [
+          ...defaultColumns,
+          {
+            header: "Website",
+            width: "1.2fr",
+            className: "min-w-[200px] pl-2",
+            headerClassName: "min-w-[200px]",
+            cell: (company) =>
+              company.websiteUrl ? (
+                <a
+                  href={company.websiteUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-accent font-medium transition hover:underline"
+                >
+                  {company.websiteUrl.replace(/^https?:\/\//, "")}
+                </a>
+              ) : (
+                <span className="text-neutral-400">N/A</span>
+              ),
+          },
+        ];
+  const tableColumns = columns ?? variantColumns;
 
-  const displayCompanies = companies
-    .filter((company) => company.isMouSigned)
-    .sort((a, b) => a.priority - b.priority);
+  const displayCompanies = [...companies].sort((a, b) => a.priority - b.priority);
 
-  const gridTemplateColumns = columns.map((column) => column.width ?? "1fr").join(" ");
+  const gridTemplateColumns = tableColumns
+    .map((column) => column.width ?? "1fr")
+    .join(" ");
   const totalPages = Math.max(1, Math.ceil(displayCompanies.length / pageSize));
   const showPagination = displayCompanies.length > pageSize;
   const clampedPage = Math.min(page, totalPages);
@@ -83,7 +130,7 @@ export default function CompanyListTable({ companies, title, description }: Comp
   if (!displayCompanies.length) {
     return (
       <div className="w-full rounded-xl border border-black/10 bg-white px-6 py-10 text-center text-sm text-neutral-500">
-        No signed partners to display yet.
+        No companies to display yet.
       </div>
     );
   }
@@ -106,7 +153,7 @@ export default function CompanyListTable({ companies, title, description }: Comp
             className="grid items-center gap-4 border-b border-black/10 bg-neutral-50/80 px-6 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-500"
             style={{ gridTemplateColumns }}
           >
-            {columns.map((column) => (
+            {tableColumns.map((column) => (
               <div key={column.header} className={column.headerClassName ?? ""}>
                 {column.header}
               </div>
@@ -117,7 +164,7 @@ export default function CompanyListTable({ companies, title, description }: Comp
               <CompanyTableRow
                 key={`${company.name}-${rowIndex}`}
                 company={company}
-                columns={columns}
+                columns={tableColumns}
                 gridTemplateColumns={gridTemplateColumns}
               />
             ))}

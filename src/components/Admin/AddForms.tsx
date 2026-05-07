@@ -1,8 +1,8 @@
 "use client";
 
-import React, { FormEvent, useState } from "react";
-
 import { addFormMessages } from "@/constants/ui/messages";
+import { useState } from "react";
+import type { FormEvent } from "react";
 
 export type FormField = {
   name: string;
@@ -21,6 +21,10 @@ interface AddFormsProps {
   apiEndpoint?: string;
   endpointBuilder?: (formData: FormData) => string;
   format?: "multipart" | "json"; // 'multipart' for FormData, 'json' for JSON
+  initialValues?: Record<string, unknown>;
+  editId?: string;
+  method?: "POST" | "PATCH";
+  onSuccess?: () => void;
 }
 
 export default function AddForms({
@@ -29,6 +33,9 @@ export default function AddForms({
   apiEndpoint,
   endpointBuilder,
   format = "multipart",
+  initialValues = {},
+  method = "POST",
+  onSuccess,
 }: AddFormsProps) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -105,7 +112,7 @@ export default function AddForms({
       }
 
       const response = await fetch(requestUrl, {
-        method: "POST",
+        method: method,
         headers,
         body,
       });
@@ -115,7 +122,12 @@ export default function AddForms({
       }
 
       setSuccess(true);
-      (e.target as HTMLFormElement).reset(); // Clear the form on success
+      if (method === "POST") {
+        (e.target as HTMLFormElement).reset(); // Clear the form on success for POST
+      }
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error: unknown) {
       console.error("Form submission error:", error);
       setErrorMsg(
@@ -168,7 +180,14 @@ export default function AddForms({
                 required={field.required}
                 placeholder={field.placeholder}
                 rows={4}
-                className="block w-full rounded-md border border-(--neutral-500) p-2.5 shadow-sm transition-colors focus:border-(--color-primary) focus:ring-(--color-primary)"
+                defaultValue={
+                  (initialValues[field.name] as
+                    | string
+                    | number
+                    | readonly string[]
+                    | undefined) || ""
+                }
+                className="block w-full border border-(--neutral-500) rounded-md shadow-sm p-2.5 focus:ring-(--color-primary) focus:border-(--color-primary) transition-colors"
               ></textarea>
             ) : field.type === "file" ? (
               <div className="mt-1 flex justify-center rounded-md border-2 border-(--neutral-500) border-dashed bg-(--neutral-100) px-6 pt-5 pb-6 transition-colors hover:border-primary-600">
@@ -211,7 +230,14 @@ export default function AddForms({
                 name={field.name}
                 placeholder={field.placeholder}
                 required={field.required}
-                className="block w-full rounded-md border border-(--neutral-500) p-2.5 shadow-sm transition-colors focus:border-(--color-primary) focus:ring-(--color-primary)"
+                defaultValue={
+                  (initialValues[field.name] as
+                    | string
+                    | number
+                    | readonly string[]
+                    | undefined) || ""
+                }
+                className="block w-full border border-(--neutral-500) rounded-md shadow-sm p-2.5 focus:ring-(--color-primary) focus:border-(--color-primary) transition-colors"
               />
             )}
           </div>
@@ -223,7 +249,11 @@ export default function AddForms({
             disabled={loading}
             className="w-full rounded-md bg-(--color-primary) px-6 py-2.5 font-medium text-white shadow-sm transition-colors hover:bg-primary-600 focus:ring-2 focus:ring-(--color-primary) focus:ring-offset-2 focus:outline-none disabled:opacity-50 sm:w-auto"
           >
-            {loading ? addFormMessages.submitting : addFormMessages.submit}
+            {loading
+              ? addFormMessages.submitting
+              : method === "PATCH"
+                ? addFormMessages.update
+                : addFormMessages.submit}
           </button>
         </div>
       </form>

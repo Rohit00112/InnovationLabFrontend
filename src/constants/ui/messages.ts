@@ -6,6 +6,7 @@ export const addFormMessages = {
   localSubmitNotice: t("admin.addForm.localSubmitNotice"),
   submitting: t("admin.addForm.submitting"),
   submit: t("admin.addForm.submit"),
+  update: t("admin.addForm.update"),
   uploadFile: t("admin.addForm.uploadFile"),
   dragAndDropHint: t("admin.addForm.dragAndDropHint"),
   fileTypesHint: t("admin.addForm.fileTypesHint"),

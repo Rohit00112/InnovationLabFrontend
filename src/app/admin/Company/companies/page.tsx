@@ -1,13 +1,29 @@
-import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
+import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import EditShell from "@/components/Admin/EditShell";
+import ManageList, { Column } from "@/components/Admin/ManageList";
 import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { t } from "@/lib/i18n/messages";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
 import { adminPageTitles } from "@/constants/ui/adminPages";
+import { adminPlaceholders } from "@/constants/ui/placeholders";
+import { t } from "@/lib/i18n/messages";
 
 // Define your individual view components
 function ManageView() {
-  return <div> Manage Companies</div>;
+  const columns: Column[] = [
+    { key: "Name", label: "Company Name" },
+    { key: "Address", label: "Address" },
+    { key: "ContactEmail", label: "Contact Email" },
+    { key: "Priority", label: "Priority" },
+  ];
+
+  return (
+    <ManageList
+      title="Manage Companies"
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/companies`}
+      columns={columns}
+      resourceName="Company"
+    />
+  );
 }
 
 function AddView() {
@@ -49,7 +65,7 @@ function AddView() {
     <AddForms
       title={adminPageTitles.companies.addTitle}
       fields={formFields}
-      //apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/companies`}
+      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/companies`}
     />
   );
 }
@@ -60,6 +76,13 @@ function ViewAsUser() {
 
 // 2. Export the main Page component
 export default function CompaniesPage() {
+  // const tabs = [
+  //   { id: "manage", label: "Manage" },
+  //   { id: "add", label: "Add" },
+  //   { id: "preview", label: "View as user" },
+  //   { id: "edit", label: "Edit" },
+  // ];
+
   return (
     <div className="p-6">
       <h1 className="mb-6 text-2xl font-bold">
@@ -72,6 +95,7 @@ export default function CompaniesPage() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="Company" />,
         }}
       </AdminViewSwitcher>
     </div>

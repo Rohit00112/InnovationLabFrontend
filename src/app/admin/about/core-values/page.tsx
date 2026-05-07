@@ -1,10 +1,29 @@
-import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
+import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import CoreValuesManageView from "@/components/Admin/CoreValuesManageView";
+import EditShell from "@/components/Admin/EditShell";
 import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
 import { adminPageTitles } from "@/constants/ui/adminPages";
+import { adminPlaceholders } from "@/constants/ui/placeholders";
 import { t } from "@/lib/i18n/messages";
+
+// 1. Define your individual view components
+// function ManageView() {
+//   const columns: Column[] = [
+//     { key: "Title", label: "Title" },
+//     { key: "Description", label: "Description" },
+//     { key: "Order", label: "Order" },
+//   ];
+
+//   return (
+//     <ManageList
+//       title="Manage Core Values"
+//       apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/core-values`}
+//       columns={columns}
+//       resourceName="Core Value"
+//     />
+//   );
+// }
 
 function AddView() {
   const formFields: FormField[] = [
@@ -50,6 +69,13 @@ function ViewAsUser() {
 
 // 2. Export the main Page component
 export default function ManageCoreValues() {
+  // const tabs = [
+  //   { id: "manage", label: "Manage" },
+  //   { id: "add", label: "Add" },
+  //   { id: "preview", label: "View as user" },
+  //   { id: "edit", label: "Edit" },
+  // ];
+
   return (
     <div className="p-6">
       <h1 className="mb-6 text-2xl font-bold">
@@ -62,6 +88,7 @@ export default function ManageCoreValues() {
           manage: <CoreValuesManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="Core Value" />,
         }}
       </AdminViewSwitcher>
     </div>

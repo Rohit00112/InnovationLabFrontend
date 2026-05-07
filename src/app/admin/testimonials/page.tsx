@@ -1,10 +1,30 @@
-import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
+import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import EditShell from "@/components/Admin/EditShell";
 import TestimonialManageView from "@/components/Admin/TestimonialManageView";
 import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
 import { adminPageTitles } from "@/constants/ui/adminPages";
+import { adminPlaceholders } from "@/constants/ui/placeholders";
 import { t } from "@/lib/i18n/messages";
+
+// Manage Testimonials
+// function ManageView() {
+//   const columns: Column[] = [
+//     { key: "Name", label: "Name" },
+//     { key: "Designation", label: "Designation" },
+//     { key: "Organization", label: "Organization" },
+//     { key: "Text", label: "Text" },
+//   ];
+
+//   return (
+//     <ManageList
+//       title="Manage Testimonials"
+//       apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/testimonials`}
+//       columns={columns}
+//       resourceName="Testimonial"
+//     />
+//   );
+// }
 
 // Add Testimonials
 function AddView() {
@@ -58,6 +78,13 @@ function ViewAsUser() {
 
 // Main Page Component
 export default function ManageTestimonials() {
+  // const tabs = [
+  //   { id: "manage", label: "Manage" },
+  //   { id: "add", label: "Add" },
+  //   { id: "preview", label: "View as user" },
+  //   { id: "edit", label: "Edit" },
+  // ];
+
   return (
     <div className="p-6">
       <h1 className="mb-6 text-2xl font-bold">
@@ -70,6 +97,7 @@ export default function ManageTestimonials() {
           manage: <TestimonialManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="Testimonial" />,
         }}
       </AdminViewSwitcher>
     </div>

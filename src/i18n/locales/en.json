@@ -11,6 +11,7 @@
       "localSubmitNotice": "Form submitted locally (Check console). Add apiEndpoint prop to connect to the backend.",
       "submitting": "Submitting...",
       "submit": "Submit Form",
+      "update": "Update",
       "uploadFile": "Upload a file",
       "dragAndDropHint": "or drag and drop",
       "fileTypesHint": "PNG, JPG, GIF up to 10MB"
