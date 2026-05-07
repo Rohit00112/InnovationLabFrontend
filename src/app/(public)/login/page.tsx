@@ -1,11 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import PageLayout from "@/components/primitives/PageLayout";
-import PageHeader from "@/components/primitives/PageHeader";
 import LoginFormCard from "@/components/Login/LoginFormCard";
-import { publicLoginText, publicPageTitles } from "@/constants/ui/public";
 
 const Login = () => {
   return (
