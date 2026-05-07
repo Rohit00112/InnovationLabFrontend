@@ -1,10 +1,10 @@
-import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import ContactManageView from "@/components/Admin/ContactManageView";
+import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import EditShell from "@/components/Admin/EditShell";
 import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
 import { adminPageTitles } from "@/constants/ui/adminPages";
+import { adminPlaceholders } from "@/constants/ui/placeholders";
 
-// 1. Define your individual view components
 function ManageView() {
   return <ContactManageView />;
 }
@@ -17,7 +17,6 @@ function ViewAsUser() {
   return <div>{adminPlaceholders.viewAsUser}</div>;
 }
 
-// 2. Export the main Page component
 export default function ManageContacts() {
   return (
     <div className="p-6">
@@ -25,12 +24,12 @@ export default function ManageContacts() {
         {adminPageTitles.contacts.heading}
       </h1>
 
-      {/* 3. Pass the tabs mapping to the switcher */}
       <AdminViewSwitcher tabs={ADMIN_VIEW_TABS} defaultTab="manage">
         {{
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="Contact" />,
         }}
       </AdminViewSwitcher>
     </div>

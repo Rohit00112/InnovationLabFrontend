@@ -4,40 +4,59 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-
-const sampleSlides = [
-  {
-    title: "Spring Carnival",
-    description:
-      "A multi-sensory immersion into generative environments, creative systems, and live prototypes.",
-    buttonLabel: "Join Now",
-    buttonHref: "/contact",
-    image:
-      "https://images.pexels.com/photos/36390048/pexels-photo-36390048.jpeg",
-  },
-  {
-    title: "XR Habitat Demo",
-    description:
-      "An interactive showcase of spatial ideas with rapid feedback from builders and researchers.",
-    buttonLabel: "Explore Session",
-    buttonHref: "/events",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
-  },
-  {
-    title: "Urban Data Lab",
-    description:
-      "Collaborative mapping of city signals to create practical prototypes for communities.",
-    buttonLabel: "View Program",
-    buttonHref: "/events",
-    image:
-      "https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1600&q=80",
-  },
-];
+import { useGetEvents } from "@/lib/services/generated/frontend";
+import { separateEvents } from "@/lib/utils/events";
 
 export function EmblaCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const { data } = useGetEvents();
+  // Handle both array and object response formats
+  const allEvents = Array.isArray(data) ? data : (data?.data as any[]) || [];
+  const { upcomingEvents } = separateEvents(allEvents);
+
+  // Use upcoming events for carousel, fallback to sample data if none available
+  const slides =
+    upcomingEvents.slice(0, 3).length > 0
+      ? upcomingEvents.slice(0, 3).map((event) => ({
+          title: event.title || "Featured Event",
+          description: event.description || "",
+          buttonLabel: "Join Now",
+          buttonHref: event.id ? `/events/${event.id}` : "/events",
+          image:
+            event.coverImageUrl ||
+            "https://images.pexels.com/photos/36390048/pexels-photo-36390048.jpeg",
+        }))
+      : [
+          {
+            title: "Spring Carnival",
+            description:
+              "A multi-sensory immersion into generative environments, creative systems, and live prototypes.",
+            buttonLabel: "Join Now",
+            buttonHref: "/contact",
+            image:
+              "https://images.pexels.com/photos/36390048/pexels-photo-36390048.jpeg",
+          },
+          {
+            title: "XR Habitat Demo",
+            description:
+              "An interactive showcase of spatial ideas with rapid feedback from builders and researchers.",
+            buttonLabel: "Explore Session",
+            buttonHref: "/events",
+            image:
+              "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
+          },
+          {
+            title: "Urban Data Lab",
+            description:
+              "Collaborative mapping of city signals to create practical prototypes for communities.",
+            buttonLabel: "View Program",
+            buttonHref: "/events",
+            image:
+              "https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1600&q=80",
+          },
+        ];
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -76,7 +95,7 @@ export function EmblaCarousel() {
     <div className="relative min-h-screen w-full md:h-[82vh]">
       <div className="h-full overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
-          {sampleSlides.map((slide) => (
+          {slides.map((slide) => (
             <article
               key={slide.title}
               className="relative h-full min-w-0 flex-[0_0_100%]"
@@ -121,7 +140,7 @@ export function EmblaCarousel() {
       </div>
 
       <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 gap-2 md:bottom-8">
-        {sampleSlides.map((slide, index) => (
+        {slides.map((slide, index) => (
           <button
             key={slide.title}
             type="button"

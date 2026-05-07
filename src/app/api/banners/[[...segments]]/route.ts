@@ -14,9 +14,9 @@ import { nodeApi } from "@/lib/services/server-api";
 import {
   MediaType,
   type CreateBannerBody,
-  type DateScheduleDTO,
-  type GetAllBannersParams,
-  type PatchApiV1BannerIdBody,
+  type BannerScheduleUpdateDto,
+  type GetBannersParams,
+  type UpdateBannerBody,
 } from "@/lib/services/generated/node/schemas";
 
 export const runtime = "nodejs";
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest, context: Context) {
 
       if (segments.length === 0) {
         return relay(
-          await nodeApi.getAllBanners(buildGetAllBannersParams(request), {
+          await nodeApi.getBanners(buildGetAllBannersParams(request), {
             headers,
           }),
           requestId,
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest, context: Context) {
         }
 
         return relay(
-          await nodeApi.getApiV1BannerId(segments[0], { headers }),
+          await nodeApi.getBannerById(segments[0], { headers }),
           requestId,
         );
       }
@@ -115,8 +115,7 @@ export async function PATCH(request: NextRequest, context: Context) {
           return idError;
         }
 
-        const parsed =
-          await parseMultipartBodyAs<PatchApiV1BannerIdBody>(request);
+        const parsed = await parseMultipartBodyAs<UpdateBannerBody>(request);
         if (parsed.error) {
           return parsed.error;
         }
@@ -133,7 +132,7 @@ export async function PATCH(request: NextRequest, context: Context) {
         }
 
         return relay(
-          await nodeApi.patchApiV1BannerId(segments[0], parsed.value, {
+          await nodeApi.updateBanner(segments[0], parsed.value, {
             headers,
           }),
           requestId,
@@ -163,7 +162,7 @@ export async function PUT(request: NextRequest, context: Context) {
         }
 
         return relay(
-          await nodeApi.putApiV1BannerIdActivate(segments[0], { headers }),
+          await nodeApi.activateBanner(segments[0], { headers }),
           requestId,
         );
       }
@@ -174,7 +173,7 @@ export async function PUT(request: NextRequest, context: Context) {
           return idError;
         }
 
-        const parsed = await parseJsonBodyAs<DateScheduleDTO>(request);
+        const parsed = await parseJsonBodyAs<BannerScheduleUpdateDto>(request);
         if (parsed.error) {
           return parsed.error;
         }
@@ -191,7 +190,7 @@ export async function PUT(request: NextRequest, context: Context) {
         }
 
         return relay(
-          await nodeApi.putApiV1BannerIdSchedule(segments[0], parsed.value, {
+          await nodeApi.scheduleBanner(segments[0], parsed.value, {
             headers,
           }),
           requestId,
@@ -207,11 +206,12 @@ export async function PUT(request: NextRequest, context: Context) {
   );
 }
 
-function buildGetAllBannersParams(request: NextRequest): GetAllBannersParams {
+function buildGetAllBannersParams(request: NextRequest): GetBannersParams {
   return {
     type: parseEnumValue(MediaType, request.nextUrl.searchParams.get("type")),
-    startDate: request.nextUrl.searchParams.get("startDate") ?? undefined,
-    endDate: request.nextUrl.searchParams.get("endDate") ?? undefined,
+    scheduledStart:
+      request.nextUrl.searchParams.get("scheduledStart") ?? undefined,
+    scheduledEnd: request.nextUrl.searchParams.get("scheduledEnd") ?? undefined,
     createdAfter: request.nextUrl.searchParams.get("createdAfter") ?? undefined,
   };
 }
@@ -228,7 +228,7 @@ export async function DELETE(request: NextRequest, context: Context) {
         }
 
         return relay(
-          await nodeApi.deleteApiV1BannerId(segments[0], {
+          await nodeApi.deleteBanner(segments[0], {
             headers: forwardedHeaders(request),
           }),
           requestId,

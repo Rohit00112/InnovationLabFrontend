@@ -11,7 +11,7 @@ import {
   failure,
 } from "@/lib/bff/common";
 import { nodeApi } from "@/lib/services/server-api";
-import type { PostContactDto } from "@/lib/services/generated/node/schemas";
+import type { ContactCreateDto } from "@/lib/services/generated/node/schemas";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -50,10 +50,10 @@ export async function GET(request: NextRequest, context: Context) {
       }
 
       return relay(
-        await nodeApi.getApiV1Contacts(
+        await nodeApi.getContactMessages(
           {
             page: page.value,
-            limit: limit.value,
+            pageSize: limit.value,
           },
           { headers: forwardedHeaders(request) },
         ),
@@ -82,13 +82,13 @@ export async function POST(request: NextRequest, context: Context) {
 
   try {
     if (segments.length === 0) {
-      const parsed = await parseJsonBodyAs<PostContactDto>(request);
+      const parsed = await parseJsonBodyAs<ContactCreateDto>(request);
       if (parsed.error || !parsed.value) {
         return parsed.error;
       }
 
       return relay(
-        await nodeApi.postApiV1Contacts(parsed.value, {
+        await nodeApi.createContactMessage(parsed.value, {
           headers: forwardedHeaders(request),
         }),
         requestId,

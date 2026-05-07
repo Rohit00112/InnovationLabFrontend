@@ -1,10 +1,31 @@
-import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
+import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import EditShell from "@/components/Admin/EditShell";
 import EventManageView from "@/components/Admin/EventManageView";
 import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { t } from "@/lib/i18n/messages";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
 import { adminPageTitles } from "@/constants/ui/adminPages";
+import { adminPlaceholders } from "@/constants/ui/placeholders";
+import { t } from "@/lib/i18n/messages";
+
+// 1. Define your individual view components
+// function ManageView() {
+//   const columns: Column[] = [
+//     { key: 'Title', label: 'Title' },
+//     { key: 'Location', label: 'Location' },
+//     { key: 'StartTime', label: 'Start Time' },
+//     { key: 'EndTime', label: 'End Time' },
+//     { key: 'SeriesName', label: 'Series' },
+//   ];
+
+//   return (
+//     <ManageList
+//       title="Manage Events"
+//       apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/events`}
+//       columns={columns}
+//       resourceName="Event"
+//     />
+//   );
+// }
 
 function AddView() {
   const formFields: FormField[] = [
@@ -111,6 +132,13 @@ function ViewAsUser() {
 
 // 2. Export the main Page component
 export default function ManageEvents() {
+  // const tabs = [
+  //   { id: "manage", label: "Manage" },
+  //   { id: "add", label: "Add" },
+  //   { id: "preview", label: "View as user" },
+  //   { id: "edit", label: "Edit" },
+  // ];
+
   return (
     <div className="p-6">
       <h1 className="mb-6 text-2xl font-bold">
@@ -123,6 +151,7 @@ export default function ManageEvents() {
           manage: <EventManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="Event" />,
         }}
       </AdminViewSwitcher>
     </div>

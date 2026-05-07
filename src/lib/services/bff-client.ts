@@ -1,22 +1,22 @@
 import type {
   AboutResponseDto,
-  BannerDTO,
-  BannerGetDTO,
+  BannerResponseDto,
+  GetBannersParams,
   CategoryResponseDto,
   ContactResponseDto,
   CoreValueResponseDto,
   EventAgendaResponseDto,
-  EventRegistrationDto,
+  EventRegistrationCreateDto,
   EventRegistrationResponseDto,
   EventResponseDto,
   FaqResponseDto,
-  GetApiV1FaqsParams,
+  GetFaqsParams,
   JourneyItemResponseDto,
   MediaType,
-  PaginatedFaqResponseDto,
-  PostContactDto,
+  FaqListResponseDto,
+  ContactCreateDto,
   TestimonialResponseDto,
-  UpdateEventRegistrationDto,
+  EventRegistrationUpdateDto,
 } from "@/lib/services/generated/frontend/schemas";
 
 export type BffMeta = {
@@ -184,12 +184,15 @@ export const bffApi = {
       startDate?: string;
       endDate?: string;
       createdAfter?: string;
-    }) => localApi.get<BannerGetDTO[]>("/api/banners", { query: params }),
-    getById: (id: string) => localApi.get<BannerDTO>(`/api/banners/${id}`),
+    }) => localApi.get<BannerResponseDto[]>("/api/banners", { query: params }),
+    getById: (id: string) =>
+      localApi.get<BannerResponseDto>(`/api/banners/${id}`),
     create: (formData: FormData) =>
-      localApi.post<BannerDTO, FormData>("/api/banners", { body: formData }),
+      localApi.post<BannerResponseDto, FormData>("/api/banners", {
+        body: formData,
+      }),
     update: (id: string, formData: FormData) =>
-      localApi.patch<BannerDTO, FormData>(`/api/banners/${id}`, {
+      localApi.patch<BannerResponseDto, FormData>(`/api/banners/${id}`, {
         body: formData,
       }),
     activate: (id: string) => localApi.put<void>(`/api/banners/${id}/activate`),
@@ -208,8 +211,8 @@ export const bffApi = {
   contacts: {
     list: (params?: { page?: number; limit?: number }) =>
       localApi.get<ContactResponseDto[]>("/api/contacts", { query: params }),
-    create: (body: PostContactDto) =>
-      localApi.post<ContactResponseDto, PostContactDto>("/api/contacts", {
+    create: (body: ContactCreateDto) =>
+      localApi.post<ContactResponseDto, ContactCreateDto>("/api/contacts", {
         body,
       }),
   },
@@ -224,23 +227,23 @@ export const bffApi = {
       localApi.post<EventResponseDto, FormData>("/api/events", {
         body: formData,
       }),
-    register: (id: string, body: EventRegistrationDto) =>
-      localApi.post<EventRegistrationResponseDto, EventRegistrationDto>(
+    register: (id: string, body: EventRegistrationCreateDto) =>
+      localApi.post<EventRegistrationResponseDto, EventRegistrationCreateDto>(
         `/api/events/${id}/register`,
         { body },
       ),
     updateRegistrationStatus: (
       registrationId: string,
-      body: UpdateEventRegistrationDto,
+      body: EventRegistrationUpdateDto,
     ) =>
-      localApi.patch<void, UpdateEventRegistrationDto>(
+      localApi.patch<void, EventRegistrationUpdateDto>(
         `/api/events/registrations/${registrationId}/status`,
         { body },
       ),
   },
   faqs: {
-    list: (params?: GetApiV1FaqsParams) =>
-      localApi.get<PaginatedFaqResponseDto>("/api/faqs", { query: params }),
+    list: (params?: GetFaqsParams) =>
+      localApi.get<FaqListResponseDto>("/api/faqs", { query: params }),
     getById: (id: string) => localApi.get<FaqResponseDto>(`/api/faqs/${id}`),
   },
   testimonials: {

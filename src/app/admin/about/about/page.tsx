@@ -1,10 +1,29 @@
-import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
-import AddForms, { FormField } from "@/components/Admin/AddForms";
 import AboutManageView from "@/components/Admin/AboutManageView";
+import AddForms, { FormField } from "@/components/Admin/AddForms";
+import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import EditShell from "@/components/Admin/EditShell";
 import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { t } from "@/lib/i18n/messages";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
 import { adminPageTitles } from "@/constants/ui/adminPages";
+import { adminPlaceholders } from "@/constants/ui/placeholders";
+import { t } from "@/lib/i18n/messages";
+
+// 1. Define your individual view components
+// function ManageView() {
+//   const columns: Column[] = [
+//     { key: 'Mission', label: 'Mission' },
+//     { key: 'Vision', label: 'Vision' },
+//     { key: 'ParentOrgName', label: 'Parent Organization' },
+//   ];
+
+//   return (
+//     <ManageList
+//       title="Manage About"
+//       apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/about`}
+//       columns={columns}
+//       resourceName="About"
+//     />
+//   );
+// }
 
 function AddView() {
   const formFields: FormField[] = [
@@ -63,6 +82,13 @@ function ViewAsUser() {
 
 // 2. Export the main Page component
 export default function ManageAbout() {
+  // const tabs = [
+  //   { id: "manage", label: "Manage" },
+  //   { id: "add", label: "Add" },
+  //   { id: "preview", label: "View as user" },
+  //   { id: "edit", label: "Edit" },
+  // ];
+
   return (
     <div className="p-6">
       <h1 className="mb-6 text-2xl font-bold">
@@ -75,6 +101,7 @@ export default function ManageAbout() {
           manage: <AboutManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="About" />,
         }}
       </AdminViewSwitcher>
     </div>

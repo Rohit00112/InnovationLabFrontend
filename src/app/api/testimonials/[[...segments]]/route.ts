@@ -13,7 +13,6 @@ import {
 import { nodeApi } from "@/lib/services/server-api";
 import type {
   CreateTestimonialBody,
-  PostApiV1TestimonialsUploadBody,
   UpdateTestimonialBody,
 } from "@/lib/services/generated/node/schemas";
 
@@ -36,7 +35,9 @@ export async function GET(request: NextRequest, context: Context) {
   try {
     if (segments.length === 0) {
       return relay(
-        await nodeApi.getTestimonials({ headers: forwardedHeaders(request) }),
+        await nodeApi.getTestimonials(undefined, {
+          headers: forwardedHeaders(request),
+        }),
         requestId,
       );
     }
@@ -90,14 +91,13 @@ export async function POST(request: NextRequest, context: Context) {
     }
 
     if (segments.length === 1 && segments[0] === "upload") {
-      const parsed =
-        await parseMultipartBodyAs<PostApiV1TestimonialsUploadBody>(request);
+      const parsed = await parseMultipartBodyAs<CreateTestimonialBody>(request);
       if (parsed.error || !parsed.value) {
         return parsed.error;
       }
 
       return relay(
-        await nodeApi.postApiV1TestimonialsUpload(parsed.value, {
+        await nodeApi.createTestimonial(parsed.value, {
           headers: forwardedHeaders(request),
         }),
         requestId,

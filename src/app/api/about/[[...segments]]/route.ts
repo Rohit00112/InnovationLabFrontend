@@ -12,10 +12,9 @@ import { nodeApi } from "@/lib/services/server-api";
 import type {
   CreateCoreValueBody,
   CreateJourneyItemBody,
-  MissionVisionUpdateDto,
   UpdateCoreValueBody,
   UpdateJourneyItemBody,
-  UpdateParentOrgBody,
+  UpsertAboutBody,
 } from "@/lib/services/generated/node/schemas";
 
 export const runtime = "nodejs";
@@ -39,7 +38,7 @@ export async function GET(request: NextRequest, context: Context) {
 
       if (segments.length === 1 && segments[0] === "mission-vision") {
         return relay(
-          await nodeApi.getMissionVision({
+          await nodeApi.getAbout({
             headers: forwardedHeaders(request),
           }),
           requestId,
@@ -48,21 +47,25 @@ export async function GET(request: NextRequest, context: Context) {
 
       if (segments.length === 1 && segments[0] === "core-values") {
         return relay(
-          await nodeApi.getCoreValues({ headers: forwardedHeaders(request) }),
+          await nodeApi.getCoreValues(undefined, {
+            headers: forwardedHeaders(request),
+          }),
           requestId,
         );
       }
 
       if (segments.length === 1 && segments[0] === "parent-org") {
         return relay(
-          await nodeApi.getParentOrg({ headers: forwardedHeaders(request) }),
+          await nodeApi.getAbout({ headers: forwardedHeaders(request) }),
           requestId,
         );
       }
 
       if (segments.length === 1 && segments[0] === "journey") {
         return relay(
-          await nodeApi.getJourney({ headers: forwardedHeaders(request) }),
+          await nodeApi.getJourney(undefined, {
+            headers: forwardedHeaders(request),
+          }),
           requestId,
         );
       }
@@ -146,7 +149,7 @@ export async function PATCH(request: NextRequest, context: Context) {
     context,
     async ({ request, requestId, segments }) => {
       if (segments.length === 1 && segments[0] === "mission-vision") {
-        const parsed = await parseJsonBodyAs<MissionVisionUpdateDto>(request);
+        const parsed = await parseJsonBodyAs<UpsertAboutBody>(request);
         if (parsed.error) {
           return parsed.error;
         }
@@ -163,7 +166,7 @@ export async function PATCH(request: NextRequest, context: Context) {
         }
 
         return relay(
-          await nodeApi.updateMissionVision(parsed.value, {
+          await nodeApi.upsertAbout(parsed.value, {
             headers: forwardedHeaders(request),
           }),
           requestId,
@@ -171,7 +174,7 @@ export async function PATCH(request: NextRequest, context: Context) {
       }
 
       if (segments.length === 1 && segments[0] === "parent-org") {
-        const parsed = await parseJsonBodyAs<UpdateParentOrgBody>(request);
+        const parsed = await parseJsonBodyAs<UpsertAboutBody>(request);
         if (parsed.error) {
           return parsed.error;
         }
@@ -188,7 +191,7 @@ export async function PATCH(request: NextRequest, context: Context) {
         }
 
         return relay(
-          await nodeApi.updateParentOrg(parsed.value, {
+          await nodeApi.upsertAbout(parsed.value, {
             headers: forwardedHeaders(request),
           }),
           requestId,

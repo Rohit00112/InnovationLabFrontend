@@ -156,12 +156,16 @@ const MarqueeLogoScroller = React.forwardRef<
                       </Dialog.Close>
                       <CompanyCard
                         topText="Partner"
-                        imageUrl={companyPayload.imageUrl}
-                        companyName={companyPayload.companyName}
-                        companyDetails={companyPayload.companyDetails}
-                        internsCount={companyPayload.internsCount}
+                        logoUrl={companyPayload.imageUrl}
+                        name={companyPayload.companyName}
+                        about={companyPayload.companyDetails}
+                        numberOfInterns={companyPayload.internsCount}
                         disableTilt={true}
                         className="bg-white"
+                        priority={0}
+                        isMouSigned={false}
+                        contactEmail=""
+                        websiteUrl="#"
                       />
                     </div>
                   </AnimatedModal>

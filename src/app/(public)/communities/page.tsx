@@ -26,7 +26,7 @@ export default function CommunitiesPage() {
               fill
               className="object-cover"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-neutral-50/92 to-neutral-100/78" />
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-neutral-50/92 to-neutral-100/78" />
             <div className="relative z-10 flex h-full flex-col justify-between">
               <span className="text-small font-extrabold tracking-[0.25em] text-accent">
                 {community.id}
