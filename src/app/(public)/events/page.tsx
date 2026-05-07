@@ -4,14 +4,14 @@ import Image from "next/image";
 import PageLayout from "@/components/primitives/PageLayout";
 import PageHeader from "@/components/primitives/PageHeader";
 import { EmblaCarousel } from "@/components/Events/Carousel";
-import LearnMoreSection from "@/components/LearnMoreSection";
+import PastEventsSection from "@/components/LearnMoreSection";
 import { publicPageTitles } from "@/constants/ui/public";
-import { publicEvents } from "@/lib/data/public/events";
+import LatestEventsSection from "@/components/Events/LatestEventsSection";
 
 export default function EventsPage() {
   return (
     <PageLayout>
-      <PageHeader title={publicPageTitles.events} />
+      {/* <PageHeader title={publicPageTitles.events} /> */}
 
       <section className="w-full px-0">
         <EmblaCarousel />
@@ -19,7 +19,7 @@ export default function EventsPage() {
 
       <div className="line-bg w-full md:h-16 h-6"></div>
 
-      <section className="flex flex-col bg-white">
+      {/* <section className="flex flex-col bg-white">
         {publicEvents.slice(0, 4).map((event, index) => (
           <article
             key={`${event.code}-feature`}
@@ -49,9 +49,10 @@ export default function EventsPage() {
             </div>
           </article>
         ))}
-      </section>
+      </section> */}
       <div className="line-bg w-full md:h-16 h-6"></div>
-      <LearnMoreSection />
+      <LatestEventsSection />
+      <PastEventsSection />
     </PageLayout>
   );
 }
