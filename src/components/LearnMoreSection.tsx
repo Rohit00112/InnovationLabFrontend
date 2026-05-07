@@ -1,4 +1,4 @@
-const learnMoreItems = [
+const PastEvents = [
   {
     id: "01",
     title: "Discovery Phase",
@@ -19,19 +19,19 @@ const learnMoreItems = [
   },
 ];
 
-export default function LearnMoreSection() {
+export default function PastEventsSection() {
   return (
     <section className="w-full bg-neutral-300 px-4 py-12 md:px-8 md:py-16">
       <div className="mx-auto grid w-full max-w-300 gap-8 md:grid-cols-[240px_minmax(0,1fr)] md:gap-14">
         <div className="pt-2">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-[-0.03em] text-ivBlack">
-            Learn More
+            Past Events
           </h2>
           <div className="mt-3 h-1 w-40 bg-ivCyan" />
         </div>
 
         <div className="overflow-hidden border border-black/10 bg-neutral-200">
-          {learnMoreItems.map((item) => (
+          {PastEvents.map((item) => (
             <article
               key={item.id}
               className="grid grid-cols-[1fr_auto] items-center gap-6 border-b border-black/10 px-5 py-7 last:border-b-0 md:px-7"

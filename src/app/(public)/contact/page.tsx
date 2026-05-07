@@ -7,6 +7,8 @@ import Map from "@/components/Contacts/Map";
 import PageHeader from "@/components/primitives/PageHeader";
 import PageLayout from "@/components/primitives/PageLayout";
 import { publicContactText, publicPageTitles } from "@/constants/ui/public";
+import { useState } from "react";
+import { createContactMessage } from "@/lib/services/generated/frontend";
 import { t } from "@/lib/i18n/messages";
 import { createContactMessage } from "@/lib/services/generated/frontend";
 import { Clock3, Mail, MapPin, Phone } from "lucide-react";
