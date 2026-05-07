@@ -4,19 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { publicEventCards } from "@/lib/data/public/eventDetails";
+import type { EventResponseDto } from "@/lib/services/generated/frontend/schemas";
 
-export function EmblaCarousel() {
+type EmblaCarouselProps = {
+  events: EventResponseDto[];
+};
+
+export function EmblaCarousel({ events }: EmblaCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // Use the first 3 public events for the carousel
-  const slides = publicEventCards.slice(0, 3).map((event) => ({
-    title: event.title,
-    description: event.description,
-    slug: event.slug,
-    image: event.heroImage,
-    eyebrow: event.eyebrow,
+  // Map API events to carousel slides
+  const slides = events.map((event) => ({
+    id: event.id,
+    title: event.title || "Untitled Event",
+    description: event.description || "",
+    image: event.coverImageUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
+    eyebrow: event.seriesName || "Featured Event",
   }));
 
   const scrollPrev = useCallback(() => {
@@ -52,13 +56,15 @@ export function EmblaCarousel() {
     return () => clearInterval(id);
   }, [emblaApi]);
 
+  if (slides.length === 0) return null;
+
   return (
     <div className="relative min-h-screen w-full md:h-[82vh]">
       <div className="h-full overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
           {slides.map((slide) => (
             <article
-              key={slide.slug}
+              key={slide.id}
               className="relative h-full min-w-0 flex-[0_0_100%]"
             >
               <Image
@@ -83,13 +89,13 @@ export function EmblaCarousel() {
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link
-                      href={`/events/${slide.slug}`}
+                      href={`/events/${slide.id}`}
                       className="inline-flex border border-white/60 bg-white px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition hover:bg-cyan-400 hover:border-cyan-400"
                     >
                       Learn More
                     </Link>
                     <Link
-                      href={`/events/${slide.slug}/register`}
+                      href={`/events/${slide.id}/register`}
                       className="inline-flex border border-white/60 bg-white px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition hover:bg-cyan-400 hover:border-cyan-400"
                     >
                       Register
@@ -105,7 +111,7 @@ export function EmblaCarousel() {
       <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 gap-2 md:bottom-8">
         {slides.map((slide, index) => (
           <button
-            key={slide.slug}
+            key={slide.id}
             type="button"
             aria-label={`Go to slide ${index + 1}`}
             onClick={() => emblaApi?.scrollTo(index)}
@@ -138,3 +144,4 @@ export function EmblaCarousel() {
     </div>
   );
 }
+

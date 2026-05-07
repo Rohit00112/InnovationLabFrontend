@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { EventRegistrationCreateDto } from "@/lib/services/generated/frontend/schemas";
 import type { TeamMemberCreateDto } from "@/lib/services/generated/frontend/schemas";
 import Button from "@/components/primitives/Button";
+import { bffApi } from "@/lib/services/bff-client";
 
 interface EventRegistrationFormProps {
   eventId: string;
@@ -79,20 +80,10 @@ export default function EventRegistrationForm({
             ? teamMembers.filter((tm) => tm.name || tm.email || tm.phone)
             : undefined,
       };
+      const response = await bffApi.events.register(eventId, payload);
 
-      const response = await fetch(`/api/events/${eventId}/registrations`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.message || `Registration failed (${response.status})`,
-        );
+      if (!response.success) {
+        throw new Error(response.error?.message || `Registration failed`);
       }
 
       setSuccess(true);

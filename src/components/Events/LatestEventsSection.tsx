@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { publicEventCards } from "@/lib/data/public/eventDetails";
+import type { EventResponseDto } from "@/lib/services/generated/frontend/schemas";
 
-export default function LatestEventsSection() {
-  // Use the first 3 public events
-  const latestEvents = publicEventCards.slice(0, 3);
+type LatestEventsSectionProps = {
+  events: EventResponseDto[];
+};
 
+export default function LatestEventsSection({ events }: LatestEventsSectionProps) {
   return (
     <section className="border-t border-gray-300 py-14 md:py-20">
       <div className="mx-auto px-4 md:px-8">
@@ -16,18 +17,18 @@ export default function LatestEventsSection() {
         </h2>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {latestEvents.map((event) => (
+          {events.map((event) => (
             <div
-              key={event.slug}
+              key={event.id}
               className="flex flex-col overflow-hidden border border-neutral-200 bg-white transition-all hover:border-neutral-400 hover:shadow-lg"
             >
               <Link
-                href={`/events/${event.slug}`}
+                href={`/events/${event.id}`}
                 className="group relative h-52 w-full overflow-hidden bg-neutral-100 md:h-56"
               >
                 <Image
-                  src={event.heroImage}
-                  alt={event.title}
+                  src={event.coverImageUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80"}
+                  alt={event.title || "Untitled Event"}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
@@ -35,7 +36,7 @@ export default function LatestEventsSection() {
 
               <div className="flex flex-1 flex-col gap-3 p-5 md:p-6">
                 <span className="text-xs font-bold uppercase tracking-wider text-neutral-500">
-                  {event.eyebrow}
+                  {event.seriesName || "Special Event"}
                 </span>
 
                 <h3 className="text-lg font-bold leading-tight text-neutral-900">
@@ -48,7 +49,7 @@ export default function LatestEventsSection() {
 
                 <div className="flex gap-3 pt-2">
                   <Link
-                    href={`/events/${event.slug}`}
+                    href={`/events/${event.id}`}
                     className="relative inline-flex flex-1 group font-medium"
                   >
                     <span className="absolute left-0 bottom-0 w-full h-0.5 bg-sky-400 transition-all duration-100 ease-out" />
@@ -58,7 +59,7 @@ export default function LatestEventsSection() {
                   </Link>
 
                   <Link
-                    href={`/events/${event.slug}/register`}
+                    href={`/events/${event.id}/register`}
                     className="relative inline-flex flex-1 group font-medium"
                   >
                     <span className="absolute left-0 bottom-0 w-full h-0.5 bg-sky-400 transition-all duration-100 ease-out" />
@@ -75,3 +76,4 @@ export default function LatestEventsSection() {
     </section>
   );
 }
+

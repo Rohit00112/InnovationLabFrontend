@@ -2,22 +2,25 @@ import { notFound } from "next/navigation";
 import PageLayout from "@/components/primitives/PageLayout";
 import PageHeader from "@/components/primitives/PageHeader";
 import EventRegistrationForm from "@/components/Events/EventRegistrationForm";
-import { publicEventCards } from "@/lib/data/public/eventDetails";
 import Image from "next/image";
+import { bffApi } from "@/lib/services/bff-client";
 
 type EventRegisterPageProps = {
   params: Promise<{
-    slug: string;
+    id: string;
   }>;
 };
 
-export function generateStaticParams() {
-  return publicEventCards.map((event) => ({ slug: event.slug }));
-}
-
 export async function generateMetadata({ params }: EventRegisterPageProps) {
-  const { slug } = await params;
-  const event = publicEventCards.find((item) => item.slug === slug);
+  const { id } = await params;
+  
+  let event;
+  try {
+    const response = await bffApi.events.getById(id);
+    event = response.data;
+  } catch (error) {
+    return { title: "Event Not Found" };
+  }
 
   if (!event) {
     return {
@@ -34,8 +37,15 @@ export async function generateMetadata({ params }: EventRegisterPageProps) {
 export default async function EventRegisterPage({
   params,
 }: EventRegisterPageProps) {
-  const { slug } = await params;
-  const event = publicEventCards.find((item) => item.slug === slug);
+  const { id } = await params;
+  
+  let event;
+  try {
+    const response = await bffApi.events.getById(id);
+    event = response.data;
+  } catch (error) {
+    notFound();
+  }
 
   if (!event) {
     notFound();
@@ -50,8 +60,8 @@ export default async function EventRegisterPage({
           {/* Form */}
           <div className="lg:col-span-2">
             <EventRegistrationForm
-              eventId={event.id}
-              eventTitle={event.title}
+              eventId={event.id || ""}
+              eventTitle={event.title || ""}
             />
           </div>
 
@@ -66,69 +76,67 @@ export default async function EventRegisterPage({
                 <div>
                   <p className="text-neutral-600">Date</p>
                   <p className="font-medium text-neutral-900">
-                    {new Date(event.date).toLocaleDateString("en-US", {
+                    {event.startTime ? new Date(event.startTime).toLocaleDateString("en-US", {
                       weekday: "long",
                       year: "numeric",
                       month: "long",
                       day: "numeric",
-                    })}
+                    }) : "TBD"}
                   </p>
                 </div>
 
                 <div>
                   <p className="text-neutral-600">Time</p>
-                  <p className="font-medium text-neutral-900">{event.time}</p>
+                  <p className="font-medium text-neutral-900">
+                    {event.startTime ? new Date(event.startTime).toLocaleTimeString("en-US", {
+                      hour: "numeric",
+                      minute: "2-digit",
+                    }) : "TBD"}
+                  </p>
                 </div>
 
                 <div>
                   <p className="text-neutral-600">Location</p>
                   <p className="font-medium text-neutral-900">
-                    {event.location}
+                    {event.location || "TBA"}
                   </p>
                 </div>
 
                 <div>
                   <p className="text-neutral-600">Type</p>
-                  <p className="font-medium text-neutral-900">{event.type}</p>
+                  <p className="font-medium text-neutral-900">
+                    {event.seriesName || "Special Event"}
+                  </p>
                 </div>
-
-                {event.capacity && (
-                  <div>
-                    <p className="text-neutral-600">Capacity</p>
-                    <p className="font-medium text-neutral-900">
-                      {event.capacity} attendees
-                    </p>
-                  </div>
-                )}
               </div>
             </div>
 
-            {event.description && (
-              <div className=" -lg border border-neutral-200 bg-neutral-50 p-6">
-                <h3 className="mb-3 font-semibold text-neutral-900">
-                  Event Payment
-                </h3>
+            <div className=" -lg border border-neutral-200 bg-neutral-50 p-6 text-center">
+              <h3 className="mb-3 font-semibold text-neutral-900">
+                Event Payment
+              </h3>
+              <div className="flex justify-center">
                 <Image
-                  width={400}
-                  height={400}
-                  alt="ad"
-                  src={
-                    "https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
-                  }
-                ></Image>
+                  width={200}
+                  height={200}
+                  alt="QR Code"
+                  src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                  className="bg-white p-2"
+                />
               </div>
-            )}
+              <p className="mt-2 text-xs text-neutral-500">Scan to pay registration fee (if applicable)</p>
+            </div>
 
-            {event.requirements && event.requirements.length > 0 && (
+            {event.highlights && event.highlights.length > 0 && (
               <div className=" -lg border border-neutral-200 bg-neutral-50 p-6">
                 <h3 className="mb-3 font-semibold text-neutral-900">
-                  Requirements
+                  Highlights
                 </h3>
                 <ul className="space-y-2 text-sm text-neutral-700">
-                  {event.requirements.map((req, idx) => (
+                  {event.highlights.map((highlight, idx) => (
                     <li key={idx} className="flex gap-2">
                       <span className="mt-1 flex-shrink-0">•</span>
-                      <span>{req}</span>
+                      <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
@@ -140,3 +148,4 @@ export default async function EventRegisterPage({
     </PageLayout>
   );
 }
+

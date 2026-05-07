@@ -1,6 +1,7 @@
 "use client";
 
-import { useGetEvents } from "@/lib/services/generated/frontend";
+import { useQuery } from "@tanstack/react-query";
+import { listEvents } from "@/lib/services/domain/events";
 import {
   separateEvents,
   formatEventDate,
@@ -8,10 +9,11 @@ import {
 } from "@/lib/utils/events";
 
 export default function UpcomingEventsSection() {
-  const { data, isLoading, error } = useGetEvents();
+  const { data: allEvents = [], isLoading, error } = useQuery({
+    queryKey: ["events"],
+    queryFn: listEvents,
+  });
 
-  // Get all events from the response - handle both array and object response formats
-  const allEvents = Array.isArray(data) ? data : (data?.data as any[]) || [];
   const { upcomingEvents } = separateEvents(allEvents);
 
   // Gracefully handle API errors (404, network issues, etc.) - hide section

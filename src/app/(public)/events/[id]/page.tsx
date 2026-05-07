@@ -3,44 +3,52 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageLayout from "@/components/primitives/PageLayout";
 import PageHeader from "@/components/primitives/PageHeader";
-import { publicEventDetailText } from "@/constants/ui/public";
-import { publicEventCards } from "@/lib/data/public/eventDetails";
+import { bffApi } from "@/lib/services/bff-client";
 
 type EventDetailPageProps = {
   params: Promise<{
-    slug: string;
+    id: string;
   }>;
 };
-
-export function generateStaticParams() {
-  return publicEventCards.map((event) => ({ slug: event.slug }));
-}
 
 export default async function EventDetailPage({
   params,
 }: EventDetailPageProps) {
-  const { slug } = await params;
+  const { id } = await params;
 
-  const event = publicEventCards.find((item) => item.slug === slug);
-
-  if (!event) {
+  let eventData;
+  try {
+    const response = await bffApi.events.getById(id);
+    eventData = response.data;
+  } catch (error) {
     notFound();
   }
 
-  const relatedEvents = publicEventCards.filter(
-    (item) => item.slug !== event.slug && event.related.includes(item.slug),
-  );
+  if (!eventData) {
+    notFound();
+  }
+
+  const event = eventData;
+
+  // Map highlights to focus areas and details
+  const focusAreas = event.highlights || [];
+  const dummyGallery = [
+    event.coverImageUrl || "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+  ];
 
   return (
     <PageLayout>
-      <PageHeader title={event.title} />
+      <PageHeader title={event.title || "Event Details"} />
 
       {/* Hero Section */}
       <section className="mx-auto w-full border">
         <div className="relative h-[52vh] min-h-72 w-full md:h-[68vh] md:min-h-90">
           <Image
-            src={event.heroImage}
-            alt={event.title}
+            src={event.coverImageUrl || dummyGallery[0]}
+            alt={event.title || "Event Image"}
             fill
             priority
             className="object-cover"
@@ -50,10 +58,10 @@ export default async function EventDetailPage({
             <div className="max-w-3xl text-white">
               <div className="flex items-center gap-3">
                 <span className="bg-cyan-400 px-2 py-1 text-[0.55rem] font-bold uppercase tracking-[0.2em] text-black">
-                  {event.eyebrow}
+                  {event.seriesName || "Special Event"}
                 </span>
                 <span className="text-xs font-bold uppercase tracking-[0.15em] text-white/70">
-                  {event.code}
+                  {event.id?.slice(0, 8)}
                 </span>
               </div>
               <p className="mt-4 max-w-2xl text-sm leading-6 text-white/85 md:text-base">
@@ -61,7 +69,7 @@ export default async function EventDetailPage({
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
-                  href={`/events/${event.slug}/register`}
+                  href={`/events/${event.id}/register`}
                   className="relative inline-flex group font-medium"
                 >
                   <span className="absolute left-0 bottom-0 w-full h-0.5 bg-cyan-400 transition-all duration-100 ease-out" />
@@ -91,45 +99,58 @@ export default async function EventDetailPage({
         </div>
         <div className="space-y-6">
           <p className="text-sm leading-relaxed text-neutral-700 md:text-base">
-            {event.about}
+            {event.description}
           </p>
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-600">
-              Focus Areas
-            </p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {event.focus.map((item) => (
-                <span
-                  key={item}
-                  className="border border-black/20 bg-neutral-50 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-800   -sm"
-                >
-                  {item}
-                </span>
-              ))}
+          {focusAreas.length > 0 && (
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-600">
+                Highlights
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {focusAreas.map((item) => (
+                  <span
+                    key={item}
+                    className="border border-black/20 bg-neutral-50 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-800   -sm"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
       {/* Details Section */}
       <section className="mx-auto w-full    border-x border-b border-gray-300    bg-neutral-100 px-6 py-12 md:px-10 md:py-16">
         <h2 className="text-[clamp(28px,4.5vw,52px)] font-black uppercase tracking-[-0.03em]">
-          What to Expect
+          Event Information
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {event.details.map((detail, index) => (
-            <article
-              key={detail}
-              className="border    bg-gradient-to-br from-white to-neutral-50 p-6   -sm"
-            >
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
-                Point {index + 1}
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-neutral-700">
-                {detail}
-              </p>
-            </article>
-          ))}
+          <article className="border    bg-gradient-to-br from-white to-neutral-50 p-6   -sm">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
+              Location
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-neutral-700">
+              {event.location || "To be announced"}
+            </p>
+          </article>
+          <article className="border    bg-gradient-to-br from-white to-neutral-50 p-6   -sm">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
+              Date & Time
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-neutral-700">
+              {event.startTime ? new Date(event.startTime).toLocaleString() : "TBD"}
+            </p>
+          </article>
+          <article className="border    bg-gradient-to-br from-white to-neutral-50 p-6   -sm">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
+              Registration
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-neutral-700">
+              Ends on {event.registrationEnd ? new Date(event.registrationEnd).toLocaleDateString() : "TBD"}
+            </p>
+          </article>
         </div>
       </section>
 
@@ -139,9 +160,9 @@ export default async function EventDetailPage({
           Gallery
         </h2>
         <div className="mt-8 grid grid-cols-2 gap-3 md:gap-4 md:grid-cols-4">
-          {event.gallery.map((image, index) => (
+          {dummyGallery.map((image, index) => (
             <div
-              key={image}
+              key={image + index}
               className={[
                 "relative overflow-hidden border      -sm",
                 index === 0
@@ -160,44 +181,14 @@ export default async function EventDetailPage({
         </div>
       </section>
 
-      {/* Related Events Section */}
-      <section className="mx-auto w-full border-gray-300    border-x border-b    bg-neutral-100 px-6 py-12 md:px-10 md:py-16">
-        <div className="mb-8 flex items-end justify-between gap-4">
-          <h2 className="text-[clamp(28px,4.5vw,52px)] font-black uppercase tracking-[-0.03em]">
-            Related Events
-          </h2>
-          <Link
-            href="/events"
-            className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-600 transition hover:text-black"
-          >
-            View All Events
-          </Link>
-        </div>
-        <div className="grid gap-4 md:grid-cols-3">
-          {relatedEvents.length > 0 ? (
-            relatedEvents.map((related) => (
-              <Link
-                key={related.slug}
-                href={`/events/${related.slug}`}
-                className="group border    bg-white px-5 py-6 transition   -sm hover:  -md hover:border-black/20"
-              >
-                <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-600">
-                  {related.code}
-                </p>
-                <h3 className="mt-3 text-sm font-bold uppercase leading-tight text-neutral-900 group-hover:text-black">
-                  {related.title}
-                </h3>
-                <p className="mt-2 text-xs text-neutral-600 line-clamp-2">
-                  {related.description}
-                </p>
-              </Link>
-            ))
-          ) : (
-            <p className="text-sm text-neutral-600">
-              No related events available.
-            </p>
-          )}
-        </div>
+      {/* Related Events Section - Hidden for now or can show general events */}
+      <section className="mx-auto w-full border-gray-300    border-x border-b    bg-neutral-100 px-6 py-12 md:px-10 md:py-16 text-center">
+        <Link
+          href="/events"
+          className="inline-flex border border-black px-8 py-4 text-sm font-bold uppercase tracking-widest transition hover:bg-black hover:text-white"
+        >
+          View All Events
+        </Link>
       </section>
 
       {/* CTA Section */}
@@ -212,7 +203,7 @@ export default async function EventDetailPage({
           </p>
           <div className="mt-6">
             <Link
-              href={`/events/${event.slug}/register`}
+              href={`/events/${event.id}/register`}
               className="relative inline-flex group font-medium"
             >
               <span className="absolute left-0 bottom-0 w-full h-0.5 bg-cyan-400 transition-all duration-100 ease-out" />
@@ -226,3 +217,4 @@ export default async function EventDetailPage({
     </PageLayout>
   );
 }
+
