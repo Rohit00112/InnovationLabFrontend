@@ -188,7 +188,7 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
                 defaultValue={formValues[field.name] || ''}
                 className="block w-full border border-[var(--neutral-500)] rounded-md shadow-sm p-2.5 focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] transition-colors"
               />
-            )}}
+            )}
           </div>
         ))}
         
