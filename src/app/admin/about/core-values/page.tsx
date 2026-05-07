@@ -3,6 +3,16 @@ import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
 import EditShell from '@/components/Admin/EditShell';
 
+// Module-level constants
+const coreValueFields: FormField[] = [
+  { name: "Title", label: "Title", type: "text", required: true },
+  { name: "Description", label: "Description", type: "textarea", required: true },
+  { name: "Icon", label: "Icon", type: "file", accept: "image/*", required: true },
+  { name: "Order", label: "Order", type: "number", required: false },
+];
+
+const coreValueApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/core-values`;
+
 // 1. Define your individual view components
 function ManageView() {
   const columns: Column[] = [
@@ -14,7 +24,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Core Values"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/core-values`}
+      apiEndpoint={coreValueApiEndpoint}
       columns={columns}
       resourceName="Core Value"
     />
@@ -22,18 +32,11 @@ function ManageView() {
 }
 
 function AddView() {
-  const formFields: FormField[] = [
-    { name: "Title", label: "Title", type: "text", required: true },
-    { name: "Description", label: "Description", type: "textarea", required: true },
-    { name: "Icon", label: "Icon", type: "file", accept: "image/*", required: true },
-    { name: "Order", label: "Order", type: "number", required: false },
-  ];
-
   return (
     <AddForms 
       title="Add Core Value" 
-      fields={formFields} 
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/core-values`}
+      fields={coreValueFields} 
+      apiEndpoint={coreValueApiEndpoint}
     />
   );
 }
@@ -64,7 +67,7 @@ export default function ManageCoreValues() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Core Value" />,
+          edit: <EditShell resourceName="Core Value" fields={coreValueFields} apiEndpoint={coreValueApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

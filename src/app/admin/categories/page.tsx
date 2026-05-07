@@ -3,6 +3,13 @@ import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
 import EditShell from '@/components/Admin/EditShell';
 
+const categoryFields: FormField[] = [
+  { name: "name", label: "Category Name", type: "text", required: true },
+  { name: "parentCategoryId", label: "Parent Category ID (Optional)", type: "text", required: false, placeholder: "UUID of parent category" },
+];
+
+const categoryApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/categories`;
+
 // 1. Define your individual view components
 function ManageView() {
   const columns: Column[] = [
@@ -13,7 +20,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Categories"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/categories`}
+      apiEndpoint={categoryApiEndpoint}
       columns={columns}
       resourceName="Category"
     />
@@ -21,16 +28,11 @@ function ManageView() {
 }
 
 function AddView() {
-  const formFields: FormField[] = [
-    { name: "name", label: "Category Name", type: "text", required: true },
-    { name: "parentCategoryId", label: "Parent Category ID (Optional)", type: "text", required: false, placeholder: "UUID of parent category" },
-  ];
-
   return (
     <AddForms 
       title="Create New Category" 
-      fields={formFields} 
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/categories`}
+      fields={categoryFields} 
+      apiEndpoint={categoryApiEndpoint}
       format="json"
     />
   );
@@ -62,7 +64,7 @@ export default function ManageCategories() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Category" />,
+          edit: <EditShell resourceName="Category" fields={categoryFields} apiEndpoint={categoryApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

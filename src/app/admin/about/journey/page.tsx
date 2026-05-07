@@ -3,6 +3,17 @@ import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
 import EditShell from '@/components/Admin/EditShell';
 
+// Module-level constants
+const journeyFields: FormField[] = [
+  { name: "Title", label: "Title", type: "text", required: true },
+  { name: "Description", label: "Description", type: "textarea", required: true },
+  { name: "Image", label: "Image", type: "file", accept: "image/*", required: true },
+  { name: "Date", label: "Date", type: "text", required: true, placeholder: "YYYY-MM-DDTHH:MM:SS" },
+  { name: "Order", label: "Order", type: "number", required: false },
+];
+
+const journeyApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/journey`;
+
 // 1. Define your individual view components
 function ManageView() {
   const columns: Column[] = [
@@ -15,7 +26,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Journey"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/journey`}
+      apiEndpoint={journeyApiEndpoint}
       columns={columns}
       resourceName="Journey"
     />
@@ -23,19 +34,11 @@ function ManageView() {
 }
 
 function AddView() {
-  const formFields: FormField[] = [
-    { name: "Title", label: "Title", type: "text", required: true },
-    { name: "Description", label: "Description", type: "textarea", required: true },
-    { name: "Image", label: "Image", type: "file", accept: "image/*", required: true },
-    { name: "Date", label: "Date", type: "text", required: true, placeholder: "YYYY-MM-DDTHH:MM:SS" },
-    { name: "Order", label: "Order", type: "number", required: false },
-  ];
-
   return (
     <AddForms 
       title="Add Journey Milestone" 
-      fields={formFields} 
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/journey`}
+      fields={journeyFields} 
+      apiEndpoint={journeyApiEndpoint}
     />
   );
 }
@@ -66,7 +69,7 @@ export default function ManageJourney() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Journey" />,
+          edit: <EditShell resourceName="Journey" fields={journeyFields} apiEndpoint={journeyApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

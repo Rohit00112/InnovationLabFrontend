@@ -4,6 +4,17 @@ import ManageList, { Column } from "@/components/Admin/ManageList";
 import EditShell from '@/components/Admin/EditShell';
 import { div } from "framer-motion/client";
 
+// Module-level constants
+const companyFields: FormField[] = [
+  { name: "Name", label: "Name", type: "text", required: true },
+  { name: "Address", label: "Address", type: "text", required: true },
+  { name: "ContactEmail", label: "Contact Email", type: "email", required: true },
+  { name: "Priority", label: "Priority", type: "number", required: true },
+  { name: "Logo", label: "Logo (Image)", type: "file", accept: "image/*", required: true },
+];
+
+const companyApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/companies`;
+
 // Define your individual view components
 function ManageView() {
   const columns: Column[] = [
@@ -16,7 +27,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Companies"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/companies`}
+      apiEndpoint={companyApiEndpoint}
       columns={columns}
       resourceName="Company"
     />
@@ -24,30 +35,11 @@ function ManageView() {
 }
 
 function AddView() {
-  const formFields: FormField[] = [
-    { name: "Name", label: "Name", type: "text", required: true },
-    { name: "Address", label: "Address", type: "text", required: true },
-    {
-      name: "ContactEmail",
-      label: "Contact Email",
-      type: "email",
-      required: true,
-    },
-    { name: "Priority", label: "Priority", type: "number", required: true },
-    {
-      name: "Logo",
-      label: "Logo (Image)",
-      type: "file",
-      accept: "image/*",
-      required: true,
-    },
-  ];
-
   return (
     <AddForms
       title="Add Company"
-      fields={formFields}
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/companies`}
+      fields={companyFields}
+      apiEndpoint={companyApiEndpoint}
     />
   );
 }
@@ -75,7 +67,7 @@ export default function CompaniesPage() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Company" />,
+          edit: <EditShell resourceName="Company" fields={companyFields} apiEndpoint={companyApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

@@ -3,6 +3,16 @@ import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
 import EditShell from '@/components/Admin/EditShell';
 
+const testimonialFields: FormField[] = [
+  { name: "Name", label: "Name", type: "text", required: true },
+  { name: "Text", label: "Text", type: "textarea", required: true },
+  { name: "Designation", label: "Designation", type: "text", required: true },
+  { name: "Organization", label: "Organization", type: "text", required: true },
+  { name: "ImageUrl", label: "Image (ImageUrl)", type: "file", accept: "image/*", required: true },
+];
+
+const testimonialApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/testimonials`;
+
 // Manage Testimonials
 function ManageView() {
   const columns: Column[] = [
@@ -15,7 +25,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Testimonials"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/testimonials`}
+      apiEndpoint={testimonialApiEndpoint}
       columns={columns}
       resourceName="Testimonial"
     />
@@ -23,19 +33,11 @@ function ManageView() {
 }
 // Add Testimonials
 function AddView() {
-  const formFields: FormField[] = [
-    { name: "Name", label: "Name", type: "text", required: true },
-    { name: "Text", label: "Text", type: "textarea", required: true },
-    { name: "Designation", label: "Designation", type: "text", required: true },
-    { name: "Organization", label: "Organization", type: "text", required: true },
-    { name: "ImageUrl", label: "Image (ImageUrl)", type: "file", accept: "image/*", required: true },
-  ];
-
   return (
     <AddForms 
       title="Add Testimonial" 
-      fields={formFields} 
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/testimonials`}
+      fields={testimonialFields} 
+      apiEndpoint={testimonialApiEndpoint}
     />
   );
 }
@@ -67,7 +69,7 @@ export default function ManageTestimonials() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Testimonial" />,
+          edit: <EditShell resourceName="Testimonial" fields={testimonialFields} apiEndpoint={testimonialApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

@@ -3,6 +3,14 @@ import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
 import EditShell from '@/components/Admin/EditShell';
 
+const faqFields: FormField[] = [
+  { name: "question", label: "Question", type: "text", required: true },
+  { name: "answer", label: "Answer", type: "textarea", required: true },
+  { name: "categoryId", label: "Category ID (Optional)", type: "text", required: false, placeholder: "UUID of category" },
+];
+
+const faqApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/faqs`;
+
 // 1. Define your individual view components
 function ManageView() {
   const columns: Column[] = [
@@ -14,7 +22,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage FAQ"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/faqs`}
+      apiEndpoint={faqApiEndpoint}
       columns={columns}
       resourceName="FAQ"
     />
@@ -22,17 +30,11 @@ function ManageView() {
 }
 
 function AddView() {
-  const formFields: FormField[] = [
-    { name: "question", label: "Question", type: "text", required: true },
-    { name: "answer", label: "Answer", type: "textarea", required: true },
-    { name: "categoryId", label: "Category ID (Optional)", type: "text", required: false, placeholder: "UUID of category" },
-  ];
-
   return (
     <AddForms 
       title="Add FAQ" 
-      fields={formFields} 
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/faqs`}
+      fields={faqFields} 
+      apiEndpoint={faqApiEndpoint}
       format="json"
     />
   );
@@ -64,7 +66,7 @@ export default function ManageFAQ() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="FAQ" />,
+          edit: <EditShell resourceName="FAQ" fields={faqFields} apiEndpoint={faqApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

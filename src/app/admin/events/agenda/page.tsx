@@ -1,7 +1,18 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
 import EditShell from '@/components/Admin/EditShell';
 import { div } from "framer-motion/client";
+
+// Module-level constants
+const agendaFields: FormField[] = [
+  { name: "Title", label: "Title", type: "text", required: true },
+  { name: "startTime", label: "Start Time", type: "text", required: true, placeholder: "YYYY-MM-DDTHH:MM:SS" },
+  { name: "endTime", label: "End Time", type: "text", required: true, placeholder: "YYYY-MM-DDTHH:MM:SS" },
+  { name: "description", label: "Description", type: "textarea", required: false },
+];
+
+const agendaApiEndpoint = `${process.env.NEXT_PUBLIC_API_URL || ''}/api/events/agenda`;
 
 // 1. Define your individual view components
 function ManageView() {
@@ -15,7 +26,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Agendas"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/events/agenda`}
+      apiEndpoint={agendaApiEndpoint}
       columns={columns}
       resourceName="Agenda"
     />
@@ -23,7 +34,13 @@ function ManageView() {
 }
 
 function AddView() {
-  return <div>Add Your Agendas Here</div>;
+  return (
+    <AddForms
+      title="Add Agenda Item"
+      fields={agendaFields}
+      apiEndpoint={agendaApiEndpoint}
+    />
+  );
 }
 
 function ViewAsUser() {
@@ -52,7 +69,7 @@ export default function ManageEventAgenda() {
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Agenda" />,
+          edit: <EditShell resourceName="Agenda" fields={agendaFields} apiEndpoint={agendaApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>
