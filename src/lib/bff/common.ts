@@ -3,6 +3,8 @@ import "server-only";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+import { getAccessTokenFromRequest } from "@/lib/auth/session";
+
 const uuidSchema = z.uuid();
 const intSchema = z.coerce.number().int().positive();
 
@@ -74,9 +76,12 @@ export function forwardedHeaders(request: NextRequest): HeadersInit {
   const headers = new Headers();
   const authorization = request.headers.get("authorization");
   const userAgent = request.headers.get("user-agent");
+  const accessToken = getAccessTokenFromRequest(request);
 
   if (authorization) {
     headers.set("authorization", authorization);
+  } else if (accessToken) {
+    headers.set("authorization", `Bearer ${accessToken}`);
   }
 
   if (userAgent) {

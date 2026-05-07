@@ -132,11 +132,14 @@ Key design points:
 
 - All backend calls happen server-side via the Orval node client.
 - Frontend can call local Next.js routes (`/api/...`) instead of calling backend APIs directly.
-- Bearer token forwarding is supported by passing the incoming `Authorization` header to the backend.
+- Auth tokens are stored as HttpOnly cookies in the Next.js BFF layer.
+- Bearer token forwarding is supported by passing the incoming `Authorization` header or the HttpOnly access-token cookie to the backend.
 - Responses are normalized into a standard envelope with `success`, `data`, `error`, and `meta`.
+- Admin routes are protected by middleware that refreshes the access token when needed and redirects to login when the refresh token is missing or expired.
 
 Configured route groups:
 
+- `src/app/api/auth/[[...segments]]/route.ts`
 - `src/app/api/about/[[...segments]]/route.ts`
 - `src/app/api/banners/[[...segments]]/route.ts`
 - `src/app/api/categories/[[...segments]]/route.ts`
@@ -148,11 +151,19 @@ Configured route groups:
 Shared BFF utilities:
 
 - `src/lib/bff/common.ts`
+- `src/lib/auth/session.ts`
+
+Auth endpoints currently supported:
+
+- `POST /api/auth/login`
+- `POST /api/auth/refresh-token`
+- `POST /api/auth/logout`
 
 ### Environment Variables
 
 Create a local env file from `.env.example` and set:
 
 - `BACKEND_API_BASE_URL` (for example `https://api.example.com`)
+- `AUTH_BACKEND_API_BASE_URL` (optional, overrides auth-only calls such as `/api/auth/login` and `/api/auth/refresh-token`)
 
 The generated node client uses this at runtime.

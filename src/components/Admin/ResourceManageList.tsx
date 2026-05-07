@@ -83,7 +83,7 @@ export default function ResourceManageList<TItem>({
           key={getKey(item, index)}
           className="rounded-lg border border-neutral-200 bg-white p-4 shadow-sm"
         >
-          <pre className="whitespace-pre-wrap break-words text-xs leading-6 text-(--neutral-700)">
+          <pre className="whitespace-pre-wrap wrap-break-word text-xs leading-6 text-(--neutral-700)">
             {renderItem(item)}
           </pre>
         </div>
