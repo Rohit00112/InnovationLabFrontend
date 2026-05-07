@@ -1,6 +1,7 @@
 "use client";
 
 import type React from "react";
+import Image from "next/image";
 
 import { useState, useRef, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
@@ -52,6 +53,7 @@ export default function LatestNewsShowcase() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
+  const [containerOffset, setContainerOffset] = useState({ left: 0, top: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | null>(null);
@@ -78,9 +80,28 @@ export default function LatestNewsShowcase() {
     };
   }, [mousePosition]);
 
+  useEffect(() => {
+    const syncOffset = () => {
+      if (!containerRef.current) {
+        return;
+      }
+
+      const rect = containerRef.current.getBoundingClientRect();
+      setContainerOffset({ left: rect.left, top: rect.top });
+    };
+
+    syncOffset();
+    window.addEventListener("resize", syncOffset);
+
+    return () => {
+      window.removeEventListener("resize", syncOffset);
+    };
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent) => {
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
+      setContainerOffset({ left: rect.left, top: rect.top });
       setMousePosition({
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
@@ -111,8 +132,8 @@ export default function LatestNewsShowcase() {
       <div
         className="pointer-events-none fixed z-50 overflow-hidden rounded-xl shadow-2xl"
         style={{
-          left: containerRef.current?.getBoundingClientRect().left ?? 0,
-          top: containerRef.current?.getBoundingClientRect().top ?? 0,
+          left: containerOffset.left,
+          top: containerOffset.top,
           transform: `translate3d(${smoothPosition.x + 20}px, ${smoothPosition.y - 100}px, 0)`,
           opacity: isVisible ? 1 : 0,
           scale: isVisible ? 1 : 0.8,
@@ -120,13 +141,16 @@ export default function LatestNewsShowcase() {
             "opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), scale 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
-        <div className="relative w-[280px] h-[180px] bg-secondary rounded-xl overflow-hidden">
+        <div className="relative h-45 w-70 overflow-hidden rounded-xl bg-accent">
           {projects.map((project, index) => (
-            <img
+            <Image
               key={project.title}
               src={project.image || "/placeholder.svg"}
               alt={project.title}
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out"
+              fill
+              unoptimized
+              sizes="280px"
+              className="absolute inset-0 h-full w-full object-cover transition-all duration-500 ease-out"
               style={{
                 opacity: hoveredIndex === index ? 1 : 0,
                 scale: hoveredIndex === index ? 1 : 1.1,
@@ -135,7 +159,7 @@ export default function LatestNewsShowcase() {
             />
           ))}
           {/* Subtle gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-background/20 to-transparent" />
         </div>
       </div>
 
@@ -152,7 +176,7 @@ export default function LatestNewsShowcase() {
               {/* Background highlight on hover */}
               <div
                 className={`
-                  absolute inset-0 -mx-4 px-4 bg-secondary/50 rounded-lg
+                  absolute inset-0 -mx-4 px-4 bg-accent/50 rounded-lg
                   transition-all duration-300 ease-out
                   ${hoveredIndex === index ? "opacity-100 scale-100" : "opacity-0 scale-95"}
                 `}

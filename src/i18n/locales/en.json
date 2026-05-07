@@ -1,0 +1,225 @@
+{
+  "admin": {
+    "tabs": {
+      "manage": "Manage",
+      "add": "Add",
+      "preview": "View as user"
+    },
+    "addForm": {
+      "success": "Successfully added!",
+      "fallbackError": "An error occurred during submission.",
+      "localSubmitNotice": "Form submitted locally (Check console). Add apiEndpoint prop to connect to the backend.",
+      "submitting": "Submitting...",
+      "submit": "Submit Form",
+      "uploadFile": "Upload a file",
+      "dragAndDropHint": "or drag and drop",
+      "fileTypesHint": "PNG, JPG, GIF up to 10MB"
+    },
+    "pages": {
+      "banners": { "heading": "Banners", "addTitle": "Add Banner" },
+      "contacts": { "heading": "Contacts", "addTitle": "Add Contact" },
+      "events": { "heading": "Events", "addTitle": "Add Event" },
+      "eventAgenda": {
+        "heading": "Event Agenda",
+        "addTitle": "Add Agenda Item"
+      },
+      "eventRegistration": {
+        "heading": "Event Registration",
+        "addTitle": "Add Registration"
+      },
+      "about": {
+        "heading": "Manage About",
+        "addTitle": "Add About Information"
+      },
+      "coreValues": { "heading": "Core Values", "addTitle": "Add Core Value" },
+      "journey": { "heading": "Journey", "addTitle": "Add Journey Milestone" },
+      "faq": { "heading": "FAQs", "addTitle": "Add FAQ" },
+      "companies": { "heading": "Companies", "addTitle": "Add Company" },
+      "bentogridimages": {
+        "heading": "Bento-Grid Images",
+        "addTitle": "Add Bento-Grid Image"
+      },
+      "testimonials": {
+        "heading": "Testimonials",
+        "addTitle": "Add Testimonial"
+      },
+      "categories": {
+        "heading": "Categories",
+        "addTitle": "Create New Category"
+      }
+    },
+    "fields": {
+      "Category": { "label": "Category Name", "placeholder": "" },
+      "CategoryId": {
+        "label": "Category ID (Optional)",
+        "placeholder": "UUID of category"
+      },
+      "ParentCategoryId": {
+        "label": "Parent Category ID (Optional)",
+        "placeholder": "UUID of parent category"
+      },
+      "Name": { "label": "Name", "placeholder": "" },
+      "Text": { "label": "Text", "placeholder": "" },
+      "Designation": { "label": "Designation", "placeholder": "" },
+      "Organization": { "label": "Organization", "placeholder": "" },
+      "ImageUrl": { "label": "Image (ImageUrl)", "placeholder": "" },
+      "Image": { "label": "Image", "placeholder": "" },
+      "BannerImage": { "label": "Banner Image", "placeholder": "" },
+      "Icon": { "label": "Icon", "placeholder": "" },
+      "Title": { "label": "Title", "placeholder": "" },
+      "SubTitle": { "label": "Subtitle", "placeholder": "" },
+      "Caption": { "label": "Caption", "placeholder": "" },
+      "Version": { "label": "Version", "placeholder": "" },
+      "ParentId": { "label": "Parent ID", "placeholder": "" },
+      "ScheduledStart": {
+        "label": "Scheduled Start",
+        "placeholder": "YYYY-MM-DDTHH:MM:SS"
+      },
+      "ScheduledEnd": {
+        "label": "Scheduled End",
+        "placeholder": "YYYY-MM-DDTHH:MM:SS"
+      },
+      "Type": { "label": "Type", "placeholder": "e.g., Hero, Promo" },
+      "Address": { "label": "Address", "placeholder": "" },
+      "ContactEmail": { "label": "Contact Email", "placeholder": "" },
+      "Priority": { "label": "Priority", "placeholder": "" },
+      "Logo": { "label": "Logo (Image)", "placeholder": "" },
+      "Description": { "label": "Description", "placeholder": "" },
+      "Location": { "label": "Location", "placeholder": "" },
+      "CoverImage": { "label": "Cover Image", "placeholder": "" },
+      "StartTime": {
+        "label": "Start Time",
+        "placeholder": "YYYY-MM-DDTHH:MM:SS"
+      },
+      "EndTime": { "label": "End Time", "placeholder": "YYYY-MM-DDTHH:MM:SS" },
+      "Highlights": {
+        "label": "Highlights (comma-separated)",
+        "placeholder": "Highlight 1, Highlight 2, Highlight 3"
+      },
+      "SeriesName": { "label": "Series Name", "placeholder": "" },
+      "ParentEventId": {
+        "label": "Parent Event ID (Optional)",
+        "placeholder": "UUID"
+      },
+      "IsTeamEvent": {
+        "label": "Is Team Event (yes/no)",
+        "placeholder": "yes or no"
+      },
+      "MaxTeamMembers": { "label": "Max Team Members", "placeholder": "" },
+      "Date": { "label": "Date", "placeholder": "YYYY-MM-DDTHH:MM:SS" },
+      "Order": { "label": "Order", "placeholder": "" },
+      "RegistrationStart": {
+        "label": "Registration Start",
+        "placeholder": "YYYY-MM-DDTHH:MM:SS"
+      },
+      "RegistrationEnd": {
+        "label": "Registration End",
+        "placeholder": "YYYY-MM-DDTHH:MM:SS"
+      },
+      "Mission": { "label": "Mission", "placeholder": "" },
+      "Vision": { "label": "Vision", "placeholder": "" },
+      "ParentOrgName": {
+        "label": "Parent Organization Name",
+        "placeholder": ""
+      },
+      "ParentOrgDescription": {
+        "label": "Parent Organization Description",
+        "placeholder": ""
+      },
+      "ParentOrgLogo": {
+        "label": "Parent Organization Logo",
+        "placeholder": ""
+      },
+      "ParentOrgWebsiteUrl": {
+        "label": "Parent Organization Website URL",
+        "placeholder": "https://example.com"
+      },
+      "question": { "label": "Question", "placeholder": "" },
+      "answer": { "label": "Answer", "placeholder": "" }
+    },
+    "shared": {
+      "loadingItems": "Loading {resource}...",
+      "noItems": "No {resource} available.",
+      "loadError": "Unable to load {resource}."
+    }
+  },
+  "public": {
+    "pages": {
+      "about": "About",
+      "partners": "PARTNERS",
+      "contact": "CONTACT US",
+      "communities": "COMMUNITIES",
+      "events": "EVENTS",
+      "lab": "Lab",
+      "login": "Login"
+    },
+    "about": {
+      "introParagraph": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+    },
+    "company": {
+      "companiesProviding": "Companies Providing",
+      "internships": "Internships",
+      "ourPartners": "OUR PARTNERS",
+      "aboutOurPartners": "ABOUT OUR PARTNERS",
+      "aboutPartnersBody": "we are Innovation Labbist lorem gg , Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit voluptates voluptatibus iure, vitae nesciunt dicta qui, quasi doloribus explicabo itaque alias ipsa quam non suscipit est ad aut at dolor?"
+    },
+    "contact": {
+      "heroTitle": "Let's Start a Conversation",
+      "heroSubtitle": "Share your vision and let's bring your ideas to life together.",
+      "nameLabel": "Name",
+      "namePlaceholder": "Enter identifier",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Address@protocol.sys",
+      "titleLabel": "Title",
+      "titleDefault": "Architectural Consultation",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Define your vision...",
+      "statusAwaiting": "Awaiting",
+      "send": "Send",
+      "infoEmailTitle": "Email",
+      "infoEmailContent": "admin@neo-lab.sys",
+      "infoPhoneTitle": "Phone",
+      "infoPhoneContent": "+44 (0) 20 7946 0142",
+      "infoLocationTitle": "Location",
+      "infoLocationContent": "18 Brutal Wharf, E14 5SX, London",
+      "infoUptimeTitle": "Uptime",
+      "infoUptimeContent": "09:00 - 21:00 GMT",
+      "sendSuccess": "Message sent — thank you!",
+      "sendError": "Unable to send message. Please try again later.",
+      "validation": {
+        "emailRequired": "Email is required.",
+        "messageRequired": "Message is required.",
+        "invalidEmail": "Please enter a valid email address."
+      }
+    },
+    "communities": {
+      "latestNews": "Latest News",
+      "focus": "Focus",
+      "members": "Members",
+      "activities": "Activities",
+      "projects": "Projects",
+      "exploreCommunity": "Explore Community"
+    },
+    "communityDetail": {
+      "about": "About",
+      "teamMembers": "Team Members",
+      "news": "News",
+      "backToCommunities": "Back To Communities",
+      "exploreOtherCommunities": "Explore Other Communities"
+    },
+    "eventDetail": {
+      "backToEvents": "Back To Events",
+      "overview": "Overview",
+      "whatYouWillSee": "What You\u2019ll See",
+      "detail": "Detail",
+      "gallery": "Gallery",
+      "relatedEvents": "Related Events"
+    },
+    "lab": {
+      "content": "Lab Page Content"
+    },
+    "login": {
+      "content": "Feature Not For NOW -- Do Nothing HERE"
+    }
+  }
+}

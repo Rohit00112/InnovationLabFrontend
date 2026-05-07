@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
 import { X } from "lucide-react";
 
 /**
@@ -153,7 +160,6 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   // STATE & REFS
   // ==========================================
 
-  const [isMounted, setIsMounted] = useState<boolean>(false);
   const [rotation, setRotation] = useState<RotationState>({
     x: 15,
     y: 15,
@@ -162,7 +168,6 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   const [velocity, setVelocity] = useState<VelocityState>({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
-  const [imagePositions, setImagePositions] = useState<SphericalPosition[]>([]);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -223,6 +228,11 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
 
     return positions;
   }, [images.length, actualSphereRadius]);
+
+  const imagePositions = useMemo(
+    () => generateSpherePositions(),
+    [generateSpherePositions],
+  );
 
   const calculateWorldPositions = useCallback((): WorldPosition[] => {
     const positions = imagePositions.map((pos, index) => {
@@ -502,33 +512,21 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   // ==========================================
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    setImagePositions(generateSpherePositions());
-  }, [generateSpherePositions]);
-
-  useEffect(() => {
     const animate = () => {
       updateMomentum();
       animationFrame.current = requestAnimationFrame(animate);
     };
 
-    if (isMounted) {
-      animationFrame.current = requestAnimationFrame(animate);
-    }
+    animationFrame.current = requestAnimationFrame(animate);
 
     return () => {
       if (animationFrame.current) {
         cancelAnimationFrame(animationFrame.current);
       }
     };
-  }, [isMounted, updateMomentum]);
+  }, [updateMomentum]);
 
   useEffect(() => {
-    if (!isMounted) return;
-
     const container = containerRef.current;
     if (!container) return;
 
@@ -546,13 +544,7 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
       document.removeEventListener("touchmove", handleTouchMove);
       document.removeEventListener("touchend", handleTouchEnd);
     };
-  }, [
-    isMounted,
-    handleMouseMove,
-    handleMouseUp,
-    handleTouchMove,
-    handleTouchEnd,
-  ]);
+  }, [handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   // ==========================================
   // RENDER HELPERS
@@ -569,7 +561,9 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
 
       const imageSize = baseImageSize * position.scale;
       const isHovered = hoveredIndex === index;
-      const finalScale = isHovered ? Math.min(1.2, 1.2 / position.scale) : 1;
+      const finalScale = isHovered
+        ? Math.min(hoverScale, hoverScale / position.scale)
+        : 1;
 
       return (
         <div
@@ -589,18 +583,19 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           onClick={() => setSelectedImage(image)}
         >
           <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg border-2 border-white/20">
-            <img
+            <Image
               src={image.src}
               alt={image.alt}
+              fill
+              unoptimized
+              sizes="(min-width: 1024px) 12vw, 20vw"
               className="w-full h-full object-cover"
-              draggable={false}
-              loading={index < 3 ? "eager" : "lazy"}
             />
           </div>
         </div>
       );
     },
-    [worldPositions, baseImageSize, containerSize, hoveredIndex],
+    [worldPositions, baseImageSize, containerSize, hoveredIndex, hoverScale],
   );
 
   const renderSpotlightModal = () => {
@@ -622,9 +617,12 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           }}
         >
           <div className="relative aspect-square">
-            <img
+            <Image
               src={selectedImage.src}
               alt={selectedImage.alt}
+              fill
+              unoptimized
+              sizes="(min-width: 768px) 28rem, 100vw"
               className="w-full h-full object-cover"
             />
             <button
@@ -655,17 +653,6 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
   // ==========================================
   // EARLY RETURNS
   // ==========================================
-
-  if (!isMounted) {
-    return (
-      <div
-        className="bg-gray-100 rounded-lg animate-pulse flex items-center justify-center"
-        style={{ width: containerSize, height: containerSize }}
-      >
-        <div className="text-gray-400">Loading...</div>
-      </div>
-    );
-  }
 
   if (!images.length) {
     return (

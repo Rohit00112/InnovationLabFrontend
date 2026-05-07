@@ -24,7 +24,7 @@ export default function companyList({ companies }: CompanyListProps) {
 
   return (
     <>
-      <div className="grid w-full grid-cols-1 gap-0 border border-[#DFDFDF] py-0 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid w-full grid-cols-1 gap-0 border border-neutral-300 py-0 sm:grid-cols-2 lg:grid-cols-3">
         {displayCompanies.map((company, index) => (
           <CompanyCard
             key={index}

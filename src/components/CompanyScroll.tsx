@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 type Brand = {
   name: string;
   image: string;
@@ -33,13 +35,18 @@ const BrandScroller = ({
           <div
             key={i}
             className={`flex shrink-0 flex-row justify-around ${animationClass}`}
-            style={{ gap: "var(--gap)" }}
+            style={{
+              gap: "var(--gap)",
+              animationDuration: `${speed}s`,
+            }}
           >
             {brands.map((brand, index) => (
               <div key={index} className="flex items-center w-32 gap-3">
-                <img
+                <Image
                   src={brand.image}
                   alt={brand.name}
+                  width={24}
+                  height={24}
                   className="w-6 h-6 object-contain"
                 />
                 <p className="text-lg font-semibold opacity-80">{brand.name}</p>

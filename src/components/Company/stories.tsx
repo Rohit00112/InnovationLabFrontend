@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 export interface StoryItem {
   image: string;
@@ -55,7 +55,7 @@ export default function Stories({ storiesData }: StoriesProps) {
       setCurrentStory(Math.floor(scrolledInto / stepPx));
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // set initial state on mount
     return () => window.removeEventListener('scroll', handleScroll);
   }, [numOfStories, scrollDistance]);
@@ -75,17 +75,17 @@ export default function Stories({ storiesData }: StoriesProps) {
 
           // Left half enters from below, exits upward
           const leftTrans = isActive
-            ? 'translateY(0)'
+            ? "translateY(0)"
             : isPast
-              ? 'translateY(-100%)'
-              : 'translateY(100%)';
+              ? "translateY(-100%)"
+              : "translateY(100%)";
 
           // Right half enters from above, exits downward
           const rightTrans = isActive
-            ? 'translateY(0)'
+            ? "translateY(0)"
             : isPast
-              ? 'translateY(100%)'
-              : 'translateY(-100%)';
+              ? "translateY(100%)"
+              : "translateY(-100%)";
 
           return (
             <div key={i} className="absolute inset-0">
@@ -113,7 +113,7 @@ export default function Stories({ storiesData }: StoriesProps) {
 
               {/* Right Half */}
               <div
-                className="absolute top-0 left-1/2 w-1/2 h-full transition-transform duration-[1000ms] bg-white flex flex-col justify-center"
+                className="absolute top-0 left-1/2 w-1/2 h-full transition-transform duration-1000 bg-white flex flex-col justify-center"
                 style={{ transform: rightTrans }}
               >
                 {!isImageOnLeft ? (

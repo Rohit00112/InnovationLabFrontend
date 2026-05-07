@@ -34,7 +34,7 @@ export function ContactInfoCard({
     <motion.div
       variants={itemVariants}
       className={`group relative p-6 cursor-pointer ${
-        isBordered ? "border-b border-r border-[#d8d8d8] md:border-b-0" : ""
+        isBordered ? "border-b border-r border-neutral-300 md:border-b-0" : ""
       }`}
       whileHover={
         reducedMotion
@@ -66,7 +66,7 @@ export function ContactInfoCard({
       <motion.div className="relative z-10 aspect-square">
         {Icon ? (
           <motion.div
-            className="mb-4 inline-flex h-10 w-10 items-center justify-center  border border-[#d8d8d8] bg-white text-[#181d22] transition-colors duration-300 group-hover:border-cyan-300 group-hover:text-cyan-600"
+            className="mb-4 inline-flex h-10 w-10 items-center justify-center  border border-neutral-300 bg-white text-neutral-900 transition-colors duration-300 group-hover:border-cyan-300 group-hover:text-cyan-600"
             whileHover={
               reducedMotion
                 ? undefined
@@ -82,7 +82,7 @@ export function ContactInfoCard({
           </motion.div>
         ) : null}
         <motion.h3
-          className="mb-3 text-xl font-black uppercase tracking-tight text-[#181d22] transition-colors duration-400 group-hover:text-primary"
+          className="mb-3 text-xl font-black uppercase tracking-tight text-neutral-900 transition-colors duration-400 group-hover:text-primary"
           whileHover={
             reducedMotion
               ? undefined
@@ -97,7 +97,7 @@ export function ContactInfoCard({
         </motion.h3>
 
         <motion.p
-          className="text-xs uppercase tracking-[0.12em] text-[#60656a] transition-colors duration-400 group-hover:text-[#3a4044]"
+          className="text-xs uppercase tracking-[0.12em] text-neutral-500 transition-colors duration-400 group-hover:text-neutral-700"
           whileHover={
             reducedMotion
               ? undefined

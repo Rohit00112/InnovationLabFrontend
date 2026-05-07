@@ -59,7 +59,7 @@ export default function OppositeScrollMotion() {
             />
           </div>
 
-          <div className="max-w-md pt-2 text-[22px] leading-9 tracking-[0.02em] text-neutral-800 md:pt-6">
+          <div className="max-w-md pt-2 text-xl leading-9 tracking-wide text-neutral-800 md:pt-6">
             We believe in the{" "}
             <span className="font-semibold text-primary">architectural</span>{" "}
             sovereignty of the grid. Our practice is dedicated to the reduction
@@ -74,7 +74,7 @@ export default function OppositeScrollMotion() {
         </div>
 
         <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-2 md:gap-12">
-          <div className="order-2 max-w-md text-[22px] leading-9 tracking-[0.02em] text-neutral-800 md:order-1">
+          <div className="order-2 max-w-md text-xl leading-9 tracking-wide text-neutral-800 md:order-1">
             We believe in the{" "}
             <span className="font-semibold text-primary">architectural</span>{" "}
             sovereignty of the grid. Our practice is dedicated to the reduction

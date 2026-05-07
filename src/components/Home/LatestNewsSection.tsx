@@ -26,13 +26,13 @@ const latestNewsItems = [
 
 export default function LatestNewsSection() {
   return (
-    <section className="bg-gray-50 py-20 border-t border-gray-200">
-      <div className="mx-auto">
-        <h2 className="text-2xl ml-4 md:text-6xl font-extrabold uppercase mb-10">
+    <section className="border-t border-gray-200 bg-gray-50 py-14 md:py-20">
+      <div className="mx-auto px-4 md:px-8">
+        <h2 className="mb-8 ml-1 text-2xl font-extrabold uppercase md:mb-10 md:ml-0 md:text-6xl">
           Latest News
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-8">
           {latestNewsItems.map((item, index) => (
             <div
               key={index}
@@ -43,9 +43,9 @@ export default function LatestNewsSection() {
                 alt={item.title}
                 width={600}
                 height={400}
-                className="w-full h-56 object-cover"
+                className="h-52 w-full object-cover md:h-56"
               />
-              <div className="p-6">
+              <div className="p-5 md:p-6">
                 <span className="text-blue-500 text-[10px] font-bold uppercase tracking-wider">
                   {item.category} • {item.date}
                 </span>

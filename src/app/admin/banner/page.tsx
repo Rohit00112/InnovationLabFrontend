@@ -1,7 +1,7 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
-import EditShell from '@/components/Admin/EditShell';
+import EditShell from "@/components/Admin/EditShell";
 
 const bannerFields: FormField[] = [
   {
@@ -39,15 +39,15 @@ const bannerFields: FormField[] = [
   },
 ];
 
-const bannerApiEndpoint = `/api/banners`;
+const bannerApiEndpoint = "/api/banners";
 
 // 1. Define your individual view components
 function ManageView() {
   const columns: Column[] = [
-    { key: 'title', label: 'Title' },
-    { key: 'type', label: 'Type' },
-    { key: 'subtitle', label: 'Subtitle' },
-    { key: 'version', label: 'Version' },
+    { key: "title", label: "Title" },
+    { key: "type", label: "Type" },
+    { key: "subtitle", label: "Subtitle" },
+    { key: "version", label: "Version" },
   ];
 
   return (
@@ -72,9 +72,9 @@ function AddView() {
 
 function ViewAsUser() {
   return (
-    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
-      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">Banners</h2>
-      <div className="text-[var(--neutral-500)] text-sm">Banners preview appears here.</div>
+    <div className="w-full rounded-lg border border-[var(--neutral-100)] bg-white p-8 shadow-sm">
+      <h2 className="mb-6 text-2xl font-semibold text-[var(--neutral-900)]">Banners</h2>
+      <div className="text-sm text-[var(--neutral-500)]">Banners preview appears here.</div>
     </div>
   );
 }
@@ -90,7 +90,7 @@ export default function ManageBanner() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Banners</h1>
+      <h1 className="mb-6 text-2xl font-bold">Banners</h1>
 
       {/* 3. Pass the tabs mapping to the switcher */}
       <AdminViewSwitcher tabs={tabs} defaultTab="manage">

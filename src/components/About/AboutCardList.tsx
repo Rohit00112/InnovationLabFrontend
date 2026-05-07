@@ -14,7 +14,7 @@ type AboutCardListProps = {
 export default function AboutCardList({ items }: AboutCardListProps) {
   return (
     <>
-      <div className="w-full bg-white px-10 sm:px-6 sm:pt-5 sm:pb-12 md:px-8 md:pt-30 md:pb-22">
+      <div className="w-full bg-white px-4 pb-10 pt-6 sm:px-6 sm:pb-12 md:px-8 md:pb-22 md:pt-30">
         <div className="w-full">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {items.map((about) => (

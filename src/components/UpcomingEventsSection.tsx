@@ -36,11 +36,15 @@ const events: EventItem[] = [
 
 export default function UpcomingEventsSection() {
   return (
-    <section className="py-16 max-w-295 w-[94vw] mx-auto">
+    <section className="py-16 max-w-[73.75rem] w-full mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
         <div>
-          <h2 className="text-2xl uppercase font-extrabold tracking-tight">Upcoming Events</h2>
-          <p className="text-sm text-ivGray-500 mt-2">See what is happening next at IV Lab.</p>
+          <h2 className="text-2xl uppercase font-extrabold tracking-tight">
+            Upcoming Events
+          </h2>
+          <p className="text-sm text-ivGray-500 mt-2">
+            See what is happening next at IV Lab.
+          </p>
         </div>
       </div>
 
@@ -55,7 +59,9 @@ export default function UpcomingEventsSection() {
                 {event.date} • {event.time} • {event.venue}
               </p>
               <div>
-                <h3 className="text-lg uppercase font-bold tracking-tight">{event.title}</h3>
+                <h3 className="text-lg uppercase font-bold tracking-tight">
+                  {event.title}
+                </h3>
                 <p className="text-ivGray-500 text-sm mt-1">{event.desc}</p>
               </div>
             </div>

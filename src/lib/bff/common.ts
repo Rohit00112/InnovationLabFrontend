@@ -43,6 +43,36 @@ export function ensureBackendBaseUrl(requestId: string): NextResponse | null {
   );
 }
 
+export type SegmentRouteContext = {
+  params: Promise<{ segments?: string[] }>;
+};
+
+export type SegmentRouteHandler = (args: {
+  request: NextRequest;
+  requestId: string;
+  segments: string[];
+}) => Promise<NextResponse>;
+
+export async function withSegmentRoute(
+  request: NextRequest,
+  context: SegmentRouteContext,
+  handler: SegmentRouteHandler,
+): Promise<NextResponse> {
+  const requestId = getRequestId(request);
+  const envError = ensureBackendBaseUrl(requestId);
+  if (envError) {
+    return envError;
+  }
+
+  const segments = (await context.params).segments ?? [];
+
+  try {
+    return await handler({ request, requestId, segments });
+  } catch (error) {
+    return handleUnknownError(error, requestId);
+  }
+}
+
 export function forwardedHeaders(request: NextRequest): HeadersInit {
   const headers = new Headers();
   const authorization = request.headers.get("authorization");
@@ -102,7 +132,7 @@ export async function parseJsonBodyAs<T extends object>(
     return { error: parsed.error };
   }
 
-  return { value: parsed.value as unknown as T };
+  return { value: parsed.value as T };
 }
 
 export async function parseMultipartBody(
@@ -133,7 +163,7 @@ export async function parseMultipartBodyAs<T extends object>(
     return { error: parsed.error };
   }
 
-  return { value: parsed.value as unknown as T };
+  return { value: parsed.value as T };
 }
 
 export function parseEnumValue<T extends Record<string, string>>(
@@ -148,6 +178,21 @@ export function parseEnumValue<T extends Record<string, string>>(
   return values.includes(value as T[keyof T])
     ? (value as T[keyof T])
     : undefined;
+}
+
+export function getQueryParamValue(
+  request: NextRequest,
+  name: string,
+  ...aliases: string[]
+): string | null {
+  for (const candidate of [name, ...aliases]) {
+    const value = request.nextUrl.searchParams.get(candidate);
+    if (value && value.length > 0) {
+      return value;
+    }
+  }
+
+  return null;
 }
 
 function formDataToObject(formData: FormData): Record<string, unknown> {

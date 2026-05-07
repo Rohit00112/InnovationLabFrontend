@@ -69,14 +69,14 @@ function ImageRow({ images }: { images: GalleryImage[] }) {
       {images.map((image) => (
         <div
           key={image.src}
-          className="relative h-[32vw] min-h-64 max-h-120 w-[28vw] min-w-[18rem] max-w-[24rem] shrink-0 overflow-hidden bg-neutral-100"
+          className="relative h-[55vw] w-[46vw] shrink-0 overflow-hidden bg-neutral-100 sm:h-[42vw] sm:w-[36vw] md:h-[32vw] md:w-[28vw] md:min-h-64 md:max-h-120 md:min-w-[18rem] md:max-w-[24rem]"
         >
           <Image
             src={image.src}
             alt={image.alt}
             fill
             sizes="(max-width: 768px) 70vw, 24rem"
-            className="object-cover border-1 aspect-square border-gray-300"
+            className="object-cover border aspect-square border-gray-300"
           />
         </div>
       ))}

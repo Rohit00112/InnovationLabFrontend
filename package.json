@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint . --max-warnings 0 --ext .ts,.tsx",
+    "lint:fix": "eslint . --fix --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
     "api:generate": "orval --config ./orval.config.ts",
     "api:watch": "orval --config ./orval.config.ts --watch"
   },

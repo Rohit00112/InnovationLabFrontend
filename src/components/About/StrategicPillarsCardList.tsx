@@ -1,8 +1,7 @@
-import React from "react";
+import { cn } from "@/lib/utils/util";
 import StrategicPillarsCard, {
   type StrategicPillarSection,
 } from "./StrategicPillarsCard";
-import { cn } from "@/lib/utils/util";
 
 type StrategicPillarsCardListProps = {
   items: StrategicPillarSection[];
@@ -10,11 +9,11 @@ type StrategicPillarsCardListProps = {
 
 const titleThemes = [
   {
-    background: "bg-[#0f6f73]",
+    background: "bg-primary-800",
     text: "text-white",
   },
   {
-    background: "bg-[#111417]",
+    background: "bg-accent-100",
     text: "text-primary",
   },
 ];
@@ -39,7 +38,7 @@ export default function StrategicPillarsCardList({
               titleOnLeft={index % 2 === 0}
               className={cn(
                 "border-black",
-                index !== items.length - 1 && "border-b-1",
+                index !== items.length - 1 && "border-b",
                 "lg:min-h-[50vh]",
               )}
             />

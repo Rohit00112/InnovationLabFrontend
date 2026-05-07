@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { communityCards } from "@/lib/data/communities";
@@ -20,7 +19,7 @@ export function CommunitiesSection() {
           {communityCards.map((community, index) => (
             <Link
               key={community.slug}
-              href={`/communities/${community.slug}`}
+              href="/communities"
               className="group overflow-hidden border border-gray-300 bg-white"
             >
               <div className="relative h-72 overflow-hidden">
@@ -42,7 +41,7 @@ export function CommunitiesSection() {
                   <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-primary">
                     {community.id}
                   </p>
-                  <h3 className="mt-3 text-3xl font-black uppercase tracking-[-0.05em] text-neutral-900">
+                  <h3 className="mt-3 text-3xl font-black uppercase tracking-tighter text-neutral-900">
                     {community.title}
                   </h3>
                   <p className="mt-3 max-w-md text-sm leading-relaxed text-neutral-600">

@@ -1,17 +1,16 @@
 import { NextRequest } from "next/server";
 
 import {
-  ensureBackendBaseUrl,
+  failure,
   forwardedHeaders,
-  getRequestId,
-  handleUnknownError,
+  getQueryParamValue,
   parseEnumValue,
   parseJsonBodyAs,
   parseMultipartBodyAs,
   parseOptionalInt,
   parseUuid,
   relay,
-  failure,
+  withSegmentRoute,
 } from "@/lib/bff/common";
 import { nodeApi } from "@/lib/services/server-api";
 import {
@@ -36,326 +35,436 @@ type Context = {
   params: Promise<{ segments?: string[] }>;
 };
 
+type EventRoute =
+  | { kind: "collection" }
+  | { kind: "item"; eventId: string }
+  | { kind: "agenda"; eventId: string }
+  | { kind: "registrations"; eventId: string }
+  | { kind: "agenda-item"; agendaId: string }
+  | { kind: "register"; eventId: string }
+  | { kind: "registration-status"; registrationId: string }
+  | { kind: "not-found" };
+
+function resolveEventRoute(segments: string[]): EventRoute {
+  if (segments.length === 0) {
+    return { kind: "collection" };
+  }
+
+  if (segments.length === 1) {
+    return { kind: "item", eventId: segments[0] };
+  }
+
+  if (segments.length === 2 && segments[1] === "agenda") {
+    return { kind: "agenda", eventId: segments[0] };
+  }
+
+  if (segments.length === 2 && segments[1] === "registrations") {
+    return { kind: "registrations", eventId: segments[0] };
+  }
+
+  if (segments.length === 2 && segments[0] === "agenda") {
+    return { kind: "agenda-item", agendaId: segments[1] };
+  }
+
+  if (segments.length === 2 && segments[1] === "register") {
+    return { kind: "register", eventId: segments[0] };
+  }
+
+  if (
+    segments.length === 3 &&
+    segments[0] === "registrations" &&
+    segments[2] === "status"
+  ) {
+    return { kind: "registration-status", registrationId: segments[1] };
+  }
+
+  return { kind: "not-found" };
+}
+
 export async function GET(request: NextRequest, context: Context) {
-  const requestId = getRequestId(request);
-  const envError = ensureBackendBaseUrl(requestId);
-  if (envError) {
-    return envError;
-  }
+  return withSegmentRoute(
+    request,
+    context,
+    async ({ request, requestId, segments }) => {
+      const headers = forwardedHeaders(request);
+      const route = resolveEventRoute(segments);
 
-  const segments = (await context.params).segments ?? [];
-  const headers = forwardedHeaders(request);
+      switch (route.kind) {
+        case "collection": {
+          const page = parseOptionalInt(
+            getQueryParamValue(request, "page", "Page"),
+            "page",
+            requestId,
+          );
+          if (page.error) {
+            return page.error;
+          }
 
-  try {
-    if (segments.length === 0) {
-      const page = parseOptionalInt(
-        request.nextUrl.searchParams.get("page"),
-        "page",
-        requestId,
-      );
-      if (page.error) {
-        return page.error;
+          const limit = parseOptionalInt(
+            getQueryParamValue(request, "limit", "Limit"),
+            "limit",
+            requestId,
+          );
+          if (limit.error) {
+            return limit.error;
+          }
+
+          return relay(
+            await nodeApi.getEvents(
+              buildGetEventsParams(request, page.value, limit.value),
+              {
+                headers,
+              },
+            ),
+            requestId,
+          );
+        }
+
+        case "item": {
+          const idError = parseUuid(route.eventId, "id", requestId);
+          if (idError) {
+            return idError;
+          }
+
+          return relay(
+            await nodeApi.getEventById(route.eventId, { headers }),
+            requestId,
+          );
+        }
+
+        case "agenda": {
+          const idError = parseUuid(route.eventId, "id", requestId);
+          if (idError) {
+            return idError;
+          }
+
+          return relay(
+            await nodeApi.getEventAgenda(route.eventId, { headers }),
+            requestId,
+          );
+        }
+
+        case "registrations": {
+          const idError = parseUuid(route.eventId, "id", requestId);
+          if (idError) {
+            return idError;
+          }
+
+          const page = parseOptionalInt(
+            getQueryParamValue(request, "page", "Page"),
+            "page",
+            requestId,
+          );
+          if (page.error) {
+            return page.error;
+          }
+
+          const limit = parseOptionalInt(
+            getQueryParamValue(request, "limit", "Limit"),
+            "limit",
+            requestId,
+          );
+          if (limit.error) {
+            return limit.error;
+          }
+
+          return relay(
+            await nodeApi.getEventRegistrations(
+              route.eventId,
+              buildGetEventRegistrationsParams(
+                request,
+                page.value,
+                limit.value,
+              ),
+              { headers },
+            ),
+            requestId,
+          );
+        }
+
+        default:
+          return failure(
+            { code: "NOT_FOUND", message: "Route not found." },
+            404,
+            requestId,
+          );
       }
-
-      const limit = parseOptionalInt(
-        request.nextUrl.searchParams.get("limit"),
-        "limit",
-        requestId,
-      );
-      if (limit.error) {
-        return limit.error;
-      }
-
-      return relay(
-        await nodeApi.getEvents(
-          buildGetEventsParams(request, page.value, limit.value),
-          {
-            headers,
-          },
-        ),
-        requestId,
-      );
-    }
-
-    if (segments.length === 1) {
-      const idError = parseUuid(segments[0], "id", requestId);
-      if (idError) {
-        return idError;
-      }
-
-      return relay(
-        await nodeApi.getEventById(segments[0], { headers }),
-        requestId,
-      );
-    }
-
-    if (segments.length === 2 && segments[1] === "agenda") {
-      const idError = parseUuid(segments[0], "id", requestId);
-      if (idError) {
-        return idError;
-      }
-
-      return relay(
-        await nodeApi.getEventAgenda(segments[0], { headers }),
-        requestId,
-      );
-    }
-
-    if (segments.length === 2 && segments[1] === "registrations") {
-      const idError = parseUuid(segments[0], "id", requestId);
-      if (idError) {
-        return idError;
-      }
-
-      const page = parseOptionalInt(
-        request.nextUrl.searchParams.get("page") ??
-          request.nextUrl.searchParams.get("Page"),
-        "page",
-        requestId,
-      );
-      if (page.error) {
-        return page.error;
-      }
-
-      const limit = parseOptionalInt(
-        request.nextUrl.searchParams.get("limit") ??
-          request.nextUrl.searchParams.get("Limit"),
-        "limit",
-        requestId,
-      );
-      if (limit.error) {
-        return limit.error;
-      }
-
-      return relay(
-        await nodeApi.getEventRegistrations(
-          segments[0],
-          buildGetEventRegistrationsParams(request, page.value, limit.value),
-          { headers },
-        ),
-        requestId,
-      );
-    }
-
-    return failure(
-      { code: "NOT_FOUND", message: "Route not found." },
-      404,
-      requestId,
-    );
-  } catch (error) {
-    return handleUnknownError(error, requestId);
-  }
+    },
+  );
 }
 
 export async function POST(request: NextRequest, context: Context) {
-  const requestId = getRequestId(request);
-  const envError = ensureBackendBaseUrl(requestId);
-  if (envError) {
-    return envError;
-  }
+  return withSegmentRoute(
+    request,
+    context,
+    async ({ request, requestId, segments }) => {
+      const headers = forwardedHeaders(request);
+      const route = resolveEventRoute(segments);
 
-  const segments = (await context.params).segments ?? [];
-  const headers = forwardedHeaders(request);
+      switch (route.kind) {
+        case "collection": {
+          const parsed = await parseMultipartBodyAs<CreateEventBody>(request);
+          if (parsed.error) {
+            return parsed.error;
+          }
 
-  try {
-    if (segments.length === 0) {
-      const parsed = await parseMultipartBodyAs<CreateEventBody>(request);
-      if (parsed.error || !parsed.value) {
-        return parsed.error;
+          if (!parsed.value) {
+            return failure(
+              {
+                code: "INVALID_BODY",
+                message: "Request body must be a multipart form object.",
+              },
+              400,
+              requestId,
+            );
+          }
+
+          return relay(
+            await nodeApi.createEvent(parsed.value, { headers }),
+            requestId,
+          );
+        }
+
+        case "agenda": {
+          const idError = parseUuid(route.eventId, "id", requestId);
+          if (idError) {
+            return idError;
+          }
+
+          const parsed = await parseJsonBodyAs<CreateEventAgendaDto>(request);
+          if (parsed.error) {
+            return parsed.error;
+          }
+
+          if (!parsed.value) {
+            return failure(
+              {
+                code: "INVALID_BODY",
+                message: "Request body must be a JSON object.",
+              },
+              400,
+              requestId,
+            );
+          }
+
+          return relay(
+            await nodeApi.createEventAgenda(route.eventId, parsed.value, {
+              headers,
+            }),
+            requestId,
+          );
+        }
+
+        case "register": {
+          const idError = parseUuid(route.eventId, "id", requestId);
+          if (idError) {
+            return idError;
+          }
+
+          const parsed = await parseJsonBodyAs<EventRegistrationDto>(request);
+          if (parsed.error) {
+            return parsed.error;
+          }
+
+          if (!parsed.value) {
+            return failure(
+              {
+                code: "INVALID_BODY",
+                message: "Request body must be a JSON object.",
+              },
+              400,
+              requestId,
+            );
+          }
+
+          return relay(
+            await nodeApi.registerForEvent(route.eventId, parsed.value, {
+              headers,
+            }),
+            requestId,
+          );
+        }
+
+        default:
+          return failure(
+            { code: "NOT_FOUND", message: "Route not found." },
+            404,
+            requestId,
+          );
       }
-
-      return relay(
-        await nodeApi.createEvent(parsed.value, { headers }),
-        requestId,
-      );
-    }
-
-    if (segments.length === 2 && segments[1] === "agenda") {
-      const idError = parseUuid(segments[0], "id", requestId);
-      if (idError) {
-        return idError;
-      }
-
-      const parsed = await parseJsonBodyAs<CreateEventAgendaDto>(request);
-      if (parsed.error || !parsed.value) {
-        return parsed.error;
-      }
-
-      return relay(
-        await nodeApi.createEventAgenda(segments[0], parsed.value, {
-          headers,
-        }),
-        requestId,
-      );
-    }
-
-    if (segments.length === 2 && segments[1] === "register") {
-      const idError = parseUuid(segments[0], "id", requestId);
-      if (idError) {
-        return idError;
-      }
-
-      const parsed = await parseJsonBodyAs<EventRegistrationDto>(request);
-      if (parsed.error || !parsed.value) {
-        return parsed.error;
-      }
-
-      return relay(
-        await nodeApi.registerForEvent(segments[0], parsed.value, {
-          headers,
-        }),
-        requestId,
-      );
-    }
-
-    return failure(
-      { code: "NOT_FOUND", message: "Route not found." },
-      404,
-      requestId,
-    );
-  } catch (error) {
-    return handleUnknownError(error, requestId);
-  }
+    },
+  );
 }
 
 export async function PUT(request: NextRequest, context: Context) {
-  const requestId = getRequestId(request);
-  const envError = ensureBackendBaseUrl(requestId);
-  if (envError) {
-    return envError;
-  }
+  return withSegmentRoute(
+    request,
+    context,
+    async ({ request, requestId, segments }) => {
+      const headers = forwardedHeaders(request);
+      const route = resolveEventRoute(segments);
 
-  const segments = (await context.params).segments ?? [];
-  const headers = forwardedHeaders(request);
+      switch (route.kind) {
+        case "item": {
+          const idError = parseUuid(route.eventId, "id", requestId);
+          if (idError) {
+            return idError;
+          }
 
-  try {
-    if (segments.length === 1) {
-      const idError = parseUuid(segments[0], "id", requestId);
-      if (idError) {
-        return idError;
+          const parsed = await parseMultipartBodyAs<UpdateEventBody>(request);
+          if (parsed.error) {
+            return parsed.error;
+          }
+
+          if (!parsed.value) {
+            return failure(
+              {
+                code: "INVALID_BODY",
+                message: "Request body must be a multipart form object.",
+              },
+              400,
+              requestId,
+            );
+          }
+
+          return relay(
+            await nodeApi.updateEvent(route.eventId, parsed.value, {
+              headers,
+            }),
+            requestId,
+          );
+        }
+
+        case "agenda-item": {
+          const agendaIdError = parseUuid(
+            route.agendaId,
+            "agendaId",
+            requestId,
+          );
+          if (agendaIdError) {
+            return agendaIdError;
+          }
+
+          const parsed = await parseJsonBodyAs<UpdateEventAgendaDto>(request);
+          if (parsed.error) {
+            return parsed.error;
+          }
+
+          if (!parsed.value) {
+            return failure(
+              {
+                code: "INVALID_BODY",
+                message: "Request body must be a JSON object.",
+              },
+              400,
+              requestId,
+            );
+          }
+
+          return relay(
+            await nodeApi.updateEventAgenda(route.agendaId, parsed.value, {
+              headers,
+            }),
+            requestId,
+          );
+        }
+
+        default:
+          return failure(
+            { code: "NOT_FOUND", message: "Route not found." },
+            404,
+            requestId,
+          );
       }
-
-      const parsed = await parseMultipartBodyAs<UpdateEventBody>(request);
-      if (parsed.error || !parsed.value) {
-        return parsed.error;
-      }
-
-      return relay(
-        await nodeApi.updateEvent(segments[0], parsed.value, {
-          headers,
-        }),
-        requestId,
-      );
-    }
-
-    if (segments.length === 2 && segments[0] === "agenda") {
-      const agendaIdError = parseUuid(segments[1], "agendaId", requestId);
-      if (agendaIdError) {
-        return agendaIdError;
-      }
-
-      const parsed = await parseJsonBodyAs<UpdateEventAgendaDto>(request);
-      if (parsed.error || !parsed.value) {
-        return parsed.error;
-      }
-
-      return relay(
-        await nodeApi.updateEventAgenda(segments[1], parsed.value, {
-          headers,
-        }),
-        requestId,
-      );
-    }
-
-    return failure(
-      { code: "NOT_FOUND", message: "Route not found." },
-      404,
-      requestId,
-    );
-  } catch (error) {
-    return handleUnknownError(error, requestId);
-  }
+    },
+  );
 }
 
 export async function PATCH(request: NextRequest, context: Context) {
-  const requestId = getRequestId(request);
-  const envError = ensureBackendBaseUrl(requestId);
-  if (envError) {
-    return envError;
-  }
+  return withSegmentRoute(
+    request,
+    context,
+    async ({ request, requestId, segments }) => {
+      const headers = forwardedHeaders(request);
+      const route = resolveEventRoute(segments);
 
-  const segments = (await context.params).segments ?? [];
+      if (route.kind === "registration-status") {
+        const registrationIdError = parseUuid(
+          route.registrationId,
+          "registrationId",
+          requestId,
+        );
+        if (registrationIdError) {
+          return registrationIdError;
+        }
 
-  try {
-    if (
-      segments.length === 3 &&
-      segments[0] === "registrations" &&
-      segments[2] === "status"
-    ) {
-      const registrationIdError = parseUuid(
-        segments[1],
-        "registrationId",
-        requestId,
-      );
-      if (registrationIdError) {
-        return registrationIdError;
+        const parsed =
+          await parseJsonBodyAs<UpdateEventRegistrationDto>(request);
+        if (parsed.error) {
+          return parsed.error;
+        }
+
+        if (!parsed.value) {
+          return failure(
+            {
+              code: "INVALID_BODY",
+              message: "Request body must be a JSON object.",
+            },
+            400,
+            requestId,
+          );
+        }
+
+        return relay(
+          await nodeApi.updateEventRegistrationStatus(
+            route.registrationId,
+            parsed.value,
+            {
+              headers,
+            },
+          ),
+          requestId,
+        );
       }
 
-      const parsed = await parseJsonBodyAs<UpdateEventRegistrationDto>(request);
-      if (parsed.error || !parsed.value) {
-        return parsed.error;
-      }
-
-      return relay(
-        await nodeApi.updateEventRegistrationStatus(segments[1], parsed.value, {
-          headers: forwardedHeaders(request),
-        }),
+      return failure(
+        { code: "NOT_FOUND", message: "Route not found." },
+        404,
         requestId,
       );
-    }
-
-    return failure(
-      { code: "NOT_FOUND", message: "Route not found." },
-      404,
-      requestId,
-    );
-  } catch (error) {
-    return handleUnknownError(error, requestId);
-  }
+    },
+  );
 }
 
 export async function DELETE(request: NextRequest, context: Context) {
-  const requestId = getRequestId(request);
-  const envError = ensureBackendBaseUrl(requestId);
-  if (envError) {
-    return envError;
-  }
+  return withSegmentRoute(
+    request,
+    context,
+    async ({ request, requestId, segments }) => {
+      const headers = forwardedHeaders(request);
+      const route = resolveEventRoute(segments);
 
-  const segments = (await context.params).segments ?? [];
+      if (route.kind === "agenda-item") {
+        const agendaIdError = parseUuid(route.agendaId, "agendaId", requestId);
+        if (agendaIdError) {
+          return agendaIdError;
+        }
 
-  try {
-    if (segments.length === 2 && segments[0] === "agenda") {
-      const agendaIdError = parseUuid(segments[1], "agendaId", requestId);
-      if (agendaIdError) {
-        return agendaIdError;
+        return relay(
+          await nodeApi.deleteEventAgenda(route.agendaId, {
+            headers,
+          }),
+          requestId,
+        );
       }
 
-      return relay(
-        await nodeApi.deleteEventAgenda(segments[1], {
-          headers: forwardedHeaders(request),
-        }),
+      return failure(
+        { code: "NOT_FOUND", message: "Route not found." },
+        404,
         requestId,
       );
-    }
-
-    return failure(
-      { code: "NOT_FOUND", message: "Route not found." },
-      404,
-      requestId,
-    );
-  } catch (error) {
-    return handleUnknownError(error, requestId);
-  }
+    },
+  );
 }
 
 function buildGetEventsParams(
@@ -363,36 +472,29 @@ function buildGetEventsParams(
   page?: number,
   limit?: number,
 ): GetEventsParams {
-  const search =
-    request.nextUrl.searchParams.get("search") ??
-    request.nextUrl.searchParams.get("Search") ??
-    undefined;
+  const search = getQueryParamValue(request, "search", "Search");
 
   return {
     Status: parseEnumValue(
       EventStatus,
-      request.nextUrl.searchParams.get("status") ??
-        request.nextUrl.searchParams.get("Status"),
+      getQueryParamValue(request, "status", "Status") ?? null,
     ),
     ParentEventId:
-      request.nextUrl.searchParams.get("parentEventId") ??
-      request.nextUrl.searchParams.get("ParentEventId") ??
+      getQueryParamValue(request, "parentEventId", "ParentEventId") ??
       undefined,
     SeriesName:
-      request.nextUrl.searchParams.get("seriesName") ??
-      request.nextUrl.searchParams.get("SeriesName") ??
-      search,
+      getQueryParamValue(request, "seriesName", "SeriesName") ??
+      search ??
+      undefined,
     Page: page,
     Limit: limit,
     SortBy: parseEnumValue(
       EventSortBy,
-      request.nextUrl.searchParams.get("sortBy") ??
-        request.nextUrl.searchParams.get("SortBy"),
+      getQueryParamValue(request, "sortBy", "SortBy") ?? null,
     ),
     SortOrder: parseEnumValue(
       SortOrder,
-      request.nextUrl.searchParams.get("sortOrder") ??
-        request.nextUrl.searchParams.get("SortOrder"),
+      getQueryParamValue(request, "sortOrder", "SortOrder") ?? null,
     ),
   };
 }
@@ -405,8 +507,7 @@ function buildGetEventRegistrationsParams(
   return {
     Status: parseEnumValue(
       EventRegistrationStatus,
-      request.nextUrl.searchParams.get("status") ??
-        request.nextUrl.searchParams.get("Status"),
+      getQueryParamValue(request, "status", "Status") ?? null,
     ),
     Page: page,
     Limit: limit,

@@ -1,15 +1,15 @@
 import * as React from "react";
+import Image from "next/image";
 import { cn } from "@/lib/utils/util";
 
 interface AboutCardProps extends React.HTMLAttributes<HTMLDivElement> {
   imageUrl: string;
   title: string;
   category: string;
-  onSave?: () => void;
 }
 
 const AboutCard = React.forwardRef<HTMLDivElement, AboutCardProps>(
-  ({ className, imageUrl, title, category, onSave, ...props }, ref) => {
+  ({ className, imageUrl, title, category, ...props }, ref) => {
     return (
       <div
         ref={ref}
@@ -21,10 +21,13 @@ const AboutCard = React.forwardRef<HTMLDivElement, AboutCardProps>(
       >
         <a aria-label={title}>
           {/* Image container with aspect ratio */}
-          <div className="aspect-square overflow-hidden">
-            <img
+          <div className="relative aspect-square overflow-hidden">
+            <Image
               src={imageUrl}
               alt={title}
+              fill
+              unoptimized
+              sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
               className="h-full w-full border-black object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
             />
           </div>
@@ -37,7 +40,7 @@ const AboutCard = React.forwardRef<HTMLDivElement, AboutCardProps>(
 
         {/* Save button - appears on hover */}
         {/* <Button
-          variant="secondary"
+          variant="accent"
           size="icon"
           className="absolute top-3 right-3 h-8 w-8 rounded-full opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100"
           onClick={handleSaveClick}

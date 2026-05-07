@@ -2,10 +2,7 @@
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/NavBar";
 import {
-  AboutSection,
   CommunitiesSection,
   EventsSection,
   CTASection,
@@ -21,10 +18,9 @@ export default function Home() {
     <PageLayout>
       <Hero />
       <div className="line-bg w-full md:h-16 h-6"></div>
-      <AboutSection />
+      <TestimonialSection />
       <CommunitiesSection />
       <EventsSection />
-      <TestimonialSection />
       <CTASection />
     </PageLayout>
   );

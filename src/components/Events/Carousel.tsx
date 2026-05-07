@@ -88,7 +88,7 @@ export function EmblaCarousel() {
                 priority
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,18,24,0.78)_0%,rgba(7,18,24,0.35)_55%,rgba(7,18,24,0.2)_100%)]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/78 via-neutral-900/35 to-neutral-900/20" />
 
               <div className="absolute inset-0 flex items-end p-5 md:p-10">
                 <div className="max-w-3xl text-white">
@@ -106,6 +106,12 @@ export function EmblaCarousel() {
                     className="mt-6 inline-flex border border-white/60 bg-white px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition hover:var(--color-primary) hover:border-cyan-500"
                   >
                     {slide.buttonLabel}
+                  </Link>
+                  <Link
+                    href="/events"
+                    className="mt-3 inline-flex border border-white/35 bg-white/10 px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-white transition hover:bg-white hover:text-black"
+                  >
+                    View Events
                   </Link>
                 </div>
               </div>

@@ -1,4 +1,7 @@
-import Marquee from "react-fast-marquee";
+"use client";
+
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
 
 const testimonialData = [
   {
@@ -47,7 +50,7 @@ const testimonialData = [
     author: "David Kumar",
     role: "Startup Founder",
     image:
-      "https://images.unsplash.com/photo-1519085360771-9852ef158dba?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80",
   },
   {
     id: 7,
@@ -55,7 +58,7 @@ const testimonialData = [
     author: "Amanda Brooks",
     role: "Brand Strategist",
     image:
-      "https://images.unsplash.com/photo-1534308143481-c55f00be8e23?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80",
   },
   {
     id: 8,
@@ -84,75 +87,110 @@ const testimonialData = [
 ];
 
 export const TestimonialSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const firstLeftY = useSpring(
+    useTransform(scrollYProgress, [0, 1], [10, 55]),
+    {
+      stiffness: 110,
+      damping: 26,
+    },
+  );
+  const firstRightY = useSpring(
+    useTransform(scrollYProgress, [0, 1], [95, -35]),
+    {
+      stiffness: 80,
+      damping: 22,
+    },
+  );
+  const secondLeftY = useSpring(
+    useTransform(scrollYProgress, [0, 1], [70, -80]),
+    {
+      stiffness: 78,
+      damping: 20,
+    },
+  );
+  const secondRightY = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 45]),
+    {
+      stiffness: 112,
+      damping: 26,
+    },
+  );
+
   return (
-    <>
-      <div className="line-bg w-full md:h-16 h-6"></div>
-      <section className="flex flex-row bg-white overflow-hidden">
-        <div className="border w-5/12 border-gray-300 aspect-square bg-white flex flex-col items-center justify-center p-8 md:p-12">
-          <div className="text-center space-y-4">
-            <h3 className="text-3xl md:text-5xl font-black uppercase tracking-[-0.08em] text-neutral-900">
-              TESTIMONIALS
-            </h3>
-            <p className="text-sm md:text-base text-neutral-600 max-w-xs">
-              Hear from our community members about their experience with
-              Innovation Lab.
+    <section
+      ref={sectionRef}
+      className="w-full overflow-hidden bg-gray-50 py-14 sm:py-16 md:py-24 lg:py-28"
+    >
+      <div className="mx-auto flex w-full max-w-400 flex-col gap-12 px-4 sm:px-6 md:gap-16 md:px-8 lg:px-10">
+        <h2 className="max-w-[10ch] text-[clamp(36px,9vw,64px)] font-black uppercase leading-[0.9] tracking-[-0.08em] text-neutral-900">
+          TESTIM<span className="text-primary">O</span>NIAL
+        </h2>
+        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12">
+          <div className="flex items-start gap-3 sm:gap-4 md:gap-8">
+            <motion.img
+              src={testimonialData[0].image}
+              alt={testimonialData[0].author}
+              style={{ y: firstLeftY }}
+              transition={{ type: "spring", stiffness: 110, damping: 26 }}
+              className="h-[42vw] w-[38vw] object-cover shadow-sm sm:h-[38vw] sm:w-[34vw] md:h-85 md:w-55"
+
+            />
+            <motion.img
+              alt={testimonialData[1].author}
+              src={testimonialData[1].image}
+              style={{ y: firstRightY }}
+              transition={{ type: "spring", stiffness: 80, damping: 22 }}
+              className="mt-8 h-[42vw] w-[38vw] object-cover shadow-sm sm:mt-10 sm:h-[38vw] sm:w-[34vw] md:mt-14 md:h-85 md:w-55"
+            />
+          </div>
+
+          <div className="max-w-xl pt-1 text-[17px] leading-7 tracking-[0.01em] text-neutral-800 sm:text-[19px] sm:leading-8 md:pt-6 md:text-[22px] md:leading-9 md:tracking-[0.02em]">
+            <p className="mb-6 text-[clamp(1rem,2vw,1.25rem)] font-semibold text-neutral-900">
+              {testimonialData[0].author}
+            </p>
+            <p className="italic text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed">&quot;{testimonialData[0].quote}&quot;</p>
+            <p className="mt-6 text-[clamp(0.85rem,1.5vw,1rem)] font-semibold text-neutral-600">
+              {testimonialData[0].role}
             </p>
           </div>
         </div>
-        <div className="border w-7/12 border-gray-300 grid grid-rows-2">
-          <div className="w-full h-full overflow-hidden">
-            <Marquee speed={30} gradient={false} direction="left" pauseOnHover>
-              {testimonialData.slice(0, 5).map((testimonial) => (
-                <div
-                  key={testimonial.id}
-                  className="border border-gray-300 bg-white flex flex-col items-center justify-center p-6 w-96 aspect-square h-full relative group hover:bg-gray-50 transition-colors"
-                >
-                  <div className="text-center space-y-4 items-center flex flex-col">
-                    <div className="w-12 h-12 bg-gray-200"></div>
-                    <p className="text-lg md:text-xl font-black italic text-neutral-900 line-clamp-3">
-                      &quot;{testimonial.quote}&quot;
-                    </p>
-                    <div className="space-y-1">
-                      <p className="text-sm font-black uppercase tracking-[-0.02em] text-neutral-900">
-                        {testimonial.author}
-                      </p>
-                      <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-neutral-500">
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </Marquee>
+
+        <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-2 md:gap-12">
+          <div className="order-2 max-w-xl text-[17px] leading-7 tracking-[0.01em] text-neutral-800 sm:text-[19px] sm:leading-8 md:order-1 md:text-[22px] md:leading-9 md:tracking-[0.02em]">
+            <p className="mb-6 text-[clamp(1rem,2vw,1.25rem)] font-semibold text-neutral-900">
+              {testimonialData[5].author}
+            </p>
+            <p className="italic text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed">&quot;{testimonialData[5].quote}&quot;</p>
+            <p className="mt-6 text-[clamp(0.85rem,1.5vw,1rem)] font-semibold text-neutral-600">
+              {testimonialData[5].role}
+            </p>
           </div>
-          <div className="w-full h-full overflow-hidden">
-            <Marquee speed={30} gradient={false} direction="right" pauseOnHover>
-              {testimonialData.slice(5, 10).map((testimonial) => (
-                <div
-                  key={testimonial.id}
-                  className="border border-gray-300 bg-white flex flex-col items-center justify-center w-96 p-6 aspect-square h-full relative group hover:bg-gray-50 transition-colors"
-                >
-                  <div className="text-center space-y-4 items-center flex flex-col">
-                    <div className="w-12 h-12 bg-gray-200"></div>
-                    <p className="text-lg md:text-xl font-black italic text-neutral-900 line-clamp-3">
-                      &quot;{testimonial.quote}&quot;
-                    </p>
-                    <div className="space-y-1">
-                      <p className="text-sm font-black uppercase tracking-[-0.02em] text-neutral-900">
-                        {testimonial.author}
-                      </p>
-                      <p className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-neutral-500">
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </Marquee>
+
+          <div className="order-1 flex items-start justify-start gap-3 sm:gap-4 md:order-2 md:justify-end md:gap-8">
+            <motion.img
+              src={testimonialData[6].image}
+              alt={testimonialData[6].author}
+              style={{ y: secondLeftY }}
+              transition={{ type: "spring", stiffness: 78, damping: 20 }}
+              className="mt-6 h-[42vw] w-[38vw] object-cover shadow-sm sm:mt-8 sm:h-[38vw] sm:w-[34vw] md:mt-14 md:h-85 md:w-55"
+            />
+            <motion.img
+              src={testimonialData[7].image}
+              alt={testimonialData[7].author}
+              style={{ y: secondRightY }}
+              transition={{ type: "spring", stiffness: 112, damping: 26 }}
+              className="h-[42vw] w-[38vw] object-cover shadow-sm sm:h-[38vw] sm:w-[34vw] md:h-85 md:w-55"
+            />
           </div>
         </div>
-      </section>
-      <div className="line-bg w-full md:h-16 h-6"></div>
-    </>
+      </div>
+    </section>
   );
 };

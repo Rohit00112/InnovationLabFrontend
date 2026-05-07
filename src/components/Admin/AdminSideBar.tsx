@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import {
   LayoutDashboard as Dashboard,
@@ -11,8 +11,6 @@ import {
   Eye as View,
   Menu as MenuIcon,
   X as CloseIcon,
-  Home,
-  Users,
   Calendar as CalendarIcon,
   Building2,
   Info,
@@ -95,7 +93,7 @@ function getSidebarContent(
               isActive: isExactPath(pathname, "/admin/banner"),
               route: "/admin/banner",
             },
-             {
+            {
               // icon: <Dashboard size={16} className="text-neutral-50" />,
               label: "Categories",
               isActive: isExactPath(pathname, "/admin/categories"),
@@ -269,7 +267,7 @@ function getSidebarContent(
             },
           ],
         },
-        
+
         {
           title: "About",
           items: [
@@ -285,7 +283,7 @@ function getSidebarContent(
               isActive: isPathPrefix(pathname, "/admin/about/core-values"),
               route: "/admin/about/core-values",
             },
-             {
+            {
               //icon: <AddLarge size={16} className="text-neutral-50" />,
               label: "Journey",
               isActive: isPathPrefix(pathname, "/admin/about/journey"),
@@ -416,7 +414,9 @@ function IconNavigation({
             onClick={() => {
               onSectionChange(item.id);
               onNavigate?.();
-              router.push(item.id === "dashboard" ? "/admin" : `/admin/${item.id}`);
+              router.push(
+                item.id === "dashboard" ? "/admin" : `/admin/${item.id}`,
+              );
             }}
           >
             {item.icon}
@@ -737,29 +737,32 @@ function MenuSection({
 
 function TwoLevelSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
-  const [activeSection, setActiveSection] = useState("dashboard");
-
-  useEffect(() => {
-    if (!pathname) return;
-    const parts = pathname.split("/").filter(Boolean);
-    // expected /admin/<section>/...
-    if (parts[0] === "admin") {
-      const section = parts[1] || "dashboard";
-      const dashboardRoutes = new Set([
-        "faq",
-        "testimonials",
-        "banner",
-        "categories",
-      ]);
-      setActiveSection(dashboardRoutes.has(section) ? "dashboard" : section);
+  const activeSection = (() => {
+    if (!pathname) {
+      return "dashboard";
     }
-  }, [pathname]);
+
+    const parts = pathname.split("/").filter(Boolean);
+    if (parts[0] !== "admin") {
+      return "dashboard";
+    }
+
+    const section = parts[1] || "dashboard";
+    const dashboardRoutes = new Set([
+      "faq",
+      "testimonials",
+      "banner",
+      "categories",
+    ]);
+
+    return dashboardRoutes.has(section) ? "dashboard" : section;
+  })();
 
   return (
     <div className="flex h-full min-h-0 flex-row items-stretch overflow-hidden">
       <IconNavigation
         activeSection={activeSection}
-        onSectionChange={setActiveSection}
+        onSectionChange={() => undefined}
         onNavigate={onNavigate}
       />
       <DetailSidebar activeSection={activeSection} />

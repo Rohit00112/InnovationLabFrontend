@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { cn } from "@/lib/utils/util"; // Assuming a `cn` utility for classnames
@@ -38,7 +39,7 @@ interface MarqueeLogoScrollerProps extends React.HTMLAttributes<HTMLDivElement> 
 /**
  * A responsive, self-contained, and infinitely scrolling marquee component.
  * It pauses on hover and uses shadcn/ui theme variables for styling.
- * This component includes its own CSS animation and does not require tailwind.config.js modifications.
+ * This component includes its own CSS animation and does not require Tailwind config changes.
  */
 const MarqueeLogoScroller = React.forwardRef<
   HTMLDivElement,
@@ -72,14 +73,14 @@ const MarqueeLogoScroller = React.forwardRef<
           ref={ref}
           aria-label={title}
           className={cn(
-            "m-0 w-full bg-background text-foreground border border-[#DFDFDF] overflow-hidden",
+            "m-0 w-full bg-background text-foreground border border-neutral-300 overflow-hidden",
             className,
           )}
           {...props}
         >
           {/* Header Section */}
           <div className="p-6 md:p-8 lg:p-10">
-            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-8 pb-6 md:pb-8 border-b border-[#006875]">
+            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-8 pb-6 md:pb-8 border-b border-primary-700">
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter text-balance">
                 {title}
               </h2>
@@ -132,16 +133,20 @@ const MarqueeLogoScroller = React.forwardRef<
                     contentClassName="relative mx-auto mt-10 w-full max-w-xl"
                     trigger={
                       <div
-                        className="relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden border border-[#DFDFDF] bg-white"
+                        className="relative flex h-full w-full cursor-pointer items-center justify-center overflow-hidden border border-neutral-300 bg-white"
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                       >
                         {/* Single hover color overlay for all logos */}
-                        <div className="absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 var(--color-primary)/15" />
+                        <div className="absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 bg-primary/15" />
                         {/* Logo Image */}
-                        <img
+                        <Image
                           src={imageSrc}
                           alt={imageAlt}
+                          width={120}
+                          height={72}
+                          unoptimized
+                          sizes="160px"
                           className="relative h-3/4 w-auto object-contain"
                         />
                       </div>
@@ -151,7 +156,7 @@ const MarqueeLogoScroller = React.forwardRef<
                       <Dialog.Close asChild>
                         <button
                           type="button"
-                          className="absolute -right-2 -top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-[#DFDFDF] bg-white text-sm font-semibold text-black shadow-sm hover:bg-[#F3F3F3]"
+                          className="absolute -right-2 -top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white text-sm font-semibold text-black shadow-sm hover:bg-neutral-100"
                           aria-label="Close company details"
                         >
                           X

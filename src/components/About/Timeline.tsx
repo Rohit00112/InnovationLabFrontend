@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -117,13 +118,15 @@ export default function Timeline({ items }: TimelineProps) {
           {imageCount > 0 && (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {item.images.map((imageUrl, index) => (
-                <img
+                <Image
                   key={`${item.year}-${item.title}-${index}`}
                   src={imageUrl}
                   alt={`${item.title} image ${index + 1}`}
                   width={500}
                   height={500}
-                  className="h-20 w-full object-cover _inset] md:h-44 lg:h-60"
+                  unoptimized
+                  sizes="(min-width: 1024px) 24rem, 100vw"
+                  className="h-20 w-full object-cover md:h-44 lg:h-60"
                 />
               ))}
             </div>
@@ -175,15 +178,21 @@ export default function Timeline({ items }: TimelineProps) {
         ))}
 
         <div
-          style={{ height: `${height}px` }}
-          className="absolute top-0 left-8 w-[2px] overflow-hidden bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] md:left-8"
+          style={{
+            height: `${height}px`,
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+          }}
+          className="absolute top-0 left-8 w-0.5 overflow-hidden bg-gradient-to-b from-transparent via-neutral-200 to-transparent md:left-8"
         >
           <motion.div
             style={{
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[2px] rounded-full bg-gradient-to-t from-black from-[0%] via-cyan-400 via-[10%] to-transparent"
+            className="absolute inset-x-0 top-0 w-0.5 rounded-full bg-gradient-to-t from-black via-cyan-400/20 to-transparent"
           />
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 "use client";
 
+import Image from "next/image";
 import React, { useRef } from "react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils/util"; // Assuming shadcn/ui's utility function
@@ -90,10 +91,14 @@ export default function CompanyCard({
               </span>
             )}
           </div>
-          <img
+          <Image
             src={logoUrl}
             alt={name}
-            className={`w-full object-cover rounded-sm ${compact ? 'h-[25vh] min-h-[120px]' : 'h-64'}`}
+            width={1200}
+            height={800}
+            unoptimized
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="h-64 w-full object-cover"
           />
         </div>
 

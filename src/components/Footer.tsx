@@ -6,7 +6,13 @@ import PageLayout from "./primitives/PageLayout";
 const footerNavigation = {
   explore: ["About", "Communities", "Events", "Contact"],
   lab: ["Programs", "Projects", "Research", "Archive"],
-  connect: ["Instagram", "LinkedIn", "Newsletter", "GitHub"],
+  connect: ["Instagram", "Facebook", "GitHub"],
+};
+
+const footerLinkTargets: Record<string, string> = {
+  Facebook: "https://www.facebook.com/profile.php?id=61570739730422",
+  GitHub: "https://github.com/InnovationLabAtIIC",
+  Instagram: "https://www.instagram.com/innovationlab.iic/",
 };
 
 export default function Footer() {
@@ -78,7 +84,9 @@ export default function Footer() {
                       {links.map((link) => (
                         <li key={link}>
                           <Link
-                            href="#"
+                            href={footerLinkTargets[link] ?? "#"}
+                            target={footerLinkTargets[link] ? "_blank" : undefined}
+                            rel={footerLinkTargets[link] ? "noreferrer" : undefined}
                             className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-neutral-900 transition-colors hover:text-primary"
                           >
                             {link}

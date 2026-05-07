@@ -80,7 +80,7 @@ export function ContactHeroBox() {
 
   return (
     <motion.div
-      className="relative mb-10 h-32.5 w-full overflow-hidden border border-[#d7d7d7] bg-linear-to-r from-[#e988c8] via-[#dfbce9] to-[#f3a2a0] md:h-47.5"
+      className="relative mb-10 h-32.5 w-full overflow-hidden border border-neutral-300 bg-gradient-to-r from-pink-300 via-violet-200 to-rose-200 md:h-47.5"
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
@@ -153,7 +153,12 @@ export function ContactHeroBox() {
       />
 
       <motion.div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,white_1px,transparent_1px)] bg-size-[16px_16px]"
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 20% 20%, rgba(255,255,255,1) 1px, transparent 1px)",
+          backgroundSize: "16px 16px",
+        }}
         animate={
           reducedMotion
             ? { opacity: 0.22 }
@@ -173,7 +178,7 @@ export function ContactHeroBox() {
       />
 
       <motion.div
-        className="absolute inset-y-0 -left-1/4 w-1/3 bg-linear-to-r from-transparent via-white/30 to-transparent blur-xl"
+        className="absolute inset-y-0 -left-1/4 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent blur-xl"
         animate={reducedMotion ? undefined : { x: ["0%", "410%"] }}
         transition={
           reducedMotion
