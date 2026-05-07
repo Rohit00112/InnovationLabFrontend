@@ -1,6 +1,15 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
+import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
 import EditShell from '@/components/Admin/EditShell';
+
+const contactFields: FormField[] = [
+  { name: 'name', label: 'Name', type: 'text', required: true },
+  { name: 'email', label: 'Email', type: 'email', required: true },
+  { name: 'message', label: 'Message', type: 'textarea', required: true },
+];
+
+const contactApiEndpoint = `/api/contacts`;
 
 // 1. Define your individual view components
 function ManageView() {
@@ -14,7 +23,7 @@ function ManageView() {
   return (
     <ManageList
       title="Manage Contacts"
-      apiEndpoint={`/api/contacts`}
+      apiEndpoint={contactApiEndpoint}
       columns={columns}
       resourceName="Contact"
     />
@@ -22,11 +31,23 @@ function ManageView() {
 }
 
 function AddView() {
-  return <div>Code for the Add form goes here...</div>;
+  return (
+    <AddForms
+      title="Add Contact"
+      fields={contactFields}
+      apiEndpoint={contactApiEndpoint}
+      format="json"
+    />
+  );
 }
 
 function ViewAsUser() {
-  return <div>Code for the User preview goes here...</div>;
+  return (
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">Contact Messages</h2>
+      <div className="text-[var(--neutral-500)] text-sm">Messages submitted through the contact form will appear here.</div>
+    </div>
+  );
 }
 
 // 2. Export the main Page component

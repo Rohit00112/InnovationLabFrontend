@@ -44,7 +44,12 @@ function AddView() {
 
 // View as user (preview)
 function ViewAsUser() {
-  return <div>User Preview Not Implemented</div>;
+  return (
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">BentoGrid Images Gallery</h2>
+      <div className="text-[var(--neutral-500)] text-sm">Gallery preview appears here.</div>
+    </div>
+  );
 }
 
 // Main Page Component

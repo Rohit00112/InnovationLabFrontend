@@ -44,7 +44,12 @@ function AddView() {
 }
 
 function ViewAsUser() {
-  return <div>Code for the User preview goes here...</div>;
+  return (
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">Event Agendas</h2>
+      <div className="text-[var(--neutral-500)] text-sm">Agenda preview appears here.</div>
+    </div>
+  );
 }
 
 // 2. Export the main Page component
