@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
 import PageLayout from "@/components/primitives/PageLayout";
-import { publicPageTitles } from "@/constants/ui/public";
 
 const Login = () => {
   const router = useRouter();
