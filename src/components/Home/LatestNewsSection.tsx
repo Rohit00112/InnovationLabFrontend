@@ -26,7 +26,7 @@ const latestNewsItems = [
 
 export default function LatestNewsSection() {
   return (
-    <section className="border-t border-gray-200 bg-gray-50 py-14 md:py-20">
+    <section className="border-t border-gray-200 py-14 md:py-20">
       <div className="mx-auto px-4 md:px-8">
         <h2 className="mb-8 ml-1 text-2xl font-extrabold uppercase md:mb-10 md:ml-0 md:text-6xl">
           Latest News

@@ -4,7 +4,6 @@ import {
   failure,
   forwardedHeaders,
   getQueryParamValue,
-  parseEnumValue,
   parseJsonBodyAs,
   parseMultipartBodyAs,
   parseOptionalInt,
@@ -14,18 +13,15 @@ import {
 } from "@/lib/bff/common";
 import { nodeApi } from "@/lib/services/server-api";
 import {
-  type EventRegistrationDto,
+  type EventRegistrationCreateDto,
   EventRegistrationStatus,
-  EventSortBy,
-  EventStatus,
-  SortOrder,
-  type CreateEventAgendaDto,
+  type EventAgendaCreateDto,
   type CreateEventBody,
   type GetEventRegistrationsParams,
   type GetEventsParams,
-  type UpdateEventAgendaDto,
+  type EventAgendaUpdateDto,
   type UpdateEventBody,
-  type UpdateEventRegistrationDto,
+  type EventRegistrationUpdateDto,
 } from "@/lib/services/generated/node/schemas";
 
 export const runtime = "nodejs";
@@ -139,7 +135,7 @@ export async function GET(request: NextRequest, context: Context) {
           }
 
           return relay(
-            await nodeApi.getEventAgenda(route.eventId, { headers }),
+            await nodeApi.getEventAgenda(route.eventId, undefined, { headers }),
             requestId,
           );
         }
@@ -231,7 +227,7 @@ export async function POST(request: NextRequest, context: Context) {
             return idError;
           }
 
-          const parsed = await parseJsonBodyAs<CreateEventAgendaDto>(request);
+          const parsed = await parseJsonBodyAs<EventAgendaCreateDto>(request);
           if (parsed.error) {
             return parsed.error;
           }
@@ -261,7 +257,8 @@ export async function POST(request: NextRequest, context: Context) {
             return idError;
           }
 
-          const parsed = await parseJsonBodyAs<EventRegistrationDto>(request);
+          const parsed =
+            await parseJsonBodyAs<EventRegistrationCreateDto>(request);
           if (parsed.error) {
             return parsed.error;
           }
@@ -345,7 +342,7 @@ export async function PUT(request: NextRequest, context: Context) {
             return agendaIdError;
           }
 
-          const parsed = await parseJsonBodyAs<UpdateEventAgendaDto>(request);
+          const parsed = await parseJsonBodyAs<EventAgendaUpdateDto>(request);
           if (parsed.error) {
             return parsed.error;
           }
@@ -399,7 +396,7 @@ export async function PATCH(request: NextRequest, context: Context) {
         }
 
         const parsed =
-          await parseJsonBodyAs<UpdateEventRegistrationDto>(request);
+          await parseJsonBodyAs<EventRegistrationUpdateDto>(request);
         if (parsed.error) {
           return parsed.error;
         }
@@ -472,30 +469,9 @@ function buildGetEventsParams(
   page?: number,
   limit?: number,
 ): GetEventsParams {
-  const search = getQueryParamValue(request, "search", "Search");
-
   return {
-    Status: parseEnumValue(
-      EventStatus,
-      getQueryParamValue(request, "status", "Status") ?? null,
-    ),
-    ParentEventId:
-      getQueryParamValue(request, "parentEventId", "ParentEventId") ??
-      undefined,
-    SeriesName:
-      getQueryParamValue(request, "seriesName", "SeriesName") ??
-      search ??
-      undefined,
-    Page: page,
-    Limit: limit,
-    SortBy: parseEnumValue(
-      EventSortBy,
-      getQueryParamValue(request, "sortBy", "SortBy") ?? null,
-    ),
-    SortOrder: parseEnumValue(
-      SortOrder,
-      getQueryParamValue(request, "sortOrder", "SortOrder") ?? null,
-    ),
+    page,
+    pageSize: limit,
   };
 }
 
@@ -505,11 +481,7 @@ function buildGetEventRegistrationsParams(
   limit?: number,
 ): GetEventRegistrationsParams {
   return {
-    Status: parseEnumValue(
-      EventRegistrationStatus,
-      getQueryParamValue(request, "status", "Status") ?? null,
-    ),
-    Page: page,
-    Limit: limit,
+    page,
+    pageSize: limit,
   };
 }

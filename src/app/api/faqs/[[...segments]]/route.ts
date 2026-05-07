@@ -13,9 +13,9 @@ import {
 } from "@/lib/bff/common";
 import { nodeApi } from "@/lib/services/server-api";
 import type {
-  CreateFaqDto,
-  GetApiV1FaqsParams,
-  UpdateFaqDto,
+  FaqCreateDto,
+  GetFaqsParams,
+  FaqUpdateDto,
 } from "@/lib/services/generated/node/schemas";
 
 export const runtime = "nodejs";
@@ -56,7 +56,7 @@ export async function GET(request: NextRequest, context: Context) {
       }
 
       return relay(
-        await nodeApi.getApiV1Faqs(
+        await nodeApi.getFaqs(
           buildGetFaqParams(request, page.value, limit.value),
           { headers },
         ),
@@ -71,7 +71,7 @@ export async function GET(request: NextRequest, context: Context) {
       }
 
       return relay(
-        await nodeApi.getApiV1FaqsId(segments[0], { headers }),
+        await nodeApi.getFaqById(segments[0], { headers }),
         requestId,
       );
     }
@@ -97,13 +97,13 @@ export async function POST(request: NextRequest, context: Context) {
 
   try {
     if (segments.length === 0) {
-      const parsed = await parseJsonBodyAs<CreateFaqDto>(request);
+      const parsed = await parseJsonBodyAs<FaqCreateDto>(request);
       if (parsed.error || !parsed.value) {
         return parsed.error;
       }
 
       return relay(
-        await nodeApi.postApiV1Faqs(parsed.value, {
+        await nodeApi.createFaq(parsed.value, {
           headers: forwardedHeaders(request),
         }),
         requestId,
@@ -136,13 +136,13 @@ export async function PUT(request: NextRequest, context: Context) {
         return idError;
       }
 
-      const parsed = await parseJsonBodyAs<UpdateFaqDto>(request);
+      const parsed = await parseJsonBodyAs<FaqUpdateDto>(request);
       if (parsed.error || !parsed.value) {
         return parsed.error;
       }
 
       return relay(
-        await nodeApi.putApiV1FaqsId(segments[0], parsed.value, {
+        await nodeApi.updateFaq(segments[0], parsed.value, {
           headers: forwardedHeaders(request),
         }),
         requestId,
@@ -163,11 +163,11 @@ function buildGetFaqParams(
   request: NextRequest,
   page?: number,
   limit?: number,
-): GetApiV1FaqsParams {
+): GetFaqsParams {
   return {
     category: request.nextUrl.searchParams.get("category") ?? undefined,
     page,
-    limit,
+    pageSize: limit,
     sort_by: request.nextUrl.searchParams.get("sort_by") ?? undefined,
     sort_order: request.nextUrl.searchParams.get("sort_order") ?? undefined,
   };
@@ -190,7 +190,7 @@ export async function DELETE(request: NextRequest, context: Context) {
       }
 
       return relay(
-        await nodeApi.deleteApiV1FaqsId(segments[0], {
+        await nodeApi.deleteFaq(segments[0], {
           headers: forwardedHeaders(request),
         }),
         requestId,

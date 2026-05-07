@@ -1,40 +1,56 @@
-type EventItem = {
-  title: string;
-  date: string;
-  time: string;
-  venue: string;
-  desc: string;
-  type: "upcoming";
-};
+"use client";
 
-const events: EventItem[] = [
-  {
-    title: "Campus Build Sprint",
-    date: "24 May",
-    time: "5:30 PM",
-    venue: "Innovation Studio A",
-    desc: "Ship a working feature in one evening with mentor checkpoints and live feedback.",
-    type: "upcoming",
-  },
-  {
-    title: "Startup Stories Live",
-    date: "28 May",
-    time: "6:00 PM",
-    venue: "Main Auditorium",
-    desc: "Founders share practical wins, mistakes, and how they moved from idea to product.",
-    type: "upcoming",
-  },
-  {
-    title: "AI Product Teardown",
-    date: "31 May",
-    time: "4:30 PM",
-    venue: "Seminar Hall 2",
-    desc: "A practical breakdown of product decisions behind popular AI tools.",
-    type: "upcoming",
-  },
-];
+import { useGetEvents } from "@/lib/services/generated/frontend";
+import {
+  separateEvents,
+  formatEventDate,
+  formatEventTime,
+} from "@/lib/utils/events";
 
 export default function UpcomingEventsSection() {
+  const { data, isLoading, error } = useGetEvents();
+
+  // Get all events from the response - handle both array and object response formats
+  const allEvents = Array.isArray(data) ? data : (data?.data as any[]) || [];
+  const { upcomingEvents } = separateEvents(allEvents);
+
+  // Gracefully handle API errors (404, network issues, etc.) - hide section
+  if (error) {
+    console.debug("Events API error:", error);
+    return null;
+  }
+
+  // Don't render if no events available
+  if (!isLoading && upcomingEvents.length === 0) {
+    return null;
+  }
+
+  if (isLoading) {
+    return (
+      <section className="py-16 max-w-[73.75rem] w-full mx-auto">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">
+          <div>
+            <h2 className="text-2xl uppercase font-extrabold tracking-tight">
+              Upcoming Events
+            </h2>
+            <p className="text-sm text-ivGray-500 mt-2">
+              Loading upcoming events...
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const events = upcomingEvents.map((event) => ({
+    title: event.title || "Untitled Event",
+    date: formatEventDate(event.startTime),
+    time: formatEventTime(event.startTime),
+    venue: event.location || "TBD",
+    desc: event.description || "",
+    type: "upcoming" as const,
+  }));
+
   return (
     <section className="py-16 max-w-[73.75rem] w-full mx-auto">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-8">

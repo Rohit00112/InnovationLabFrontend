@@ -1,16 +1,16 @@
 "use client";
 
-import PageLayout from "@/components/primitives/PageLayout";
-import PageHeader from "@/components/primitives/PageHeader";
-import { ContactInfoCard } from "@/components/Contacts/ContactInfoCard";
 import Carousel from "@/components/Carousel";
+import { ContactInfoCard } from "@/components/Contacts/ContactInfoCard";
 import { FadeIn, StaggerIn } from "@/components/Contacts/FadeIn";
 import Map from "@/components/Contacts/Map";
-import { Clock3, Mail, MapPin, Phone } from "lucide-react";
+import PageHeader from "@/components/primitives/PageHeader";
+import PageLayout from "@/components/primitives/PageLayout";
 import { publicContactText, publicPageTitles } from "@/constants/ui/public";
-import { useState } from "react";
-import { postApiV1Contacts } from "@/lib/services/generated/frontend";
 import { t } from "@/lib/i18n/messages";
+import { createContactMessage } from "@/lib/services/generated/frontend";
+import { Clock3, Mail, MapPin, Phone } from "lucide-react";
+import { useState } from "react";
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -63,7 +63,7 @@ export default function Contact() {
 
                 setLoading(true);
                 try {
-                  await postApiV1Contacts({
+                  await createContactMessage({
                     name: values.name || null,
                     email: values.email || null,
                     subject: values.title || null,
