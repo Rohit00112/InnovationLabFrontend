@@ -1,11 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { EventRegistrationType } from "@/lib/services/generated/frontend/schemas/eventRegistrationType";
-import type { TeamMemberCreateDto } from "@/lib/services/generated/frontend/schemas/teamMemberCreateDto";
-import { Gender } from "@/lib/services/generated/frontend/schemas/gender";
 import Button from "@/components/primitives/Button";
-import { bffApi } from "@/lib/services/bff-client";
+import { EventRegistrationType } from "@/lib/services/generated/frontend/schemas/eventRegistrationType";
+import { Gender } from "@/lib/services/generated/frontend/schemas/gender";
+import type { TeamMemberCreateDto } from "@/lib/services/generated/frontend/schemas/teamMemberCreateDto";
+import { useState } from "react";
 
 interface EventRegistrationFormProps {
   eventId: string;
@@ -35,7 +34,7 @@ export default function EventRegistrationForm({
     Email: "",
     Phone: "",
     TeamName: "",
-    Type: EventRegistrationType.Solo,
+    Type: EventRegistrationType.Team,
     CollegeName: "",
     CollegeAddress: "",
   });
@@ -95,7 +94,10 @@ export default function EventRegistrationForm({
 
       if (formData.CollegeName) {
         body.append("RegistrationColleges[0].name", formData.CollegeName);
-        body.append("RegistrationColleges[0].address", formData.CollegeAddress || "");
+        body.append(
+          "RegistrationColleges[0].address",
+          formData.CollegeAddress || "",
+        );
       }
 
       if (teamMembers.length > 0) {
@@ -106,7 +108,10 @@ export default function EventRegistrationForm({
             body.append(`Members[${index}].email`, member.email || "");
             body.append(`Members[${index}].phone`, member.phone || "");
             body.append(`Members[${index}].faculty`, member.faculty || "");
-            body.append(`Members[${index}].gender`, member.gender || Gender.Male);
+            body.append(
+              `Members[${index}].gender`,
+              member.gender || Gender.Male,
+            );
             if (member.photo) {
               body.append(`Members[${index}].photo`, member.photo);
             }
@@ -120,7 +125,14 @@ export default function EventRegistrationForm({
         });
       }
 
-      const response = await bffApi.events.register(eventId, body);
+      const apiRoot = process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL || "";
+      const response = await fetch(
+        `${apiRoot}/api/v1/Events/${eventId}/register`,
+        {
+          method: "POST",
+          body,
+        },
+      ).then((res) => res.json());
 
       if (!response.success) {
         throw new Error(response.error?.message || `Registration failed`);
@@ -145,7 +157,7 @@ export default function EventRegistrationForm({
       Email: "",
       Phone: "",
       TeamName: "",
-      Type: EventRegistrationType.Solo,
+      Type: EventRegistrationType.Team,
       CollegeName: "",
       CollegeAddress: "",
     });
@@ -181,36 +193,8 @@ export default function EventRegistrationForm({
       )}
 
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Registration Type Selection */}
-        <fieldset className="space-y-4 border-b border-neutral-200 pb-8">
-          <legend className="text-lg font-semibold text-neutral-900">
-            Registration Type
-          </legend>
-          <div className="flex gap-6">
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="radio"
-                name="Type"
-                value={EventRegistrationType.Solo}
-                checked={formData.Type === EventRegistrationType.Solo}
-                onChange={(e) => handleInputChange(e, "Type")}
-                className="w-4 h-4 text-black border-neutral-300 focus:ring-black"
-              />
-              <span className="text-sm font-medium text-neutral-700">Solo</span>
-            </label>
-            <label className="flex items-center gap-2 cursor-pointer">
-              <input
-                type="radio"
-                name="Type"
-                value={EventRegistrationType.Team}
-                checked={formData.Type === EventRegistrationType.Team}
-                onChange={(e) => handleInputChange(e, "Type")}
-                className="w-4 h-4 text-black border-neutral-300 focus:ring-black"
-              />
-              <span className="text-sm font-medium text-neutral-700">Team</span>
-            </label>
-          </div>
-        </fieldset>
+        {/* Registration Type: defaulted to Team (hidden) */}
+        <input type="hidden" name="Type" value={formData.Type} />
 
         {/* Primary Registrant Section */}
         <fieldset className="space-y-4 border-b border-neutral-200 pb-8">
@@ -301,7 +285,10 @@ export default function EventRegistrationForm({
           </legend>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="CollegeName" className="block text-sm font-medium text-neutral-700">
+              <label
+                htmlFor="CollegeName"
+                className="block text-sm font-medium text-neutral-700"
+              >
                 College Name
               </label>
               <input
@@ -314,7 +301,10 @@ export default function EventRegistrationForm({
               />
             </div>
             <div>
-              <label htmlFor="CollegeAddress" className="block text-sm font-medium text-neutral-700">
+              <label
+                htmlFor="CollegeAddress"
+                className="block text-sm font-medium text-neutral-700"
+              >
                 College Address
               </label>
               <input
@@ -373,149 +363,157 @@ export default function EventRegistrationForm({
 
           {formData.Type === EventRegistrationType.Team ? (
             <div className="space-y-6">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className="space-y-4   -lg border border-neutral-200 bg-neutral-50 p-4"
-              >
-                <div className="flex items-center justify-between">
-                  <h3 className="font-medium text-neutral-900">
-                    Team Member {index + 1}
-                  </h3>
-                  <button
-                    type="button"
-                    onClick={() => removeTeamMember(index)}
-                    className="text-sm font-medium text-red-600 hover:text-red-700"
-                  >
-                    Remove
-                  </button>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label
-                      htmlFor={`team-member-name-${index}`}
-                      className="block text-sm font-medium text-neutral-700"
+              {teamMembers.map((member, index) => (
+                <div
+                  key={index}
+                  className="space-y-4   -lg border border-neutral-200 bg-neutral-50 p-4"
+                >
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-medium text-neutral-900">
+                      Team Member {index + 1}
+                    </h3>
+                    <button
+                      type="button"
+                      onClick={() => removeTeamMember(index)}
+                      className="text-sm font-medium text-red-600 hover:text-red-700"
                     >
-                      Full Name
-                    </label>
-                    <input
-                      id={`team-member-name-${index}`}
-                      type="text"
-                      placeholder="Jane Doe"
-                      value={member.name || ""}
-                      onChange={(e) =>
-                        handleTeamMemberChange(index, "name", e.target.value)
-                      }
-                      className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 placeholder-neutral-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
-                    />
+                      Remove
+                    </button>
                   </div>
 
-                  <div>
-                    <label
-                      htmlFor={`team-member-email-${index}`}
-                      className="block text-sm font-medium text-neutral-700"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      id={`team-member-email-${index}`}
-                      type="email"
-                      placeholder="jane@example.com"
-                      value={member.email || ""}
-                      onChange={(e) =>
-                        handleTeamMemberChange(index, "email", e.target.value)
-                      }
-                      className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 placeholder-neutral-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label
-                      htmlFor={`team-member-phone-${index}`}
-                      className="block text-sm font-medium text-neutral-700"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      id={`team-member-phone-${index}`}
-                      type="tel"
-                      placeholder="+1 (555) 123-4567"
-                      value={member.phone || ""}
-                      onChange={(e) =>
-                        handleTeamMemberChange(index, "phone", e.target.value)
-                      }
-                      className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 placeholder-neutral-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor={`team-member-faculty-${index}`}
-                      className="block text-sm font-medium text-neutral-700"
-                    >
-                      Faculty / Department
-                    </label>
-                    <input
-                      id={`team-member-faculty-${index}`}
-                      type="text"
-                      placeholder="Engineering"
-                      value={member.faculty || ""}
-                      onChange={(e) =>
-                        handleTeamMemberChange(index, "faculty", e.target.value)
-                      }
-                      className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 placeholder-neutral-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2 mt-4">
-                  <div>
-                    <label
-                      htmlFor={`team-member-gender-${index}`}
-                      className="block text-sm font-medium text-neutral-700"
-                    >
-                      Gender
-                    </label>
-                    <select
-                      id={`team-member-gender-${index}`}
-                      value={member.gender || Gender.Male}
-                      onChange={(e) =>
-                        handleTeamMemberChange(index, "gender", e.target.value)
-                      }
-                      className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
-                    >
-                      <option value={Gender.Male}>Male</option>
-                      <option value={Gender.Female}>Female</option>
-                      <option value={Gender.Others}>Others</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor={`team-member-photo-${index}`}
-                      className="block text-sm font-medium text-neutral-700"
-                    >
-                      Photo
-                    </label>
-                    <input
-                      id={`team-member-photo-${index}`}
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        if (file) {
-                          handleTeamMemberChange(index, "photo", file);
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor={`team-member-name-${index}`}
+                        className="block text-sm font-medium text-neutral-700"
+                      >
+                        Full Name
+                      </label>
+                      <input
+                        id={`team-member-name-${index}`}
+                        type="text"
+                        placeholder="Jane Doe"
+                        value={member.name || ""}
+                        onChange={(e) =>
+                          handleTeamMemberChange(index, "name", e.target.value)
                         }
-                      }}
-                      className="mt-1 w-full text-xs text-neutral-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-neutral-100 file:text-neutral-700 hover:file:bg-neutral-200"
-                    />
+                        className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 placeholder-neutral-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor={`team-member-email-${index}`}
+                        className="block text-sm font-medium text-neutral-700"
+                      >
+                        Email Address
+                      </label>
+                      <input
+                        id={`team-member-email-${index}`}
+                        type="email"
+                        placeholder="jane@example.com"
+                        value={member.email || ""}
+                        onChange={(e) =>
+                          handleTeamMemberChange(index, "email", e.target.value)
+                        }
+                        className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 placeholder-neutral-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label
+                        htmlFor={`team-member-phone-${index}`}
+                        className="block text-sm font-medium text-neutral-700"
+                      >
+                        Phone Number
+                      </label>
+                      <input
+                        id={`team-member-phone-${index}`}
+                        type="tel"
+                        placeholder="+1 (555) 123-4567"
+                        value={member.phone || ""}
+                        onChange={(e) =>
+                          handleTeamMemberChange(index, "phone", e.target.value)
+                        }
+                        className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 placeholder-neutral-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor={`team-member-faculty-${index}`}
+                        className="block text-sm font-medium text-neutral-700"
+                      >
+                        Faculty / Department
+                      </label>
+                      <input
+                        id={`team-member-faculty-${index}`}
+                        type="text"
+                        placeholder="Engineering"
+                        value={member.faculty || ""}
+                        onChange={(e) =>
+                          handleTeamMemberChange(
+                            index,
+                            "faculty",
+                            e.target.value,
+                          )
+                        }
+                        className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 placeholder-neutral-400 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2 mt-4">
+                    <div>
+                      <label
+                        htmlFor={`team-member-gender-${index}`}
+                        className="block text-sm font-medium text-neutral-700"
+                      >
+                        Gender
+                      </label>
+                      <select
+                        id={`team-member-gender-${index}`}
+                        value={member.gender || Gender.Male}
+                        onChange={(e) =>
+                          handleTeamMemberChange(
+                            index,
+                            "gender",
+                            e.target.value,
+                          )
+                        }
+                        className="mt-1 w-full rounded-lg border border-neutral-300 px-4 py-2 text-neutral-900 focus:border-black focus:outline-none focus:ring-2 focus:ring-black/10"
+                      >
+                        <option value={Gender.Male}>Male</option>
+                        <option value={Gender.Female}>Female</option>
+                        <option value={Gender.Others}>Others</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor={`team-member-photo-${index}`}
+                        className="block text-sm font-medium text-neutral-700"
+                      >
+                        Photo
+                      </label>
+                      <input
+                        id={`team-member-photo-${index}`}
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            handleTeamMemberChange(index, "photo", file);
+                          }
+                        }}
+                        className="mt-1 w-full text-xs text-neutral-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-neutral-100 file:text-neutral-700 hover:file:bg-neutral-200"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
             </div>
           ) : (
             <p className="text-sm text-neutral-400 italic">
