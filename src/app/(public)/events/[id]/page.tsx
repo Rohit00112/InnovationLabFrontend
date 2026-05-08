@@ -1,12 +1,12 @@
 "use client";
 
-import { use } from "react";
+import PageHeader from "@/components/primitives/PageHeader";
+import PageLayout from "@/components/primitives/PageLayout";
+import { useGetEventById } from "@/lib/services/generated/frontend";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import PageLayout from "@/components/primitives/PageLayout";
-import PageHeader from "@/components/primitives/PageHeader";
-import { useGetEventById } from "@/lib/services/generated/frontend";
+import { use } from "react";
 
 type EventDetailPageProps = {
   params: Promise<{
@@ -14,11 +14,9 @@ type EventDetailPageProps = {
   }>;
 };
 
-export default function EventDetailPage({
-  params,
-}: EventDetailPageProps) {
+export default function EventDetailPage({ params }: EventDetailPageProps) {
   const { id } = use(params);
-  
+
   const { data: response, isLoading, error } = useGetEventById(id);
 
   if (isLoading) {
@@ -42,7 +40,8 @@ export default function EventDetailPage({
   // Map highlights to focus areas and details
   const focusAreas = event.highlights || [];
   const dummyGallery = [
-    event.coverImageUrl || "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
+    event.coverImageUrl ||
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
     "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80",
     "https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1200&q=80",
     "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
@@ -62,7 +61,7 @@ export default function EventDetailPage({
             priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
           <div className="absolute inset-x-0 bottom-0 p-4 md:p-10">
             <div className="max-w-3xl text-white">
               <div className="flex items-center gap-3">
@@ -136,7 +135,7 @@ export default function EventDetailPage({
           Event Information
         </h2>
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          <article className="border    bg-gradient-to-br from-white to-neutral-50 p-6   -sm">
+          <article className="border    bg-linear-to-br from-white to-neutral-50 p-6   -sm">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
               Location
             </p>
@@ -144,20 +143,25 @@ export default function EventDetailPage({
               {event.location || "To be announced"}
             </p>
           </article>
-          <article className="border    bg-gradient-to-br from-white to-neutral-50 p-6   -sm">
+          <article className="border    bg-linear-to-br from-white to-neutral-50 p-6   -sm">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
               Date & Time
             </p>
             <p className="mt-4 text-sm leading-relaxed text-neutral-700">
-              {event.startTime ? new Date(event.startTime).toLocaleString() : "TBD"}
+              {event.startTime
+                ? new Date(event.startTime).toLocaleString()
+                : "TBD"}
             </p>
           </article>
-          <article className="border    bg-gradient-to-br from-white to-neutral-50 p-6   -sm">
+          <article className="border    bg-linear-to-br from-white to-neutral-50 p-6   -sm">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
               Registration
             </p>
             <p className="mt-4 text-sm leading-relaxed text-neutral-700">
-              Ends on {event.registrationEnd ? new Date(event.registrationEnd).toLocaleDateString() : "TBD"}
+              Ends on{" "}
+              {event.registrationEnd
+                ? new Date(event.registrationEnd).toLocaleDateString()
+                : "TBD"}
             </p>
           </article>
         </div>
@@ -201,7 +205,7 @@ export default function EventDetailPage({
       </section>
 
       {/* CTA Section */}
-      <section className="mx-auto w-full  border-gray-300   border-x border-b    bg-gradient-to-r from-neutral-900 to-neutral-800 px-6 py-12 md:px-10 md:py-16">
+      <section className="mx-auto w-full  border-gray-300   border-x border-b    bg-linear-to-r from-neutral-900 to-neutral-800 px-6 py-12 md:px-10 md:py-16">
         <div className="max-w-2xl">
           <h2 className="text-[clamp(28px,4.5vw,52px)] font-black uppercase tracking-[-0.03em] text-white">
             Ready to Participate?
@@ -226,5 +230,3 @@ export default function EventDetailPage({
     </PageLayout>
   );
 }
-
-

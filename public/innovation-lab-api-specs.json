@@ -7,9 +7,7 @@
   "paths": {
     "/api/v1/About": {
       "get": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "GetAbout",
         "responses": {
           "200": {
@@ -35,9 +33,7 @@
         }
       },
       "post": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "UpsertAbout",
         "requestBody": {
           "content": {
@@ -115,9 +111,7 @@
     },
     "/api/v1/About/core-values": {
       "get": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "GetCoreValues",
         "parameters": [
           {
@@ -172,9 +166,7 @@
         }
       },
       "post": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "CreateCoreValue",
         "requestBody": {
           "content": {
@@ -241,9 +233,7 @@
     },
     "/api/v1/About/journey": {
       "get": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "GetJourney",
         "parameters": [
           {
@@ -298,9 +288,7 @@
         }
       },
       "post": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "CreateJourneyItem",
         "requestBody": {
           "content": {
@@ -374,9 +362,7 @@
     },
     "/api/v1/About/core-values/{id}": {
       "patch": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "UpdateCoreValue",
         "parameters": [
           {
@@ -435,9 +421,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "DeleteCoreValue",
         "parameters": [
           {
@@ -459,9 +443,7 @@
     },
     "/api/v1/About/journey/{id}": {
       "patch": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "UpdateJourneyItem",
         "parameters": [
           {
@@ -527,9 +509,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "About"
-        ],
+        "tags": ["About"],
         "operationId": "DeleteJourneyItem",
         "parameters": [
           {
@@ -551,9 +531,7 @@
     },
     "/api/v1/Banner": {
       "get": {
-        "tags": [
-          "Banner"
-        ],
+        "tags": ["Banner"],
         "operationId": "GetBanners",
         "parameters": [
           {
@@ -639,9 +617,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Banner"
-        ],
+        "tags": ["Banner"],
         "operationId": "CreateBanner",
         "requestBody": {
           "content": {
@@ -746,9 +722,7 @@
     },
     "/api/v1/Banner/{id}": {
       "get": {
-        "tags": [
-          "Banner"
-        ],
+        "tags": ["Banner"],
         "operationId": "GetBannerById",
         "parameters": [
           {
@@ -785,9 +759,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Banner"
-        ],
+        "tags": ["Banner"],
         "operationId": "UpdateBanner",
         "parameters": [
           {
@@ -864,9 +836,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Banner"
-        ],
+        "tags": ["Banner"],
         "operationId": "DeleteBanner",
         "parameters": [
           {
@@ -888,9 +858,7 @@
     },
     "/api/v1/Banner/{id}/activate": {
       "put": {
-        "tags": [
-          "Banner"
-        ],
+        "tags": ["Banner"],
         "operationId": "ActivateBanner",
         "parameters": [
           {
@@ -912,9 +880,7 @@
     },
     "/api/v1/Banner/{id}/schedule": {
       "put": {
-        "tags": [
-          "Banner"
-        ],
+        "tags": ["Banner"],
         "operationId": "ScheduleBanner",
         "parameters": [
           {
@@ -955,9 +921,7 @@
     },
     "/api/v1/Categories": {
       "get": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "operationId": "GetCategories",
         "parameters": [
           {
@@ -1012,9 +976,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "operationId": "CreateCategory",
         "requestBody": {
           "content": {
@@ -1061,9 +1023,7 @@
     },
     "/api/v1/Categories/{id}": {
       "get": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "operationId": "GetCategoryById",
         "parameters": [
           {
@@ -1100,9 +1060,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "operationId": "UpdateCategory",
         "parameters": [
           {
@@ -1141,9 +1099,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "operationId": "DeleteCategory",
         "parameters": [
           {
@@ -1165,9 +1121,7 @@
     },
     "/api/v1/Companies": {
       "get": {
-        "tags": [
-          "Companies"
-        ],
+        "tags": ["Companies"],
         "operationId": "GetCompanies",
         "parameters": [
           {
@@ -1222,9 +1176,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Companies"
-        ],
+        "tags": ["Companies"],
         "operationId": "CreateCompany",
         "requestBody": {
           "content": {
@@ -1297,9 +1249,7 @@
     },
     "/api/v1/Companies/{id}": {
       "get": {
-        "tags": [
-          "Companies"
-        ],
+        "tags": ["Companies"],
         "operationId": "GetCompanyById",
         "parameters": [
           {
@@ -1336,9 +1286,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Companies"
-        ],
+        "tags": ["Companies"],
         "operationId": "UpdateCompany",
         "parameters": [
           {
@@ -1403,9 +1351,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Companies"
-        ],
+        "tags": ["Companies"],
         "operationId": "DeleteCompany",
         "parameters": [
           {
@@ -1427,9 +1373,7 @@
     },
     "/api/v1/Contacts": {
       "post": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "operationId": "CreateContactMessage",
         "requestBody": {
           "content": {
@@ -1474,9 +1418,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "operationId": "GetContactMessages",
         "parameters": [
           {
@@ -1533,9 +1475,7 @@
     },
     "/api/v1/Contacts/{id}": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "operationId": "GetContactMessageById",
         "parameters": [
           {
@@ -1574,9 +1514,7 @@
     },
     "/api/v1/Events": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "GetEvents",
         "parameters": [
           {
@@ -1631,9 +1569,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "CreateEvent",
         "requestBody": {
           "content": {
@@ -1762,9 +1698,7 @@
     },
     "/api/v1/Events/{id}": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "GetEventById",
         "parameters": [
           {
@@ -1801,9 +1735,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "UpdateEvent",
         "parameters": [
           {
@@ -1924,9 +1856,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "DeleteEvent",
         "parameters": [
           {
@@ -1948,9 +1878,7 @@
     },
     "/api/v1/Events/{id}/agenda": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "GetEventAgenda",
         "parameters": [
           {
@@ -2014,9 +1942,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "CreateEventAgenda",
         "parameters": [
           {
@@ -2072,11 +1998,9 @@
         }
       }
     },
-    "/agenda/{agendaId}": {
+    "/api/v1/Events/agenda/{agendaId}": {
       "put": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "UpdateEventAgenda",
         "parameters": [
           {
@@ -2115,9 +2039,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "DeleteEventAgenda",
         "parameters": [
           {
@@ -2139,9 +2061,7 @@
     },
     "/api/v1/Events/{id}/register": {
       "post": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "RegisterForEvent",
         "parameters": [
           {
@@ -2156,19 +2076,78 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/EventRegistrationCreateDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventRegistrationCreateDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventRegistrationCreateDto"
+                "type": "object",
+                "properties": {
+                  "EventId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "Type": {
+                    "$ref": "#/components/schemas/EventRegistrationType"
+                  },
+                  "TeamName": {
+                    "type": "string"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "Documents": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "Members": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/TeamMemberCreateDto"
+                    }
+                  },
+                  "RegistrationColleges": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
+                    }
+                  }
+                }
+              },
+              "encoding": {
+                "EventId": {
+                  "style": "form"
+                },
+                "Type": {
+                  "style": "form"
+                },
+                "TeamName": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Phone": {
+                  "style": "form"
+                },
+                "Documents": {
+                  "style": "form"
+                },
+                "Members": {
+                  "style": "form"
+                },
+                "RegistrationColleges": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -2199,9 +2178,7 @@
     },
     "/api/v1/Events/{id}/registrations": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "operationId": "GetEventRegistrations",
         "parameters": [
           {
@@ -2265,12 +2242,488 @@
         }
       }
     },
-    "/registrations/{registrationId}/status": {
-      "patch": {
-        "tags": [
-          "Events"
+    "/api/v1/Events/registrations/{registrationId}": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetEventRegistration",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
         ],
-        "operationId": "UpdateEventRegistrationStatus",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Events"],
+        "operationId": "UpdateEventRegistration",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "TeamName": {
+                    "type": "string"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "Documents": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  },
+                  "Status": {
+                    "$ref": "#/components/schemas/EventRegistrationStatus"
+                  }
+                }
+              },
+              "encoding": {
+                "TeamName": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Phone": {
+                  "style": "form"
+                },
+                "Documents": {
+                  "style": "form"
+                },
+                "Status": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Events"],
+        "operationId": "DeleteEventRegistration",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Events/registrations/{registrationId}/members": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetTeamMembers",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamMemberResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamMemberResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamMemberResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Events"],
+        "operationId": "AddTeamMember",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Faculty": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "Photo": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Gender": {
+                    "$ref": "#/components/schemas/Gender"
+                  }
+                }
+              },
+              "encoding": {
+                "Name": {
+                  "style": "form"
+                },
+                "Faculty": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Phone": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "Gender": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Events/members/{memberId}": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetTeamMember",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Events"],
+        "operationId": "UpdateTeamMember",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Faculty": {
+                    "type": "string"
+                  },
+                  "Email": {
+                    "type": "string"
+                  },
+                  "Phone": {
+                    "type": "string"
+                  },
+                  "Photo": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "Gender": {
+                    "$ref": "#/components/schemas/Gender"
+                  }
+                }
+              },
+              "encoding": {
+                "Name": {
+                  "style": "form"
+                },
+                "Faculty": {
+                  "style": "form"
+                },
+                "Email": {
+                  "style": "form"
+                },
+                "Phone": {
+                  "style": "form"
+                },
+                "Photo": {
+                  "style": "form"
+                },
+                "Gender": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Events"],
+        "operationId": "DeleteTeamMember",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Events/registrations/{registrationId}/colleges": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetRegistrationColleges",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Events"],
+        "operationId": "AddRegistrationCollege",
         "parameters": [
           {
             "name": "registrationId",
@@ -2286,17 +2739,112 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EventRegistrationUpdateDto"
+                "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/EventRegistrationUpdateDto"
+                "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/EventRegistrationUpdateDto"
+                "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Events/colleges/{collegeId}": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetRegistrationCollege",
+        "parameters": [
+          {
+            "name": "collegeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Events"],
+        "operationId": "UpdateRegistrationCollege",
+        "parameters": [
+          {
+            "name": "collegeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationCollegeUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationCollegeUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationCollegeUpdateDto"
               }
             }
           }
@@ -2306,13 +2854,31 @@
             "description": "OK"
           }
         }
+      },
+      "delete": {
+        "tags": ["Events"],
+        "operationId": "DeleteRegistrationCollege",
+        "parameters": [
+          {
+            "name": "collegeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/v1/Faqs": {
       "get": {
-        "tags": [
-          "Faqs"
-        ],
+        "tags": ["Faqs"],
         "operationId": "GetFaqs",
         "parameters": [
           {
@@ -2381,9 +2947,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Faqs"
-        ],
+        "tags": ["Faqs"],
         "operationId": "CreateFaq",
         "requestBody": {
           "content": {
@@ -2430,9 +2994,7 @@
     },
     "/api/v1/Faqs/{id}": {
       "get": {
-        "tags": [
-          "Faqs"
-        ],
+        "tags": ["Faqs"],
         "operationId": "GetFaqById",
         "parameters": [
           {
@@ -2469,9 +3031,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Faqs"
-        ],
+        "tags": ["Faqs"],
         "operationId": "UpdateFaq",
         "parameters": [
           {
@@ -2510,9 +3070,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Faqs"
-        ],
+        "tags": ["Faqs"],
         "operationId": "DeleteFaq",
         "parameters": [
           {
@@ -2534,9 +3092,7 @@
     },
     "/api/v1/Testimonials": {
       "get": {
-        "tags": [
-          "Testimonials"
-        ],
+        "tags": ["Testimonials"],
         "operationId": "GetTestimonials",
         "parameters": [
           {
@@ -2591,9 +3147,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Testimonials"
-        ],
+        "tags": ["Testimonials"],
         "operationId": "CreateTestimonial",
         "requestBody": {
           "content": {
@@ -2665,9 +3219,7 @@
     },
     "/api/v1/Testimonials/{id}": {
       "get": {
-        "tags": [
-          "Testimonials"
-        ],
+        "tags": ["Testimonials"],
         "operationId": "GetTestimonialById",
         "parameters": [
           {
@@ -2704,9 +3256,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Testimonials"
-        ],
+        "tags": ["Testimonials"],
         "operationId": "UpdateTestimonial",
         "parameters": [
           {
@@ -2770,9 +3320,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Testimonials"
-        ],
+        "tags": ["Testimonials"],
         "operationId": "DeleteTestimonial",
         "parameters": [
           {
@@ -3190,8 +3738,10 @@
           "description",
           "endTime",
           "highlights",
+          "isRegistrationOpen",
           "isTeamEvent",
           "location",
+          "maxNumberOfTeams",
           "maxTeamMembers",
           "startTime",
           "title"
@@ -3266,6 +3816,13 @@
           "maxTeamMembers": {
             "type": "integer",
             "format": "int32"
+          },
+          "maxNumberOfTeams": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isRegistrationOpen": {
+            "type": "boolean"
           },
           "registrationStart": {
             "type": "string",
@@ -3348,35 +3905,14 @@
         },
         "additionalProperties": false
       },
-      "EventRegistrationCreateDto": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "teamMembers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TeamMemberCreateDto"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "EventRegistrationResponseDto": {
         "type": "object",
         "properties": {
           "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "eventId": {
             "type": "string",
             "format": "uuid"
           },
@@ -3386,6 +3922,10 @@
           "type": {
             "$ref": "#/components/schemas/EventRegistrationType"
           },
+          "teamName": {
+            "type": "string",
+            "nullable": true
+          },
           "name": {
             "type": "string",
             "nullable": true
@@ -3398,10 +3938,24 @@
             "type": "string",
             "nullable": true
           },
-          "teamMembers": {
+          "documentUrls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "members": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TeamMemberResponseDto"
+            },
+            "nullable": true
+          },
+          "registrationColleges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
             },
             "nullable": true
           },
@@ -3421,28 +3975,12 @@
         "additionalProperties": false
       },
       "EventRegistrationStatus": {
-        "enum": [
-          "Pending",
-          "Approved",
-          "Rejected"
-        ],
+        "enum": ["Pending", "Approved", "Rejected"],
         "type": "string"
       },
       "EventRegistrationType": {
-        "enum": [
-          "Solo",
-          "Team"
-        ],
+        "enum": ["Solo", "Team"],
         "type": "string"
-      },
-      "EventRegistrationUpdateDto": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "$ref": "#/components/schemas/EventRegistrationStatus"
-          }
-        },
-        "additionalProperties": false
       },
       "EventResponseDto": {
         "type": "object",
@@ -3497,6 +4035,13 @@
           "maxTeamMembers": {
             "type": "integer",
             "format": "int32"
+          },
+          "maxNumberOfTeams": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isRegistrationOpen": {
+            "type": "boolean"
           },
           "registrationStart": {
             "type": "string",
@@ -3615,6 +4160,10 @@
         },
         "additionalProperties": false
       },
+      "Gender": {
+        "enum": ["Male", "Female", "Others"],
+        "type": "string"
+      },
       "JourneyItemResponseDto": {
         "type": "object",
         "properties": {
@@ -3654,18 +4203,136 @@
         "additionalProperties": false
       },
       "MediaType": {
-        "enum": [
-          "Image",
-          "Video",
-          "Pdf",
-          "NotSupported"
-        ],
+        "enum": ["Image", "Video", "Pdf", "NotSupported"],
         "type": "string"
+      },
+      "RegistrationCollegeCreateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativeEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativeDesignation": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrationCollegeResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativeEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativeDesignation": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "registrationId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrationCollegeUpdateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "contactEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativeEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "representativeDesignation": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "TeamMemberCreateDto": {
         "type": "object",
         "properties": {
           "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "faculty": {
             "type": "string",
             "nullable": true
           },
@@ -3676,6 +4343,14 @@
           "phone": {
             "type": "string",
             "nullable": true
+          },
+          "photo": {
+            "type": "string",
+            "format": "binary",
+            "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
           }
         },
         "additionalProperties": false
@@ -3691,6 +4366,10 @@
             "type": "string",
             "nullable": true
           },
+          "faculty": {
+            "type": "string",
+            "nullable": true
+          },
           "email": {
             "type": "string",
             "nullable": true
@@ -3698,6 +4377,26 @@
           "phone": {
             "type": "string",
             "nullable": true
+          },
+          "photoUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "$ref": "#/components/schemas/Gender"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "registrationId": {
+            "type": "string",
+            "format": "uuid"
           }
         },
         "additionalProperties": false
