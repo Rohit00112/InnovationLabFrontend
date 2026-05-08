@@ -433,41 +433,19 @@ export default function Partner() {
       </FadeIn>
       {/*Section: Description*/}
       <FadeIn delay={0.4}>
-        <>
-          <section className="py-24 px-10 text-center max-w-4xl mx-auto">
-            <div className="flex items-center justify-center gap-3 text-[14px] tracking-[4px] font-bold uppercase mb-8">
-              <span className="w-3 h-3 bg-cyan-400"></span>
-              ABOUT OUR PARTNERS
-              <span className="w-ds-2 h-ds-2 bg-accent rounded-ds-sm"></span>
-            </div>
-            <h2 className="text-h3 md:text-h2 font-semibold leading-tight text-neutral-900">
-              we are Innovation Labbist lorem gg , Lorem, ipsum dolor sit amet
-              consectetur adipisicing elit. Odit voluptates voluptatibus iure,
-              vitae nesciunt dicta qui, quasi doloribus explicabo itaque alias
-              ipsa quam non suscipit est ad aut at dolor?
-            </h2>
-          </section>
-          <Marquee speed={40} gradient={false}>
-            <GridWithPlus rows={1} />
-            <GridWithPlus rows={1} />
-          </Marquee>
-          <Marquee speed={40} delay={2} gradient={false}>
-            <GridWithPlus rows={1} />
-            <GridWithPlus rows={1} />
-          </Marquee>
-        </>
+        <section className="mx-auto max-w-4xl px-4 py-10 text-center md:px-ds-5 md:py-ds-6">
+          <div className="flex items-center justify-center gap-ds-3 text-small tracking-[4px] font-bold uppercase mb-ds-5">
+            <span className="w-3 h-3 bg-cyan-400"></span>
+            {publicCompanyText.aboutOurPartners}
+            <span className="w-3 h-3 bg-cyan-400"></span>
+          </div>
+          <h2 className="text-h3 md:text-h2 font-semibold leading-tight text-neutral-900">
+            {publicCompanyText.aboutPartnersBody}
+          </h2>
+        </section>
       </FadeIn>
-      <section className="mx-auto max-w-4xl px-4 py-10 text-center md:px-ds-5 md:py-ds-6">
-        <div className="flex items-center justify-center gap-ds-3 text-small tracking-[4px] font-bold uppercase mb-ds-5">
-          <span className="w-ds-2 h-ds-2 bg-accent rounded-ds-sm"></span>
-          {publicCompanyText.aboutOurPartners}
-          <span className="w-ds-2 h-ds-2 bg-accent rounded-ds-sm"></span>
-        </div>
-        <h2 className="text-h3 md:text-h2 font-semibold leading-tight text-neutral-900">
-          {publicCompanyText.aboutPartnersBody}
-        </h2>
-      </section>
-      <div className="w-full h-screen">
+
+      <div className="w-full">
         <Stories storiesData={partnerStoriesData} />
       </div>
     </PageLayout>

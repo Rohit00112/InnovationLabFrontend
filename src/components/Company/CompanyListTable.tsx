@@ -51,7 +51,7 @@ export default function CompanyListTable({
             href={company.websiteUrl}
             target="_blank"
             rel="noreferrer"
-            className="text-accent transition hover:underline"
+            className="text-neutral-800 transition hover:underline"
           >
             {company.name}
           </a>
@@ -67,7 +67,7 @@ export default function CompanyListTable({
         company.contactEmail ? (
           <a
             href={`mailto:${company.contactEmail}`}
-            className="text-accent font-medium transition hover:underline"
+            className="text-neutral-800 font-medium transition hover:underline"
           >
             {company.contactEmail}
           </a>
@@ -86,7 +86,7 @@ export default function CompanyListTable({
             className: "w-[140px] flex justify-center",
             headerClassName: "flex justify-center",
             cell: (company) => (
-              <span className="inline-flex items-center justify-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+              <span className="inline-flex items-center justify-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-neutral-800">
                 {company.numberOfInterns ?? 0}
               </span>
             ),
@@ -105,7 +105,7 @@ export default function CompanyListTable({
                   href={company.websiteUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-accent font-medium transition hover:underline"
+                  className="text-neutral-800 font-medium transition hover:underline"
                 >
                   {company.websiteUrl.replace(/^https?:\/\//, "")}
                 </a>
@@ -195,7 +195,7 @@ export default function CompanyListTable({
                     onClick={() => setPage(pageNumber)}
                     className={`h-9 w-9 rounded-full border text-xs font-semibold transition ${
                       pageNumber === clampedPage
-                        ? "border-accent bg-accent/10 text-accent"
+                        ? "border-primary bg-accent/10 text-neutral-800"
                         : "border-black/10 text-neutral-600 hover:border-black/20 hover:text-neutral-900"
                     }`}
                   >
