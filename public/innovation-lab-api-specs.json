@@ -63,24 +63,12 @@
                 }
               },
               "encoding": {
-                "Mission": {
-                  "style": "form"
-                },
-                "Vision": {
-                  "style": "form"
-                },
-                "ParentOrgName": {
-                  "style": "form"
-                },
-                "ParentOrgDescription": {
-                  "style": "form"
-                },
-                "ParentOrgLogo": {
-                  "style": "form"
-                },
-                "ParentOrgWebsiteUrl": {
-                  "style": "form"
-                }
+                "Mission": { "style": "form" },
+                "Vision": { "style": "form" },
+                "ParentOrgName": { "style": "form" },
+                "ParentOrgDescription": { "style": "form" },
+                "ParentOrgLogo": { "style": "form" },
+                "ParentOrgWebsiteUrl": { "style": "form" }
               }
             }
           }
@@ -90,19 +78,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/AboutResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/AboutResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AboutResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/AboutResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AboutResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/AboutResponseDto" }
               }
             }
           }
@@ -117,20 +99,12 @@
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -174,35 +148,17 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Title": {
-                    "type": "string"
-                  },
-                  "Description": {
-                    "type": "string"
-                  },
-                  "Icon": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "Order": {
-                    "type": "integer",
-                    "format": "int32"
-                  }
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Icon": { "type": "string", "format": "binary" },
+                  "Order": { "type": "integer", "format": "int32" }
                 }
               },
               "encoding": {
-                "Title": {
-                  "style": "form"
-                },
-                "Description": {
-                  "style": "form"
-                },
-                "Icon": {
-                  "style": "form"
-                },
-                "Order": {
-                  "style": "form"
-                }
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Icon": { "style": "form" },
+                "Order": { "style": "form" }
               }
             }
           }
@@ -239,20 +195,12 @@
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -296,42 +244,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Title": {
-                    "type": "string"
-                  },
-                  "Description": {
-                    "type": "string"
-                  },
-                  "Image": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "Date": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "Order": {
-                    "type": "integer",
-                    "format": "int32"
-                  }
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Image": { "type": "string", "format": "binary" },
+                  "Date": { "type": "string", "format": "date-time" },
+                  "Order": { "type": "integer", "format": "int32" }
                 }
               },
               "encoding": {
-                "Title": {
-                  "style": "form"
-                },
-                "Description": {
-                  "style": "form"
-                },
-                "Image": {
-                  "style": "form"
-                },
-                "Date": {
-                  "style": "form"
-                },
-                "Order": {
-                  "style": "form"
-                }
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Image": { "style": "form" },
+                "Date": { "style": "form" },
+                "Order": { "style": "form" }
               }
             }
           }
@@ -369,10 +294,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -381,44 +303,22 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Title": {
-                    "type": "string"
-                  },
-                  "Description": {
-                    "type": "string"
-                  },
-                  "Icon": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "Order": {
-                    "type": "integer",
-                    "format": "int32"
-                  }
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Icon": { "type": "string", "format": "binary" },
+                  "Order": { "type": "integer", "format": "int32" }
                 }
               },
               "encoding": {
-                "Title": {
-                  "style": "form"
-                },
-                "Description": {
-                  "style": "form"
-                },
-                "Icon": {
-                  "style": "form"
-                },
-                "Order": {
-                  "style": "form"
-                }
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Icon": { "style": "form" },
+                "Order": { "style": "form" }
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["About"],
@@ -428,17 +328,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/About/journey/{id}": {
@@ -450,10 +343,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -462,51 +352,24 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Title": {
-                    "type": "string"
-                  },
-                  "Description": {
-                    "type": "string"
-                  },
-                  "Image": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "Date": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "Order": {
-                    "type": "integer",
-                    "format": "int32"
-                  }
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Image": { "type": "string", "format": "binary" },
+                  "Date": { "type": "string", "format": "date-time" },
+                  "Order": { "type": "integer", "format": "int32" }
                 }
               },
               "encoding": {
-                "Title": {
-                  "style": "form"
-                },
-                "Description": {
-                  "style": "form"
-                },
-                "Image": {
-                  "style": "form"
-                },
-                "Date": {
-                  "style": "form"
-                },
-                "Order": {
-                  "style": "form"
-                }
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Image": { "style": "form" },
+                "Date": { "style": "form" },
+                "Order": { "style": "form" }
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["About"],
@@ -516,17 +379,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Banner": {
@@ -537,51 +393,32 @@
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           },
           {
             "name": "type",
             "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/MediaType"
-            }
+            "schema": { "$ref": "#/components/schemas/MediaType" }
           },
           {
             "name": "scheduledStart",
             "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "scheduledEnd",
             "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           },
           {
             "name": "createdAfter",
             "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
+            "schema": { "type": "string", "format": "date-time" }
           }
         ],
         "responses": {
@@ -591,25 +428,19 @@
               "text/plain": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/BannerResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/BannerResponseDto" }
                 }
               },
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/BannerResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/BannerResponseDto" }
                 }
               },
               "text/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/BannerResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/BannerResponseDto" }
                 }
               }
             }
@@ -625,73 +456,29 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Image": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "Type": {
-                    "$ref": "#/components/schemas/MediaType"
-                  },
-                  "Title": {
-                    "type": "string"
-                  },
-                  "SubTitle": {
-                    "type": "string"
-                  },
-                  "Caption": {
-                    "type": "string"
-                  },
-                  "Current": {
-                    "type": "boolean"
-                  },
-                  "Version": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
-                  "ParentId": {
-                    "type": "string"
-                  },
-                  "ScheduledStart": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "ScheduledEnd": {
-                    "type": "string",
-                    "format": "date-time"
-                  }
+                  "Image": { "type": "string", "format": "binary" },
+                  "Type": { "$ref": "#/components/schemas/MediaType" },
+                  "Title": { "type": "string" },
+                  "SubTitle": { "type": "string" },
+                  "Caption": { "type": "string" },
+                  "Current": { "type": "boolean" },
+                  "Version": { "type": "integer", "format": "int32" },
+                  "ParentId": { "type": "string" },
+                  "ScheduledStart": { "type": "string", "format": "date-time" },
+                  "ScheduledEnd": { "type": "string", "format": "date-time" }
                 }
               },
               "encoding": {
-                "Image": {
-                  "style": "form"
-                },
-                "Type": {
-                  "style": "form"
-                },
-                "Title": {
-                  "style": "form"
-                },
-                "SubTitle": {
-                  "style": "form"
-                },
-                "Caption": {
-                  "style": "form"
-                },
-                "Current": {
-                  "style": "form"
-                },
-                "Version": {
-                  "style": "form"
-                },
-                "ParentId": {
-                  "style": "form"
-                },
-                "ScheduledStart": {
-                  "style": "form"
-                },
-                "ScheduledEnd": {
-                  "style": "form"
-                }
+                "Image": { "style": "form" },
+                "Type": { "style": "form" },
+                "Title": { "style": "form" },
+                "SubTitle": { "style": "form" },
+                "Caption": { "style": "form" },
+                "Current": { "style": "form" },
+                "Version": { "style": "form" },
+                "ParentId": { "style": "form" },
+                "ScheduledStart": { "style": "form" },
+                "ScheduledEnd": { "style": "form" }
               }
             }
           }
@@ -701,19 +488,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/BannerResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BannerResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BannerResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
               }
             }
           }
@@ -729,10 +510,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -740,19 +518,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/BannerResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BannerResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BannerResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
               }
             }
           }
@@ -766,10 +538,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -778,62 +547,28 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Url": {
-                    "type": "string"
-                  },
-                  "Type": {
-                    "$ref": "#/components/schemas/MediaType"
-                  },
-                  "Title": {
-                    "type": "string"
-                  },
-                  "SubTitle": {
-                    "type": "string"
-                  },
-                  "Caption": {
-                    "type": "string"
-                  },
-                  "ScheduledStart": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "ScheduledEnd": {
-                    "type": "string",
-                    "format": "date-time"
-                  }
+                  "Url": { "type": "string" },
+                  "Type": { "$ref": "#/components/schemas/MediaType" },
+                  "Title": { "type": "string" },
+                  "SubTitle": { "type": "string" },
+                  "Caption": { "type": "string" },
+                  "ScheduledStart": { "type": "string", "format": "date-time" },
+                  "ScheduledEnd": { "type": "string", "format": "date-time" }
                 }
               },
               "encoding": {
-                "Url": {
-                  "style": "form"
-                },
-                "Type": {
-                  "style": "form"
-                },
-                "Title": {
-                  "style": "form"
-                },
-                "SubTitle": {
-                  "style": "form"
-                },
-                "Caption": {
-                  "style": "form"
-                },
-                "ScheduledStart": {
-                  "style": "form"
-                },
-                "ScheduledEnd": {
-                  "style": "form"
-                }
+                "Url": { "style": "form" },
+                "Type": { "style": "form" },
+                "Title": { "style": "form" },
+                "SubTitle": { "style": "form" },
+                "Caption": { "style": "form" },
+                "ScheduledStart": { "style": "form" },
+                "ScheduledEnd": { "style": "form" }
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Banner"],
@@ -843,17 +578,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Banner/{id}/activate": {
@@ -865,17 +593,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Banner/{id}/schedule": {
@@ -887,10 +608,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -912,11 +630,7 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Categories": {
@@ -927,20 +641,12 @@
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -981,19 +687,13 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoryCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/CategoryCreateDto" }
             },
             "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoryCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/CategoryCreateDto" }
             },
             "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoryCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/CategoryCreateDto" }
             }
           }
         },
@@ -1002,19 +702,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
               }
             }
           }
@@ -1030,10 +724,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -1041,19 +732,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
               }
             }
           }
@@ -1067,36 +752,23 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoryUpdateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/CategoryUpdateDto" }
             },
             "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoryUpdateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/CategoryUpdateDto" }
             },
             "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CategoryUpdateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/CategoryUpdateDto" }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Categories"],
@@ -1106,17 +778,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Companies": {
@@ -1127,20 +792,12 @@
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -1150,25 +807,19 @@
               "text/plain": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CompanyResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/CompanyResponseDto" }
                 }
               },
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CompanyResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/CompanyResponseDto" }
                 }
               },
               "text/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CompanyResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/CompanyResponseDto" }
                 }
               }
             }
@@ -1184,41 +835,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Name": {
-                    "type": "string"
-                  },
-                  "Address": {
-                    "type": "string"
-                  },
-                  "ContactEmail": {
-                    "type": "string"
-                  },
-                  "Logo": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "Priority": {
-                    "type": "integer",
-                    "format": "int32"
-                  }
+                  "Name": { "type": "string" },
+                  "Address": { "type": "string" },
+                  "ContactEmail": { "type": "string" },
+                  "Logo": { "type": "string", "format": "binary" },
+                  "Priority": { "type": "integer", "format": "int32" }
                 }
               },
               "encoding": {
-                "Name": {
-                  "style": "form"
-                },
-                "Address": {
-                  "style": "form"
-                },
-                "ContactEmail": {
-                  "style": "form"
-                },
-                "Logo": {
-                  "style": "form"
-                },
-                "Priority": {
-                  "style": "form"
-                }
+                "Name": { "style": "form" },
+                "Address": { "style": "form" },
+                "ContactEmail": { "style": "form" },
+                "Logo": { "style": "form" },
+                "Priority": { "style": "form" }
               }
             }
           }
@@ -1228,19 +857,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CompanyResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CompanyResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CompanyResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
               }
             }
           }
@@ -1256,10 +879,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -1267,19 +887,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/CompanyResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CompanyResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CompanyResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
               }
             }
           }
@@ -1293,10 +907,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -1305,50 +916,24 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Name": {
-                    "type": "string"
-                  },
-                  "Address": {
-                    "type": "string"
-                  },
-                  "ContactEmail": {
-                    "type": "string"
-                  },
-                  "Logo": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "Priority": {
-                    "type": "integer",
-                    "format": "int32"
-                  }
+                  "Name": { "type": "string" },
+                  "Address": { "type": "string" },
+                  "ContactEmail": { "type": "string" },
+                  "Logo": { "type": "string", "format": "binary" },
+                  "Priority": { "type": "integer", "format": "int32" }
                 }
               },
               "encoding": {
-                "Name": {
-                  "style": "form"
-                },
-                "Address": {
-                  "style": "form"
-                },
-                "ContactEmail": {
-                  "style": "form"
-                },
-                "Logo": {
-                  "style": "form"
-                },
-                "Priority": {
-                  "style": "form"
-                }
+                "Name": { "style": "form" },
+                "Address": { "style": "form" },
+                "ContactEmail": { "style": "form" },
+                "Logo": { "style": "form" },
+                "Priority": { "style": "form" }
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Companies"],
@@ -1358,17 +943,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Contacts": {
@@ -1378,19 +956,13 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContactCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/ContactCreateDto" }
             },
             "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContactCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/ContactCreateDto" }
             },
             "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/ContactCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/ContactCreateDto" }
             }
           }
         },
@@ -1399,19 +971,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
               }
             }
           }
@@ -1424,20 +990,12 @@
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -1447,25 +1005,19 @@
               "text/plain": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ContactResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/ContactResponseDto" }
                 }
               },
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ContactResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/ContactResponseDto" }
                 }
               },
               "text/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ContactResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/ContactResponseDto" }
                 }
               }
             }
@@ -1482,10 +1034,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -1493,19 +1042,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ContactResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
               }
             }
           }
@@ -1520,20 +1063,12 @@
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -1543,25 +1078,19 @@
               "text/plain": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EventResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/EventResponseDto" }
                 }
               },
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EventResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/EventResponseDto" }
                 }
               },
               "text/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EventResponseDto"
-                  }
+                  "items": { "$ref": "#/components/schemas/EventResponseDto" }
                 }
               }
             }
@@ -1577,97 +1106,41 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "ParentEventId": {
-                    "type": "string",
-                    "format": "uuid"
-                  },
-                  "Title": {
-                    "type": "string"
-                  },
-                  "Description": {
-                    "type": "string"
-                  },
+                  "ParentEventId": { "type": "string", "format": "uuid" },
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
                   "Highlights": {
                     "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "items": { "type": "string" }
                   },
-                  "StartTime": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "EndTime": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "Location": {
-                    "type": "string"
-                  },
-                  "CoverImage": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "SeriesName": {
-                    "type": "string"
-                  },
-                  "IsTeamEvent": {
-                    "type": "boolean"
-                  },
-                  "MaxTeamMembers": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
+                  "StartTime": { "type": "string", "format": "date-time" },
+                  "EndTime": { "type": "string", "format": "date-time" },
+                  "Location": { "type": "string" },
+                  "CoverImage": { "type": "string", "format": "binary" },
+                  "SeriesName": { "type": "string" },
+                  "IsTeamEvent": { "type": "boolean" },
+                  "MaxTeamMembers": { "type": "integer", "format": "int32" },
                   "RegistrationStart": {
                     "type": "string",
                     "format": "date-time"
                   },
-                  "RegistrationEnd": {
-                    "type": "string",
-                    "format": "date-time"
-                  }
+                  "RegistrationEnd": { "type": "string", "format": "date-time" }
                 }
               },
               "encoding": {
-                "ParentEventId": {
-                  "style": "form"
-                },
-                "Title": {
-                  "style": "form"
-                },
-                "Description": {
-                  "style": "form"
-                },
-                "Highlights": {
-                  "style": "form"
-                },
-                "StartTime": {
-                  "style": "form"
-                },
-                "EndTime": {
-                  "style": "form"
-                },
-                "Location": {
-                  "style": "form"
-                },
-                "CoverImage": {
-                  "style": "form"
-                },
-                "SeriesName": {
-                  "style": "form"
-                },
-                "IsTeamEvent": {
-                  "style": "form"
-                },
-                "MaxTeamMembers": {
-                  "style": "form"
-                },
-                "RegistrationStart": {
-                  "style": "form"
-                },
-                "RegistrationEnd": {
-                  "style": "form"
-                }
+                "ParentEventId": { "style": "form" },
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Highlights": { "style": "form" },
+                "StartTime": { "style": "form" },
+                "EndTime": { "style": "form" },
+                "Location": { "style": "form" },
+                "CoverImage": { "style": "form" },
+                "SeriesName": { "style": "form" },
+                "IsTeamEvent": { "style": "form" },
+                "MaxTeamMembers": { "style": "form" },
+                "RegistrationStart": { "style": "form" },
+                "RegistrationEnd": { "style": "form" }
               }
             }
           }
@@ -1677,19 +1150,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
               }
             }
           }
@@ -1705,10 +1172,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -1716,19 +1180,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EventResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
               }
             }
           }
@@ -1742,10 +1200,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -1754,106 +1209,46 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "ParentEventId": {
-                    "type": "string",
-                    "format": "uuid"
-                  },
-                  "Title": {
-                    "type": "string"
-                  },
-                  "Description": {
-                    "type": "string"
-                  },
+                  "ParentEventId": { "type": "string", "format": "uuid" },
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
                   "Highlights": {
                     "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
+                    "items": { "type": "string" }
                   },
-                  "StartTime": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "EndTime": {
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "Location": {
-                    "type": "string"
-                  },
-                  "CoverImage": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "SeriesName": {
-                    "type": "string"
-                  },
-                  "IsTeamEvent": {
-                    "type": "boolean"
-                  },
-                  "MaxTeamMembers": {
-                    "type": "integer",
-                    "format": "int32"
-                  },
+                  "StartTime": { "type": "string", "format": "date-time" },
+                  "EndTime": { "type": "string", "format": "date-time" },
+                  "Location": { "type": "string" },
+                  "CoverImage": { "type": "string", "format": "binary" },
+                  "SeriesName": { "type": "string" },
+                  "IsTeamEvent": { "type": "boolean" },
+                  "MaxTeamMembers": { "type": "integer", "format": "int32" },
                   "RegistrationStart": {
                     "type": "string",
                     "format": "date-time"
                   },
-                  "RegistrationEnd": {
-                    "type": "string",
-                    "format": "date-time"
-                  }
+                  "RegistrationEnd": { "type": "string", "format": "date-time" }
                 }
               },
               "encoding": {
-                "ParentEventId": {
-                  "style": "form"
-                },
-                "Title": {
-                  "style": "form"
-                },
-                "Description": {
-                  "style": "form"
-                },
-                "Highlights": {
-                  "style": "form"
-                },
-                "StartTime": {
-                  "style": "form"
-                },
-                "EndTime": {
-                  "style": "form"
-                },
-                "Location": {
-                  "style": "form"
-                },
-                "CoverImage": {
-                  "style": "form"
-                },
-                "SeriesName": {
-                  "style": "form"
-                },
-                "IsTeamEvent": {
-                  "style": "form"
-                },
-                "MaxTeamMembers": {
-                  "style": "form"
-                },
-                "RegistrationStart": {
-                  "style": "form"
-                },
-                "RegistrationEnd": {
-                  "style": "form"
-                }
+                "ParentEventId": { "style": "form" },
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Highlights": { "style": "form" },
+                "StartTime": { "style": "form" },
+                "EndTime": { "style": "form" },
+                "Location": { "style": "form" },
+                "CoverImage": { "style": "form" },
+                "SeriesName": { "style": "form" },
+                "IsTeamEvent": { "style": "form" },
+                "MaxTeamMembers": { "style": "form" },
+                "RegistrationStart": { "style": "form" },
+                "RegistrationEnd": { "style": "form" }
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Events"],
@@ -1863,17 +1258,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Events/{id}/agenda": {
@@ -1885,28 +1273,17 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           },
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -1949,28 +1326,19 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventAgendaCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/EventAgendaCreateDto" }
             },
             "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventAgendaCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/EventAgendaCreateDto" }
             },
             "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventAgendaCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/EventAgendaCreateDto" }
             }
           }
         },
@@ -2007,36 +1375,23 @@
             "name": "agendaId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventAgendaUpdateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/EventAgendaUpdateDto" }
             },
             "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventAgendaUpdateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/EventAgendaUpdateDto" }
             },
             "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/EventAgendaUpdateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/EventAgendaUpdateDto" }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Events"],
@@ -2046,17 +1401,10 @@
             "name": "agendaId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Events/{id}/register": {
@@ -2068,86 +1416,88 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "multipart/form-data": {
               "schema": {
+                "required": ["EventId", "Type", "TeamName", "Name", "Email"],
                 "type": "object",
                 "properties": {
                   "EventId": {
                     "type": "string",
-                    "format": "uuid"
+                    "format": "uuid",
+                    "description": "Required. The ID of the event to register for."
                   },
                   "Type": {
-                    "$ref": "#/components/schemas/EventRegistrationType"
+                    "$ref": "#/components/schemas/EventRegistrationType",
+                    "description": "Required. Registration type — Solo or Team."
                   },
                   "TeamName": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 30,
+                    "description": "Required. Team or participant name (5–30 characters)."
                   },
                   "Name": {
-                    "type": "string"
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 30,
+                    "description": "Required. Full name of the registrant (5–30 characters)."
                   },
                   "Email": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "email",
+                    "description": "Required. Valid email address of the registrant."
                   },
                   "Phone": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Optional. Phone number of the registrant."
                   },
                   "Documents": {
                     "type": "array",
                     "items": {
                       "type": "string",
                       "format": "binary"
-                    }
+                    },
+                    "minItems": 1,
+                    "nullable": true,
+                    "description": "Optional. One or more supporting documents (files)."
                   },
                   "Members": {
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/TeamMemberCreateDto"
-                    }
+                    },
+                    "minItems": 1,
+                    "nullable": true,
+                    "description": "Optional. List of team members (at least 1 if provided)."
                   },
                   "RegistrationColleges": {
                     "type": "array",
                     "items": {
                       "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
-                    }
+                    },
+                    "minItems": 1,
+                    "nullable": true,
+                    "description": "Optional. List of colleges associated with the registration (at least 1 if provided)."
                   }
                 }
               },
               "encoding": {
-                "EventId": {
-                  "style": "form"
-                },
-                "Type": {
-                  "style": "form"
-                },
-                "TeamName": {
-                  "style": "form"
-                },
-                "Name": {
-                  "style": "form"
-                },
-                "Email": {
-                  "style": "form"
-                },
-                "Phone": {
-                  "style": "form"
-                },
-                "Documents": {
-                  "style": "form"
-                },
-                "Members": {
-                  "style": "form"
-                },
-                "RegistrationColleges": {
-                  "style": "form"
-                }
+                "EventId": { "style": "form" },
+                "Type": { "style": "form" },
+                "TeamName": { "style": "form" },
+                "Name": { "style": "form" },
+                "Email": { "style": "form" },
+                "Phone": { "style": "form" },
+                "Documents": { "style": "form" },
+                "Members": { "style": "form" },
+                "RegistrationColleges": { "style": "form" }
               }
             }
           }
@@ -2185,28 +1535,17 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           },
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -2251,10 +1590,7 @@
             "name": "registrationId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -2288,10 +1624,7 @@
             "name": "registrationId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -2300,24 +1633,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "TeamName": {
-                    "type": "string"
-                  },
-                  "Name": {
-                    "type": "string"
-                  },
-                  "Email": {
-                    "type": "string"
-                  },
-                  "Phone": {
-                    "type": "string"
-                  },
+                  "TeamName": { "type": "string" },
+                  "Name": { "type": "string" },
+                  "Email": { "type": "string" },
+                  "Phone": { "type": "string" },
                   "Documents": {
                     "type": "array",
-                    "items": {
-                      "type": "string",
-                      "format": "binary"
-                    }
+                    "items": { "type": "string", "format": "binary" }
                   },
                   "Status": {
                     "$ref": "#/components/schemas/EventRegistrationStatus"
@@ -2325,33 +1647,17 @@
                 }
               },
               "encoding": {
-                "TeamName": {
-                  "style": "form"
-                },
-                "Name": {
-                  "style": "form"
-                },
-                "Email": {
-                  "style": "form"
-                },
-                "Phone": {
-                  "style": "form"
-                },
-                "Documents": {
-                  "style": "form"
-                },
-                "Status": {
-                  "style": "form"
-                }
+                "TeamName": { "style": "form" },
+                "Name": { "style": "form" },
+                "Email": { "style": "form" },
+                "Phone": { "style": "form" },
+                "Documents": { "style": "form" },
+                "Status": { "style": "form" }
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Events"],
@@ -2361,17 +1667,10 @@
             "name": "registrationId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Events/registrations/{registrationId}/members": {
@@ -2383,28 +1682,17 @@
             "name": "registrationId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           },
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -2447,10 +1735,7 @@
             "name": "registrationId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -2459,46 +1744,21 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Name": {
-                    "type": "string"
-                  },
-                  "Faculty": {
-                    "type": "string"
-                  },
-                  "Email": {
-                    "type": "string"
-                  },
-                  "Phone": {
-                    "type": "string"
-                  },
-                  "Photo": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "Gender": {
-                    "$ref": "#/components/schemas/Gender"
-                  }
+                  "Name": { "type": "string" },
+                  "Faculty": { "type": "string" },
+                  "Email": { "type": "string" },
+                  "Phone": { "type": "string" },
+                  "Photo": { "type": "string", "format": "binary" },
+                  "Gender": { "$ref": "#/components/schemas/Gender" }
                 }
               },
               "encoding": {
-                "Name": {
-                  "style": "form"
-                },
-                "Faculty": {
-                  "style": "form"
-                },
-                "Email": {
-                  "style": "form"
-                },
-                "Phone": {
-                  "style": "form"
-                },
-                "Photo": {
-                  "style": "form"
-                },
-                "Gender": {
-                  "style": "form"
-                }
+                "Name": { "style": "form" },
+                "Faculty": { "style": "form" },
+                "Email": { "style": "form" },
+                "Phone": { "style": "form" },
+                "Photo": { "style": "form" },
+                "Gender": { "style": "form" }
               }
             }
           }
@@ -2536,10 +1796,7 @@
             "name": "memberId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -2573,10 +1830,7 @@
             "name": "memberId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -2585,55 +1839,26 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Name": {
-                    "type": "string"
-                  },
-                  "Faculty": {
-                    "type": "string"
-                  },
-                  "Email": {
-                    "type": "string"
-                  },
-                  "Phone": {
-                    "type": "string"
-                  },
-                  "Photo": {
-                    "type": "string",
-                    "format": "binary"
-                  },
-                  "Gender": {
-                    "$ref": "#/components/schemas/Gender"
-                  }
+                  "Name": { "type": "string" },
+                  "Faculty": { "type": "string" },
+                  "Email": { "type": "string" },
+                  "Phone": { "type": "string" },
+                  "Photo": { "type": "string", "format": "binary" },
+                  "Gender": { "$ref": "#/components/schemas/Gender" }
                 }
               },
               "encoding": {
-                "Name": {
-                  "style": "form"
-                },
-                "Faculty": {
-                  "style": "form"
-                },
-                "Email": {
-                  "style": "form"
-                },
-                "Phone": {
-                  "style": "form"
-                },
-                "Photo": {
-                  "style": "form"
-                },
-                "Gender": {
-                  "style": "form"
-                }
+                "Name": { "style": "form" },
+                "Faculty": { "style": "form" },
+                "Email": { "style": "form" },
+                "Phone": { "style": "form" },
+                "Photo": { "style": "form" },
+                "Gender": { "style": "form" }
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Events"],
@@ -2643,17 +1868,10 @@
             "name": "memberId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Events/registrations/{registrationId}/colleges": {
@@ -2665,28 +1883,17 @@
             "name": "registrationId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           },
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -2729,10 +1936,7 @@
             "name": "registrationId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -2787,10 +1991,7 @@
             "name": "collegeId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -2824,10 +2025,7 @@
             "name": "collegeId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -2849,11 +2047,7 @@
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Events"],
@@ -2863,17 +2057,10 @@
             "name": "collegeId",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Faqs": {
@@ -2881,46 +2068,26 @@
         "tags": ["Faqs"],
         "operationId": "GetFaqs",
         "parameters": [
-          {
-            "name": "category",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
+          { "name": "category", "in": "query", "schema": { "type": "string" } },
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           },
           {
             "name": "sort_by",
             "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "created_at"
-            }
+            "schema": { "type": "string", "default": "created_at" }
           },
           {
             "name": "sort_order",
             "in": "query",
-            "schema": {
-              "type": "string",
-              "default": "desc"
-            }
+            "schema": { "type": "string", "default": "desc" }
           }
         ],
         "responses": {
@@ -2928,19 +2095,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/FaqListResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/FaqListResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FaqListResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/FaqListResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FaqListResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/FaqListResponseDto" }
               }
             }
           }
@@ -2952,19 +2113,13 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FaqCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/FaqCreateDto" }
             },
             "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FaqCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/FaqCreateDto" }
             },
             "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/FaqCreateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/FaqCreateDto" }
             }
           }
         },
@@ -2973,19 +2128,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/FaqResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FaqResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FaqResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
               }
             }
           }
@@ -3001,10 +2150,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -3012,19 +2158,13 @@
             "description": "OK",
             "content": {
               "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/FaqResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
               },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FaqResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
               },
               "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FaqResponseDto"
-                }
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
               }
             }
           }
@@ -3038,36 +2178,23 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FaqUpdateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/FaqUpdateDto" }
             },
             "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/FaqUpdateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/FaqUpdateDto" }
             },
             "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/FaqUpdateDto"
-              }
+              "schema": { "$ref": "#/components/schemas/FaqUpdateDto" }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Faqs"],
@@ -3077,17 +2204,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     },
     "/api/v1/Testimonials": {
@@ -3098,20 +2218,12 @@
           {
             "name": "page",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 1
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
           },
           {
             "name": "pageSize",
             "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20
-            }
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
           }
         ],
         "responses": {
@@ -3155,40 +2267,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Name": {
-                    "type": "string"
-                  },
-                  "Text": {
-                    "type": "string"
-                  },
-                  "Designation": {
-                    "type": "string"
-                  },
-                  "Organization": {
-                    "type": "string"
-                  },
-                  "ImageUrl": {
-                    "type": "string",
-                    "format": "binary"
-                  }
+                  "Name": { "type": "string" },
+                  "Text": { "type": "string" },
+                  "Designation": { "type": "string" },
+                  "Organization": { "type": "string" },
+                  "ImageUrl": { "type": "string", "format": "binary" }
                 }
               },
               "encoding": {
-                "Name": {
-                  "style": "form"
-                },
-                "Text": {
-                  "style": "form"
-                },
-                "Designation": {
-                  "style": "form"
-                },
-                "Organization": {
-                  "style": "form"
-                },
-                "ImageUrl": {
-                  "style": "form"
-                }
+                "Name": { "style": "form" },
+                "Text": { "style": "form" },
+                "Designation": { "style": "form" },
+                "Organization": { "style": "form" },
+                "ImageUrl": { "style": "form" }
               }
             }
           }
@@ -3226,10 +2317,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "responses": {
@@ -3263,10 +2351,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
         "requestBody": {
@@ -3275,49 +2360,24 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "Name": {
-                    "type": "string"
-                  },
-                  "Text": {
-                    "type": "string"
-                  },
-                  "Designation": {
-                    "type": "string"
-                  },
-                  "Organization": {
-                    "type": "string"
-                  },
-                  "ImageUrl": {
-                    "type": "string",
-                    "format": "binary"
-                  }
+                  "Name": { "type": "string" },
+                  "Text": { "type": "string" },
+                  "Designation": { "type": "string" },
+                  "Organization": { "type": "string" },
+                  "ImageUrl": { "type": "string", "format": "binary" }
                 }
               },
               "encoding": {
-                "Name": {
-                  "style": "form"
-                },
-                "Text": {
-                  "style": "form"
-                },
-                "Designation": {
-                  "style": "form"
-                },
-                "Organization": {
-                  "style": "form"
-                },
-                "ImageUrl": {
-                  "style": "form"
-                }
+                "Name": { "style": "form" },
+                "Text": { "style": "form" },
+                "Designation": { "style": "form" },
+                "Organization": { "style": "form" },
+                "ImageUrl": { "style": "form" }
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       },
       "delete": {
         "tags": ["Testimonials"],
@@ -3327,17 +2387,10 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+            "schema": { "type": "string", "format": "uuid" }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": { "200": { "description": "OK" } }
       }
     }
   },
@@ -3346,38 +2399,14 @@
       "AboutResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "mission": {
-            "type": "string",
-            "nullable": true
-          },
-          "vision": {
-            "type": "string",
-            "nullable": true
-          },
-          "parentOrgName": {
-            "type": "string",
-            "nullable": true
-          },
-          "parentOrgDescription": {
-            "type": "string",
-            "nullable": true
-          },
-          "parentOrgLogoUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "parentOrgWebsiteUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "mission": { "type": "string", "nullable": true },
+          "vision": { "type": "string", "nullable": true },
+          "parentOrgName": { "type": "string", "nullable": true },
+          "parentOrgDescription": { "type": "string", "nullable": true },
+          "parentOrgLogoUrl": { "type": "string", "nullable": true },
+          "parentOrgWebsiteUrl": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3394,114 +2423,47 @@
       "AgendaItemCreateDto": {
         "type": "object",
         "properties": {
-          "startTime": {
-            "type": "string",
-            "format": "time"
-          },
-          "endTime": {
-            "type": "string",
-            "format": "time"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
+          "startTime": { "type": "string", "format": "time" },
+          "endTime": { "type": "string", "format": "time" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true }
         },
         "additionalProperties": false
       },
       "AgendaItemResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "startTime": {
-            "type": "string",
-            "format": "time"
-          },
-          "endTime": {
-            "type": "string",
-            "format": "time"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
+          "id": { "type": "string", "format": "uuid" },
+          "startTime": { "type": "string", "format": "time" },
+          "endTime": { "type": "string", "format": "time" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true }
         },
         "additionalProperties": false
       },
       "AgendaItemUpdateDto": {
         "type": "object",
         "properties": {
-          "startTime": {
-            "type": "string",
-            "format": "time"
-          },
-          "endTime": {
-            "type": "string",
-            "format": "time"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
+          "startTime": { "type": "string", "format": "time" },
+          "endTime": { "type": "string", "format": "time" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true }
         },
         "additionalProperties": false
       },
       "BannerResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "url": {
-            "type": "string",
-            "nullable": true
-          },
-          "type": {
-            "$ref": "#/components/schemas/MediaType"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "subTitle": {
-            "type": "string",
-            "nullable": true
-          },
-          "caption": {
-            "type": "string",
-            "nullable": true
-          },
-          "current": {
-            "type": "boolean"
-          },
-          "version": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "parentId": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "url": { "type": "string", "nullable": true },
+          "type": { "$ref": "#/components/schemas/MediaType" },
+          "title": { "type": "string", "nullable": true },
+          "subTitle": { "type": "string", "nullable": true },
+          "caption": { "type": "string", "nullable": true },
+          "current": { "type": "boolean" },
+          "version": { "type": "integer", "format": "int32" },
+          "parentId": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3539,10 +2501,7 @@
       "CategoryCreateDto": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
+          "name": { "type": "string", "nullable": true },
           "parentCategoryId": {
             "type": "string",
             "format": "uuid",
@@ -3554,18 +2513,9 @@
       "CategoryResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3577,10 +2527,7 @@
       "CategoryUpdateDto": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
+          "name": { "type": "string", "nullable": true },
           "parentCategoryId": {
             "type": "string",
             "format": "uuid",
@@ -3592,34 +2539,13 @@
       "CompanyResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "logoUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "priority": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "address": { "type": "string", "nullable": true },
+          "contactEmail": { "type": "string", "nullable": true },
+          "logoUrl": { "type": "string", "nullable": true },
+          "priority": { "type": "integer", "format": "int32" },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3636,60 +2562,24 @@
       "ContactCreateDto": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "subject": {
-            "type": "string",
-            "nullable": true
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          }
+          "name": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phoneNumber": { "type": "string", "nullable": true },
+          "subject": { "type": "string", "nullable": true },
+          "message": { "type": "string", "nullable": true }
         },
         "additionalProperties": false
       },
       "ContactResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phoneNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "subject": {
-            "type": "string",
-            "nullable": true
-          },
-          "message": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phoneNumber": { "type": "string", "nullable": true },
+          "subject": { "type": "string", "nullable": true },
+          "message": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3701,34 +2591,13 @@
       "CoreValueResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "iconUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "order": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
+          "id": { "type": "string", "format": "uuid" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true },
+          "iconUrl": { "type": "string", "nullable": true },
+          "order": { "type": "integer", "format": "int32" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
         },
         "additionalProperties": false
       },
@@ -3748,14 +2617,8 @@
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3771,59 +2634,24 @@
             "format": "uuid",
             "nullable": true
           },
-          "parentEvent": {
-            "$ref": "#/components/schemas/Event"
-          },
-          "title": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "description": {
-            "minLength": 1,
-            "type": "string"
-          },
+          "parentEvent": { "$ref": "#/components/schemas/Event" },
+          "title": { "minLength": 1, "type": "string" },
+          "description": { "minLength": 1, "type": "string" },
           "highlights": {
             "maxItems": 6,
             "minItems": 1,
             "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "items": { "type": "string" }
           },
-          "startTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "location": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "coverImageUrl": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "seriesName": {
-            "type": "string",
-            "nullable": true
-          },
-          "isTeamEvent": {
-            "type": "boolean"
-          },
-          "maxTeamMembers": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "maxNumberOfTeams": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "isRegistrationOpen": {
-            "type": "boolean"
-          },
+          "startTime": { "type": "string", "format": "date-time" },
+          "endTime": { "type": "string", "format": "date-time" },
+          "location": { "minLength": 1, "type": "string" },
+          "coverImageUrl": { "minLength": 1, "type": "string" },
+          "seriesName": { "type": "string", "nullable": true },
+          "isTeamEvent": { "type": "boolean" },
+          "maxTeamMembers": { "type": "integer", "format": "int32" },
+          "maxNumberOfTeams": { "type": "integer", "format": "int32" },
+          "isRegistrationOpen": { "type": "boolean" },
           "registrationStart": {
             "type": "string",
             "format": "date-time",
@@ -3840,15 +2668,10 @@
       "EventAgendaCreateDto": {
         "type": "object",
         "properties": {
-          "day": {
-            "type": "integer",
-            "format": "int32"
-          },
+          "day": { "type": "integer", "format": "int32" },
           "items": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AgendaItemCreateDto"
-            },
+            "items": { "$ref": "#/components/schemas/AgendaItemCreateDto" },
             "nullable": true
           }
         },
@@ -3857,29 +2680,15 @@
       "EventAgendaResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "eventId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "day": {
-            "type": "integer",
-            "format": "int32"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "eventId": { "type": "string", "format": "uuid" },
+          "day": { "type": "integer", "format": "int32" },
           "items": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AgendaItemResponseDto"
-            },
+            "items": { "$ref": "#/components/schemas/AgendaItemResponseDto" },
             "nullable": true
           },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3891,16 +2700,72 @@
       "EventAgendaUpdateDto": {
         "type": "object",
         "properties": {
-          "day": {
-            "type": "integer",
-            "format": "int32"
-          },
+          "day": { "type": "integer", "format": "int32" },
           "items": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AgendaItemUpdateDto"
-            },
+            "items": { "$ref": "#/components/schemas/AgendaItemUpdateDto" },
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventRegistrationCreateDto": {
+        "required": ["EventId", "Type", "TeamName", "Name", "Email"],
+        "type": "object",
+        "properties": {
+          "EventId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Required. The ID of the event to register for."
+          },
+          "Type": {
+            "$ref": "#/components/schemas/EventRegistrationType",
+            "description": "Required. Registration type — Solo or Team."
+          },
+          "TeamName": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 30,
+            "description": "Required. Team or participant name (5–30 characters)."
+          },
+          "Name": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 30,
+            "description": "Required. Full name of the registrant (5–30 characters)."
+          },
+          "Email": {
+            "type": "string",
+            "format": "email",
+            "description": "Required. Valid email address of the registrant."
+          },
+          "Phone": {
+            "type": "string",
+            "nullable": true,
+            "description": "Optional. Phone number of the registrant."
+          },
+          "Documents": {
+            "type": "array",
+            "items": { "type": "string", "format": "binary" },
+            "minItems": 1,
+            "nullable": true,
+            "description": "Optional. One or more supporting documents (files)."
+          },
+          "Members": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TeamMemberCreateDto" },
+            "minItems": 1,
+            "nullable": true,
+            "description": "Optional. List of team members (at least 1 if provided)."
+          },
+          "RegistrationColleges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
+            },
+            "minItems": 1,
+            "nullable": true,
+            "description": "Optional. List of colleges associated with the registration (at least 1 if provided)."
           }
         },
         "additionalProperties": false
@@ -3908,48 +2773,22 @@
       "EventRegistrationResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "eventId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "event": {
-            "$ref": "#/components/schemas/Event"
-          },
-          "type": {
-            "$ref": "#/components/schemas/EventRegistrationType"
-          },
-          "teamName": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "eventId": { "type": "string", "format": "uuid" },
+          "event": { "$ref": "#/components/schemas/Event" },
+          "type": { "$ref": "#/components/schemas/EventRegistrationType" },
+          "teamName": { "type": "string", "nullable": true },
+          "name": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phone": { "type": "string", "nullable": true },
           "documentUrls": {
             "type": "array",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "nullable": true
           },
           "members": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/TeamMemberResponseDto"
-            },
+            "items": { "$ref": "#/components/schemas/TeamMemberResponseDto" },
             "nullable": true
           },
           "registrationColleges": {
@@ -3959,13 +2798,8 @@
             },
             "nullable": true
           },
-          "status": {
-            "$ref": "#/components/schemas/EventRegistrationStatus"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "status": { "$ref": "#/components/schemas/EventRegistrationStatus" },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
@@ -3985,64 +2819,28 @@
       "EventResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
+          "id": { "type": "string", "format": "uuid" },
           "parentEventId": {
             "type": "string",
             "format": "uuid",
             "nullable": true
           },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true },
           "highlights": {
             "type": "array",
-            "items": {
-              "type": "string"
-            },
+            "items": { "type": "string" },
             "nullable": true
           },
-          "startTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "endTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "location": {
-            "type": "string",
-            "nullable": true
-          },
-          "coverImageUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "seriesName": {
-            "type": "string",
-            "nullable": true
-          },
-          "isTeamEvent": {
-            "type": "boolean"
-          },
-          "maxTeamMembers": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "maxNumberOfTeams": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "isRegistrationOpen": {
-            "type": "boolean"
-          },
+          "startTime": { "type": "string", "format": "date-time" },
+          "endTime": { "type": "string", "format": "date-time" },
+          "location": { "type": "string", "nullable": true },
+          "coverImageUrl": { "type": "string", "nullable": true },
+          "seriesName": { "type": "string", "nullable": true },
+          "isTeamEvent": { "type": "boolean" },
+          "maxTeamMembers": { "type": "integer", "format": "int32" },
+          "maxNumberOfTeams": { "type": "integer", "format": "int32" },
+          "isRegistrationOpen": { "type": "boolean" },
           "registrationStart": {
             "type": "string",
             "format": "date-time",
@@ -4053,55 +2851,29 @@
             "format": "date-time",
             "nullable": true
           },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
         },
         "additionalProperties": false
       },
       "FaqCreateDto": {
         "type": "object",
         "properties": {
-          "question": {
-            "type": "string",
-            "nullable": true
-          },
-          "answer": {
-            "type": "string",
-            "nullable": true
-          },
-          "categoryId": {
-            "type": "string",
-            "format": "uuid"
-          }
+          "question": { "type": "string", "nullable": true },
+          "answer": { "type": "string", "nullable": true },
+          "categoryId": { "type": "string", "format": "uuid" }
         },
         "additionalProperties": false
       },
       "FaqListResponseDto": {
         "type": "object",
         "properties": {
-          "page": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "limit": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalItems": {
-            "type": "integer",
-            "format": "int32"
-          },
+          "page": { "type": "integer", "format": "int32" },
+          "limit": { "type": "integer", "format": "int32" },
+          "totalItems": { "type": "integer", "format": "int32" },
           "data": {
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FaqResponseDto"
-            },
+            "items": { "$ref": "#/components/schemas/FaqResponseDto" },
             "nullable": true
           }
         },
@@ -4110,53 +2882,26 @@
       "FaqResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "question": {
-            "type": "string",
-            "nullable": true
-          },
-          "answer": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "question": { "type": "string", "nullable": true },
+          "answer": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "categoryId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "categoryName": {
-            "type": "string",
-            "nullable": true
-          }
+          "categoryId": { "type": "string", "format": "uuid" },
+          "categoryName": { "type": "string", "nullable": true }
         },
         "additionalProperties": false
       },
       "FaqUpdateDto": {
         "type": "object",
         "properties": {
-          "question": {
-            "type": "string",
-            "nullable": true
-          },
-          "answer": {
-            "type": "string",
-            "nullable": true
-          },
-          "categoryId": {
-            "type": "string",
-            "format": "uuid"
-          }
+          "question": { "type": "string", "nullable": true },
+          "answer": { "type": "string", "nullable": true },
+          "categoryId": { "type": "string", "format": "uuid" }
         },
         "additionalProperties": false
       },
@@ -4167,38 +2912,14 @@
       "JourneyItemResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "title": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "imageUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "order": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
+          "id": { "type": "string", "format": "uuid" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true },
+          "imageUrl": { "type": "string", "nullable": true },
+          "date": { "type": "string", "format": "date-time" },
+          "order": { "type": "integer", "format": "int32" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
         },
         "additionalProperties": false
       },
@@ -4209,229 +2930,92 @@
       "RegistrationCollegeCreateDto": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativeName": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativePhone": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativeEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativeDesignation": {
-            "type": "string",
-            "nullable": true
-          }
+          "name": { "type": "string", "nullable": true },
+          "contactEmail": { "type": "string", "nullable": true },
+          "address": { "type": "string", "nullable": true },
+          "representativeName": { "type": "string", "nullable": true },
+          "representativePhone": { "type": "string", "nullable": true },
+          "representativeEmail": { "type": "string", "nullable": true },
+          "representativeDesignation": { "type": "string", "nullable": true }
         },
         "additionalProperties": false
       },
       "RegistrationCollegeResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativeName": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativePhone": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativeEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativeDesignation": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "contactEmail": { "type": "string", "nullable": true },
+          "address": { "type": "string", "nullable": true },
+          "representativeName": { "type": "string", "nullable": true },
+          "representativePhone": { "type": "string", "nullable": true },
+          "representativeEmail": { "type": "string", "nullable": true },
+          "representativeDesignation": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "registrationId": {
-            "type": "string",
-            "format": "uuid"
-          }
+          "registrationId": { "type": "string", "format": "uuid" }
         },
         "additionalProperties": false
       },
       "RegistrationCollegeUpdateDto": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativeName": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativePhone": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativeEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "representativeDesignation": {
-            "type": "string",
-            "nullable": true
-          }
+          "name": { "type": "string", "nullable": true },
+          "contactEmail": { "type": "string", "nullable": true },
+          "address": { "type": "string", "nullable": true },
+          "representativeName": { "type": "string", "nullable": true },
+          "representativePhone": { "type": "string", "nullable": true },
+          "representativeEmail": { "type": "string", "nullable": true },
+          "representativeDesignation": { "type": "string", "nullable": true }
         },
         "additionalProperties": false
       },
       "TeamMemberCreateDto": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "faculty": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "photo": {
-            "type": "string",
-            "format": "binary",
-            "nullable": true
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender"
-          }
+          "name": { "type": "string", "nullable": true },
+          "faculty": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phone": { "type": "string", "nullable": true },
+          "photo": { "type": "string", "format": "binary", "nullable": true },
+          "gender": { "$ref": "#/components/schemas/Gender" }
         },
         "additionalProperties": false
       },
       "TeamMemberResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "faculty": {
-            "type": "string",
-            "nullable": true
-          },
-          "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "phone": {
-            "type": "string",
-            "nullable": true
-          },
-          "photoUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "gender": {
-            "$ref": "#/components/schemas/Gender"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "faculty": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phone": { "type": "string", "nullable": true },
+          "photoUrl": { "type": "string", "nullable": true },
+          "gender": { "$ref": "#/components/schemas/Gender" },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
             "nullable": true
           },
-          "registrationId": {
-            "type": "string",
-            "format": "uuid"
-          }
+          "registrationId": { "type": "string", "format": "uuid" }
         },
         "additionalProperties": false
       },
       "TestimonialResponseDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "text": {
-            "type": "string",
-            "nullable": true
-          },
-          "designation": {
-            "type": "string",
-            "nullable": true
-          },
-          "organization": {
-            "type": "string",
-            "nullable": true
-          },
-          "imageUrl": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "text": { "type": "string", "nullable": true },
+          "designation": { "type": "string", "nullable": true },
+          "organization": { "type": "string", "nullable": true },
+          "imageUrl": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": {
             "type": "string",
             "format": "date-time",

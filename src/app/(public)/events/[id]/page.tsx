@@ -2,7 +2,8 @@
 
 import PageHeader from "@/components/primitives/PageHeader";
 import PageLayout from "@/components/primitives/PageLayout";
-import { useGetEventById } from "@/lib/services/generated/frontend";
+import { getEventById } from "@/lib/services/domain/events";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -17,7 +18,15 @@ type EventDetailPageProps = {
 export default function EventDetailPage({ params }: EventDetailPageProps) {
   const { id } = use(params);
 
-  const { data: response, isLoading, error } = useGetEventById(id);
+  const {
+    data: event,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["event", id],
+    queryFn: () => getEventById(id),
+    enabled: !!id,
+  });
 
   if (isLoading) {
     return (
@@ -31,11 +40,9 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
     );
   }
 
-  if (error || !response?.data) {
+  if (error || !event) {
     notFound();
   }
-
-  const event = response.data;
 
   // Map highlights to focus areas and details
   const focusAreas = event.highlights || [];

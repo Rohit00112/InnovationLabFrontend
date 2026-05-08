@@ -198,22 +198,41 @@ export function getQueryParamValue(
 }
 
 function formDataToObject(formData: FormData): Record<string, unknown> {
-  const result: Record<string, unknown> = {};
+  const result: Record<string, any> = {};
 
   for (const [key, value] of formData.entries()) {
-    const normalizedValue: unknown = typeof value === "string" ? value : value;
+    const normalizedValue = value;
 
-    if (key in result) {
-      const previous = result[key];
-      if (Array.isArray(previous)) {
-        previous.push(normalizedValue);
-      } else {
-        result[key] = [previous, normalizedValue];
+    // Handle nested keys like Members[0].name
+    if (key.includes("[") || key.includes(".")) {
+      const parts = key.split(/[.[\]]+/).filter(Boolean);
+      let current = result;
+      for (let i = 0; i < parts.length; i++) {
+        const part = parts[i];
+        const isLast = i === parts.length - 1;
+
+        if (isLast) {
+          current[part] = normalizedValue;
+        } else {
+          const nextPart = parts[i + 1];
+          const isNextNumber = !isNaN(Number(nextPart));
+          if (!current[part]) {
+            current[part] = isNextNumber ? [] : {};
+          }
+          current = current[part];
+        }
       }
-      continue;
+    } else {
+      if (key in result) {
+        if (Array.isArray(result[key])) {
+          result[key].push(normalizedValue);
+        } else {
+          result[key] = [result[key], normalizedValue];
+        }
+      } else {
+        result[key] = normalizedValue;
+      }
     }
-
-    result[key] = normalizedValue;
   }
 
   return result;
@@ -343,9 +362,32 @@ function extractBackendMessage(data: unknown): string {
     return "Backend request failed.";
   }
 
-  const message = (data as { message?: unknown }).message;
-  if (typeof message === "string" && message.length > 0) {
-    return message;
+  const obj = data as Record<string, unknown>;
+
+  if (typeof obj.message === "string" && obj.message.length > 0) {
+    return obj.message;
+  }
+
+  if (typeof obj.title === "string" && obj.title.length > 0) {
+    let msg = obj.title;
+    if (obj.errors && typeof obj.errors === "object") {
+      const errorEntries = Object.entries(obj.errors);
+      if (errorEntries.length > 0) {
+        const [field, messages] = errorEntries[0];
+        const firstMessage = Array.isArray(messages) ? messages[0] : messages;
+        msg += `: ${field} - ${firstMessage}`;
+      }
+    }
+    return msg;
+  }
+
+  if (obj.errors && typeof obj.errors === "object") {
+    const errorEntries = Object.entries(obj.errors);
+    if (errorEntries.length > 0) {
+      const [field, messages] = errorEntries[0];
+      const firstMessage = Array.isArray(messages) ? messages[0] : messages;
+      return `${field}: ${firstMessage}`;
+    }
   }
 
   return "Backend request failed.";

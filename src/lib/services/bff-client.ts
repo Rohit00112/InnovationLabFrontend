@@ -253,8 +253,8 @@ export const bffApi = {
       localApi.post<EventResponseDto, FormData>("/api/events", {
         body: formData,
       }),
-    register: (id: string, body: EventRegistrationCreateDto) =>
-      localApi.post<EventRegistrationResponseDto, EventRegistrationCreateDto>(
+    register: (id: string, body: FormData) =>
+      localApi.post<EventRegistrationResponseDto, FormData>(
         `/api/events/${id}/register`,
         { body },
       ),

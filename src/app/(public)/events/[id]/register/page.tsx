@@ -6,7 +6,8 @@ import PageLayout from "@/components/primitives/PageLayout";
 import PageHeader from "@/components/primitives/PageHeader";
 import EventRegistrationForm from "@/components/Events/EventRegistrationForm";
 import Image from "next/image";
-import { useGetEventById } from "@/lib/services/generated/frontend";
+import { getEventById } from "@/lib/services/domain/events";
+import { useQuery } from "@tanstack/react-query";
 
 type EventRegisterPageProps = {
   params: Promise<{
@@ -14,12 +15,18 @@ type EventRegisterPageProps = {
   }>;
 };
 
-export default function EventRegisterPage({
-  params,
-}: EventRegisterPageProps) {
+export default function EventRegisterPage({ params }: EventRegisterPageProps) {
   const { id } = use(params);
-  
-  const { data: response, isLoading, error } = useGetEventById(id);
+
+  const {
+    data: event,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["event", id],
+    queryFn: () => getEventById(id),
+    enabled: !!id,
+  });
 
   if (isLoading) {
     return (
@@ -33,11 +40,11 @@ export default function EventRegisterPage({
     );
   }
 
-  if (error || !response?.data) {
+  if (error || !event) {
     notFound();
   }
 
-  const event = response.data;
+  console.log("Event data for registration page:", event);
 
   return (
     <PageLayout>
@@ -64,22 +71,26 @@ export default function EventRegisterPage({
                 <div>
                   <p className="text-neutral-600">Date</p>
                   <p className="font-medium text-neutral-900">
-                    {event.startTime ? new Date(event.startTime).toLocaleDateString("en-US", {
-                      weekday: "long",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    }) : "TBD"}
+                    {event.startTime
+                      ? new Date(event.startTime).toLocaleDateString("en-US", {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })
+                      : "TBD"}
                   </p>
                 </div>
 
                 <div>
                   <p className="text-neutral-600">Time</p>
                   <p className="font-medium text-neutral-900">
-                    {event.startTime ? new Date(event.startTime).toLocaleTimeString("en-US", {
-                      hour: "numeric",
-                      minute: "2-digit",
-                    }) : "TBD"}
+                    {event.startTime
+                      ? new Date(event.startTime).toLocaleTimeString("en-US", {
+                          hour: "numeric",
+                          minute: "2-digit",
+                        })
+                      : "TBD"}
                   </p>
                 </div>
 
@@ -112,7 +123,9 @@ export default function EventRegisterPage({
                   className="bg-white p-2"
                 />
               </div>
-              <p className="mt-2 text-xs text-neutral-500">Scan to pay registration fee (if applicable)</p>
+              <p className="mt-2 text-xs text-neutral-500">
+                Scan to pay registration fee (if applicable)
+              </p>
             </div>
 
             {event.highlights && event.highlights.length > 0 && (
@@ -136,4 +149,3 @@ export default function EventRegisterPage({
     </PageLayout>
   );
 }
-
