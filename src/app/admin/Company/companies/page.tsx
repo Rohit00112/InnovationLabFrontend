@@ -1,25 +1,33 @@
-import AddForms, { FormField } from "@/components/Admin/AddForms";
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
-import EditShell from "@/components/Admin/EditShell";
+import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
-import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { adminPageTitles } from "@/constants/ui/adminPages";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
-import { t } from "@/lib/i18n/messages";
+import EditShell from '@/components/Admin/EditShell';
+import { div } from "framer-motion/client";
+
+// Module-level constants
+const companyFields: FormField[] = [
+  { name: "Name", label: "Name", type: "text", required: true },
+  { name: "Address", label: "Address", type: "text", required: true },
+  { name: "ContactEmail", label: "Contact Email", type: "email", required: true },
+  { name: "Priority", label: "Priority", type: "number", required: true },
+  { name: "Logo", label: "Logo (Image)", type: "file", accept: "image/*", required: true },
+];
+
+const companyApiEndpoint = `/api/companies`;
 
 // Define your individual view components
 function ManageView() {
   const columns: Column[] = [
-    { key: "Name", label: "Company Name" },
-    { key: "Address", label: "Address" },
-    { key: "ContactEmail", label: "Contact Email" },
-    { key: "Priority", label: "Priority" },
+    { key: 'Name', label: 'Company Name' },
+    { key: 'Address', label: 'Address' },
+    { key: 'ContactEmail', label: 'Contact Email' },
+    { key: 'Priority', label: 'Priority' },
   ];
 
   return (
     <ManageList
       title="Manage Companies"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/companies`}
+      apiEndpoint={companyApiEndpoint}
       columns={columns}
       resourceName="Company"
     />
@@ -27,75 +35,44 @@ function ManageView() {
 }
 
 function AddView() {
-  const formFields: FormField[] = [
-    {
-      name: "Name",
-      label: t("admin.fields.Name.label" as const),
-      type: "text",
-      required: true,
-    },
-    {
-      name: "Address",
-      label: t("admin.fields.Address.label" as const),
-      type: "text",
-      required: true,
-    },
-    {
-      name: "ContactEmail",
-      label: t("admin.fields.ContactEmail.label" as const),
-      type: "email",
-      required: true,
-    },
-    {
-      name: "Priority",
-      label: t("admin.fields.Priority.label" as const),
-      type: "number",
-      required: true,
-    },
-    {
-      name: "Logo",
-      label: t("admin.fields.Logo.label" as const),
-      type: "file",
-      accept: "image/*",
-      required: true,
-    },
-  ];
-
   return (
     <AddForms
-      title={adminPageTitles.companies.addTitle}
-      fields={formFields}
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/companies`}
+      title="Add Company"
+      fields={companyFields}
+      apiEndpoint={companyApiEndpoint}
     />
   );
 }
 
 function ViewAsUser() {
-  return <div>{adminPlaceholders.viewAsUser}</div>;
+  return (
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">Companies</h2>
+      <div className="text-[var(--neutral-500)] text-sm">Company listing appears here.</div>
+    </div>
+  );
 }
 
 // 2. Export the main Page component
 export default function CompaniesPage() {
-  // const tabs = [
-  //   { id: "manage", label: "Manage" },
-  //   { id: "add", label: "Add" },
-  //   { id: "preview", label: "View as user" },
-  //   { id: "edit", label: "Edit" },
-  // ];
+  const tabs = [
+    { id: "manage", label: "Manage" },
+    { id: "add", label: "Add" },
+    { id: "preview", label: "View as user" },
+    { id: "edit", label: "Edit" },
+  ];
 
   return (
     <div className="p-6">
-      <h1 className="mb-6 text-2xl font-bold">
-        {adminPageTitles.companies.heading}
-      </h1>
+      <h1 className="text-2xl font-bold mb-6">Companies</h1>
 
       {/* 3. Pass the tabs mapping to the switcher */}
-      <AdminViewSwitcher tabs={ADMIN_VIEW_TABS} defaultTab="manage">
+      <AdminViewSwitcher tabs={tabs} defaultTab="manage">
         {{
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Company" />,
+          edit: <EditShell resourceName="Company" fields={companyFields} apiEndpoint={companyApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

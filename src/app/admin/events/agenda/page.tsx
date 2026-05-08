@@ -1,23 +1,32 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
-import EditShell from "@/components/Admin/EditShell";
+import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
-import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { adminPageTitles } from "@/constants/ui/adminPages";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
+import EditShell from '@/components/Admin/EditShell';
+import { div } from "framer-motion/client";
+
+// Module-level constants
+const agendaFields: FormField[] = [
+  { name: "Title", label: "Title", type: "text", required: true },
+  { name: "startTime", label: "Start Time", type: "text", required: true, placeholder: "YYYY-MM-DDTHH:MM:SS" },
+  { name: "endTime", label: "End Time", type: "text", required: true, placeholder: "YYYY-MM-DDTHH:MM:SS" },
+  { name: "description", label: "Description", type: "textarea", required: false },
+];
+
+const agendaApiEndpoint = `/api/events/agenda`;
 
 // 1. Define your individual view components
 function ManageView() {
   const columns: Column[] = [
-    { key: "Title", label: "Title" },
-    { key: "startTime", label: "Start Time" },
-    { key: "endTime", label: "End Time" },
-    { key: "description", label: "Description" },
+    { key: 'Title', label: 'Title' },
+    { key: 'startTime', label: 'Start Time' },
+    { key: 'endTime', label: 'End Time' },
+    { key: 'description', label: 'Description' },
   ];
 
   return (
     <ManageList
       title="Manage Agendas"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/events/agenda`}
+      apiEndpoint={agendaApiEndpoint}
       columns={columns}
       resourceName="Agenda"
     />
@@ -25,35 +34,47 @@ function ManageView() {
 }
 
 function AddView() {
-  return <div>{adminPlaceholders.addForm}</div>;
+  return (
+    <AddForms
+      title="Add Agenda Item"
+      fields={agendaFields}
+      apiEndpoint={agendaApiEndpoint}
+    />
+  );
 }
 
 function ViewAsUser() {
-  return <div>{adminPlaceholders.viewAsUser}</div>;
+  return (
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">Event Agendas</h2>
+      <div className="text-[var(--neutral-500)] text-sm">Agenda preview appears here.</div>
+    </div>
+  );
 }
 
 // 2. Export the main Page component
 export default function ManageEventAgenda() {
-  // const tabs = [
-  //   { id: "manage", label: "Manage" },
-  //   { id: "add", label: "Add" },
-  //   { id: "preview", label: "View as user" },
-  //   { id: "edit", label: "Edit" },
-  // ];
+  const tabs = [
+    { id: "manage", label: "Manage" },
+    { id: "add", label: "Add" },
+    { id: "preview", label: "View as user" },
+    { id: "edit", label: "Edit" },
+  ];
 
   return (
     <div className="p-6">
-      <h1 className="mb-6 text-2xl font-bold">
-        {adminPageTitles.eventAgenda.heading}
-      </h1>
-
+      <h1 className="text-2xl font-bold mb-6">Event Agenda</h1>
+      
       {/* 3. Pass the tabs mapping to the switcher */}
-      <AdminViewSwitcher tabs={ADMIN_VIEW_TABS} defaultTab="manage">
+      <AdminViewSwitcher
+        tabs={tabs}
+        defaultTab="manage"
+      >
         {{
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Agenda" />,
+          edit: <EditShell resourceName="Agenda" fields={agendaFields} apiEndpoint={agendaApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

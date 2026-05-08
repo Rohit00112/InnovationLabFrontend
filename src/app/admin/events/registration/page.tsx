@@ -1,23 +1,20 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
-import EditShell from "@/components/Admin/EditShell";
 import ManageList, { Column } from "@/components/Admin/ManageList";
-import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { adminPageTitles } from "@/constants/ui/adminPages";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
+import EditShell from '@/components/Admin/EditShell';
 
 // 1. Define your individual view components
 function ManageView() {
   const columns: Column[] = [
-    { key: "eventId", label: "Event ID" },
-    { key: "userId", label: "User ID" },
-    { key: "status", label: "Status" },
-    { key: "createdAt", label: "Registered At" },
+    { key: 'eventId', label: 'Event ID' },
+    { key: 'userId', label: 'User ID' },
+    { key: 'status', label: 'Status' },
+    { key: 'createdAt', label: 'Registered At' },
   ];
 
   return (
     <ManageList
       title="Manage Registrations"
-      apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ""}/api/events/registrations`}
+      apiEndpoint={`/api/events/registrations`}
       columns={columns}
       resourceName="Registration"
     />
@@ -25,30 +22,36 @@ function ManageView() {
 }
 
 function AddView() {
-  return <div>{adminPlaceholders.notReady}</div>;
+  return <div>Registration is done by page visitors</div>;
 }
 
 function ViewAsUser() {
-  return <div>{adminPlaceholders.viewAsUser}</div>;
+  return (
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">Event Registrations</h2>
+      <div className="text-[var(--neutral-500)] text-sm">Registration listing appears here.</div>
+    </div>
+  );
 }
 
 // 2. Export the main Page component
 export default function ManageEvents() {
-  // const tabs = [
-  //   { id: "manage", label: "Manage" },
-  //   { id: "add", label: "Add" },
-  //   { id: "preview", label: "View as user" },
-  //   { id: "edit", label: "Edit" },
-  // ];
+  const tabs = [
+    { id: "manage", label: "Manage" },
+    { id: "add", label: "Add" },
+    { id: "preview", label: "View as user" },
+    { id: "edit", label: "Edit" },
+  ];
 
   return (
     <div className="p-6">
-      <h1 className="mb-6 text-2xl font-bold">
-        {adminPageTitles.eventRegistration.heading}
-      </h1>
-
+      <h1 className="text-2xl font-bold mb-6">Event Registration</h1>
+      
       {/* 3. Pass the tabs mapping to the switcher */}
-      <AdminViewSwitcher tabs={ADMIN_VIEW_TABS} defaultTab="manage">
+      <AdminViewSwitcher
+        tabs={tabs}
+        defaultTab="manage"
+      >
         {{
           manage: <ManageView />,
           add: <AddView />,

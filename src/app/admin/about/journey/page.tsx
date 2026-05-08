@@ -1,102 +1,80 @@
-import AddForms, { FormField } from "@/components/Admin/AddForms";
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
-import EditShell from "@/components/Admin/EditShell";
-import JourneyManageView from "@/components/Admin/JourneyManageView";
-import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { adminPageTitles } from "@/constants/ui/adminPages";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
-import { t } from "@/lib/i18n/messages";
+import AddForms, { FormField } from "@/components/Admin/AddForms";
+import ManageList, { Column } from "@/components/Admin/ManageList";
+import EditShell from '@/components/Admin/EditShell';
+
+// Module-level constants
+const journeyFields: FormField[] = [
+  { name: "Title", label: "Title", type: "text", required: true },
+  { name: "Description", label: "Description", type: "textarea", required: true },
+  { name: "Image", label: "Image", type: "file", accept: "image/*", required: true },
+  { name: "Date", label: "Date", type: "text", required: true, placeholder: "YYYY-MM-DDTHH:MM:SS" },
+  { name: "Order", label: "Order", type: "number", required: false },
+];
+
+const journeyApiEndpoint = `/api/journey`;
 
 // 1. Define your individual view components
-// function ManageView() {
-//   const columns: Column[] = [
-//     { key: 'Title', label: 'Title' },
-//     { key: 'Description', label: 'Description' },
-//     { key: 'Date', label: 'Date' },
-//     { key: 'Order', label: 'Order' },
-//   ];
-
-//   return (
-//     <ManageList
-//       title="Manage Journey"
-//       apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/journey`}
-//       columns={columns}
-//       resourceName="Journey"
-//     />
-//   );
-// }
-
-function AddView() {
-  const formFields: FormField[] = [
-    {
-      name: "Title",
-      label: t("admin.fields.Title.label" as const),
-      type: "text",
-      required: true,
-    },
-    {
-      name: "Description",
-      label: t("admin.fields.Description.label" as const),
-      type: "textarea",
-      required: true,
-    },
-    {
-      name: "Image",
-      label: t("admin.fields.Image.label" as const),
-      type: "file",
-      accept: "image/*",
-      required: true,
-    },
-    {
-      name: "Date",
-      label: t("admin.fields.Date.label" as const),
-      type: "text",
-      required: true,
-      placeholder: t("admin.fields.Date.placeholder" as const),
-    },
-    {
-      name: "Order",
-      label: t("admin.fields.Order.label" as const),
-      type: "number",
-      required: false,
-    },
+function ManageView() {
+  const columns: Column[] = [
+    { key: 'Title', label: 'Title' },
+    { key: 'Description', label: 'Description' },
+    { key: 'Date', label: 'Date' },
+    { key: 'Order', label: 'Order' },
   ];
 
   return (
-    <AddForms
-      title={adminPageTitles.journey.addTitle}
-      fields={formFields}
-      apiEndpoint="/api/journey"
+    <ManageList
+      title="Manage Journey"
+      apiEndpoint={journeyApiEndpoint}
+      columns={columns}
+      resourceName="Journey"
+    />
+  );
+}
+
+function AddView() {
+  return (
+    <AddForms 
+      title="Add Journey Milestone" 
+      fields={journeyFields} 
+      apiEndpoint={journeyApiEndpoint}
     />
   );
 }
 
 function ViewAsUser() {
-  return <div>{adminPlaceholders.viewAsUser}</div>;
+  return (
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">Journey Timeline</h2>
+      <div className="text-[var(--neutral-500)] text-sm">Journey timeline preview appears here.</div>
+    </div>
+  );
 }
 
 // 2. Export the main Page component
 export default function ManageJourney() {
-  // const tabs = [
-  //   { id: "manage", label: "Manage" },
-  //   { id: "add", label: "Add" },
-  //   { id: "preview", label: "View as user" },
-  //   { id: "edit", label: "Edit" },
-  // ];
+  const tabs = [
+    { id: "manage", label: "Manage" },
+    { id: "add", label: "Add" },
+    { id: "preview", label: "View as user" },
+    { id: "edit", label: "Edit" },
+  ];
 
   return (
     <div className="p-6">
-      <h1 className="mb-6 text-2xl font-bold">
-        {adminPageTitles.journey.heading}
-      </h1>
-
+      <h1 className="text-2xl font-bold mb-6">Journey</h1>
+      
       {/* 3. Pass the tabs mapping to the switcher */}
-      <AdminViewSwitcher tabs={ADMIN_VIEW_TABS} defaultTab="manage">
+      <AdminViewSwitcher
+        tabs={tabs}
+        defaultTab="manage"
+      >
         {{
-          manage: <JourneyManageView />,
+          manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="Journey" />,
+          edit: <EditShell resourceName="Journey" fields={journeyFields} apiEndpoint={journeyApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

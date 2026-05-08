@@ -1,35 +1,79 @@
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
-import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
-import { adminPageTitles } from "@/constants/ui/adminPages";
+import AddForms, { FormField } from "@/components/Admin/AddForms";
+import ManageList, { Column } from "@/components/Admin/ManageList";
+import EditShell from '@/components/Admin/EditShell';
 
-// 1. Define your individual view components
+const bentoFields: FormField[] = [
+  { name: 'ImageUrl', label: 'Image (ImageUrl)', type: 'file', accept: 'image/*', required: true },
+  { name: 'AltText', label: 'Alt Text', type: 'text' },
+  { name: 'Caption', label: 'Caption', type: 'text' },
+  { name: 'Order', label: 'Order', type: 'number' },
+];
+
+const apiEndpoint = `/api/companies/bentogridimages`;
+
+// Manage BentoGrid images
 function ManageView() {
-  return <div>{adminPlaceholders.manageTable}</div>;
+  const columns: Column[] = [
+    { key: 'ImageUrl', label: 'Image', render: (val: any) => val ? <img src={val} alt="" className="h-12 w-12 object-cover rounded" /> : '-' },
+    { key: 'AltText', label: 'Alt Text' },
+    { key: 'Caption', label: 'Caption' },
+    { key: 'Order', label: 'Order' },
+  ];
+
+  return (
+    <ManageList
+      title="Manage BentoGrid Images"
+      apiEndpoint={apiEndpoint}
+      columns={columns}
+      resourceName="BentoGrid Image"
+    />
+  );
 }
 
+// Add BentoGrid image
 function AddView() {
-  return <div>{adminPlaceholders.addForm}</div>;
+  return (
+    <AddForms
+      title="Add BentoGrid Image"
+      fields={bentoFields}
+      apiEndpoint={apiEndpoint}
+    />
+  );
 }
 
+// View as user (preview)
 function ViewAsUser() {
-  return <div>{adminPlaceholders.viewAsUser}</div>;
+  return (
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">BentoGrid Images Gallery</h2>
+      <div className="text-[var(--neutral-500)] text-sm">Gallery preview appears here.</div>
+    </div>
+  );
 }
 
-// 2. Export the main Page component
+// Main Page Component
 export default function CompaniesPage() {
+  const tabs = [
+    { id: "manage", label: "Manage" },
+    { id: "add", label: "Add" },
+    { id: "preview", label: "View as user" },
+    { id: "edit", label: "Edit" },
+  ];
+
   return (
     <div className="p-6">
-      <h1 className="mb-6 text-2xl font-bold">
-        {adminPageTitles.bentogridimages.heading}
-      </h1>
+      <h1 className="text-2xl font-bold mb-6">Bento-Grid Images</h1>
 
-      {/* 3. Pass the tabs mapping to the switcher */}
-      <AdminViewSwitcher tabs={ADMIN_VIEW_TABS} defaultTab="manage">
+      <AdminViewSwitcher
+        tabs={tabs}
+        defaultTab="manage"
+      >
         {{
           manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
+          edit: <EditShell resourceName="BentoGrid Image" fields={bentoFields} apiEndpoint={apiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>

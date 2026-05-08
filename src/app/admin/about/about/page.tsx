@@ -1,107 +1,80 @@
-import AboutManageView from "@/components/Admin/AboutManageView";
-import AddForms, { FormField } from "@/components/Admin/AddForms";
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
-import EditShell from "@/components/Admin/EditShell";
-import { ADMIN_VIEW_TABS } from "@/constants/ui/admin";
-import { adminPageTitles } from "@/constants/ui/adminPages";
-import { adminPlaceholders } from "@/constants/ui/placeholders";
-import { t } from "@/lib/i18n/messages";
+import AddForms, { FormField } from "@/components/Admin/AddForms";
+import ManageList, { Column } from "@/components/Admin/ManageList";
+import EditShell from '@/components/Admin/EditShell';
+
+// Module-level constants
+const aboutFields: FormField[] = [
+  { name: "Mission", label: "Mission", type: "textarea", required: true },
+  { name: "Vision", label: "Vision", type: "textarea", required: true },
+  { name: "ParentOrgName", label: "Parent Organization Name", type: "text", required: true },
+  { name: "ParentOrgDescription", label: "Parent Organization Description", type: "textarea", required: true },
+  { name: "ParentOrgLogo", label: "Parent Organization Logo", type: "file", accept: "image/*", required: true },
+  { name: "ParentOrgWebsiteUrl", label: "Parent Organization Website URL", type: "text", required: true, placeholder: "https://example.com" },
+];
+
+const aboutApiEndpoint = `/api/about`;
 
 // 1. Define your individual view components
-// function ManageView() {
-//   const columns: Column[] = [
-//     { key: 'Mission', label: 'Mission' },
-//     { key: 'Vision', label: 'Vision' },
-//     { key: 'ParentOrgName', label: 'Parent Organization' },
-//   ];
-
-//   return (
-//     <ManageList
-//       title="Manage About"
-//       apiEndpoint={`${process.env.NEXT_PUBLIC_API_URL || ''}/api/about`}
-//       columns={columns}
-//       resourceName="About"
-//     />
-//   );
-// }
-
-function AddView() {
-  const formFields: FormField[] = [
-    {
-      name: "Mission",
-      label: t("admin.fields.Mission.label" as const),
-      type: "textarea",
-      required: true,
-    },
-    {
-      name: "Vision",
-      label: t("admin.fields.Vision.label" as const),
-      type: "textarea",
-      required: true,
-    },
-    {
-      name: "ParentOrgName",
-      label: t("admin.fields.ParentOrgName.label" as const),
-      type: "text",
-      required: true,
-    },
-    {
-      name: "ParentOrgDescription",
-      label: t("admin.fields.ParentOrgDescription.label" as const),
-      type: "textarea",
-      required: true,
-    },
-    {
-      name: "ParentOrgLogo",
-      label: t("admin.fields.ParentOrgLogo.label" as const),
-      type: "file",
-      accept: "image/*",
-      required: true,
-    },
-    {
-      name: "ParentOrgWebsiteUrl",
-      label: t("admin.fields.ParentOrgWebsiteUrl.label" as const),
-      type: "text",
-      required: true,
-      placeholder: t("admin.fields.ParentOrgWebsiteUrl.placeholder" as const),
-    },
+function ManageView() {
+  const columns: Column[] = [
+    { key: 'Mission', label: 'Mission' },
+    { key: 'Vision', label: 'Vision' },
+    { key: 'ParentOrgName', label: 'Parent Organization' },
   ];
 
   return (
-    <AddForms
-      title={adminPageTitles.about.addTitle}
-      fields={formFields}
-      apiEndpoint="/api/about"
+    <ManageList
+      title="Manage About"
+      apiEndpoint={aboutApiEndpoint}
+      columns={columns}
+      resourceName="About"
+    />
+  );
+}
+
+function AddView() {
+  return (
+    <AddForms 
+      title="Add About Information" 
+      fields={aboutFields} 
+      apiEndpoint={aboutApiEndpoint}
     />
   );
 }
 
 function ViewAsUser() {
-  return <div>{adminPlaceholders.viewAsUser}</div>;
+  return (
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
+      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">About Us</h2>
+      <div className="text-[var(--neutral-500)] text-sm">About section preview appears here.</div>
+    </div>
+  );
 }
 
 // 2. Export the main Page component
 export default function ManageAbout() {
-  // const tabs = [
-  //   { id: "manage", label: "Manage" },
-  //   { id: "add", label: "Add" },
-  //   { id: "preview", label: "View as user" },
-  //   { id: "edit", label: "Edit" },
-  // ];
+  const tabs = [
+    { id: "manage", label: "Manage" },
+    { id: "add", label: "Add" },
+    { id: "preview", label: "View as user" },
+    { id: "edit", label: "Edit" },
+  ];
 
   return (
     <div className="p-6">
-      <h1 className="mb-6 text-2xl font-bold">
-        {adminPageTitles.about.heading}
-      </h1>
-
+      <h1 className="text-2xl font-bold mb-6">Manage About</h1>
+      
       {/* 3. Pass the tabs mapping to the switcher */}
-      <AdminViewSwitcher tabs={ADMIN_VIEW_TABS} defaultTab="manage">
+      <AdminViewSwitcher
+        tabs={tabs}
+        defaultTab="manage"
+      >
         {{
-          manage: <AboutManageView />,
+          manage: <ManageView />,
           add: <AddView />,
           preview: <ViewAsUser />,
-          edit: <EditShell resourceName="About" />,
+          edit: <EditShell resourceName="About" fields={aboutFields} apiEndpoint={aboutApiEndpoint} />,
         }}
       </AdminViewSwitcher>
     </div>
