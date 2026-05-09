@@ -6,8 +6,6 @@ import { Gender } from "@/lib/services/generated/frontend/schemas/gender";
 import type { TeamMemberCreateDto } from "@/lib/services/generated/frontend/schemas/teamMemberCreateDto";
 import { useEffect, useRef, useState } from "react";
 
-// ─── Error Popup ─────────────────────────────────────────────────────────────
-
 interface ErrorInfo {
   code?: string;
   message: string;

@@ -4,6 +4,8 @@ export const POST = async (req: Request) => {
       throw new Error("env is undefined for backend url");
     }
 
+    console.log(req);
+
     // Read incoming multipart/form-data
     const formData = await req.formData();
 
