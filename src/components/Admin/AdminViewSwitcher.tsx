@@ -45,7 +45,7 @@ function ViewSwitcherContent({
             onClick={() => handleTabChange(tab.id)}
             className={`pb-3 px-1 border-b-2 font-medium text-sm transition-colors ${
               currentView === tab.id
-                ? "border-(--color-primary) text-(--color-primary)"
+                ? "border-(--color-iblue) text-(--color-iblue)"
                 : "border-transparent text-(--neutral-500) hover:text-(--neutral-700) hover:border-(--neutral-500)"
             }`}
           >

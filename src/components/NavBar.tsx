@@ -29,48 +29,43 @@ export default function Navbar() {
           <div className="hidden md:flex gap-10 text-[14px] font-bold uppercase tracking-[2px]">
             <TransitionLink
               href={navigationRoutes.home}
-              className="hover:text-primary transition-colors"
+              className="hover:text-iblue transition-colors"
             >
               Home
             </TransitionLink>
             <TransitionLink
               href={navigationRoutes.about}
-              className="hover:text-primary transition-colors"
+              className="hover:text-iblue transition-colors"
             >
               About
             </TransitionLink>
             <TransitionLink
               href={navigationRoutes.events}
-              className="hover:text-primary transition-colors"
+              className="hover:text-iblue transition-colors"
             >
               Events
             </TransitionLink>
             <TransitionLink
               href={navigationRoutes.communities}
-              className="hover:text-primary transition-colors"
+              className="hover:text-iblue transition-colors"
             >
               Communities
             </TransitionLink>
             <TransitionLink
               href={navigationRoutes.contact}
-              className="hover:text-primary transition-colors"
+              className="hover:text-iblue transition-colors"
             >
               Contact
             </TransitionLink>
             <TransitionLink
               href={navigationRoutes.company}
-              className="hover:text-primary transition-colors"
+              className="hover:text-iblue transition-colors"
             >
               Company
             </TransitionLink>
           </div>
 
-          <Link
-            href={navigationRoutes.login}
-            className="hidden border border-gray-300 px-6 py-3 md:block"
-          >
-            login
-          </Link>
+          <div></div>
 
           <button
             aria-label="Toggle navigation menu"

@@ -1,7 +1,6 @@
 import type {
   AboutResponseDto,
   BannerResponseDto,
-  GetBannersParams,
   CategoryResponseDto,
   ContactResponseDto,
   CoreValueResponseDto,
@@ -42,6 +41,19 @@ export type ApiRequestOptions<TBody = unknown> = {
   body?: TBody;
   headers?: HeadersInit;
   signal?: AbortSignal;
+};
+
+export type LoginRequestDto = {
+  email?: string | null;
+  password?: string | null;
+};
+
+export type TokenRequestDto = {
+  refreshToken?: string | null;
+};
+
+export type AuthSessionResponse = {
+  authenticated: boolean;
 };
 
 export class LocalApiError extends Error {
@@ -168,6 +180,20 @@ type AboutData =
   | null;
 
 export const bffApi = {
+  auth: {
+    login: (body: LoginRequestDto) =>
+      localApi.post<AuthSessionResponse, LoginRequestDto>("/api/auth/login", {
+        body,
+      }),
+    refreshToken: (body: TokenRequestDto) =>
+      localApi.post<AuthSessionResponse, TokenRequestDto>(
+        "/api/auth/refresh-token",
+        {
+          body,
+        },
+      ),
+    logout: () => localApi.post<AuthSessionResponse>("/api/auth/logout"),
+  },
   about: {
     get: () => localApi.get<AboutData>("/api/about"),
     getMissionVision: () =>
@@ -227,8 +253,8 @@ export const bffApi = {
       localApi.post<EventResponseDto, FormData>("/api/events", {
         body: formData,
       }),
-    register: (id: string, body: EventRegistrationCreateDto) =>
-      localApi.post<EventRegistrationResponseDto, EventRegistrationCreateDto>(
+    register: (id: string, body: FormData) =>
+      localApi.post<EventRegistrationResponseDto, FormData>(
         `/api/events/${id}/register`,
         { body },
       ),

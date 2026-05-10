@@ -148,7 +148,7 @@ export default function Timeline({ items }: TimelineProps) {
         style={{ top: `${stickyTop}px` }}
         className="sticky z-49 ml-4 pt-12 mb-6 w-fit bg-white/95 pr-4 text-2xl font-bold leading-none tracking-wide uppercase backdrop-blur-[1px] md:text-5xl"
       >
-        <span className="text-primary">TIME</span>LINE
+        <span className="text-iblue">TIME</span>LINE
       </h1>
 
       <div ref={ref} className="relative mx-auto max-w-7xl pb-20">

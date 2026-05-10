@@ -41,7 +41,7 @@ export function AboutSection() {
       <div className="mx-auto grid w-full gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div className="space-y-6">
           <h2 className="max-w-[10ch] text-[clamp(42px,8vw,64px)] font-black uppercase leading-[0.9] tracking-[-0.08em] text-neutral-900">
-            AB<span className="text-primary">O</span>UT US
+            AB<span className="text-iblue">O</span>UT US
           </h2>
           <p className="max-w-2xl text-base leading-relaxed text-black md:text-lg">
             Innovation Lab brings builders, thinkers, and creators into one

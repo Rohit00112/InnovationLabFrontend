@@ -23,10 +23,10 @@ export default function Stories({ storiesData }: StoriesProps) {
       // Use higher vh distance on mobile so it requires more scrolling (less sensitive)
       setScrollDistance(window.innerWidth < 768 ? 90 : 70);
     };
-    
+
     handleResize(); // Initial check
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function Stories({ storiesData }: StoriesProps) {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // set initial state on mount
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [numOfStories, scrollDistance]);
 
   return (
@@ -102,10 +102,12 @@ export default function Stories({ storiesData }: StoriesProps) {
                 ) : (
                   <div className="flex flex-col items-center justify-center h-full text-black px-2 py-4 md:p-8">
                     <h2 className="mb-2 md:mb-4 text-center text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
-                        {story.storyTeller}
+                      {story.storyTeller}
                     </h2>
-                    <p className="text-center text-[13px] md:text-[18px] leading-snug text-[#515151]">
-                        {story.description}
+                    <p className="text-center italic text-[13px] md:text-[18px] leading-snug text-[#515151]">
+                      {'"'}
+                      {story.description}
+                      {'"'}
                     </p>
                   </div>
                 )}
@@ -123,12 +125,14 @@ export default function Stories({ storiesData }: StoriesProps) {
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center h-full text-black px-2 py-4 md:p-8">
-                    <h2 className="mb-2 md:mb-4 text-center text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
-                        {story.storyTeller}
+                    <h2 className="mb-2 md:mb-4 font-serif text-center text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
+                      {story.storyTeller}
                     </h2>
-                      <p className="text-center text-[13px] md:text-[18px] leading-snug text-[#515151]">
-                        {story.description}
-                      </p>
+                    <p className="text-center text-[13px] italic md:text-[18px] leading-snug text-[#515151]">
+                      {'"'}
+                      {story.description}
+                      {'"'}
+                    </p>
                   </div>
                 )}
               </div>

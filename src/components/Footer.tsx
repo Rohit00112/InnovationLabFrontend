@@ -4,15 +4,23 @@ import { motion } from "framer-motion";
 import PageLayout from "./primitives/PageLayout";
 
 const footerNavigation = {
-  explore: ["About", "Communities", "Events", "Contact"],
-  lab: ["Programs", "Projects", "Research", "Archive"],
-  connect: ["Instagram", "Facebook", "GitHub"],
-};
-
-const footerLinkTargets: Record<string, string> = {
-  Facebook: "https://www.facebook.com/profile.php?id=61570739730422",
-  GitHub: "https://github.com/InnovationLabAtIIC",
-  Instagram: "https://www.instagram.com/innovationlab.iic/",
+  explore: [
+    { label: "About", href: "/about" },
+    { label: "Communities", href: "/communities" },
+    { label: "Events", href: "/events" },
+    { label: "Contact", href: "/contact" },
+  ],
+  connect: [
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/innovationlab.iic/",
+    },
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/profile.php?id=61570739730422",
+    },
+    { label: "GitHub", href: "https://github.com/InnovationLabAtIIC" },
+  ],
 };
 
 export default function Footer() {
@@ -27,7 +35,7 @@ export default function Footer() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-[11px] font-extrabold uppercase tracking-[0.32em] text-primary"
+                className="text-[11px] font-extrabold uppercase tracking-[0.32em] text-iblue"
               >
                 Innovation Lab
               </motion.p>
@@ -53,7 +61,7 @@ export default function Footer() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center border border-neutral-900 bg-neutral-900 px-6 py-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-white transition-transform duration-300 hover:-translate-y-0.5 hover:var(--color-primary)"
+                  className="inline-flex items-center justify-center border border-neutral-900 bg-neutral-900 px-6 py-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-white transition-transform duration-300 hover:-translate-y-0.5 hover:var(--color-iblue)"
                 >
                   Contact the lab
                 </Link>
@@ -82,14 +90,22 @@ export default function Footer() {
                     </h4>
                     <ul className="mt-5 flex flex-col gap-3">
                       {links.map((link) => (
-                        <li key={link}>
+                        <li key={link.label}>
                           <Link
-                            href={footerLinkTargets[link] ?? "#"}
-                            target={footerLinkTargets[link] ? "_blank" : undefined}
-                            rel={footerLinkTargets[link] ? "noreferrer" : undefined}
-                            className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-neutral-900 transition-colors hover:text-primary"
+                            href={link.href}
+                            target={
+                              link.href.startsWith("http")
+                                ? "_blank"
+                                : undefined
+                            }
+                            rel={
+                              link.href.startsWith("http")
+                                ? "noreferrer"
+                                : undefined
+                            }
+                            className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-neutral-900 transition-colors hover:text-iblue"
                           >
-                            {link}
+                            {link.label}
                           </Link>
                         </li>
                       ))}

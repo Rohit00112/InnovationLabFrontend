@@ -24,10 +24,19 @@ const About = () => {
         <SmoothScroll>
           <section className="bg-white p-12 flex flex-col gap-8 justify-center">
             <p className="max-w-3xl text-xl text-justify">
-              {publicAboutText.introParagraph}
+              We believe in building a collaborative innovation culture rooted
+              in real-world learning. Our approach focuses on reducing the gap
+              between ideas and execution, favoring practical experience over
+              passive knowledge.
             </p>
             <p className="max-w-3xl text-xl text-justify">
-              {publicAboutText.introParagraph}
+              Each project is a step forward. Each collaboration is a learning
+              process.
+            </p>
+            <p className="max-w-3xl text-xl text-justify">
+              Innovation Lab is not just a space — it is a system where learners
+              explore, build, and grow together through shared effort and guided
+              mentorship.
             </p>
           </section>
           <AboutCardList items={aboutCards} />
@@ -37,7 +46,7 @@ const About = () => {
         <div className="mx-ds-5 mt-ds-6 mb-ds-6 antialiased">
           <BentoGrid imageItems={aboutGalleryItems} />
         </div>
-        <LatestEventsSection events={aboutLatestEvents} />
+        {/* <LatestEventsSection events={aboutLatestEvents} /> */}
       </PageLayout>
     </>
   );

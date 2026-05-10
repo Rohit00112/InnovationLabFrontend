@@ -32,53 +32,55 @@ export const publicCommunityCards = [
   {
     id: "COM_01",
     slug: "coders",
-    title: "Coders",
+    title: "Coders Team",
     description:
-      "A community of developers building scalable applications, tools, and open-source systems.",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
-    focus: "Web development, backend systems, open-source",
-    members: "500+ active developers",
-    activities: "Hackathons, code reviews, system design sessions",
-    projects: "SaaS platforms, APIs, developer tools",
+      "The Coders team forms the technical backbone of the Innovation Lab, turning ideas into functional digital products through development, testing, and system integration.",
+    image: "/about/28.jpg",
+    focus: "Software development, system design, and technical execution",
+    members: "Technical innovators and developers",
+    activities: "Coding, debugging, testing, and system integration",
+    projects:
+      "Web applications, digital systems, software solutions, and technical platforms",
   },
   {
     id: "COM_02",
-    slug: "creators",
-    title: "Creators",
+    slug: "researchers",
+    title: "Researchers Team",
     description:
-      "Designers, storytellers, and content creators shaping digital experiences and narratives.",
-    image:
-      "https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800&q=80",
-    focus: "UI/UX design, branding, content creation",
-    members: "300+ creatives",
-    activities: "Design jams, content labs, portfolio reviews",
-    projects: "Brand identities, campaigns, digital products",
+      "The Researchers team ensures that every project is grounded in facts and real-world insights by exploring trends, user needs, and data-driven validation.",
+    image: "/about/30.jpg",
+    focus: "Data collection, problem analysis, and idea validation",
+    members: "Analysts and research-driven thinkers",
+    activities: "Market research, surveys, data analysis, and report writing",
+    projects:
+      "Trend analysis, research reports, user insights, and validation studies",
   },
   {
     id: "COM_03",
-    slug: "researchers",
-    title: "Researchers",
+    slug: "creators",
+    title: "Creators Team",
     description:
-      "A knowledge-driven group focused on data, experimentation, and insight generation.",
-    image:
-      "https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=800&q=80",
-    focus: "Data analysis, user research, experimentation",
-    members: "150+ analysts",
-    activities: "Research forums, case studies, data reviews",
-    projects: "Trend reports, UX insights, behavioral studies",
+      "The Creators team brings ideas to life visually and creatively, building the Innovation Lab’s public presence through branding, storytelling, and design.",
+    image: "/about/27.jpg",
+    focus: "Branding, design, and content production",
+    members: "Designers, storytellers, and creative communicators",
+    activities:
+      "Creating posts, designing visuals, managing social media, and storytelling",
+    projects:
+      "Social media campaigns, promotional content, branding materials, and digital creatives",
   },
   {
-    id: "COM_05",
+    id: "COM_04",
     slug: "entrepreneurs",
-    title: "Entrepreneurs",
+    title: "Entrepreneurs Team",
     description:
-      "Startup founders and business thinkers building scalable ventures and ideas.",
-    image:
-      "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=800&q=80",
-    focus: "Startups, business strategy, growth",
-    members: "180+ founders",
-    activities: "Pitch sessions, networking, mentorship",
-    projects: "Startups, business models, growth strategies",
+      "The Entrepreneurs team transforms innovative ideas into sustainable ventures while nurturing business strategy, leadership, and entrepreneurial growth.",
+    image: "/about/26.jpg",
+    focus: "Business planning, marketing, and strategy",
+    members: "Startup thinkers and business innovators",
+    activities:
+      "Developing business plans, pitching ideas, and designing market strategies",
+    projects:
+      "Startups, business models, go-to-market strategies, and entrepreneurial ventures",
   },
 ];

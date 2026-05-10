@@ -12,9 +12,9 @@ const styles: Record<Variant, string> = {
 };
 
 const accent: Record<Variant, string> = {
-  primary: "bg-sky-400",
-  secondary: "bg-slate-400",
-  outline: "bg-sky-400",
+  primary: "bg-iblue",
+  secondary: "bg-igreen",
+  outline: "bg-igreen",
   ghost: "bg-sky-400",
   danger: "bg-red-400",
 };
@@ -54,10 +54,7 @@ const Button = ({
   }
 
   return (
-    <button
-      {...rest}
-      className={`relative inline-block group font-medium`}
-    >
+    <button {...rest} className={`relative inline-block group font-medium`}>
       <span
         className={`
           absolute left-0 bottom-0 w-full h-1

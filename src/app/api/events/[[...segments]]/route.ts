@@ -22,6 +22,7 @@ import {
   type EventAgendaUpdateDto,
   type UpdateEventBody,
   type EventRegistrationUpdateDto,
+  type RegisterForEventBody,
 } from "@/lib/services/generated/node/schemas";
 
 export const runtime = "nodejs";
@@ -42,6 +43,11 @@ type EventRoute =
   | { kind: "not-found" };
 
 function resolveEventRoute(segments: string[]): EventRoute {
+  // Remove any trailing empty segment caused by a trailing slash
+  if (segments.length && segments[segments.length - 1] === "") {
+    segments = segments.slice(0, -1);
+  }
+
   if (segments.length === 0) {
     return { kind: "collection" };
   }
@@ -66,16 +72,13 @@ function resolveEventRoute(segments: string[]): EventRoute {
     return { kind: "register", eventId: segments[0] };
   }
 
-  if (
-    segments.length === 3 &&
-    segments[0] === "registrations" &&
-    segments[2] === "status"
-  ) {
+  if (segments.length === 3 && segments[0] === "registrations" && segments[2] === "status") {
     return { kind: "registration-status", registrationId: segments[1] };
   }
 
   return { kind: "not-found" };
 }
+
 
 export async function GET(request: NextRequest, context: Context) {
   return withSegmentRoute(
@@ -257,29 +260,25 @@ export async function POST(request: NextRequest, context: Context) {
             return idError;
           }
 
-          const parsed =
-            await parseJsonBodyAs<EventRegistrationCreateDto>(request);
-          if (parsed.error) {
-            return parsed.error;
+          // We use a raw relay here because the generated nodeApi.registerForEvent
+          // incorrectly handles complex FormData (like the Members array).
+          const backendUrl = `${process.env.BACKEND_API_BASE_URL}/api/v1/Events/${route.eventId}/register`;
+          const headers = forwardedHeaders(request) as Headers;
+          const contentType = request.headers.get("content-type");
+          if (contentType) {
+            headers.set("content-type", contentType);
           }
 
-          if (!parsed.value) {
-            return failure(
-              {
-                code: "INVALID_BODY",
-                message: "Request body must be a JSON object.",
-              },
-              400,
-              requestId,
-            );
-          }
+          const response = await fetch(backendUrl, {
+            method: "POST",
+            headers,
+            body: request.body,
+            // @ts-ignore - duplex is required for streaming request bodies in some environments
+            duplex: "half",
+          });
 
-          return relay(
-            await nodeApi.registerForEvent(route.eventId, parsed.value, {
-              headers,
-            }),
-            requestId,
-          );
+          const data = await response.json().catch(() => ({}));
+          return relay({ data, status: response.status }, requestId);
         }
 
         default:

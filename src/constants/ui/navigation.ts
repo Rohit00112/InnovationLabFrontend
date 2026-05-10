@@ -44,7 +44,7 @@ export const navigationRoutes = {
 
   // Dynamic route builders
   communityDetail: (slug: string) => `/communities/${slug}`,
-  eventDetail: (slug: string) => `/events/${slug}`,
+  eventDetail: (id: string) => `/events/${id}`,
 } as const;
 
 /**

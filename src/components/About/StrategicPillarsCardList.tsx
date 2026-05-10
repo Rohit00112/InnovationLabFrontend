@@ -9,12 +9,12 @@ type StrategicPillarsCardListProps = {
 
 const titleThemes = [
   {
-    background: "bg-primary-800",
+    background: "bg-iblue-800",
     text: "text-white",
   },
   {
     background: "bg-accent-100",
-    text: "text-primary",
+    text: "text-iblue",
   },
 ];
 

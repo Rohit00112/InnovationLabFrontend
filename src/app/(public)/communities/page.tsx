@@ -15,9 +15,8 @@ export default function CommunitiesPage() {
       <PageHeader title={publicPageTitles.communities} />
       <section className="mx-auto grid w-full bg-white grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {publicCommunityCards.map((community) => (
-          <Link
+          <div
             key={community.slug}
-            href={`/communities/${community.slug}`}
             className="group relative aspect-square min-h-56 overflow-hidden p-5 lg:min-h-64"
           >
             <Image
@@ -41,11 +40,11 @@ export default function CommunitiesPage() {
               </div>
             </div>
             <div className="pointer-events-none absolute inset-0 bg-white/25 opacity-70 transition-opacity duration-300 group-hover:opacity-95" />
-          </Link>
+          </div>
         ))}
       </section>
       <div className="line-bg w-full md:h-16 h-6"></div>
-      <section className="mx-auto bg-white px-4 py-14 md:px-0">
+      {/* <section className="mx-auto bg-white px-4 py-14 md:px-0">
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <h2 className=" px-3 text-[clamp(30px,4.6vw,54px)] font-black uppercase tracking-[-0.03em] text-ivBlack">
             {publicCommunitiesText.latestNews}
@@ -81,7 +80,7 @@ export default function CommunitiesPage() {
             </article>
           ))}
         </div>
-      </section>
+      </section> */}
       <div className="line-bg w-full md:h-16 h-6"></div>
       <section className="flex flex-col bg-white">
         {publicCommunityCards.map((community, index) => (
@@ -102,7 +101,7 @@ export default function CommunitiesPage() {
             </div>
 
             <div className="flex w-full flex-col gap-4 p-5 md:p-8 lg:w-7/12 lg:gap-6 lg:p-10">
-              <span className="text-sm tracking-[0.35em] font-extrabold text-primary">
+              <span className="text-sm tracking-[0.35em] font-extrabold text-iblue">
                 {community.id}
               </span>
 
@@ -148,11 +147,11 @@ export default function CommunitiesPage() {
                 </div>
               </div>
 
-              <div className="mt-6 md:mt-8">
+              {/* <div className="mt-6 md:mt-8">
                 <Link href={`/communities/${community.slug}`}>
                   <Button>{publicCommunitiesText.exploreCommunity}</Button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         ))}

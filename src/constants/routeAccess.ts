@@ -1,0 +1,1 @@
+export const TEMPORARILY_HIDE_ADMIN_AND_LOGIN_ROUTES = true;

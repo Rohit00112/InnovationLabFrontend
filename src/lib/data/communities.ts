@@ -1,4 +1,8 @@
-export type CommunitySlug = "coders" | "creators" | "researchers" | "inventors";
+export type CommunitySlug =
+  | "coders"
+  | "creators"
+  | "researchers"
+  | "entrepreneurs";
 
 export type CommunityCard = {
   id: string;
@@ -39,8 +43,7 @@ export const communityCards: CommunityCard[] = [
     title: "Coders",
     description:
       "Building product logic, platforms, and robust developer tooling.",
-    image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80",
+    image: "/about/32.jpg",
   },
   {
     id: "02",
@@ -48,8 +51,7 @@ export const communityCards: CommunityCard[] = [
     title: "Creators",
     description:
       "Crafting content, interfaces, and meaningful visual narratives.",
-    image:
-      "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80",
+    image: "/about/30.jpg",
   },
   {
     id: "03",
@@ -57,16 +59,14 @@ export const communityCards: CommunityCard[] = [
     title: "Researchers",
     description:
       "Testing ideas, validating hypotheses, and publishing findings.",
-    image:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=80",
+    image: "/about/29.jpg",
   },
   {
     id: "04",
-    slug: "inventors",
-    title: "Inventors",
+    slug: "entrepreneurs",
+    title: "Entrepreneurs",
     description: "Turning concepts into prototypes and deployable innovation.",
-    image:
-      "https://images.unsplash.com/photo-1581093588401-22f35bb9e90b?auto=format&fit=crop&w=900&q=80",
+    image: "/about/28.jpg",
   },
 ];
 
@@ -203,13 +203,13 @@ export const communityProfiles: Record<CommunitySlug, CommunityProfile> = {
       },
     ],
   },
-  inventors: {
-    slug: "inventors",
-    title: "Inventors",
+  entrepreneurs: {
+    slug: "entrepreneurs",
+    title: "Entrepreneurs",
     about:
-      "The Inventors community transforms ideas into functioning prototypes, hardware experiments, and interactive systems. Members move fast from concept to testable artifact.",
+      "The Entrepreneurs community focuses on turning ideas into viable business ventures, fostering innovation and growth through collaboration and resource sharing. Members work together to identify opportunities, develop business plans, and launch new products or services.",
     aboutLead:
-      "Inventors bridge imagination and implementation through practical prototyping.",
+      "Entrepreneurs drive economic impact by creating sustainable business models and scalable solutions.",
     teamMembers: [
       {
         name: "Ishan Bista",
@@ -253,5 +253,5 @@ export const communitySlugs: CommunitySlug[] = [
   "coders",
   "creators",
   "researchers",
-  "inventors",
+  "entrepreneurs",
 ];

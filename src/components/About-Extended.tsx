@@ -61,14 +61,13 @@ export default function OppositeScrollMotion() {
 
           <div className="max-w-md pt-2 text-xl leading-9 tracking-wide text-neutral-800 md:pt-6">
             We believe in the{" "}
-            <span className="font-semibold text-primary">architectural</span>{" "}
+            <span className="font-semibold text-iblue">architectural</span>{" "}
             sovereignty of the grid. Our practice is dedicated to the reduction
-            of noise,{" "}
-            <span className="font-semibold text-primary">favoring</span>
+            of noise, <span className="font-semibold text-iblue">favoring</span>
             structural honesty over{" "}
-            <span className="font-semibold text-primary">decorative</span>{" "}
+            <span className="font-semibold text-iblue">decorative</span>{" "}
             distraction. Each line is a
-            <span className="font-semibold text-primary"> proof</span>, each
+            <span className="font-semibold text-iblue"> proof</span>, each
             volume a resolution.
           </div>
         </div>
@@ -76,14 +75,13 @@ export default function OppositeScrollMotion() {
         <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-2 md:gap-12">
           <div className="order-2 max-w-md text-xl leading-9 tracking-wide text-neutral-800 md:order-1">
             We believe in the{" "}
-            <span className="font-semibold text-primary">architectural</span>{" "}
+            <span className="font-semibold text-iblue">architectural</span>{" "}
             sovereignty of the grid. Our practice is dedicated to the reduction
-            of noise,{" "}
-            <span className="font-semibold text-primary">favoring</span>
+            of noise, <span className="font-semibold text-iblue">favoring</span>
             structural honesty over{" "}
-            <span className="font-semibold text-primary">decorative</span>{" "}
+            <span className="font-semibold text-iblue">decorative</span>{" "}
             distraction. Each line is a
-            <span className="font-semibold text-primary"> proof</span>, each
+            <span className="font-semibold text-iblue"> proof</span>, each
             volume a resolution.
           </div>
 

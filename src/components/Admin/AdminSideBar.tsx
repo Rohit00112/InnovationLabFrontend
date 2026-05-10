@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 
+import LogoutButton from "@/components/Auth/LogoutButton";
+
 // Softer spring animation curve
 const softSpringEasing = "cubic-bezier(0.25, 1.1, 0.4, 1)";
 
@@ -554,6 +556,10 @@ function DetailSidebar({ activeSection }: { activeSection: string }) {
               isCollapsed={isCollapsed}
             />
           ))}
+        </div>
+
+        <div className="mt-4 border-t border-neutral-200 pt-4">
+          <LogoutButton />
         </div>
       </div>
     </aside>

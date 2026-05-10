@@ -11,54 +11,54 @@ type GalleryImage = {
 
 const topRowImages: GalleryImage[] = [
   {
-    src: "https://images.pexels.com/photos/34010690/pexels-photo-34010690.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/1.JPG",
     alt: "Dynamic architectural structure in Malmö",
   },
   {
-    src: "https://images.pexels.com/photos/35782401/pexels-photo-35782401.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/2.JPG",
     alt: "Modern architectural ceiling with geometric design",
   },
   {
-    src: "https://images.pexels.com/photos/31592973/pexels-photo-31592973.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/3.JPG",
     alt: "Black and white glass architecture",
   },
   {
-    src: "https://images.pexels.com/photos/18515256/pexels-photo-18515256.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/4.JPG",
     alt: "Neoclassical columns at sunset",
   },
   {
-    src: "https://images.pexels.com/photos/32058291/pexels-photo-32058291.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/5.JPG",
     alt: "Ornate neo-classical architectural corner",
   },
   {
-    src: "https://images.pexels.com/photos/5458971/pexels-photo-5458971.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/6.JPG",
     alt: "Modern futuristic building in Valencia",
   },
 ];
 
 const bottomRowImages: GalleryImage[] = [
   {
-    src: "https://images.pexels.com/photos/32695405/pexels-photo-32695405.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/7.JPG",
     alt: "Bright modern interior with large windows",
   },
   {
-    src: "https://images.pexels.com/photos/32473245/pexels-photo-32473245.png?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/8.jpeg",
     alt: "Modern interior with minimalist design",
   },
   {
-    src: "https://images.pexels.com/photos/9209432/pexels-photo-9209432.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/9.JPG",
     alt: "House interior with a green door",
   },
   {
-    src: "https://images.pexels.com/photos/34689686/pexels-photo-34689686.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/10.JPG",
     alt: "Rustic interior with wooden walls and lights",
   },
   {
-    src: "https://images.pexels.com/photos/36464518/pexels-photo-36464518.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/11.JPG",
     alt: "Modern stylish interior with unique design",
   },
   {
-    src: "https://images.pexels.com/photos/33685860/pexels-photo-33685860.jpeg?auto=compress&cs=tinysrgb&w=800",
+    src: "/hero/12.JPG",
     alt: "Modern luxury interior with marble accents",
   },
 ];

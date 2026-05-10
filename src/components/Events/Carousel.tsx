@@ -4,59 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { useGetEvents } from "@/lib/services/generated/frontend";
-import { separateEvents } from "@/lib/utils/events";
+import type { EventResponseDto } from "@/lib/services/generated/frontend/schemas";
 
-export function EmblaCarousel() {
+type EmblaCarouselProps = {
+  events: EventResponseDto[];
+};
+
+export function EmblaCarousel({ events }: EmblaCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const { data } = useGetEvents();
-  // Handle both array and object response formats
-  const allEvents = Array.isArray(data) ? data : (data?.data as any[]) || [];
-  const { upcomingEvents } = separateEvents(allEvents);
-
-  // Use upcoming events for carousel, fallback to sample data if none available
-  const slides =
-    upcomingEvents.slice(0, 3).length > 0
-      ? upcomingEvents.slice(0, 3).map((event) => ({
-          title: event.title || "Featured Event",
-          description: event.description || "",
-          buttonLabel: "Join Now",
-          buttonHref: event.id ? `/events/${event.id}` : "/events",
-          image:
-            event.coverImageUrl ||
-            "https://images.pexels.com/photos/36390048/pexels-photo-36390048.jpeg",
-        }))
-      : [
-          {
-            title: "Spring Carnival",
-            description:
-              "A multi-sensory immersion into generative environments, creative systems, and live prototypes.",
-            buttonLabel: "Join Now",
-            buttonHref: "/contact",
-            image:
-              "https://images.pexels.com/photos/36390048/pexels-photo-36390048.jpeg",
-          },
-          {
-            title: "XR Habitat Demo",
-            description:
-              "An interactive showcase of spatial ideas with rapid feedback from builders and researchers.",
-            buttonLabel: "Explore Session",
-            buttonHref: "/events",
-            image:
-              "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
-          },
-          {
-            title: "Urban Data Lab",
-            description:
-              "Collaborative mapping of city signals to create practical prototypes for communities.",
-            buttonLabel: "View Program",
-            buttonHref: "/events",
-            image:
-              "https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1600&q=80",
-          },
-        ];
+  // Map API events to carousel slides
+  const slides = events.map((event) => ({
+    id: event.id,
+    title: event.title || "Untitled Event",
+    description: event.description || "",
+    image: event.coverImageUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
+    eyebrow: event.seriesName || "Featured Event",
+  }));
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -91,13 +56,15 @@ export function EmblaCarousel() {
     return () => clearInterval(id);
   }, [emblaApi]);
 
+  if (slides.length === 0) return null;
+
   return (
     <div className="relative min-h-screen w-full md:h-[82vh]">
       <div className="h-full overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
           {slides.map((slide) => (
             <article
-              key={slide.title}
+              key={slide.id}
               className="relative h-full min-w-0 flex-[0_0_100%]"
             >
               <Image
@@ -111,8 +78,8 @@ export function EmblaCarousel() {
 
               <div className="absolute inset-0 flex items-end p-5 md:p-10">
                 <div className="max-w-3xl text-white">
-                  <p className="mb-3 inline-flex var(--color-primary) px-2 py-1 text-[0.56rem] font-extrabold uppercase tracking-[0.2em] text-black">
-                    Featured Event
+                  <p className="mb-3 inline-flex bg-cyan-400 px-2 py-1 text-[0.56rem] font-extrabold uppercase tracking-[0.2em] text-black">
+                    {slide.eyebrow}
                   </p>
                   <h3 className="text-[clamp(2rem,5vw,4.6rem)] font-black uppercase leading-[0.88] tracking-[-0.06em]">
                     {slide.title}
@@ -120,18 +87,20 @@ export function EmblaCarousel() {
                   <p className="mt-4 max-w-xl text-sm leading-6 text-white/82 md:text-base">
                     {slide.description}
                   </p>
-                  <Link
-                    href={slide.buttonHref}
-                    className="mt-6 inline-flex border border-white/60 bg-white px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition hover:var(--color-primary) hover:border-cyan-500"
-                  >
-                    {slide.buttonLabel}
-                  </Link>
-                  <Link
-                    href="/events"
-                    className="mt-3 inline-flex border border-white/35 bg-white/10 px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-white transition hover:bg-white hover:text-black"
-                  >
-                    View Events
-                  </Link>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <Link
+                      href={`/events/${slide.id}`}
+                      className="inline-flex border border-white/60 bg-white px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition hover:bg-cyan-400 hover:border-cyan-400"
+                    >
+                      Learn More
+                    </Link>
+                    <Link
+                      href={`/events/${slide.id}/register`}
+                      className="inline-flex border border-white/60 bg-white px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition hover:bg-cyan-400 hover:border-cyan-400"
+                    >
+                      Register
+                    </Link>
+                  </div>
                 </div>
               </div>
             </article>
@@ -142,7 +111,7 @@ export function EmblaCarousel() {
       <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 gap-2 md:bottom-8">
         {slides.map((slide, index) => (
           <button
-            key={slide.title}
+            key={slide.id}
             type="button"
             aria-label={`Go to slide ${index + 1}`}
             onClick={() => emblaApi?.scrollTo(index)}
@@ -175,3 +144,4 @@ export function EmblaCarousel() {
     </div>
   );
 }
+

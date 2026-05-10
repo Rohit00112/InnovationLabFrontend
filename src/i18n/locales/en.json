@@ -155,7 +155,8 @@
       "login": "Login"
     },
     "about": {
-      "introParagraph": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."
+      "introParagraph": "We believe in building a collaborative innovation culture rooted in real-world learning. Our approach focuses on reducing the gap between ideas and execution, favoring practical experience over passive knowledge.",
+      "intro2": "Each project is a step forward. Each collaboration is a learning process."
     },
     "company": {
       "companiesProviding": "Companies Providing",
@@ -178,13 +179,13 @@
       "statusAwaiting": "Awaiting",
       "send": "Send",
       "infoEmailTitle": "Email",
-      "infoEmailContent": "admin@neo-lab.sys",
+      "infoEmailContent": "innovation.lab@iic.edu.np",
       "infoPhoneTitle": "Phone",
-      "infoPhoneContent": "+44 (0) 20 7946 0142",
+      "infoPhoneContent": "+977 9801597028",
       "infoLocationTitle": "Location",
-      "infoLocationContent": "18 Brutal Wharf, E14 5SX, London",
+      "infoLocationContent": "Sundarharaincha-4 Morang, Nepal",
       "infoUptimeTitle": "Uptime",
-      "infoUptimeContent": "09:00 - 21:00 GMT",
+      "infoUptimeContent": "8:00 - 4:00 NPT, Sunday to Friday",
       "sendSuccess": "Message sent — thank you!",
       "sendError": "Unable to send message. Please try again later.",
       "validation": {
