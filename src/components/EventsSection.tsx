@@ -54,7 +54,7 @@ export default function EventsSection() {
         >
           <div className="absolute inset-0 flex flex-col justify-start p-6 text-white md:p-10">
             <div className="mb-10 flex items-center gap-5 md:mb-12">
-              <span className="inline-flex h-12 w-12 items-center justify-center var(---color-primary) text-3xl font-bold leading-none text-neutral-950">
+              <span className="inline-flex h-12 w-12 items-center justify-center var(---color-iblue) text-3xl font-bold leading-none text-neutral-950">
                 1
               </span>
               <h3 className="text-4xl font-bold uppercase tracking-tight md:text-5xl">

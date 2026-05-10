@@ -68,7 +68,7 @@ export const TestimonialSection = () => {
     >
       <div className="mx-auto flex w-full max-w-400 flex-col gap-12 px-4 sm:px-6 md:gap-16 md:px-8 lg:px-10">
         <h2 className="max-w-[10ch] text-[clamp(36px,9vw,64px)] font-black uppercase leading-[0.9] tracking-[-0.08em] text-neutral-900">
-          TESTIM<span className="text-primary">O</span>NIAL
+          TESTIM<span className="text-iblue">O</span>NIAL
         </h2>
         <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12">
           <div className="flex items-start gap-3 sm:gap-4 md:gap-8">

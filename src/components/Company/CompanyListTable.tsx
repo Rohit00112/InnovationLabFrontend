@@ -6,7 +6,10 @@ import type { CompanyListItem } from "@/components/Company/companyList";
 interface ColumnDef<T> {
   header: string;
   accessorKey?: keyof T;
-  cell?: (item: T, context: { rowRef: React.RefObject<HTMLDivElement | null> }) => React.ReactNode;
+  cell?: (
+    item: T,
+    context: { rowRef: React.RefObject<HTMLDivElement | null> },
+  ) => React.ReactNode;
   className?: string;
   headerClassName?: string;
   width?: string;
@@ -36,7 +39,11 @@ export default function CompanyListTable({
       className: "w-[80px]",
       cell: (company) => (
         <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-md border border-black/10 bg-white shadow-sm">
-          <img src={company.logoUrl} alt={company.name} className="h-full w-full object-cover" />
+          <img
+            src={company.logoUrl}
+            alt={company.name}
+            className="h-full w-full object-cover"
+          />
         </div>
       ),
     },
@@ -116,7 +123,9 @@ export default function CompanyListTable({
         ];
   const tableColumns = columns ?? variantColumns;
 
-  const displayCompanies = [...companies].sort((a, b) => a.priority - b.priority);
+  const displayCompanies = [...companies].sort(
+    (a, b) => a.priority - b.priority,
+  );
 
   const gridTemplateColumns = tableColumns
     .map((column) => column.width ?? "1fr")
@@ -125,7 +134,10 @@ export default function CompanyListTable({
   const showPagination = displayCompanies.length > pageSize;
   const clampedPage = Math.min(page, totalPages);
   const startIndex = (clampedPage - 1) * pageSize;
-  const pagedCompanies = displayCompanies.slice(startIndex, startIndex + pageSize);
+  const pagedCompanies = displayCompanies.slice(
+    startIndex,
+    startIndex + pageSize,
+  );
 
   if (!displayCompanies.length) {
     return (
@@ -174,7 +186,9 @@ export default function CompanyListTable({
       {showPagination && (
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-black/10 px-6 py-4 text-sm text-neutral-600">
           <span>
-            Showing {startIndex + 1}-{Math.min(startIndex + pageSize, displayCompanies.length)} of {displayCompanies.length}
+            Showing {startIndex + 1}-
+            {Math.min(startIndex + pageSize, displayCompanies.length)} of{" "}
+            {displayCompanies.length}
           </span>
           <div className="flex items-center gap-2">
             <button
@@ -195,7 +209,7 @@ export default function CompanyListTable({
                     onClick={() => setPage(pageNumber)}
                     className={`h-9 w-9 rounded-full border text-xs font-semibold transition ${
                       pageNumber === clampedPage
-                        ? "border-primary bg-accent/10 text-neutral-800"
+                        ? "border-iblue bg-accent/10 text-neutral-800"
                         : "border-black/10 text-neutral-600 hover:border-black/20 hover:text-neutral-900"
                     }`}
                   >
@@ -225,7 +239,11 @@ interface CompanyTableRowProps {
   gridTemplateColumns: string;
 }
 
-function CompanyTableRow({ company, columns, gridTemplateColumns }: CompanyTableRowProps) {
+function CompanyTableRow({
+  company,
+  columns,
+  gridTemplateColumns,
+}: CompanyTableRowProps) {
   const rowRef = React.useRef<HTMLDivElement>(null);
 
   return (
@@ -235,7 +253,10 @@ function CompanyTableRow({ company, columns, gridTemplateColumns }: CompanyTable
       style={{ gridTemplateColumns }}
     >
       {columns.map((column, colIndex) => (
-        <div key={`${company.name}-${colIndex}`} className={column.className ?? ""}>
+        <div
+          key={`${company.name}-${colIndex}`}
+          className={column.className ?? ""}
+        >
           {column.cell
             ? column.cell(company, { rowRef })
             : column.accessorKey

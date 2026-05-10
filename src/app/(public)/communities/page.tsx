@@ -101,7 +101,7 @@ export default function CommunitiesPage() {
             </div>
 
             <div className="flex w-full flex-col gap-4 p-5 md:p-8 lg:w-7/12 lg:gap-6 lg:p-10">
-              <span className="text-sm tracking-[0.35em] font-extrabold text-primary">
+              <span className="text-sm tracking-[0.35em] font-extrabold text-iblue">
                 {community.id}
               </span>
 

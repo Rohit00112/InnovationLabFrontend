@@ -39,8 +39,7 @@ export const communityCards: CommunityCard[] = [
     title: "Coders",
     description:
       "Building product logic, platforms, and robust developer tooling.",
-    image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80",
+    image: "/about/32.jpg",
   },
   {
     id: "02",
@@ -48,8 +47,7 @@ export const communityCards: CommunityCard[] = [
     title: "Creators",
     description:
       "Crafting content, interfaces, and meaningful visual narratives.",
-    image:
-      "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80",
+    image: "/about/30.jpg",
   },
   {
     id: "03",
@@ -57,16 +55,14 @@ export const communityCards: CommunityCard[] = [
     title: "Researchers",
     description:
       "Testing ideas, validating hypotheses, and publishing findings.",
-    image:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=900&q=80",
+    image: "/about/29.jpg",
   },
   {
     id: "04",
     slug: "inventors",
     title: "Inventors",
     description: "Turning concepts into prototypes and deployable innovation.",
-    image:
-      "https://images.unsplash.com/photo-1581093588401-22f35bb9e90b?auto=format&fit=crop&w=900&q=80",
+    image: "/about/28.jpg",
   },
 ];
 

@@ -10,7 +10,7 @@ export function CommunitiesSection() {
         <div className="mb-10 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div className="">
             <h2 className="mt-3 text-[clamp(34px,6vw,72px)] font-black uppercase leading-[0.92] tracking-[-0.08em] text-neutral-900">
-              C<span className="text-primary">O</span>MMUNITIES
+              C<span className="text-iblue">O</span>MMUNITIES
             </h2>
           </div>
         </div>
@@ -38,7 +38,7 @@ export function CommunitiesSection() {
               </div>
               <div className="grid gap-4 p-5 md:grid-cols-[1fr_auto] md:items-end">
                 <div>
-                  <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-primary">
+                  <p className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-iblue">
                     {community.id}
                   </p>
                   <h3 className="mt-3 text-3xl font-black uppercase tracking-tighter text-neutral-900">

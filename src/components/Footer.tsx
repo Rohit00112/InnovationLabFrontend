@@ -27,7 +27,7 @@ export default function Footer() {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-[11px] font-extrabold uppercase tracking-[0.32em] text-primary"
+                className="text-[11px] font-extrabold uppercase tracking-[0.32em] text-iblue"
               >
                 Innovation Lab
               </motion.p>
@@ -53,7 +53,7 @@ export default function Footer() {
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center border border-neutral-900 bg-neutral-900 px-6 py-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-white transition-transform duration-300 hover:-translate-y-0.5 hover:var(--color-primary)"
+                  className="inline-flex items-center justify-center border border-neutral-900 bg-neutral-900 px-6 py-3 text-[11px] font-extrabold uppercase tracking-[0.28em] text-white transition-transform duration-300 hover:-translate-y-0.5 hover:var(--color-iblue)"
                 >
                   Contact the lab
                 </Link>
@@ -85,9 +85,13 @@ export default function Footer() {
                         <li key={link}>
                           <Link
                             href={footerLinkTargets[link] ?? "#"}
-                            target={footerLinkTargets[link] ? "_blank" : undefined}
-                            rel={footerLinkTargets[link] ? "noreferrer" : undefined}
-                            className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-neutral-900 transition-colors hover:text-primary"
+                            target={
+                              footerLinkTargets[link] ? "_blank" : undefined
+                            }
+                            rel={
+                              footerLinkTargets[link] ? "noreferrer" : undefined
+                            }
+                            className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-neutral-900 transition-colors hover:text-iblue"
                           >
                             {link}
                           </Link>

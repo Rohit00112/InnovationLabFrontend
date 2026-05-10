@@ -187,10 +187,10 @@ export default function AddForms({
                     | readonly string[]
                     | undefined) || ""
                 }
-                className="block w-full border border-(--neutral-500) rounded-md shadow-sm p-2.5 focus:ring-(--color-primary) focus:border-(--color-primary) transition-colors"
+                className="block w-full border border-(--neutral-500) rounded-md shadow-sm p-2.5 focus:ring-(--color-iblue) focus:border-(--color-iblue) transition-colors"
               ></textarea>
             ) : field.type === "file" ? (
-              <div className="mt-1 flex justify-center rounded-md border-2 border-(--neutral-500) border-dashed bg-(--neutral-100) px-6 pt-5 pb-6 transition-colors hover:border-primary-600">
+              <div className="mt-1 flex justify-center rounded-md border-2 border-(--neutral-500) border-dashed bg-(--neutral-100) px-6 pt-5 pb-6 transition-colors hover:border-iblue-600">
                 <div className="space-y-1 text-center">
                   <svg
                     className="mx-auto h-12 w-12 text-(--neutral-500)"
@@ -207,7 +207,7 @@ export default function AddForms({
                     />
                   </svg>
                   <div className="flex justify-center text-sm text-(--neutral-700)">
-                    <label className="relative cursor-pointer rounded-md bg-transparent font-medium text-(--color-primary) hover:text-primary-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-(--color-primary) focus-within:ring-offset-2">
+                    <label className="relative cursor-pointer rounded-md bg-transparent font-medium text-(--color-iblue) hover:text-iblue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-(--color-iblue) focus-within:ring-offset-2">
                       <span>{addFormMessages.uploadFile}</span>
                       <input
                         type="file"
@@ -237,7 +237,7 @@ export default function AddForms({
                     | readonly string[]
                     | undefined) || ""
                 }
-                className="block w-full border border-(--neutral-500) rounded-md shadow-sm p-2.5 focus:ring-(--color-primary) focus:border-(--color-primary) transition-colors"
+                className="block w-full border border-(--neutral-500) rounded-md shadow-sm p-2.5 focus:ring-(--color-iblue) focus:border-(--color-iblue) transition-colors"
               />
             )}
           </div>
@@ -247,7 +247,7 @@ export default function AddForms({
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-md bg-(--color-primary) px-6 py-2.5 font-medium text-white shadow-sm transition-colors hover:bg-primary-600 focus:ring-2 focus:ring-(--color-primary) focus:ring-offset-2 focus:outline-none disabled:opacity-50 sm:w-auto"
+            className="w-full rounded-md bg-(--color-iblue) px-6 py-2.5 font-medium text-white shadow-sm transition-colors hover:bg-iblue-600 focus:ring-2 focus:ring-(--color-iblue) focus:ring-offset-2 focus:outline-none disabled:opacity-50 sm:w-auto"
           >
             {loading
               ? addFormMessages.submitting

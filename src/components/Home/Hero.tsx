@@ -28,8 +28,8 @@ export default function Hero() {
         <div className="w-full h-full absolute top-0 flex flex-col">
           <div className="px-3 pt-4 sm:pt-6 lg:pt-8">
             <h1 className="whitespace-nowrap text-[clamp(1.45rem,9.2vw,4.4rem)] sm:text-[clamp(2rem,9vw,5rem)] lg:text-[clamp(5.1rem,8vw,10rem)] font-bold leading-[0.86] tracking-[-0.08em]">
-              INN<span className="text-primary">O</span>VATI
-              <span className="text-primary">O</span>N LAB
+              INN<span className="text-iblue">O</span>VATI
+              <span className="text-iblue">O</span>N LAB
             </h1>
           </div>
 
@@ -58,7 +58,7 @@ export default function Hero() {
       <div className="w-full h-auto">
         <div className="flex items-center justify-center border-t border-gray-300 bg-white px-3 py-4 sm:py-5">
           <h2 className="text-[clamp(2rem,4vw,4rem)] font-semibold">
-            <span className="text-primary">O</span>UR PARTNERS
+            <span className="text-iblue">O</span>UR PARTNERS
           </h2>
         </div>
 

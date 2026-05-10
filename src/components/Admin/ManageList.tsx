@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import React, { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 export interface Column {
   key: string;
@@ -54,19 +54,23 @@ export default function ManageList({
 
   const handleDelete = async (id: string, e: React.MouseEvent) => {
     e.preventDefault();
-    if (!confirm(`Are you sure you want to delete this ${resourceName.toLowerCase()}?`)) {
+    if (
+      !confirm(
+        `Are you sure you want to delete this ${resourceName.toLowerCase()}?`,
+      )
+    ) {
       return;
     }
 
     try {
       setDeletingId(id);
-      
+
       if (onDelete) {
         await onDelete(id);
       } else {
         // Default delete behavior
         const response = await fetch(`${apiEndpoint}/${id}`, {
-          method: 'DELETE',
+          method: "DELETE",
         });
         if (!response.ok) {
           throw new Error(`Failed to delete ${resourceName}`);
@@ -74,7 +78,7 @@ export default function ManageList({
       }
 
       // Remove from local state
-      setItems(items.filter(item => item.id !== id));
+      setItems(items.filter((item) => item.id !== id));
     } catch (err: any) {
       setError(err.message || `Failed to delete ${resourceName}`);
     } finally {
@@ -86,7 +90,9 @@ export default function ManageList({
     return (
       <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
         <div className="flex justify-center items-center py-12">
-          <div className="text-[var(--neutral-500)]">Loading {resourceName.toLowerCase()}...</div>
+          <div className="text-[var(--neutral-500)]">
+            Loading {resourceName.toLowerCase()}...
+          </div>
         </div>
       </div>
     );
@@ -109,7 +115,7 @@ export default function ManageList({
           <table className="w-full">
             <thead>
               <tr className="border-b border-[var(--neutral-100)]">
-                {columns.map(column => (
+                {columns.map((column) => (
                   <th
                     key={column.key}
                     className="px-6 py-3 text-left text-sm font-semibold text-[var(--neutral-700)] bg-[var(--neutral-100)]"
@@ -128,7 +134,7 @@ export default function ManageList({
                   key={item.id || index}
                   className="border-b border-[var(--neutral-100)] hover:bg-[var(--neutral-100)] transition-colors"
                 >
-                  {columns.map(column => (
+                  {columns.map((column) => (
                     <td
                       key={`${item.id}-${column.key}`}
                       className="px-6 py-4 text-sm text-[var(--neutral-700)]"
@@ -140,17 +146,19 @@ export default function ManageList({
                   ))}
                   <td className="px-6 py-4 text-sm space-x-2">
                     <button
-                      onClick={() => router.push(`${pathname}?view=edit&id=${item.id}`)}
-                      className="px-3 py-1.5 bg-[var(--color-primary)] text-white rounded-md text-xs font-medium hover:bg-[var(--color-primary-600)] transition-colors mr-2"
+                      onClick={() =>
+                        router.push(`${pathname}?view=edit&id=${item.id}`)
+                      }
+                      className="px-3 py-1.5 bg-[var(--color-iblue)] text-white rounded-md text-xs font-medium hover:bg-[var(--color-iblue-600)] transition-colors mr-2"
                     >
                       Edit
                     </button>
                     <button
-                      onClick={e => handleDelete(item.id, e)}
+                      onClick={(e) => handleDelete(item.id, e)}
                       disabled={deletingId === item.id}
                       className="px-3 py-1.5 bg-[var(--color-error)] text-white rounded-md text-xs font-medium hover:bg-[#b91c1c] disabled:opacity-50 transition-colors"
                     >
-                      {deletingId === item.id ? 'Deleting...' : 'Delete'}
+                      {deletingId === item.id ? "Deleting..." : "Delete"}
                     </button>
                   </td>
                 </tr>
@@ -169,15 +177,19 @@ function renderValue(value: any): React.ReactNode {
     return <span className="text-[var(--neutral-500)]">-</span>;
   }
 
-  if (typeof value === 'boolean') {
-    return value ? <span className="text-[var(--color-success)]">Yes</span> : <span className="text-[var(--neutral-500)]">No</span>;
+  if (typeof value === "boolean") {
+    return value ? (
+      <span className="text-[var(--color-success)]">Yes</span>
+    ) : (
+      <span className="text-[var(--neutral-500)]">No</span>
+    );
   }
 
-  if (typeof value === 'object') {
+  if (typeof value === "object") {
     return <span className="text-[var(--neutral-500)]">[Object]</span>;
   }
 
-  if (typeof value === 'string' && value.length > 100) {
+  if (typeof value === "string" && value.length > 100) {
     return <span title={value}>{value.substring(0, 100)}...</span>;
   }
 

@@ -35,7 +35,7 @@ export default function LatestEvents({ events }: LatestEventsProps) {
                 {item.title}
               </h3>
               <p className="text-gray-500 text-sm mb-4">{item.desc}</p>
-              <span className="text-primary text-2xl cursor-pointer group-hover:translate-x-2 transition-transform inline-block">
+              <span className="text-iblue text-2xl cursor-pointer group-hover:translate-x-2 transition-transform inline-block">
                 →
               </span>
             </div>

@@ -71,7 +71,7 @@ export default function StrategicPillarsCard({
               !isInDesktopLastRow && "sm:border-b sm:border-gray-300",
             )}
           >
-            <h3 className="text-lg font-bold tracking-wide uppercase text-primary">
+            <h3 className="text-lg font-bold tracking-wide uppercase text-iblue">
               {item.id} / {item.title}
             </h3>
             <p className="mt-3 text-md leading-relaxed text-black">

@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <PageLayout>
       <section className="w-full border border-gray-300 bg-white px-6 py-10 text-center md:px-10 md:py-14">
-        <p className="text-[11px] font-extrabold uppercase tracking-[0.35em] text-primary">
+        <p className="text-[11px] font-extrabold uppercase tracking-[0.35em] text-iblue">
           404
         </p>
         <h1 className="mt-4 text-[clamp(2.5rem,10vw,5rem)] font-black uppercase leading-[0.9] tracking-[-0.08em] text-neutral-900">
@@ -19,7 +19,7 @@ export default function NotFound() {
         <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row">
           <Link
             href="/"
-            className="inline-flex items-center justify-center border border-neutral-900 bg-neutral-900 px-6 py-3 text-[11px] font-extrabold uppercase tracking-[0.22em] text-white transition hover:bg-primary hover:text-black"
+            className="inline-flex items-center justify-center border border-neutral-900 bg-neutral-900 px-6 py-3 text-[11px] font-extrabold uppercase tracking-[0.22em] text-white transition hover:bg-iblue hover:text-black"
           >
             Go home
           </Link>

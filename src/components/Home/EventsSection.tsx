@@ -70,7 +70,7 @@ function EventSlide({
       <div className="grid w-full grid-cols-1 md:grid-cols-[1.1fr_0.9fr]">
         <div className="flex flex-col justify-between gap-10 px-6 py-8 md:px-12 md:py-12">
           <div className="space-y-5">
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.32em] text-primary">
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.32em] text-iblue">
               {slide.kicker}
             </p>
             <h3 className="max-w-[10ch] text-[clamp(42px,7vw,88px)] font-black uppercase leading-[0.9] tracking-[-0.08em]">
@@ -89,7 +89,7 @@ function EventSlide({
               <span className="inline-flex h-11 w-11 items-center justify-center border border-neutral-300 bg-neutral-50 text-sm font-extrabold text-neutral-900">
                 0{index + 1}
               </span>
-              <span className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-primary">
+              <span className="text-[11px] font-extrabold uppercase tracking-[0.28em] text-iblue">
                 Horizontal scroll
               </span>
             </div>
@@ -187,7 +187,7 @@ export function EventsSection() {
                 />
               </div>
               <div className="space-y-3 p-4">
-                <p className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-primary">
+                <p className="text-[10px] font-extrabold uppercase tracking-[0.3em] text-iblue">
                   {slide.kicker}
                 </p>
                 <h3 className="text-3xl font-black uppercase tracking-[-0.06em] text-neutral-900">

@@ -76,7 +76,7 @@ const MarqueeLogoScroller = React.forwardRef<
         >
           {/* Header Section */}
           <div className="p-6 md:p-8 lg:p-10">
-            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-8 pb-6 md:pb-8 border-b border-primary-700">
+            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6 lg:gap-8 pb-6 md:pb-8 border-b border-iblue-700">
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter text-balance">
                 {title}
               </h2>
@@ -130,7 +130,7 @@ const MarqueeLogoScroller = React.forwardRef<
                         onMouseLeave={() => setIsPaused(false)}
                       >
                         {/* Single hover color overlay for all logos */}
-                        <div className="absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 bg-primary/15" />
+                        <div className="absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 bg-iblue/15" />
                         {/* Logo Image */}
                         <Image
                           src={imageSrc}

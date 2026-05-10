@@ -77,7 +77,7 @@
   --color-ipurple-800: #6b1d9a;
   --color-ipurple-900: #601b88;
   --color-ipurple-950: #420665;
-  --color-ipurple: var(--color-ipurple-800);
+  --color-ipurple: var(--color-ipurple-600);
 
   --color-iblue-50: #f0f6fe;
   --color-iblue-100: #dcebfd;
@@ -90,7 +90,7 @@
   --color-iblue-800: #21409a;
   --color-iblue-900: #233f85;
   --color-iblue-950: #1a2851;
-  --color-iblue: var(--color-iblue-800);
+  --color-iblue: var(--color-iblue-600);
 
   --color-iviolet-50: #e7e7ff;
   --color-iviolet-100: #d4d3ff;

@@ -82,7 +82,7 @@ export function ContactInfoCard({
           </motion.div>
         ) : null}
         <motion.h3
-          className="mb-3 text-xl font-black uppercase tracking-tight text-neutral-900 transition-colors duration-400 group-hover:text-primary"
+          className="mb-3 text-xl font-black uppercase tracking-tight text-neutral-900 transition-colors duration-400 group-hover:text-iblue"
           whileHover={
             reducedMotion
               ? undefined
