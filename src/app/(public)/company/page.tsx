@@ -193,9 +193,9 @@ export default function Partner() {
       <FadeIn delay={0.4}>
         <section className="mx-auto max-w-4xl px-4 py-10 text-center md:px-ds-5 md:py-ds-6">
           <div className="flex items-center justify-center gap-ds-3 text-small tracking-[4px] font-bold uppercase mb-ds-5">
-            <span className="w-3 h-3 bg-cyan-400"></span>
+            <span className="w-3 h-3 bg-iblue"></span>
             ABOUT OUR EXPERIENCED STUDENTS
-            <span className="w-3 h-3 bg-cyan-400"></span>
+            <span className="w-3 h-3 bg-iblue"></span>
           </div>
           <h2 className="text-h3 md:text-h2 font-semibold leading-tight text-neutral-900">
             A showcase of students who have gained valuable internship

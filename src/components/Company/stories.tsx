@@ -6,6 +6,7 @@ export interface StoryItem {
   image: string;
   storyTeller: string;
   description: string;
+  companyName: string;
 }
 
 interface StoriesProps {
@@ -101,9 +102,14 @@ export default function Stories({ storiesData }: StoriesProps) {
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center h-full text-black px-2 py-4 md:p-8">
-                    <h2 className="mb-2 md:mb-4 text-center text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
-                      {story.storyTeller}
-                    </h2>
+                    <div className="mb-2 md:mb-4 text-center">
+                      <h2 className="text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
+                        {story.storyTeller}
+                      </h2>
+                      <div className="mt-1 text-sm font-medium text-iblue">
+                        {story.companyName}
+                      </div>
+                    </div>
                     <p className="text-center italic text-[13px] md:text-[18px] leading-snug text-[#515151]">
                       {'"'}
                       {story.description}
@@ -125,9 +131,14 @@ export default function Stories({ storiesData }: StoriesProps) {
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center h-full text-black px-2 py-4 md:p-8">
-                    <h2 className="mb-2 md:mb-4 font-serif text-center text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
-                      {story.storyTeller}
-                    </h2>
+                    <div className="mb-2 md:mb-4 text-center">
+                      <h2 className="font-serif text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
+                        {story.storyTeller}
+                      </h2>
+                      <div className="mt-1 text-sm font-medium text-iblue">
+                        {story.companyName}
+                      </div>
+                    </div>
                     <p className="text-center text-[13px] italic md:text-[18px] leading-snug text-[#515151]">
                       {'"'}
                       {story.description}

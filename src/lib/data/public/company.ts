@@ -207,18 +207,21 @@ export const partnerStoriesData: StoryItem[] = [
   {
     image: "/testi/lenisha.jpeg",
     storyTeller: "Lenisha Ghimire",
+    companyName: "Teaching Assistant at Itahari International College",
     description:
       "My internship journey was a great learning experience that helped me grow personally and professionally. It boosted my confidence and taught me to take on new challenges positively. I am truly thankful to my college for believing in me and providing this opportunity.",
   },
   {
     image: "/testi/wanem.jpeg",
     storyTeller: "Ayush Wanem Limbu",
+    companyName: "SOC Analyst at Vairav Tech",
     description:
       "I am grateful to have completed my internship as a SOC Analyst Intern at Vairav Tech, where I gained valuable exposure to modern cybersecurity operations, including SOC workflows, malware analysis, SIEM technologies, incident response, and how organizations maintain and strengthen their security posture. I sincerely appreciate the mentorship provided by the team and remain equally thankful to Itahari International College for its continued support in advancing academic and professional growth through industry engagement.",
   },
   {
     image: "/testi/karan.jpeg",
     storyTeller: "Karan Bastola",
+    companyName: "Frontend Developer at ING Skills",
     description:
       "I am grateful to have completed my internship as a SOC Analyst Intern at Vairav Tech, where I gained valuable exposure to modern cybersecurity operations, including SOC workflows, malware analysis, SIEM technologies, incident response, and how organizations maintain and strengthen their security posture. I sincerely appreciate the mentorship provided by the team and remain equally thankful to Itahari International College for its continued support in advancing academic and professional growth through industry engagement.",
   },
