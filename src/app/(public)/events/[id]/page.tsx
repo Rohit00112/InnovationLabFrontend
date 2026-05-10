@@ -66,7 +66,7 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
             alt={event.title || "Event Image"}
             fill
             priority
-            className="object-cover"
+            className="object-cover aspect-square"
           />
           <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
           <div className="absolute inset-x-0 bottom-0 p-4 md:p-10">

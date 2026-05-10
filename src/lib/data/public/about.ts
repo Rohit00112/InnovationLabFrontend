@@ -138,30 +138,30 @@ export const timelineData = [
 export const aboutGalleryItems = [
   {
     id: 1,
-    title: "Mountain Vista",
+    title: "IIC Quest 2025",
     desc: "Serenity above the clouds.",
-    url: "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800&q=80",
+    url: "/about/3.JPG",
     span: "md:col-span-2 md:row-span-2",
   },
   {
     id: 2,
-    title: "Coastal Arch",
+    title: "Job Fair 2025",
     desc: "Where the land meets the sea.",
-    url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+    url: "/about/11.JPG",
     span: "md:col-span-2 md:row-span-1",
   },
   {
     id: 3,
     title: "Forest Canopy",
     desc: "Sunlight filtering through leaves.",
-    url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
+    url: "/about/15.JPG",
     span: "md:col-span-1 md:row-span-1",
   },
   {
     id: 4,
     title: "Desert Dunes",
     desc: "Golden sands under the sun.",
-    url: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=800&q=80",
+    url: "/about/12.JPG",
     span: "md:col-span-1 md:row-span-1",
   },
 ];
