@@ -71,21 +71,21 @@ export const TestimonialSection = () => {
           TESTIM<span className="text-iblue">O</span>NIAL
         </h2>
         <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12">
-          <div className="flex items-start gap-3 sm:gap-4 md:gap-8">
+          <div className="flex items-center gap-3 sm:gap-4 md:gap-8">
             <motion.img
               src={testimonialData[0].image}
               alt={testimonialData[0].image}
               style={{ y: firstLeftY }}
               transition={{ type: "spring", stiffness: 110, damping: 26 }}
-              className="h-[42vw] w-[38vw] object-cover shadow-sm sm:h-[38vw] sm:w-[34vw] md:h-85 md:w-55"
+              className="h-[42vw] w-[38vw] object-cover shadow-sm sm:h-[38vw] sm:w-[34vw] md:h-128 md:w-128"
             />
-            <motion.img
+            {/* <motion.img
               alt={testimonialData[0].author}
               src={testimonialData[0].image2}
               style={{ y: firstRightY }}
               transition={{ type: "spring", stiffness: 80, damping: 22 }}
               className="mt-8 h-[42vw] w-[38vw] object-cover shadow-sm sm:mt-10 sm:h-[38vw] sm:w-[34vw] md:mt-14 md:h-85 md:w-55"
-            />
+            /> */}
           </div>
 
           <div className="max-w-xl pt-1 text-[17px] leading-7 tracking-[0.01em] text-neutral-800 sm:text-[19px] sm:leading-8 md:pt-6 md:text-[22px] md:leading-9 md:tracking-[0.02em]">
@@ -120,15 +120,15 @@ export const TestimonialSection = () => {
               alt={testimonialData[1].author}
               style={{ y: secondLeftY }}
               transition={{ type: "spring", stiffness: 78, damping: 20 }}
-              className="mt-6 h-[42vw] w-[38vw] object-cover shadow-sm sm:mt-8 sm:h-[38vw] sm:w-[34vw] md:mt-14 md:h-85 md:w-55"
+              className="mt-6 h-[42vw] w-[100%] object-cover center shadow-sm sm:mt-8 sm:h-[38vw] sm:w-[34vw] md:mt-14 md:h-128 md:w-96"
             />
-            <motion.img
+            {/* <motion.img
               src={testimonialData[1].image2}
               alt={testimonialData[1].author}
               style={{ y: secondRightY }}
               transition={{ type: "spring", stiffness: 112, damping: 26 }}
               className="h-[42vw] w-[38vw] object-cover shadow-sm sm:h-[38vw] sm:w-[34vw] md:h-85 md:w-55"
-            />
+            /> */}
           </div>
         </div>
       </div>
