@@ -1,17 +1,16 @@
 "use client";
 
-import PageLayout from "@/components/primitives/PageLayout";
-import PageHeader from "@/components/primitives/PageHeader";
 import BentoGrid from "@/components/BentoGrid";
-import CompanyList from "@/components/Company/companyList";
+import CompanyList, { CompanyListItem } from "@/components/Company/companyList";
+import CompanyListTable from "@/components/Company/CompanyListTable";
+import MOUCompaniesScroll from "@/components/Company/MouCompaniesScroll";
 import Stories from "@/components/Company/stories";
-import { ContainerScroll } from "@/components/Animations/ContainerScroll";
-import Marquee from "react-fast-marquee";
-import Image from "next/image";
-import { publicCompanyText, publicPageTitles } from "@/constants/ui/public";
+import { FadeIn } from "@/components/Contacts/FadeIn";
+import PageHeader from "@/components/primitives/PageHeader";
+import PageLayout from "@/components/primitives/PageLayout";
+import { publicCompanyText } from "@/constants/ui/public";
 import {
   companyGalleryItems,
-  partnerCompanies,
   partnerLogos,
   partnerStoriesData,
 } from "@/lib/data/public/company";
@@ -160,14 +159,16 @@ export default function Partner() {
       </FadeIn>
       {/* This section should have more companies providing internship instead of mou signed companies */}
       <FadeIn delay={0.35}>
-        <section className="w-full px-4 pb-20 pt-12">
-          <CompanyListTable
-            companies={moreInternshipCompanies}
-            title="More Companies with interns"
-            description="Explore the full list of companies where our students are working as interns"
-            variant="internship"
-          />
-        </section>
+        {moreInternshipCompanies.length > 0 && (
+          <section className="w-full px-4 pb-20 pt-12">
+            <CompanyListTable
+              companies={moreInternshipCompanies}
+              title="More Companies with interns"
+              description="Explore the full list of companies where our students are working as interns"
+              variant="internship"
+            />
+          </section>
+        )}
       </FadeIn>
       {/**Section: MOU Companieswhich are top 12 will be passed to this component and remainig will be sent to the company list table below it */}
       <MOUCompaniesScroll
@@ -177,14 +178,16 @@ export default function Partner() {
       />
       {/**More MOU signed Companies */}
       <FadeIn delay={0.4}>
-        <section className="w-full px-4 pb-20 pt-12">
-          <CompanyListTable
-            companies={moreMouCompanies}
-            title="More MOU signed companies"
-            description="Explore the full list of companies where college has MOU signed with"
-            variant="mou"
-          />
-        </section>
+        {moreMouCompanies.length > 0 && (
+          <section className="w-full px-4 pb-20 pt-12">
+            <CompanyListTable
+              companies={moreMouCompanies}
+              title="More MOU signed companies"
+              description="Explore the full list of companies where college has MOU signed with"
+              variant="mou"
+            />
+          </section>
+        )}
       </FadeIn>
       {/*Section: Description*/}
       <FadeIn delay={0.4}>
