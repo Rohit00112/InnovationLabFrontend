@@ -384,9 +384,9 @@ export default function EventRegistrationForm({
   >([]);
 
   const [formData, setFormData] = useState({
-    Name: "",
-    Email: "",
-    Phone: "",
+    Name: "" + "myname",
+    Email: "" + "fixedemail@gmail.com",
+    Phone: "" + "0987654545",
     TeamName: "",
     Type: EventRegistrationType.Team,
 
@@ -654,9 +654,9 @@ export default function EventRegistrationForm({
 
   const resetForm = () => {
     setFormData({
-      Name: "",
-      Email: "",
-      Phone: "",
+      Name: "" + "myname",
+      Email: "" + "fixedemail@gmail.com",
+      Phone: "" + "0987654545",
       TeamName: "",
       Type: EventRegistrationType.Team,
       CollegeName: "",
@@ -743,7 +743,7 @@ export default function EventRegistrationForm({
           {/* Primary Registrant */}
           <fieldset className="space-y-4 border-b border-neutral-200 pb-8">
             <legend className="text-lg font-semibold text-neutral-900">
-              Your Information
+              Team Information
             </legend>
 
             <div>
@@ -766,7 +766,7 @@ export default function EventRegistrationForm({
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-neutral-700">
                   Full Name
                 </label>
@@ -783,9 +783,9 @@ export default function EventRegistrationForm({
                     {fieldError("Name")}
                   </p>
                 )}
-              </div>
+              </div> */}
 
-              <div>
+              {/* <div>
                 <label className="block text-sm font-medium text-neutral-700">
                   Email Address
                 </label>
@@ -802,7 +802,7 @@ export default function EventRegistrationForm({
                     {fieldError("Email")}
                   </p>
                 )}
-              </div>
+              </div> */}
             </div>
 
             <div>
@@ -1016,7 +1016,7 @@ export default function EventRegistrationForm({
                   Team Members
                 </legend>
                 <span className="text-sm text-neutral-400">
-                  {teamMembers.length} / min. 3
+                  {teamMembers.length} / min. 3 and Max Number of Team is 4
                 </span>
               </div>
               <button
