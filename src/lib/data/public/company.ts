@@ -223,7 +223,7 @@ export const partnerStoriesData: StoryItem[] = [
     storyTeller: "Karan Bastola",
     companyName: "Frontend Developer at ING Skills",
     description:
-      "I am grateful to have completed my internship as a SOC Analyst Intern at Vairav Tech, where I gained valuable exposure to modern cybersecurity operations, including SOC workflows, malware analysis, SIEM technologies, incident response, and how organizations maintain and strengthen their security posture. I sincerely appreciate the mentorship provided by the team and remain equally thankful to Itahari International College for its continued support in advancing academic and professional growth through industry engagement.",
+      "Working at ING Skills as a Frontend Developer has been an incredibly rewarding experience. The team culture is collaborative, supportive, and focused on continuous learning. I had the opportunity to work on modern web technologies, contribute to meaningful projects, and grow both technically and professionally. The company encourages innovation, values employee input, and provides an environment where developers can truly sharpen their skills. It’s been a great place to build confidence, take ownership of projects, and work alongside talented professionals.",
   },
 ];
 
