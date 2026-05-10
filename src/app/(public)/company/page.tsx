@@ -1,16 +1,17 @@
 "use client";
 
-import BentoGrid from "@/components/BentoGrid";
-import CompanyList, { CompanyListItem } from "@/components/Company/companyList";
-import CompanyListTable from "@/components/Company/CompanyListTable";
-import MOUCompaniesScroll from "@/components/Company/MouCompaniesScroll";
-import Stories from "@/components/Company/stories";
-import { FadeIn } from "@/components/Contacts/FadeIn";
-import PageHeader from "@/components/primitives/PageHeader";
 import PageLayout from "@/components/primitives/PageLayout";
-import { publicCompanyText } from "@/constants/ui/public";
+import PageHeader from "@/components/primitives/PageHeader";
+import BentoGrid from "@/components/BentoGrid";
+import CompanyList from "@/components/Company/companyList";
+import Stories from "@/components/Company/stories";
+import { ContainerScroll } from "@/components/Animations/ContainerScroll";
+import Marquee from "react-fast-marquee";
+import Image from "next/image";
+import { publicCompanyText, publicPageTitles } from "@/constants/ui/public";
 import {
   companyGalleryItems,
+  partnerCompanies,
   partnerLogos,
   partnerStoriesData,
 } from "@/lib/data/public/company";
