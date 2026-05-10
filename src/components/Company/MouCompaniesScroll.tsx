@@ -62,8 +62,8 @@ export function ScrollAnimation({
     target: scrollRef,
   });
   const smoothProgress = useSpring(scrollYProgress, {
-    damping: 30,
-    stiffness: 400,
+    damping: 42,
+    stiffness: 240,
     restDelta: 0.001,
   });
   const reducedMotion = useReducedMotion();
@@ -196,12 +196,12 @@ export default function MOUCompaniesScroll({
   const topCompanies = companies.slice(0, splitIndex);
   const bottomCompanies = companies.slice(splitIndex);
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
-  const rowInputRange = isSmallScreen ? [0, 0.8] : [0, 0.6];
+  const rowInputRange = isSmallScreen ? [0, 1] : [0, 0.9];
   const topRowRange = isSmallScreen ? ["-310%", "110%"] : ["-130%", "130%"];
   const bottomRowRange = isSmallScreen ? ["310%", "-310%"] : ["130%", "-130%"];
-  const headingInputRange = isSmallScreen ? [0, 0.6] : [0, 0.5];
+  const headingInputRange = isSmallScreen ? [0, 0.8] : [0, 0.75];
   const headingScaleRange = isSmallScreen ? [1.25, 1] : [1.4, 1];
-  const spacerClassName = isSmallScreen ? "h-[240vh]" : "h-[200vh]";
+  const spacerClassName = isSmallScreen ? "h-[300vh]" : "h-[240vh]";
 
   return (
     <section className={className} {...props}>

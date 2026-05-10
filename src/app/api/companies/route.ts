@@ -1,14 +1,26 @@
 export const GET = async () => {
   try {
-    const response = await fetch(
-      (process.env.BACKEND_API_BASE_URL + "/api/v1/Companies") as string,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
+    const baseUrl = process.env.BACKEND_API_BASE_URL?.replace(/\/+$/, "");
+    if (!baseUrl) {
+      return Response.json(
+        {
+          success: false,
+          error: {
+            code: "CONFIG_ERROR",
+            message: "BACKEND_API_BASE_URL is missing.",
+          },
         },
+        { status: 500 },
+      );
+    }
+
+    const response = await fetch(`${baseUrl}/api/v1/Companies`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      cache: "no-store",
+    });
 
     if (!response.ok) {
       return Response.json(
