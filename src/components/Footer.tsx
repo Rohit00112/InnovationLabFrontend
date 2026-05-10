@@ -4,15 +4,23 @@ import { motion } from "framer-motion";
 import PageLayout from "./primitives/PageLayout";
 
 const footerNavigation = {
-  explore: ["About", "Communities", "Events", "Contact"],
-  // lab: ["Programs", "Projects", "Research", "Archive"],
-  connect: ["Instagram", "Facebook", "GitHub"],
-};
-
-const footerLinkTargets: Record<string, string> = {
-  Facebook: "https://www.facebook.com/profile.php?id=61570739730422",
-  GitHub: "https://github.com/InnovationLabAtIIC",
-  Instagram: "https://www.instagram.com/innovationlab.iic/",
+  explore: [
+    { label: "About", href: "/about" },
+    { label: "Communities", href: "/communities" },
+    { label: "Events", href: "/events" },
+    { label: "Contact", href: "/contact" },
+  ],
+  connect: [
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/innovationlab.iic/",
+    },
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/profile.php?id=61570739730422",
+    },
+    { label: "GitHub", href: "https://github.com/InnovationLabAtIIC" },
+  ],
 };
 
 export default function Footer() {
@@ -82,18 +90,22 @@ export default function Footer() {
                     </h4>
                     <ul className="mt-5 flex flex-col gap-3">
                       {links.map((link) => (
-                        <li key={link}>
+                        <li key={link.label}>
                           <Link
-                            href={footerLinkTargets[link] ?? "#"}
+                            href={link.href}
                             target={
-                              footerLinkTargets[link] ? "_blank" : undefined
+                              link.href.startsWith("http")
+                                ? "_blank"
+                                : undefined
                             }
                             rel={
-                              footerLinkTargets[link] ? "noreferrer" : undefined
+                              link.href.startsWith("http")
+                                ? "noreferrer"
+                                : undefined
                             }
                             className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-neutral-900 transition-colors hover:text-iblue"
                           >
-                            {link}
+                            {link.label}
                           </Link>
                         </li>
                       ))}

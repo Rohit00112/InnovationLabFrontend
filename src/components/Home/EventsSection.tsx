@@ -7,6 +7,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { EventResponseDto } from "@/lib/services/generated/frontend/schemas";
+import Button from "../primitives/Button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,14 +16,7 @@ const DEFAULT_SLIDES_COUNT = 4;
 function EventDetailsButton({ eventId }: { eventId?: string | null }) {
   const router = useRouter();
   if (!eventId) return null;
-  return (
-    <button
-      onClick={() => router.push(`/events/${eventId}`)}
-      className="px-4 py-2 rounded bg-(--color-iblue) text-white font-semibold"
-    >
-      View Event
-    </button>
-  );
+  return <Button href={`/events/${eventId}`}>View Event</Button>;
 }
 
 function EventSlide({
@@ -57,6 +51,9 @@ function EventSlide({
             <p className="max-w-xl text-base leading-relaxed text-neutral-600 md:text-lg">
               {slide.description}
             </p>
+            <div className="">
+              <EventDetailsButton eventId={slide.id} />
+            </div>
           </div>
 
           <div className="grid gap-5 border-t border-neutral-200 pt-5 md:grid-cols-2 md:items-end">
@@ -83,10 +80,6 @@ function EventSlide({
           />
           <div className="absolute inset-0 bg-linear-to-tr from-white/35 via-white/8 to-transparent" />
         </div>
-      </div>
-
-      <div className="absolute left-6 bottom-8">
-        <EventDetailsButton eventId={slide.id} />
       </div>
     </article>
   );
