@@ -31,7 +31,6 @@ export const GET = async () => {
     });
   } catch (error) {
     console.error(error);
-
     return Response.json(
       {
         success: false,
