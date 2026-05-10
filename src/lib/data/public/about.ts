@@ -2,59 +2,59 @@ import type { LatestEventItem } from "@/components/Events/LatestEventsList";
 
 export const aboutCards = [
   {
-    title: "AER Duffle Pack 3",
-    category: "Backpacks",
-    imageUrl:
-      "https://images.unsplash.com/photo-1621624959365-071359461b94?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fEJhY2twYWNrc3xlbnwwfHwwfHx8MA%3D%3D?w=500&q=80",
+    title: "01. CODER",
+    category:
+      "Coders build solutions through code. They turn ideas into functional products and systems.",
+    imageUrl: "/about/32.jpg",
   },
   {
-    title: "Minimalist Mechanical Watch",
-    category: "Watches",
-    imageUrl:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80",
+    title: "02 / RESEARCHERS",
+    category:
+      "Researchers explore problems with depth and curiosity, publish research  and turn questions into insights and knowledge.",
+    imageUrl: "/about/30.jpg",
   },
   {
-    title: "Wireless Charging Stand",
-    category: "Tech Accessories",
-    imageUrl:
-      "https://images.unsplash.com/photo-1617975316514-69cd7e16c2a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8V2lyZWxlc3MlMjBDaGFyZ2luZyUyMFN0YW5kfGVufDB8fDB8fHww?w=500&q=80",
+    title: "03 / ENTREPRENEURS",
+    category:
+      "Entrepreneurs identify opportunities and create ventures that drive economic growth and innovation.",
+    imageUrl: "/about/29.jpg",
   },
   {
-    title: "Artisan Ceramic Mug",
-    category: "Home Goods",
-    imageUrl:
-      "https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&q=80",
+    title: "04 / CREATORS",
+    category:
+      "Creators Design experiences and tell stories. They make ideas visible, engaging, and meaningful.",
+    imageUrl: "/about/28.jpg",
   },
 ];
 
 export const strategicPillars = [
   {
-    Section: "Section 01",
+    Section: "",
     title: "Mission",
     items: [
       {
         id: "01",
-        title: "Cognition",
+        title: "COLLABORATION",
         description:
-          "Dismantle the boundary between human intuition and synthetic logic.",
+          "Creating an environment where individuals learn and build together.",
       },
       {
         id: "02",
-        title: "Integrity",
+        title: "PRACTICAL LEARNING",
         description:
-          "Establish absolute algorithmic structural integrity in every build.",
+          "Encouraging hands-on work, experimentation, and real project experience.",
       },
       {
         id: "03",
-        title: "Sovereignty",
+        title: "CONNECTION",
         description:
-          "Architecting the sovereign layer of autonomous urban intelligence.",
+          "Bridging academia, industry, and innovation through mentorship and exposure.",
       },
       {
         id: "04",
-        title: "Friction",
+        title: "IMPACT",
         description:
-          "Embracing the friction of progress to define the new architectural standard.",
+          "Focusing on solutions that address real social and community challenges.",
       },
     ],
   },
@@ -64,27 +64,27 @@ export const strategicPillars = [
     items: [
       {
         id: "V_01",
-        title: "Precision",
+        title: "Leadership Growth",
         description:
-          "A future where every pixel of a city is a mathematical proof.",
+          "To develop learners into founders, professionals, and leaders who create meaningful impact across industries and communities.",
       },
       {
         id: "V_02",
-        title: "Adaptation",
+        title: "Global Innovation",
         description:
-          "Living structures that evolve in real-time with environmental loads.",
+          "To build an ecosystem where local ideas grow with a global mindset, driven by collaboration, creativity, and continuous innovation.",
       },
       {
         id: "V_03",
-        title: "Synthesis",
+        title: "Lifelong Learning",
         description:
-          "The seamless merger of biological habitat and digital substrate.",
+          "To foster a culture of curiosity, adaptability, and lifelong learning that prepares individuals for an evolving global future.",
       },
       {
         id: "V_04",
-        title: "Expansion",
+        title: "Community Empowerment",
         description:
-          "Global deployment of NEO-LAB structures across all physical frontiers.",
+          "To empower communities through technology, research, and entrepreneurship, creating sustainable solutions for real-world challenges.",
       },
     ],
   },
@@ -92,25 +92,46 @@ export const strategicPillars = [
 
 export const timelineData = [
   {
-    year: "2024",
-    title: "Launch Phase",
+    year: "2022",
+    title: "Innovation Lab Established",
     description:
-      "Built and launched Aceternity UI and Aceternity UI Pro from scratch.",
-    images: ["https://assets.aceternity.com/templates/startup-1.webp"],
+      "Innovation Lab was founded as a collaborative platform focused on innovation, creativity, technology, and hands-on learning at Itahari International College.",
+    images: ["/about/2.jpg", "/about/4.jpg"],
   },
   {
     year: "2023",
-    title: "Design Expansion",
+    title: "IIC Quest 1.0",
     description:
-      "Expanded component library with hero, features, and grid systems for faster delivery.",
-    images: ["https://assets.aceternity.com/pro/hero-sections.png"],
+      "The first edition of IIC Quest introduced a four-day innovation program combining bootcamps, seminars, and a pitch-day hackathon. Students from BIT and BBA collaborated with mentors and industry experts through hands-on learning experiences.",
+    images: ["/about/5.jpg", "/about/6.jpg"],
   },
   {
-    year: "2022",
-    title: "Foundational Research",
+    year: "2024",
+    title: "Creative Clash 2024",
     description:
-      "Researched interaction patterns, created internal drafts, and validated layout direction.",
-    images: ["https://assets.aceternity.com/features-section.png"],
+      "The first edition of Creative Clash introduced a multi-event competitive platform featuring Web Inferno, Design Symphony, and Code Clash, bringing together students from different creative and technical backgrounds.",
+    images: ["/about/1.jpg", "/about/21.jpg"],
+  },
+  {
+    year: "2024",
+    title: "IIC Quest 2.0",
+    description:
+      "IIC Quest 2.0 expanded into a three-day event featuring a 36-hour hackathon with participation from colleges across the Purwanchal region. The program also included a Job Fair and Final Year Project Showcase connecting students with industry opportunities.",
+    images: ["/about/24.jpg", "/about/15.jpg"],
+  },
+  {
+    year: "2025",
+    title: "IIC Quest 3.0",
+    description:
+      "The third edition continues the journey with a 36-hour hackathon, innovation showcase, seminars, and career-focused opportunities designed to encourage collaboration, creativity, and real-world problem solving.",
+    images: ["/about/3.jpg", "/about/26.jpg"],
+  },
+  {
+    year: "2025",
+    title: "Creative Clash 2025",
+    description:
+      "Creative Clash returned with a larger and more diverse lineup including Bullish Battle, Code Clash, Web Wizards, Brand Brilliance, Design Dynamo, and the main event, the hybrid hackathon Clashathon. The event focused on innovation, competition, teamwork, and interdisciplinary collaboration.",
+    images: ["/about/12.jpg", "/about/13.jpg"],
   },
 ];
 

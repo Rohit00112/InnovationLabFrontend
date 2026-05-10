@@ -15,9 +15,8 @@ export default function CommunitiesPage() {
       <PageHeader title={publicPageTitles.communities} />
       <section className="mx-auto grid w-full bg-white grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {publicCommunityCards.map((community) => (
-          <Link
+          <div
             key={community.slug}
-            href={`/communities/${community.slug}`}
             className="group relative aspect-square min-h-56 overflow-hidden p-5 lg:min-h-64"
           >
             <Image
@@ -41,7 +40,7 @@ export default function CommunitiesPage() {
               </div>
             </div>
             <div className="pointer-events-none absolute inset-0 bg-white/25 opacity-70 transition-opacity duration-300 group-hover:opacity-95" />
-          </Link>
+          </div>
         ))}
       </section>
       <div className="line-bg w-full md:h-16 h-6"></div>
@@ -148,11 +147,11 @@ export default function CommunitiesPage() {
                 </div>
               </div>
 
-              <div className="mt-6 md:mt-8">
+              {/* <div className="mt-6 md:mt-8">
                 <Link href={`/communities/${community.slug}`}>
                   <Button>{publicCommunitiesText.exploreCommunity}</Button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         ))}

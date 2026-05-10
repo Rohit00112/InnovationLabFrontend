@@ -1,37 +1,24 @@
-"use client";
-
+// ...existing code...
 import PageLayout from "@/components/primitives/PageLayout";
 import { EmblaCarousel } from "@/components/Events/Carousel";
 import PastEventsSection from "@/components/LearnMoreSection";
 import LatestEventsSection from "@/components/Events/LatestEventsSection";
-import { useQuery } from "@tanstack/react-query";
 import { listEvents } from "@/lib/services/domain/events";
 import { separateEvents } from "@/lib/utils/events";
 
-export default function EventsPage() {
-  const { data: allEvents = [], isLoading } = useQuery({
-    queryKey: ["events"],
-    queryFn: listEvents,
-  });
+export default async function EventsPage() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let allEvents: any = [];
+  try {
+    allEvents = await listEvents();
+  } catch (err) {
+    console.error("Failed to load events", err);
+  }
 
   const { upcomingEvents } = separateEvents(allEvents);
 
-  if (isLoading) {
-    return (
-      <PageLayout>
-        <div className="flex min-h-[60vh] items-center justify-center">
-          <div className="text-xl font-bold uppercase tracking-widest text-neutral-400 animate-pulse">
-            Loading Events...
-          </div>
-        </div>
-      </PageLayout>
-    );
-  }
-
   return (
     <PageLayout>
-      {/* <PageHeader title={publicPageTitles.events} /> */}
-
       <section className="w-full px-0">
         <EmblaCarousel events={upcomingEvents} />
       </section>
@@ -44,4 +31,4 @@ export default function EventsPage() {
     </PageLayout>
   );
 }
-
+// ...existing code...

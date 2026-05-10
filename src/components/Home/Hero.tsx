@@ -10,7 +10,7 @@ export default function Hero() {
   const cols = 24;
 
   const gridColors = useMemo(() => {
-    return Array.from({ length: rows * cols }, () => { });
+    return Array.from({ length: rows * cols }, () => {});
   }, []);
 
   return (
@@ -28,7 +28,8 @@ export default function Hero() {
         <div className="w-full h-full absolute top-0 flex flex-col">
           <div className="px-3 pt-4 sm:pt-6 lg:pt-8">
             <h1 className="whitespace-nowrap text-[clamp(1.45rem,9.2vw,4.4rem)] sm:text-[clamp(2rem,9vw,5rem)] lg:text-[clamp(5.1rem,8vw,10rem)] font-bold leading-[0.86] tracking-[-0.08em]">
-              INN<span className="text-primary">O</span>VATI<span className="text-primary">O</span>N LABS
+              INN<span className="text-primary">O</span>VATI
+              <span className="text-primary">O</span>N LAB
             </h1>
           </div>
 
@@ -42,11 +43,11 @@ export default function Hero() {
           </div>
 
           <div className="mx-3 mt-8 flex flex-wrap gap-3 sm:gap-5">
-            <Button>Explore the Lab</Button>
-            <Button variant="outline">VIEW EVENTS</Button>
+            <Button href="/about">Explore the Lab</Button>
+            <Button href="/events" variant="outline">
+              VIEW EVENTS
+            </Button>
           </div>
-
-
         </div>
       </div>
 
@@ -65,7 +66,13 @@ export default function Hero() {
           <GridWithPlus rows={1} />
         </Marquee>
 
-        <Marquee speed={42} gradient={false} autoFill pauseOnHover={true} direction="right">
+        <Marquee
+          speed={42}
+          gradient={false}
+          autoFill
+          pauseOnHover={true}
+          direction="right"
+        >
           <GridWithPlus rows={1} />
         </Marquee>
       </div>
