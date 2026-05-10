@@ -116,10 +116,10 @@ export default function EventRegisterPage({ params }: EventRegisterPageProps) {
               </h3>
               <div className="flex justify-center">
                 <Image
-                  width={200}
-                  height={200}
+                  width={400}
+                  height={400}
                   alt="QR Code"
-                  src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg"
+                  src="/qr.jpeg"
                   className="bg-white p-2"
                 />
               </div>
