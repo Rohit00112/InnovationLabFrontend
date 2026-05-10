@@ -106,9 +106,6 @@ export default function Stories({ storiesData }: StoriesProps) {
                       <h2 className="text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
                         {story.storyTeller}
                       </h2>
-                      <div className="mt-1 text-sm font-medium text-iblue">
-                        {story.companyName}
-                      </div>
                     </div>
                     <p className="text-center italic text-[13px] md:text-[18px] leading-snug text-[#515151]">
                       {'"'}
@@ -135,9 +132,6 @@ export default function Stories({ storiesData }: StoriesProps) {
                       <h2 className="font-serif text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
                         {story.storyTeller}
                       </h2>
-                      <div className="mt-1 text-sm font-medium text-iblue">
-                        {story.companyName}
-                      </div>
                     </div>
                     <p className="text-center text-[13px] italic md:text-[18px] leading-snug text-[#515151]">
                       {'"'}
