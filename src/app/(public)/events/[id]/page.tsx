@@ -1,13 +1,9 @@
-"use client";
-
 import PageHeader from "@/components/primitives/PageHeader";
 import PageLayout from "@/components/primitives/PageLayout";
 import { getEventById } from "@/lib/services/domain/events";
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { use } from "react";
 
 type EventDetailPageProps = {
   params: Promise<{
@@ -15,37 +11,29 @@ type EventDetailPageProps = {
   }>;
 };
 
-export default function EventDetailPage({ params }: EventDetailPageProps) {
-  const { id } = use(params);
+export default async function EventDetailPage({
+  params,
+}: EventDetailPageProps) {
+  const { id } = await params;
 
-  const {
-    data: event,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["event", id],
-    queryFn: () => getEventById(id),
-    enabled: !!id,
-  });
+  let event = null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //let agendsaItems: any = [];
 
-  if (isLoading) {
-    return (
-      <PageLayout>
-        <div className="flex min-h-[60vh] items-center justify-center">
-          <div className="text-xl font-bold uppercase tracking-widest text-neutral-400 animate-pulse">
-            Loading Event Details...
-          </div>
-        </div>
-      </PageLayout>
-    );
+  try {
+    event = await getEventById(id);
+  } catch (error) {
+    console.error(error);
+    notFound();
   }
 
-  if (error || !event) {
+  if (!event) {
     notFound();
   }
 
   // Map highlights to focus areas and details
   const focusAreas = event.highlights || [];
+
   const dummyGallery = [
     event.coverImageUrl ||
       "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80",
@@ -66,32 +54,39 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
             alt={event.title || "Event Image"}
             fill
             priority
-            className="object-cover aspect-square"
+            className="aspect-square object-cover"
           />
+
           <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
+
           <div className="absolute inset-x-0 bottom-0 p-4 md:p-10">
             <div className="max-w-3xl text-white">
               <div className="flex items-center gap-3">
                 <span className="bg-cyan-400 px-2 py-1 text-[0.55rem] font-bold uppercase tracking-[0.2em] text-black">
                   {event.seriesName || "Special Event"}
                 </span>
+
                 <span className="text-xs font-bold uppercase tracking-[0.15em] text-white/70">
                   {event.id?.slice(0, 8)}
                 </span>
               </div>
+
               <p className="mt-4 max-w-2xl text-sm leading-6 text-white/85 md:text-base">
                 {event.description}
               </p>
+
               <div className="mt-6 flex flex-wrap gap-3">
                 <Link
                   href={`/events/${event.id}/register`}
-                  className="relative inline-flex group font-medium"
+                  className="group relative inline-flex font-medium"
                 >
-                  <span className="absolute left-0 bottom-0 w-full h-0.5 bg-cyan-400 transition-all duration-100 ease-out" />
-                  <span className="relative z-10 block px-5 py-2 border border-white/60 bg-white text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transform transition-all duration-100 ease-out -translate-y-0.5 group-active:translate-y-0 hover:bg-cyan-400 hover:border-cyan-400">
+                  <span className="absolute bottom-0 left-0 h-0.5 w-full bg-cyan-400 transition-all duration-100 ease-out" />
+
+                  <span className="relative z-10 block -translate-y-0.5 transform border border-white/60 bg-white px-5 py-2 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition-all duration-100 ease-out group-active:translate-y-0 hover:border-cyan-400 hover:bg-cyan-400">
                     Register Now
                   </span>
                 </Link>
+
                 <Link
                   href="/events"
                   className="inline-flex border border-white/40 bg-transparent px-5 py-2 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-white transition hover:bg-white/10"
@@ -105,27 +100,31 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
       </section>
 
       {/* Overview Section */}
-      <section className="mx-auto grid w-full border-x border-b border-gray-300    bg-white px-6 py-12 md:grid-cols-[0.9fr_1.1fr] md:px-10 md:py-16">
+      <section className="mx-auto grid w-full border-x border-b border-gray-300 bg-white px-6 py-12 md:grid-cols-[0.9fr_1.1fr] md:px-10 md:py-16">
         <div>
           <h2 className="text-[clamp(28px,4.5vw,52px)] font-black uppercase tracking-[-0.03em]">
             Overview
           </h2>
+
           <div className="mt-3 h-1 w-24 bg-black" />
         </div>
+
         <div className="space-y-6">
           <p className="text-sm leading-relaxed text-neutral-700 md:text-base">
             {event.description}
           </p>
+
           {focusAreas.length > 0 && (
             <div>
               <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-600">
                 Highlights
               </p>
+
               <div className="mt-3 flex flex-wrap gap-2">
-                {focusAreas.map((item) => (
+                {focusAreas.map((item: string) => (
                   <span
                     key={item}
-                    className="border border-black/20 bg-neutral-50 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-800   -sm"
+                    className="border border-black/20 bg-neutral-50 px-3 py-2 text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-800"
                   >
                     {item}
                   </span>
@@ -137,33 +136,39 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
       </section>
 
       {/* Details Section */}
-      <section className="mx-auto w-full    border-x border-b border-gray-300    bg-neutral-100 px-6 py-12 md:px-10 md:py-16">
+      <section className="mx-auto w-full border-x border-b border-gray-300 bg-neutral-100 px-6 py-12 md:px-10 md:py-16">
         <h2 className="text-[clamp(28px,4.5vw,52px)] font-black uppercase tracking-[-0.03em]">
           Event Information
         </h2>
+
         <div className="mt-8 grid gap-4 md:grid-cols-3">
-          <article className="border    bg-linear-to-br from-white to-neutral-50 p-6   -sm">
+          <article className="border bg-linear-to-br from-white to-neutral-50 p-6">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
               Location
             </p>
+
             <p className="mt-4 text-sm leading-relaxed text-neutral-700">
               {event.location || "To be announced"}
             </p>
           </article>
-          <article className="border    bg-linear-to-br from-white to-neutral-50 p-6   -sm">
+
+          <article className="border bg-linear-to-br from-white to-neutral-50 p-6">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
               Date & Time
             </p>
+
             <p className="mt-4 text-sm leading-relaxed text-neutral-700">
               {event.startTime
                 ? new Date(event.startTime).toLocaleString()
                 : "TBD"}
             </p>
           </article>
-          <article className="border    bg-linear-to-br from-white to-neutral-50 p-6   -sm">
+
+          <article className="border bg-linear-to-br from-white to-neutral-50 p-6">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
               Registration
             </p>
+
             <p className="mt-4 text-sm leading-relaxed text-neutral-700">
               Ends on{" "}
               {event.registrationEnd
@@ -175,16 +180,17 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
       </section>
 
       {/* Gallery Section */}
-      <section className="mx-auto w-full    border-x border-b border-gray-300    bg-white px-6 py-12 md:px-10 md:py-16">
+      <section className="mx-auto w-full border-x border-b border-gray-300 bg-white px-6 py-12 md:px-10 md:py-16">
         <h2 className="text-[clamp(28px,4.5vw,52px)] font-black uppercase tracking-[-0.03em]">
           Gallery
         </h2>
-        <div className="mt-8 grid grid-cols-2 gap-3 md:gap-4 md:grid-cols-4">
+
+        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
           {dummyGallery.map((image, index) => (
             <div
               key={image + index}
               className={[
-                "relative overflow-hidden border      -sm",
+                "relative overflow-hidden border",
                 index === 0
                   ? "col-span-2 row-span-2 min-h-48 md:min-h-80"
                   : "min-h-32 md:min-h-40",
@@ -201,8 +207,8 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
         </div>
       </section>
 
-      {/* Related Events Section - Hidden for now or can show general events */}
-      <section className="mx-auto w-full border-gray-300    border-x border-b    bg-neutral-100 px-6 py-12 md:px-10 md:py-16 text-center">
+      {/* Related Events Section */}
+      <section className="mx-auto w-full border-x border-b border-gray-300 bg-neutral-100 px-6 py-12 text-center md:px-10 md:py-16">
         <Link
           href="/events"
           className="inline-flex border border-black px-8 py-4 text-sm font-bold uppercase tracking-widest transition hover:bg-black hover:text-white"
@@ -212,22 +218,25 @@ export default function EventDetailPage({ params }: EventDetailPageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="mx-auto w-full  border-gray-300   border-x border-b    bg-linear-to-r from-neutral-900 to-neutral-800 px-6 py-12 md:px-10 md:py-16">
+      <section className="mx-auto w-full border-x border-b border-gray-300 bg-linear-to-r from-neutral-900 to-neutral-800 px-6 py-12 md:px-10 md:py-16">
         <div className="max-w-2xl">
           <h2 className="text-[clamp(28px,4.5vw,52px)] font-black uppercase tracking-[-0.03em] text-white">
             Ready to Participate?
           </h2>
+
           <p className="mt-4 text-sm leading-relaxed text-white/80 md:text-base">
             Secure your spot at {event.title} and join fellow innovators,
             builders, and thinkers shaping the future.
           </p>
+
           <div className="mt-6">
             <Link
               href={`/events/${event.id}/register`}
-              className="relative inline-flex group font-medium"
+              className="group relative inline-flex font-medium"
             >
-              <span className="absolute left-0 bottom-0 w-full h-0.5 bg-cyan-400 transition-all duration-100 ease-out" />
-              <span className="relative z-10 block px-6 py-3 border border-cyan-400 bg-cyan-400 text-sm font-extrabold uppercase tracking-[0.22em] text-black transform transition-all duration-100 ease-out -translate-y-0.5 group-active:translate-y-0 hover:bg-white hover:border-white">
+              <span className="absolute bottom-0 left-0 h-0.5 w-full bg-cyan-400 transition-all duration-100 ease-out" />
+
+              <span className="relative z-10 block -translate-y-0.5 transform border border-cyan-400 bg-cyan-400 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.22em] text-black transition-all duration-100 ease-out group-active:translate-y-0 hover:border-white hover:bg-white">
                 Register for Event
               </span>
             </Link>

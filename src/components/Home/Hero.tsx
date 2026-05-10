@@ -39,10 +39,12 @@ export default function Hero({ partnerLogos }: HeroProps) {
 
           <div className="mx-3 mt-3 sm:mt-4">
             <h2 className="max-w-2xl text-justify text-[clamp(1rem,1.2vw,1.25rem)] leading-relaxed text-neutral-700">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              Innovation Lab is an academic initiative at Itahari International
+              College focused on learning beyond the classroom through projects,
+              collaboration, and practical experience. It brings together
+              students, mentors, and communities to explore ideas, solve
+              real-world problems, and develop skills through hands-on
+              innovation.
             </h2>
           </div>
 
