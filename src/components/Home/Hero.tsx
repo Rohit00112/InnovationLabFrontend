@@ -3,9 +3,13 @@ import Marquee from "react-fast-marquee";
 import Carousel from "../Carousel";
 import Button from "../primitives/Button";
 import { GridWithPlus } from "./GridWithPlus";
-import LatestNewsSection from "./LatestNewsSection";
+// import LatestNewsSection from "./LatestNewsSection";
 
-export default function Hero() {
+type HeroProps = {
+  partnerLogos: string[];
+};
+
+export default function Hero({ partnerLogos }: HeroProps) {
   const rows = 8;
   const cols = 24;
 
@@ -29,7 +33,7 @@ export default function Hero() {
           <div className="px-3 pt-4 sm:pt-6 lg:pt-8">
             <h1 className="whitespace-nowrap text-[clamp(1.45rem,9.2vw,4.4rem)] sm:text-[clamp(2rem,9vw,5rem)] lg:text-[clamp(5.1rem,8vw,10rem)] font-bold leading-[0.86] tracking-[-0.08em]">
               INN<span className="text-iblue">O</span>VATI
-              <span className="text-iblue">O</span>N LAB
+              <span className="text-iblue">O</span>N LABS
             </h1>
           </div>
 
@@ -43,10 +47,8 @@ export default function Hero() {
           </div>
 
           <div className="mx-3 mt-8 flex flex-wrap gap-3 sm:gap-5">
-            <Button href="/about">Explore the Lab</Button>
-            <Button href="/events" variant="outline">
-              VIEW EVENTS
-            </Button>
+            <Button>Explore the Lab</Button>
+            <Button variant="outline">VIEW EVENTS</Button>
           </div>
         </div>
       </div>
@@ -63,7 +65,7 @@ export default function Hero() {
         </div>
 
         <Marquee speed={42} gradient={false} autoFill pauseOnHover={true}>
-          <GridWithPlus rows={1} />
+          <GridWithPlus rows={1} logos={partnerLogos} />
         </Marquee>
 
         <Marquee
@@ -73,11 +75,11 @@ export default function Hero() {
           pauseOnHover={true}
           direction="right"
         >
-          <GridWithPlus rows={1} />
+          <GridWithPlus rows={1} logos={partnerLogos} />
         </Marquee>
       </div>
 
-      <LatestNewsSection />
+      {/* <LatestNewsSection /> */}
     </>
   );
 }

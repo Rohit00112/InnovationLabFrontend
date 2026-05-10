@@ -46,7 +46,7 @@ const About = () => {
         <div className="mx-ds-5 mt-ds-6 mb-ds-6 antialiased">
           <BentoGrid imageItems={aboutGalleryItems} />
         </div>
-        <LatestEventsSection events={aboutLatestEvents} />
+        {/* <LatestEventsSection events={aboutLatestEvents} /> */}
       </PageLayout>
     </>
   );

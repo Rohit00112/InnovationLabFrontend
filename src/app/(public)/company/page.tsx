@@ -55,18 +55,20 @@ export default function Partner() {
           throw new Error("Invalid companies payload");
         }
 
-        const mappedCompanies: CompanyListItem[] = payload.data.map((company) => ({
-          name: company.name ?? "",
-          about: company.about ?? "",
-          priority: company.priority ?? 0,
-          isMouSigned: company.isMouSigned ?? false,
-          isJobFair: company.isJobFair ?? false,
-          contactEmail: company.contactEmail ?? "",
-          websiteUrl: company.websiteUrl ?? "",
-          logoUrl: company.logoUrl ?? "",
-          numberOfInterns: company.numberOfInterns ?? 0,
-          numberOfVacancies: company.numberOfVacancies ?? 0,
-        }));
+        const mappedCompanies: CompanyListItem[] = payload.data.map(
+          (company) => ({
+            name: company.name ?? "",
+            about: company.about ?? "",
+            priority: company.priority ?? 0,
+            isMouSigned: company.isMouSigned ?? false,
+            isJobFair: company.isJobFair ?? false,
+            contactEmail: company.contactEmail ?? "",
+            websiteUrl: company.websiteUrl ?? "",
+            logoUrl: company.logoUrl ?? "",
+            numberOfInterns: company.numberOfInterns ?? 0,
+            numberOfVacancies: company.numberOfVacancies ?? 0,
+          }),
+        );
 
         if (isActive) {
           setCompanies(mappedCompanies);
@@ -188,11 +190,12 @@ export default function Partner() {
         <section className="mx-auto max-w-4xl px-4 py-10 text-center md:px-ds-5 md:py-ds-6">
           <div className="flex items-center justify-center gap-ds-3 text-small tracking-[4px] font-bold uppercase mb-ds-5">
             <span className="w-3 h-3 bg-cyan-400"></span>
-            {publicCompanyText.aboutOurPartners}
+            ABOUT OUR EXPERIENCED STUDENTS
             <span className="w-3 h-3 bg-cyan-400"></span>
           </div>
           <h2 className="text-h3 md:text-h2 font-semibold leading-tight text-neutral-900">
-            {publicCompanyText.aboutPartnersBody}
+            A showcase of students who have gained valuable internship
+            experience and demonstrated strong professional capabilities.
           </h2>
         </section>
       </FadeIn>
@@ -203,30 +206,3 @@ export default function Partner() {
     </PageLayout>
   );
 }
-
-type GridProps = {
-  rows?: number;
-};
-
-const GridWithPlus = ({ rows = 1 }: GridProps) => {
-  const columnCount = 8;
-
-  return (
-    <div className="grid grid-cols-8">
-      {Array.from({ length: rows * columnCount }).map((_, i) => (
-        <div
-          key={i}
-          className="relative hover:bg-gray-50 h-28 md:h-48 aspect-square border border-gray-300 flex items-center justify-center bg-white "
-        >
-          <Image
-            src={partnerLogos[i % partnerLogos.length]}
-            alt={`logo-${i}`}
-            width={120}
-            height={48}
-            className="max-h-12 object-contain grayscale transition-all duration-300 hover:grayscale-0"
-          />
-        </div>
-      ))}
-    </div>
-  );
-};

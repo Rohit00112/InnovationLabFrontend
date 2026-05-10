@@ -140,13 +140,13 @@ export function CompanyCard({
 }: React.ComponentProps<"div"> & { company: CompanyListItem }) {
   const cardContent = (
     <>
-      <div className="relative w-full flex-1 min-h-0">
+      <div className="relative w-full flex flex-1 items-center justify-center min-h-0">
         <Image
           src={company.logoUrl}
           alt={company.name}
           width={200}
           height={200}
-          className="aspect-square w-full h-full object-cover"
+          className="aspect-square w-auto object-contain"
         />
       </div>
       <div className="space-y-1 py-3 px-4 shrink-0">

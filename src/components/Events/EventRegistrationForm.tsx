@@ -11,174 +11,8 @@ interface ErrorInfo {
   message: string;
   detail?: string;
 }
-
-const ERROR_META: Record<string, { title: string; detail: string }> = {
-  VALIDATION_ERROR: {
-    title: "Validation Error",
-    detail: "Please review the highlighted fields and correct any mistakes.",
-  },
-  BAD_REQUEST: {
-    title: "Bad Request",
-    detail: "The request could not be understood by the server.",
-  },
-  UNAUTHORIZED: {
-    title: "Not Logged In",
-    detail: "You need to log in before completing this action.",
-  },
-  FORBIDDEN: {
-    title: "Access Denied",
-    detail: "You don't have permission to perform this action.",
-  },
-  NOT_FOUND: {
-    title: "Not Found",
-    detail: "The requested resource could not be located.",
-  },
-  CONFLICT: {
-    title: "Conflict Detected",
-    detail: "Your request conflicts with existing data.",
-  },
-  INTERNAL_SERVER_ERROR: {
-    title: "Server Error",
-    detail: "Something went wrong on our end. Please try again later.",
-  },
-  NETWORK_ERROR: {
-    title: "Network Error",
-    detail: "Check your internet connection and try again.",
-  },
-  EVENT_NOT_FOUND: {
-    title: "Event Not Found",
-    detail: "The event you're trying to register for no longer exists.",
-  },
-  EVENT_REGISTRATION_CLOSED: {
-    title: "Registration Closed",
-    detail: "The registration window for this event has ended.",
-  },
-  EVENT_REGISTRATION_FULL: {
-    title: "Event Full",
-    detail: "All available spots for this event have been taken.",
-  },
-  EVENT_ALREADY_STARTED: {
-    title: "Event Already Started",
-    detail: "You cannot register for an event that has already begun.",
-  },
-  EVENT_EXPIRED: {
-    title: "Event Expired",
-    detail: "This event is no longer accepting new registrations.",
-  },
-  REGISTRATION_NOT_FOUND: {
-    title: "Registration Not Found",
-    detail: "We couldn't find a matching registration record.",
-  },
-  DUPLICATE_REGISTRATION: {
-    title: "Already Registered",
-    detail: "You have already registered for this event.",
-  },
-  REGISTRATION_LIMIT_REACHED: {
-    title: "Registration Limit Reached",
-    detail: "The maximum number of registrations has been reached.",
-  },
-  TEAM_REQUIRED: {
-    title: "Team Required",
-    detail: "This event requires team information to register.",
-  },
-  TEAM_NAME_REQUIRED: {
-    title: "Team Name Missing",
-    detail: "Please provide a name for your team.",
-  },
-  TEAM_NAME_ALREADY_EXISTS: {
-    title: "Team Name Taken",
-    detail: "This team name is already in use. Please choose another.",
-  },
-  TEAM_MEMBERS_REQUIRED: {
-    title: "Team Members Required",
-    detail: "Add at least one team member before submitting.",
-  },
-  TEAM_MEMBER_LIMIT_EXCEEDED: {
-    title: "Too Many Members",
-    detail: "Your team exceeds the maximum allowed number of members.",
-  },
-  INVALID_TEAM_SIZE: {
-    title: "Invalid Team Size",
-    detail: "Your team size does not meet the event's requirements.",
-  },
-  USER_NOT_FOUND: {
-    title: "User Not Found",
-    detail: "No account was found matching the provided details.",
-  },
-  EMAIL_ALREADY_EXISTS: {
-    title: "Email Already Registered",
-    detail: "An account with this email address already exists.",
-  },
-  PHONE_ALREADY_EXISTS: {
-    title: "Phone Already Registered",
-    detail: "This phone number is already associated with an account.",
-  },
-  INVALID_EMAIL: {
-    title: "Invalid Email",
-    detail: "Please enter a properly formatted email address.",
-  },
-  INVALID_PHONE: {
-    title: "Invalid Phone Number",
-    detail: "Please enter a valid phone number.",
-  },
-  INVALID_NAME: {
-    title: "Invalid Name",
-    detail: "Please enter a valid full name.",
-  },
-  COLLEGE_NOT_FOUND: {
-    title: "College Not Found",
-    detail: "We couldn't find your college in our records.",
-  },
-  COLLEGE_REQUIRED: {
-    title: "College Required",
-    detail: "Please provide your college or institution information.",
-  },
-  INVALID_COLLEGE_EMAIL: {
-    title: "Invalid College Email",
-    detail: "The college contact email address is not valid.",
-  },
-  INVALID_FILE: {
-    title: "Invalid File",
-    detail: "One or more uploaded files could not be processed.",
-  },
-  FILE_TOO_LARGE: {
-    title: "File Too Large",
-    detail: "An uploaded file exceeds the maximum allowed size.",
-  },
-  UNSUPPORTED_FILE_TYPE: {
-    title: "Unsupported File Type",
-    detail: "One or more files are in an unsupported format.",
-  },
-  DOCUMENT_REQUIRED: {
-    title: "Document Required",
-    detail: "Please upload the required supporting document.",
-  },
-  PHOTO_REQUIRED: {
-    title: "Photo Required",
-    detail: "A photo upload is required to complete registration.",
-  },
-  BACKEND_ERROR: {
-    title: "Backend Error",
-    detail: "The server returned an unexpected error. Please retry.",
-  },
-  DATABASE_ERROR: {
-    title: "Database Error",
-    detail: "A database error occurred. Our team has been notified.",
-  },
-  SERVICE_UNAVAILABLE: {
-    title: "Service Unavailable",
-    detail: "The service is temporarily down. Please try again shortly.",
-  },
-  GONE: {
-    title: "Registration has Ended, Please try Next Year",
-    detail: "The registration can only have 15 participants",
-  },
-  TIMEOUT: {
-    title: "Request Timed Out",
-    detail:
-      "The request took too long. Please check your connection and retry.",
-  },
-};
+// `ERROR_META` removed — derive short titles from known codes and use
+// server-provided `error.message` for the detail text.
 
 function ErrorPopup({
   error,
@@ -210,18 +44,36 @@ function ErrorPopup({
 
   if (!error) return null;
 
-  const meta = error.code ? ERROR_META[error.code] : undefined;
-  const title = meta?.title ?? "Something Went Wrong";
-  const detail = meta?.detail ?? error.message;
+  const title = (() => {
+    if (!error?.code) return "Something Went Wrong";
+    switch (error.code) {
+      case "VALIDATION_ERROR":
+        return "Validation Error";
+      case "UNAUTHORIZED":
+        return "Not Logged In";
+      case "FORBIDDEN":
+        return "Access Denied";
+      case "GONE":
+        return "Registration Closed";
+      case "BAD_REQUEST":
+        return "Bad Request";
+      default:
+        return "Something Went Wrong";
+    }
+  })();
+  const detail = error.message;
 
   // Category badge
   const category = (() => {
     const c = error.code ?? "";
-    if (c.startsWith("TEAM_")) return { label: "Team", color: "#f59e0b" };
-    if (c.startsWith("EVENT_")) return { label: "Event", color: "#3b82f6" };
+    if (c.startsWith("TEAM_"))
+      return { label: "Team", color: "var(--color-warning)" };
+    if (c.startsWith("EVENT_"))
+      return { label: "Event", color: "var(--color-info)" };
     if (c.startsWith("REGISTRATION_"))
-      return { label: "Registration", color: "#8b5cf6" };
-    if (c.startsWith("COLLEGE_")) return { label: "College", color: "#10b981" };
+      return { label: "Registration", color: "var(--color-ipurple)" };
+    if (c.startsWith("COLLEGE_"))
+      return { label: "College", color: "var(--color-success)" };
     if (
       c.startsWith("FILE_") ||
       c === "INVALID_FILE" ||
@@ -229,12 +81,12 @@ function ErrorPopup({
       c === "PHOTO_REQUIRED" ||
       c === "UNSUPPORTED_FILE_TYPE"
     )
-      return { label: "File", color: "#06b6d4" };
+      return { label: "File", color: "var(--color-info)" };
     if (c === "VALIDATION_ERROR" || c.startsWith("INVALID_"))
-      return { label: "Validation", color: "#f97316" };
+      return { label: "Validation", color: "var(--color-warning)" };
     if (["UNAUTHORIZED", "FORBIDDEN", "USER_NOT_FOUND"].includes(c))
-      return { label: "Auth", color: "#ec4899" };
-    return { label: "Error", color: "#ef4444" };
+      return { label: "Auth", color: "var(--color-ipink)" };
+    return { label: "Error", color: "var(--color-error)" };
   })();
 
   return (
@@ -257,20 +109,20 @@ function ErrorPopup({
         <div
           ref={dialogRef}
           className="relative w-full max-w-sm overflow-hidden bg-white shadow-2xl"
-          style={{ borderRadius: 0, border: "1.5px solid #111" }}
+          style={{ borderRadius: 0, border: "1.5px solid var(--neutral-900)" }}
         >
           {/* Top accent bar */}
-          <div style={{ height: 4, backgroundColor: "#ef4444" }} />
+          <div style={{ height: 4, backgroundColor: "var(--color-error)" }} />
 
           {/* Header */}
           <div className="flex items-start justify-between px-6 pt-5 pb-4">
             <div className="flex items-center gap-3">
               {/* Icon */}
               <div
-                className="flex h-9 w-9 flex-shrink-0 items-center justify-center"
+                className="flex h-9 w-9 shrink-0 items-center justify-center"
                 style={{
-                  backgroundColor: "#fef2f2",
-                  border: "1px solid #fecaca",
+                  backgroundColor: "var(--color-error-background)",
+                  border: "1px solid var(--color-error-border)",
                 }}
               >
                 <svg
@@ -278,7 +130,7 @@ function ErrorPopup({
                   height="18"
                   viewBox="0 0 24 24"
                   fill="none"
-                  stroke="#ef4444"
+                  stroke="var(--color-error)"
                   strokeWidth="2.2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -311,7 +163,7 @@ function ErrorPopup({
             <button
               ref={closeButtonRef}
               onClick={onClose}
-              className="ml-2 flex h-7 w-7 flex-shrink-0 items-center justify-center text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-700"
+              className="ml-2 flex h-7 w-7 shrink-0 items-center justify-center text-neutral-400 transition-colors hover:bg-neutral-100 hover:text-neutral-700"
               aria-label="Close error message"
             >
               <svg
@@ -347,7 +199,7 @@ function ErrorPopup({
           {/* Footer */}
           <div
             className="flex justify-end gap-2 px-6 py-4"
-            style={{ borderTop: "1px solid #f3f4f6" }}
+            style={{ borderTop: "1px solid var(--neutral-100)" }}
           >
             <button
               onClick={onClose}
@@ -386,6 +238,7 @@ export default function EventRegistrationForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorInfo, setErrorInfo] = useState<ErrorInfo | null>(null);
   const [success, setSuccess] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     Name: "",
@@ -511,22 +364,64 @@ export default function EventRegistrationForm({
         documents.forEach((file) => body.append("Documents", file));
       }
 
-      const response = await fetch(`/api/temp`, {
+      const res = await fetch(`/api/temp`, {
         method: "POST",
         body,
-      }).then((res) => res.json());
+      });
 
-      if (!response.success) {
-        const code = response.error?.code as string | undefined;
-        const message = response.error?.message as string | undefined;
-        setErrorInfo(resolveError(code, message));
+      const data = await res.json().catch(() => ({}));
+
+      // Success: 200 / 201 (or a truthy data.success)
+      if (res.status === 200 || res.status === 201 || data.success) {
+        setSuccess(true);
+        setSuccessMessage(
+          (data && (data.message || data.successMessage)) ||
+            "Registered successfully. Check your email for confirmation.",
+        );
+        resetForm();
+        onSuccess?.();
+        setTimeout(() => {
+          setSuccess(false);
+          setSuccessMessage(null);
+        }, 5000);
         return;
       }
 
-      setSuccess(true);
-      resetForm();
-      onSuccess?.();
-      setTimeout(() => setSuccess(false), 5000);
+      // Map common status codes to friendly error codes/messages
+      if (res.status === 400) {
+        setErrorInfo(
+          resolveError(
+            "VALIDATION_ERROR",
+            data?.message || data?.error || "Validation error.",
+          ),
+        );
+        return;
+      }
+
+      if (res.status === 401 || res.status === 403) {
+        setErrorInfo(
+          resolveError(
+            "UNAUTHORIZED",
+            data?.message ||
+              "You need to log in before completing this action.",
+          ),
+        );
+        return;
+      }
+
+      if (res.status === 410) {
+        setErrorInfo(
+          resolveError("GONE", data?.message || "Registration has ended."),
+        );
+        return;
+      }
+
+      // Fallback for other errors
+      const code = (data && (data.error?.code || data.code)) || "BACKEND_ERROR";
+      const message =
+        (data && (data.error?.message || data.message)) ||
+        "An unexpected error occurred.";
+      setErrorInfo(resolveError(code, message));
     } catch (err) {
       setErrorInfo(
         resolveError(
@@ -578,7 +473,8 @@ export default function EventRegistrationForm({
         {success && (
           <div className="mb-6 bg-green-50 p-4 text-green-800">
             <p className="font-medium">
-              Registration successful! Check your email for confirmation.
+              {successMessage ??
+                "Registration successful! Check your email for confirmation."}
             </p>
           </div>
         )}

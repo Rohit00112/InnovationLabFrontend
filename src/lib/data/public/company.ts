@@ -205,34 +205,16 @@ export const partnerCompanies: CompanyListItem[] = [
 
 export const partnerStoriesData: StoryItem[] = [
   {
-    image:
-      "https://images.unsplash.com/photo-1748968218568-a5eac621e65c?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw1M3x8fGVufDB8fHx8fA%3D%3D",
-    storyTeller: "Rakshak Sigdel",
-    description: "Hold on to your mouse, things are about to get wild!",
-  },
-  {
-    image:
-      "https://zamin.uz/uploads/posts/2025-07/a6273368c2_cristiano-ronaldo-6.webp",
-    storyTeller: "Cristiano Ronaldo",
-    description: "Siuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu!",
-  },
-  {
-    image:
-      "https://wallpapers.com/images/featured/dexter-pictures-fe9qbtzm9bbv0xxj.jpg",
-    storyTeller: "Dexter Morgan",
+    image: "/testi/lenisha.jpeg",
+    storyTeller: "Lenisha Ghimire",
     description:
-      "Tonight's the night. It's going to happen again and again. It has to happen.",
+      "My internship journey was a great learning experience that helped me grow personally and professionally. It boosted my confidence and taught me to take on new challenges positively. I am truly thankful to my college for believing in me and providing this opportunity.",
   },
   {
-    image: "https://wallpapercave.com/wp/wp1932768.png",
-    storyTeller: "Walter White",
-    description: "Say my Name",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1742626157052-f5a373a727ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D",
-    storyTeller: "Epic Finale",
-    description: ":)",
+    image: "/testi/wanem.jpeg",
+    storyTeller: "Ayush Wanem Limbu",
+    description:
+      "I am grateful to have completed my internship as a SOC Analyst Intern at Vairav Tech, where I gained valuable exposure to modern cybersecurity operations, including SOC workflows, malware analysis, SIEM technologies, incident response, and how organizations maintain and strengthen their security posture. I sincerely appreciate the mentorship provided by the team and remain equally thankful to Itahari International College for its continued support in advancing academic and professional growth through industry engagement.",
   },
 ];
 
