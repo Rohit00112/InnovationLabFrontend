@@ -65,12 +65,7 @@ export default function Navbar() {
             </TransitionLink>
           </div>
 
-          <Link
-            href={navigationRoutes.login}
-            className="hidden border border-gray-300 px-6 py-3 md:block"
-          >
-            login
-          </Link>
+          <div></div>
 
           <button
             aria-label="Toggle navigation menu"

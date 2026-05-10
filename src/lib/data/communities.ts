@@ -1,4 +1,8 @@
-export type CommunitySlug = "coders" | "creators" | "researchers" | "inventors";
+export type CommunitySlug =
+  | "coders"
+  | "creators"
+  | "researchers"
+  | "entrepreneurs";
 
 export type CommunityCard = {
   id: string;
@@ -59,8 +63,8 @@ export const communityCards: CommunityCard[] = [
   },
   {
     id: "04",
-    slug: "inventors",
-    title: "Inventors",
+    slug: "entrepreneurs",
+    title: "Entrepreneurs",
     description: "Turning concepts into prototypes and deployable innovation.",
     image: "/about/28.jpg",
   },
@@ -199,13 +203,13 @@ export const communityProfiles: Record<CommunitySlug, CommunityProfile> = {
       },
     ],
   },
-  inventors: {
-    slug: "inventors",
-    title: "Inventors",
+  entrepreneurs: {
+    slug: "entrepreneurs",
+    title: "Entrepreneurs",
     about:
-      "The Inventors community transforms ideas into functioning prototypes, hardware experiments, and interactive systems. Members move fast from concept to testable artifact.",
+      "The Entrepreneurs community focuses on turning ideas into viable business ventures, fostering innovation and growth through collaboration and resource sharing. Members work together to identify opportunities, develop business plans, and launch new products or services.",
     aboutLead:
-      "Inventors bridge imagination and implementation through practical prototyping.",
+      "Entrepreneurs drive economic impact by creating sustainable business models and scalable solutions.",
     teamMembers: [
       {
         name: "Ishan Bista",
@@ -249,5 +253,5 @@ export const communitySlugs: CommunitySlug[] = [
   "coders",
   "creators",
   "researchers",
-  "inventors",
+  "entrepreneurs",
 ];

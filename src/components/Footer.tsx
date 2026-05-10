@@ -5,7 +5,7 @@ import PageLayout from "./primitives/PageLayout";
 
 const footerNavigation = {
   explore: ["About", "Communities", "Events", "Contact"],
-  lab: ["Programs", "Projects", "Research", "Archive"],
+  // lab: ["Programs", "Projects", "Research", "Archive"],
   connect: ["Instagram", "Facebook", "GitHub"],
 };
 

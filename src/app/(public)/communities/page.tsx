@@ -44,7 +44,7 @@ export default function CommunitiesPage() {
         ))}
       </section>
       <div className="line-bg w-full md:h-16 h-6"></div>
-      <section className="mx-auto bg-white px-4 py-14 md:px-0">
+      {/* <section className="mx-auto bg-white px-4 py-14 md:px-0">
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <h2 className=" px-3 text-[clamp(30px,4.6vw,54px)] font-black uppercase tracking-[-0.03em] text-ivBlack">
             {publicCommunitiesText.latestNews}
@@ -80,7 +80,7 @@ export default function CommunitiesPage() {
             </article>
           ))}
         </div>
-      </section>
+      </section> */}
       <div className="line-bg w-full md:h-16 h-6"></div>
       <section className="flex flex-col bg-white">
         {publicCommunityCards.map((community, index) => (

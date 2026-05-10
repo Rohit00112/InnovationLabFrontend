@@ -8,8 +8,8 @@ const testimonialData = [
     id: 1,
     quote:
       "At the Innovation Lab, we are committed to fostering a culture where creativity, critical thinking, and practical learning come together. Our objective is to create an environment that empowers students to explore ideas, develop innovative solutions, and gain hands-on experience that extends beyond traditional classroom learning. By bridging academic knowledge with real-world application, we aim to prepare students to become confident, future-ready innovators who can contribute meaningfully to society.",
-    author: "Mr Nishes Biswas",
-    role: "Innovation Lab Head",
+    author: "Mr. Nishes Biswas",
+    role: "Innovation Lab Lead",
     image: "/sir/nb.jpg",
     image2: "/sir/nb.jpg",
   },
@@ -17,8 +17,8 @@ const testimonialData = [
     id: 2,
     quote:
       "The Innovation Lab provides a dynamic platform for students to engage in experiential learning and collaborative problem-solving. We emphasize a student-centered approach where learners are encouraged to experiment, think independently, and apply their knowledge in practical contexts. Through continuous guidance and support, we strive to help students enhance their technical skills, creativity, and confidence, enabling them to transform their ideas into impactful outcomes.",
-    author: "Michael Rodriguez",
-    role: "Design Lead",
+    author: "Mr. Sujan Subedi",
+    role: "Tech Community Mentor",
     image: "/sir/ss.jpg",
     image2: "/sir/ss.jpg",
   },

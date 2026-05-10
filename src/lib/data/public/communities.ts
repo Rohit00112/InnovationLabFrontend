@@ -35,8 +35,7 @@ export const publicCommunityCards = [
     title: "Coders Team",
     description:
       "The Coders team forms the technical backbone of the Innovation Lab, turning ideas into functional digital products through development, testing, and system integration.",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    image: "/about/28.jpg",
     focus: "Software development, system design, and technical execution",
     members: "Technical innovators and developers",
     activities: "Coding, debugging, testing, and system integration",
@@ -49,8 +48,7 @@ export const publicCommunityCards = [
     title: "Researchers Team",
     description:
       "The Researchers team ensures that every project is grounded in facts and real-world insights by exploring trends, user needs, and data-driven validation.",
-    image:
-      "https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=800&q=80",
+    image: "/about/30.jpg",
     focus: "Data collection, problem analysis, and idea validation",
     members: "Analysts and research-driven thinkers",
     activities: "Market research, surveys, data analysis, and report writing",
@@ -63,8 +61,7 @@ export const publicCommunityCards = [
     title: "Creators Team",
     description:
       "The Creators team brings ideas to life visually and creatively, building the Innovation Lab’s public presence through branding, storytelling, and design.",
-    image:
-      "https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=800&q=80",
+    image: "/about/27.jpg",
     focus: "Branding, design, and content production",
     members: "Designers, storytellers, and creative communicators",
     activities:
@@ -78,8 +75,7 @@ export const publicCommunityCards = [
     title: "Entrepreneurs Team",
     description:
       "The Entrepreneurs team transforms innovative ideas into sustainable ventures while nurturing business strategy, leadership, and entrepreneurial growth.",
-    image:
-      "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=800&q=80",
+    image: "/about/26.jpg",
     focus: "Business planning, marketing, and strategy",
     members: "Startup thinkers and business innovators",
     activities:

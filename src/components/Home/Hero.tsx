@@ -33,7 +33,7 @@ export default function Hero({ partnerLogos }: HeroProps) {
           <div className="px-3 pt-4 sm:pt-6 lg:pt-8">
             <h1 className="whitespace-nowrap text-[clamp(1.45rem,9.2vw,4.4rem)] sm:text-[clamp(2rem,9vw,5rem)] lg:text-[clamp(5.1rem,8vw,10rem)] font-bold leading-[0.86] tracking-[-0.08em]">
               INN<span className="text-iblue">O</span>VATI
-              <span className="text-iblue">O</span>N LABS
+              <span className="text-iblue">O</span>N LAB
             </h1>
           </div>
 
@@ -49,8 +49,10 @@ export default function Hero({ partnerLogos }: HeroProps) {
           </div>
 
           <div className="mx-3 mt-8 flex flex-wrap gap-3 sm:gap-5">
-            <Button>Explore the Lab</Button>
-            <Button variant="outline">VIEW EVENTS</Button>
+            <Button href="/about">Explore the Lab</Button>
+            <Button href="/events" variant="outline">
+              VIEW EVENTS
+            </Button>
           </div>
         </div>
       </div>
