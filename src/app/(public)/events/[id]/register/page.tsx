@@ -123,8 +123,9 @@ export default function EventRegisterPage({ params }: EventRegisterPageProps) {
                   className="bg-white p-2"
                 />
               </div>
-              <p className="mt-2 text-xs text-neutral-500">
-                Scan to pay registration fee (if applicable)
+              <p className="mt-2 text-md text-red-600 font-bold ">
+                Scan to pay registration fee, A fee of NRP 5000 is required, and
+                submit the Screenshot of the payment in the Supporting document.
               </p>
             </div>
 
