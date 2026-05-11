@@ -1,6 +1,7 @@
 import PageHeader from "@/components/primitives/PageHeader";
 import PageLayout from "@/components/primitives/PageLayout";
 import { getEventById } from "@/lib/services/domain/events";
+import JobFairCompanies from "../../../../components/Events/JobFairCompanies";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -33,6 +34,8 @@ export default async function EventDetailPage({
 
   // Map highlights to focus areas and details
   const focusAreas = event.highlights || [];
+  const isJobFairEvent =
+    (event.title ?? "").replace(/\s+/g, "").toLowerCase() === "jobfair";
 
   const dummyGallery = [
     event.coverImageUrl ||
@@ -206,7 +209,10 @@ export default async function EventDetailPage({
           ))}
         </div>
       </section>
-
+      {/* Companies Attending the Event */}
+      {isJobFairEvent && (
+        <JobFairCompanies />
+      )}
       {/* Related Events Section */}
       <section className="mx-auto w-full border-x border-b border-gray-300 bg-neutral-100 px-6 py-12 text-center md:px-10 md:py-16">
         <Link

@@ -3,7 +3,7 @@
 import React from "react";
 import type { CompanyListItem } from "@/components/Company/companyList";
 
-interface ColumnDef<T> {
+export interface ColumnDef<T> {
   header: string;
   accessorKey?: keyof T;
   cell?: (
@@ -160,7 +160,7 @@ export default function CompanyListTable({
         </div>
       </div>
       <div className="overflow-x-auto overflow-y-visible">
-        <div className="min-w-[720px] pb-10">
+        <div className="min-w-180 pb-10">
           <div
             className="grid items-center gap-4 border-b border-black/10 bg-neutral-50/80 px-6 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-500"
             style={{ gridTemplateColumns }}
