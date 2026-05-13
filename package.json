@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "generate": "orval",
+    "generate": "orval && node scripts/patch-api.js",
     "build": "npm run generate && next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0 --ext .ts,.tsx",
