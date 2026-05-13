@@ -15,7 +15,7 @@ import type {
   FaqListResponseDto,
   ContactCreateDto,
   TestimonialResponseDto,
-  EventRegistrationUpdateDto,
+  UpdateEventRegistrationBody,
 } from "@/lib/services/generated/frontend/schemas";
 
 export type BffMeta = {
@@ -260,9 +260,9 @@ export const bffApi = {
       ),
     updateRegistrationStatus: (
       registrationId: string,
-      body: EventRegistrationUpdateDto,
+      body: UpdateEventRegistrationBody,
     ) =>
-      localApi.patch<void, EventRegistrationUpdateDto>(
+      localApi.patch<void, UpdateEventRegistrationBody>(
         `/api/events/registrations/${registrationId}/status`,
         { body },
       ),

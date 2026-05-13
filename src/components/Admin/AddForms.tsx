@@ -1,6 +1,7 @@
 'use client';
 
 import React, { FormEvent, useState, useEffect } from 'react';
+import { addFormMessages } from '@/constants/ui/messages';
 
 const EMPTY_INITIAL_VALUES: Record<string, any> = {};
 
@@ -154,7 +155,7 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
       
       {success && (
         <div className="mb-6 p-4 bg-[#f0fdf4] border border-[var(--color-success)] text-[var(--color-success)] rounded-md">
-          Successfully added!
+          {addFormMessages.success}
         </div>
       )}
 
@@ -181,7 +182,7 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
                 placeholder={field.placeholder}
                 rows={4}
                 defaultValue={
-                  (initialValues[field.name] as
+                  (safeInitialValues[field.name] as
                     | string
                     | number
                     | readonly string[]
@@ -206,10 +207,10 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
                         className="sr-only"
                       />
                     </label>
-                    <p className="pl-1">or drag and drop</p>
+                    <p className="pl-1">{addFormMessages.dragAndDropHint}</p>
                   </div>
                   <p className="text-xs text-[var(--neutral-500)]">
-                    PNG, JPG, GIF up to 10MB
+                    {addFormMessages.fileTypesHint}
                   </p>
                 </div>
               </div>
@@ -220,7 +221,7 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
                 placeholder={field.placeholder}
                 required={field.required}
                 defaultValue={
-                  (initialValues[field.name] as
+                  (safeInitialValues[field.name] as
                     | string
                     | number
                     | readonly string[]
@@ -238,7 +239,7 @@ export default function AddForms({ title, fields, apiEndpoint, endpointBuilder, 
             disabled={loading}
             className="w-full rounded-md bg-(--color-iblue) px-6 py-2.5 font-medium text-white shadow-sm transition-colors hover:bg-iblue-600 focus:ring-2 focus:ring-(--color-iblue) focus:ring-offset-2 focus:outline-none disabled:opacity-50 sm:w-auto"
           >
-            {loading ? 'Submitting...' : (method === 'PATCH' ? 'Update' : 'Submit Form')}
+            {loading ? addFormMessages.submitting : (method === 'PATCH' ? addFormMessages.update : addFormMessages.submit)}
           </button>
         </div>
       </form>

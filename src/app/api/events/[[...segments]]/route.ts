@@ -21,7 +21,7 @@ import {
   type GetEventsParams,
   type EventAgendaUpdateDto,
   type UpdateEventBody,
-  type EventRegistrationUpdateDto,
+  type UpdateEventRegistrationBody,
   type RegisterForEventBody,
 } from "@/lib/services/generated/node/schemas";
 
@@ -395,7 +395,7 @@ export async function PATCH(request: NextRequest, context: Context) {
         }
 
         const parsed =
-          await parseJsonBodyAs<EventRegistrationUpdateDto>(request);
+          await parseJsonBodyAs<UpdateEventRegistrationBody>(request);
         if (parsed.error) {
           return parsed.error;
         }
@@ -412,7 +412,7 @@ export async function PATCH(request: NextRequest, context: Context) {
         }
 
         return relay(
-          await nodeApi.updateEventRegistrationStatus(
+          await nodeApi.updateEventRegistration(
             route.registrationId,
             parsed.value,
             {

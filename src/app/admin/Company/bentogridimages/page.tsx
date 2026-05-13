@@ -1,3 +1,4 @@
+"use client";
 import AdminViewSwitcher from "@/components/Admin/AdminViewSwitcher";
 import AddForms, { FormField } from "@/components/Admin/AddForms";
 import ManageList, { Column } from "@/components/Admin/ManageList";
