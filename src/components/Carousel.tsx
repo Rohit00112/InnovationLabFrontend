@@ -11,34 +11,34 @@ type GalleryImage = {
 
 const topRowImages: GalleryImage[] = [
   {
-    src: "/hero/1.JPG",
+    src: "/hero/1.jpg",
     alt: "Dynamic architectural structure in Malmö",
   },
   {
-    src: "/hero/2.JPG",
+    src: "/hero/2.jpg",
     alt: "Modern architectural ceiling with geometric design",
   },
   {
-    src: "/hero/3.JPG",
+    src: "/hero/3.jpg",
     alt: "Black and white glass architecture",
   },
   {
-    src: "/hero/4.JPG",
+    src: "/hero/4.jpg",
     alt: "Neoclassical columns at sunset",
   },
   {
-    src: "/hero/5.JPG",
+    src: "/hero/5.jpg",
     alt: "Ornate neo-classical architectural corner",
   },
   {
-    src: "/hero/6.JPG",
+    src: "/hero/6.jpg",
     alt: "Modern futuristic building in Valencia",
   },
 ];
 
 const bottomRowImages: GalleryImage[] = [
   {
-    src: "/hero/7.JPG",
+    src: "/hero/7.jpg",
     alt: "Bright modern interior with large windows",
   },
   {
@@ -46,19 +46,19 @@ const bottomRowImages: GalleryImage[] = [
     alt: "Modern interior with minimalist design",
   },
   {
-    src: "/hero/9.JPG",
+    src: "/hero/9.jpg",
     alt: "House interior with a green door",
   },
   {
-    src: "/hero/10.JPG",
+    src: "/hero/10.jpg",
     alt: "Rustic interior with wooden walls and lights",
   },
   {
-    src: "/hero/11.JPG",
+    src: "/hero/11.jpg",
     alt: "Modern stylish interior with unique design",
   },
   {
-    src: "/hero/12.JPG",
+    src: "/hero/12.jpg",
     alt: "Modern luxury interior with marble accents",
   },
 ];
