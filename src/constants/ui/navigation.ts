@@ -56,5 +56,5 @@ export const navigationMenuItems = [
   { label: "Events", href: navigationRoutes.events },
   { label: "Communities", href: navigationRoutes.communities },
   { label: "Contact", href: navigationRoutes.contact },
-  { label: "Company", href: navigationRoutes.company },
+  { label: "Partnership", href: navigationRoutes.company },
 ] as const;
