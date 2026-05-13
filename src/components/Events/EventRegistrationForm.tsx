@@ -805,7 +805,7 @@ export default function EventRegistrationForm({
               </div> */}
             </div>
 
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-neutral-700">
                 Phone Number
               </label>
@@ -821,7 +821,7 @@ export default function EventRegistrationForm({
                   {fieldError("Phone")}
                 </p>
               )}
-            </div>
+            </div> */}
           </fieldset>
 
           {/* College */}

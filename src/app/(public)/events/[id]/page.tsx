@@ -183,32 +183,7 @@ export default async function EventDetailPage({
       </section>
 
       {/* Gallery Section */}
-      <section className="mx-auto w-full border-x border-b border-gray-300 bg-white px-6 py-12 md:px-10 md:py-16">
-        <h2 className="text-[clamp(28px,4.5vw,52px)] font-black uppercase tracking-[-0.03em]">
-          Gallery
-        </h2>
-
-        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-          {dummyGallery.map((image, index) => (
-            <div
-              key={image + index}
-              className={[
-                "relative overflow-hidden border",
-                index === 0
-                  ? "col-span-2 row-span-2 min-h-48 md:min-h-80"
-                  : "min-h-32 md:min-h-40",
-              ].join(" ")}
-            >
-              <Image
-                src={image}
-                alt={`${event.title} gallery ${index + 1}`}
-                fill
-                className="object-cover"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
+     
       {/* Companies Attending the Event */}
       {isJobFairEvent && (
         <JobFairCompanies />
