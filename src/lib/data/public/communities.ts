@@ -5,7 +5,7 @@ export const publicCommunitiesLatestNews = [
     image:
       "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80",
     details:
-      "Coders and Inventors shipped a testable prototype during a 48-hour sprint.",
+      "Tech community and Inventors shipped a testable prototype during a 48-hour sprint.",
     status: "Published",
   },
   {
@@ -30,11 +30,11 @@ export const publicCommunitiesLatestNews = [
 
 export const publicCommunityCards = [
   {
-    id: "COM_01",
+    id: "Community_01",
     slug: "coders",
-    title: "Coders Team",
+    title: "Tech Community",
     description:
-      "The Coders team forms the technical backbone of the Innovation Lab, turning ideas into functional digital products through development, testing, and system integration.",
+      "The tech community forms the technical backbone of the Innovation Lab, turning ideas into functional digital products through development, testing, and system integration.",
     image: "/about/28.jpg",
     focus: "Software development, system design, and technical execution",
     members: "Technical innovators and developers",
@@ -43,11 +43,11 @@ export const publicCommunityCards = [
       "Web applications, digital systems, software solutions, and technical platforms",
   },
   {
-    id: "COM_02",
+    id: "Community_02",
     slug: "researchers",
-    title: "Researchers Team",
+    title: "Researchers Community",
     description:
-      "The Researchers team ensures that every project is grounded in facts and real-world insights by exploring trends, user needs, and data-driven validation.",
+      "The researchers community ensures that every project is grounded in facts and real-world insights by exploring trends, user needs, and data-driven validation.",
     image: "/about/30.jpg",
     focus: "Data collection, problem analysis, and idea validation",
     members: "Analysts and research-driven thinkers",
@@ -56,11 +56,11 @@ export const publicCommunityCards = [
       "Trend analysis, research reports, user insights, and validation studies",
   },
   {
-    id: "COM_03",
+    id: "Community_03",
     slug: "creators",
-    title: "Creators Team",
+    title: "Creators Community",
     description:
-      "The Creators team brings ideas to life visually and creatively, building the Innovation Lab’s public presence through branding, storytelling, and design.",
+      "The creators community brings ideas to life visually and creatively, building the Innovation Lab’s public presence through branding, storytelling, and design.",
     image: "/about/27.jpg",
     focus: "Branding, design, and content production",
     members: "Designers, storytellers, and creative communicators",
@@ -70,11 +70,11 @@ export const publicCommunityCards = [
       "Social media campaigns, promotional content, branding materials, and digital creatives",
   },
   {
-    id: "COM_04",
+    id: "Community_04",
     slug: "entrepreneurs",
-    title: "Entrepreneurs Team",
+    title: "Entrepreneurs Community",
     description:
-      "The Entrepreneurs team transforms innovative ideas into sustainable ventures while nurturing business strategy, leadership, and entrepreneurial growth.",
+      "The entrepreneurs community transforms innovative ideas into sustainable ventures while nurturing business strategy, leadership, and entrepreneurial growth.",
     image: "/about/26.jpg",
     focus: "Business planning, marketing, and strategy",
     members: "Startup thinkers and business innovators",

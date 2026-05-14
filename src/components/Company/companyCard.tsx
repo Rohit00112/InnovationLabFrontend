@@ -91,15 +91,17 @@ export default function CompanyCard({
               </span>
             )}
           </div>
-          <Image
-            src={logoUrl}
-            alt={name}
-            width={1200}
-            height={800}
-            unoptimized
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="h-64 w-full object-cover"
-          />
+          <div className="h-64 w-full flex items-center justify-center p-8 bg-white overflow-hidden">
+            <Image
+              src={logoUrl}
+              alt={name}
+              width={400}
+              height={400}
+              unoptimized
+              sizes="(min-width: 1024px) 33vw, 100vw"
+              className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110"
+            />
+          </div>
         </div>
 
         {/* Content Section */}
@@ -116,20 +118,6 @@ export default function CompanyCard({
               {contactEmail}
             </a>
           )}
-          <div className={`${compact ? 'mt-3' : 'mt-4'} border-t`}  />
-        </div>
-
-        {/* Footer Section */}
-        <div className={`grid grid-cols-[1fr_auto] items-center gap-2 ${compact ? 'px-4 pb-4 pt-1' : 'px-6 pb-6 pt-1'}`}>
-          <span className={`${compact ? 'text-[10px]' : 'text-[12px]'} font-black uppercase tracking-[2.5px] leading-tight text-black`}>
-            <span className="lg:hidden">INTERNSHIP<br />QUOTA</span>
-            <span className="hidden lg:inline">INTERNSHIP QUOTA</span>
-          </span>
-          <span
-            className={`text-right ${compact ? 'text-[14px] sm:text-[16px] lg:text-[18px]' : 'text-[18px] sm:text-[20px] lg:text-[24px]'} font-black uppercase leading-none lg:whitespace-nowrap`}
-          >
-            {numberOfInterns} INTERNS
-          </span>
         </div>
       </div>
     </motion.div>

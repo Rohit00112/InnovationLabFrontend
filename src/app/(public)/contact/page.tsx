@@ -63,13 +63,35 @@ export default function Contact() {
 
                 setLoading(true);
                 try {
-                  await createContactMessage({
-                    name: values.name || null,
-                    email: values.email || null,
-                    subject: values.title || null,
-                    message: values.message || null,
-                    phoneNumber: null,
+                  const emailRes = await fetch("/api/contact-email", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      name: values.name || null,
+                      email: values.email || null,
+                      subject: values.title || null,
+                      message: values.message || null,
+                    }),
                   });
+
+                  if (!emailRes.ok) {
+                    throw new Error(`Email send failed (${emailRes.status})`);
+                  }
+
+                  try {
+                    await createContactMessage({
+                      name: values.name || null,
+                      email: values.email || null,
+                      subject: values.title || null,
+                      message: values.message || null,
+                      phoneNumber: null,
+                    });
+                  } catch (dbErr) {
+                    console.warn(
+                      "Contact saved as email but DB persist failed:",
+                      dbErr,
+                    );
+                  }
 
                   setStatusMessage(t("public.contact.sendSuccess" as const));
                   form.reset();
@@ -100,7 +122,7 @@ export default function Contact() {
                     name="contact-name"
                     type="text"
                     placeholder={publicContactText.namePlaceholder}
-                    className="h-12 w-full border border-neutral-900 bg-white px-4 text-xs uppercase tracking-[0.12em] outline-none"
+                    className="h-12 w-full border border-neutral-900 bg-white px-4 text-sm tracking-normal outline-none"
                   />
                   {fieldErrors.name && (
                     <p className="mt-1 text-xs text-error">
@@ -118,7 +140,7 @@ export default function Contact() {
                     name="contact-email"
                     type="email"
                     placeholder={publicContactText.emailPlaceholder}
-                    className="h-12 w-full border border-neutral-900 bg-white px-4 text-xs uppercase tracking-[0.12em] outline-none"
+                    className="h-12 w-full border border-neutral-900 bg-white px-4 text-sm tracking-normal outline-none"
                   />
                   {fieldErrors.email && (
                     <p className="mt-1 text-xs text-error">
@@ -136,8 +158,8 @@ export default function Contact() {
                   id="contact-title"
                   name="contact-title"
                   type="text"
-                  defaultValue={publicContactText.titleDefault}
-                  className="w-full border border-neutral-900 bg-white px-4 py-3 text-xs uppercase tracking-[0.12em] outline-none"
+                  placeholder={publicContactText.titleDefault}
+                  className="w-full border border-neutral-900 bg-white px-4 py-3 text-sm tracking-normal outline-none"
                 />
               </div>
 
@@ -150,7 +172,7 @@ export default function Contact() {
                   name="contact-message"
                   rows={5}
                   placeholder={publicContactText.messagePlaceholder}
-                  className="w-full resize-none border border-neutral-900 bg-white px-4 py-3 text-xs uppercase tracking-[0.12em] outline-none"
+                  className="w-full resize-none border border-neutral-900 bg-white px-4 py-3 text-sm tracking-normal outline-none"
                 />
                 {fieldErrors.message && (
                   <p className="mt-1 text-xs text-error">

@@ -135,7 +135,7 @@ export default function Partner() {
 
   return (
     <PageLayout hideOverflow={false}>
-      <PageHeader title="PARTNERS" />
+      <PageHeader title="PARTNER COMPANIES" />
       <FadeIn delay={0.1}>
         <div className="mx-ds-5 mt-36 antialiased">
           <BentoGrid imageItems={companyGalleryItems} />
@@ -151,7 +151,7 @@ export default function Partner() {
           <div className="p-6 md:p-8 lg:p-10 bg-white border border-[#DFDFDF] border-b-0">
             <div className="grid grid-cols-1 gap-6 border-b border-[#006875] pb-6 md:pb-8 lg:grid-cols-[3fr_2fr]">
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter text-balance text-neutral-900">
-                Companies Providing Internships
+                Companies Attending Job Fair
               </h2>
             </div>
           </div>

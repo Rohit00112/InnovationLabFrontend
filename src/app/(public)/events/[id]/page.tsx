@@ -70,14 +70,8 @@ export default async function EventDetailPage({
                   {event.seriesName || "Special Event"}
                 </span>
 
-                <span className="text-xs font-bold uppercase tracking-[0.15em] text-white/70">
-                  {event.id?.slice(0, 8)}
-                </span>
               </div>
 
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/85 md:text-base">
-                {event.description}
-              </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
                 {event.isRegistrationOpen ? (
@@ -171,28 +165,49 @@ export default async function EventDetailPage({
 
           <article className="border bg-linear-to-br from-white to-neutral-50 p-6">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
-              Date & Time
+              Event Time
             </p>
 
             <p className="mt-4 text-sm leading-relaxed text-neutral-700">
               {event.startTime
-                ? new Date(event.startTime).toLocaleString()
+                ? new Date(event.startTime).toLocaleString("en-US", {
+                    timeZone: "Asia/Kathmandu",
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                  })
                 : "TBD"}
+              {event.endTime && (
+                <>
+                  {" - "}
+                  {new Date(event.endTime).toLocaleTimeString("en-US", {
+                    timeZone: "Asia/Kathmandu",
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                  })}
+                </>
+              )}
             </p>
           </article>
 
-          <article className="border bg-linear-to-br from-white to-neutral-50 p-6">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
-              Registration
-            </p>
+          {event.registrationEnd && (
+            <article className="border bg-linear-to-br from-white to-neutral-50 p-6">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-600">
+                Registration
+              </p>
 
-            <p className="mt-4 text-sm leading-relaxed text-neutral-700">
-              Ends on{" "}
-              {event.registrationEnd
-                ? new Date(event.registrationEnd).toLocaleDateString()
-                : "TBD"}
-            </p>
-          </article>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-700">
+                Ends on{" "}
+                {new Date(event.registrationEnd).toLocaleDateString("en-US", {
+                  timeZone: "Asia/Kathmandu",
+                })}
+              </p>
+            </article>
+          )}
         </div>
       </section>
 

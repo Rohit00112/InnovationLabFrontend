@@ -27,7 +27,6 @@ export default function CompanyListTable({
   companies,
   title,
   description,
-  variant = "mou",
   columns,
 }: CompanyListTableProps) {
   const pageSize = 10;
@@ -38,11 +37,11 @@ export default function CompanyListTable({
       width: "80px",
       className: "w-[80px]",
       cell: (company) => (
-        <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-md border border-black/10 bg-white shadow-sm">
+        <div className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-md border border-black/10 bg-white p-1 shadow-sm">
           <img
             src={company.logoUrl}
             alt={company.name}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
           />
         </div>
       ),
@@ -83,44 +82,28 @@ export default function CompanyListTable({
         ),
     },
   ];
-  const variantColumns: ColumnDef<CompanyListItem>[] =
-    variant === "internship"
-      ? [
-          ...defaultColumns,
-          {
-            header: "Interns",
-            width: "140px",
-            className: "w-[140px] flex justify-center",
-            headerClassName: "flex justify-center",
-            cell: (company) => (
-              <span className="inline-flex items-center justify-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-neutral-800">
-                {company.numberOfInterns ?? 0}
-              </span>
-            ),
-          },
-        ]
-      : [
-          ...defaultColumns,
-          {
-            header: "Website",
-            width: "1.2fr",
-            className: "min-w-[200px] pl-2",
-            headerClassName: "min-w-[200px]",
-            cell: (company) =>
-              company.websiteUrl ? (
-                <a
-                  href={company.websiteUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-neutral-800 font-medium transition hover:underline"
-                >
-                  {company.websiteUrl.replace(/^https?:\/\//, "")}
-                </a>
-              ) : (
-                <span className="text-neutral-400">N/A</span>
-              ),
-          },
-        ];
+  const variantColumns: ColumnDef<CompanyListItem>[] = [
+    ...defaultColumns,
+    {
+      header: "Website",
+      width: "1.2fr",
+      className: "min-w-[200px] pl-2",
+      headerClassName: "min-w-[200px]",
+      cell: (company) =>
+        company.websiteUrl ? (
+          <a
+            href={company.websiteUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="text-neutral-800 font-medium transition hover:underline"
+          >
+            {company.websiteUrl.replace(/^https?:\/\//, "")}
+          </a>
+        ) : (
+          <span className="text-neutral-400">N/A</span>
+        ),
+    },
+  ];
   const tableColumns = columns ?? variantColumns;
 
   const displayCompanies = [...companies].sort(

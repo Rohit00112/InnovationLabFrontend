@@ -563,6 +563,22 @@ export default function EventRegistrationForm({
 
       // Success: 200 / 201 (or a truthy data.success)
       if (res.status === 200 || res.status === 201 || data.success) {
+        // Notify innovation lab via email (only after the registration
+        // succeeded). Failures here are logged but do not affect the
+        // user-facing success state.
+        try {
+          body.append("EventTitle", eventTitle);
+          await fetch("/api/event-registration-email", {
+            method: "POST",
+            body,
+          });
+        } catch (mailErr) {
+          console.warn(
+            "Registration succeeded but notification email failed:",
+            mailErr,
+          );
+        }
+
         const msg =
           (data && (data.message || data.successMessage)) ||
           "Registered successfully. You'll get a verification email/phone shortly.";
