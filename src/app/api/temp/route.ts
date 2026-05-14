@@ -4,15 +4,8 @@ export const POST = async (req: Request) => {
       throw new Error("env is undefined for backend url");
     }
 
-    console.log(req);
-
     // Read incoming multipart/form-data
     const formData = await req.formData();
-
-    // Optional: log all fields
-    for (const [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
 
     // Forward same form data to backend
     const response = await fetch(

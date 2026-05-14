@@ -1,0 +1,3034 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "InnovationLab.Landing",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/About": {
+      "get": {
+        "tags": ["About"],
+        "operationId": "GetAbout",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["About"],
+        "operationId": "UpsertAbout",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Mission": {
+                    "type": "string"
+                  },
+                  "Vision": {
+                    "type": "string"
+                  },
+                  "ParentOrgName": {
+                    "type": "string"
+                  },
+                  "ParentOrgDescription": {
+                    "type": "string"
+                  },
+                  "ParentOrgLogo": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "ParentOrgWebsiteUrl": {
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Mission": { "style": "form" },
+                "Vision": { "style": "form" },
+                "ParentOrgName": { "style": "form" },
+                "ParentOrgDescription": { "style": "form" },
+                "ParentOrgLogo": { "style": "form" },
+                "ParentOrgWebsiteUrl": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/AboutResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AboutResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/AboutResponseDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/About/core-values": {
+      "get": {
+        "tags": ["About"],
+        "operationId": "GetCoreValues",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CoreValueResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CoreValueResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CoreValueResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["About"],
+        "operationId": "CreateCoreValue",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Icon": { "type": "string", "format": "binary" },
+                  "Order": { "type": "integer", "format": "int32" }
+                }
+              },
+              "encoding": {
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Icon": { "style": "form" },
+                "Order": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoreValueResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoreValueResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoreValueResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/About/journey": {
+      "get": {
+        "tags": ["About"],
+        "operationId": "GetJourney",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JourneyItemResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JourneyItemResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JourneyItemResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["About"],
+        "operationId": "CreateJourneyItem",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Image": { "type": "string", "format": "binary" },
+                  "Date": { "type": "string", "format": "date-time" },
+                  "Order": { "type": "integer", "format": "int32" }
+                }
+              },
+              "encoding": {
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Image": { "style": "form" },
+                "Date": { "style": "form" },
+                "Order": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyItemResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyItemResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyItemResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/About/core-values/{id}": {
+      "patch": {
+        "tags": ["About"],
+        "operationId": "UpdateCoreValue",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Icon": { "type": "string", "format": "binary" },
+                  "Order": { "type": "integer", "format": "int32" }
+                }
+              },
+              "encoding": {
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Icon": { "style": "form" },
+                "Order": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["About"],
+        "operationId": "DeleteCoreValue",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/About/journey/{id}": {
+      "patch": {
+        "tags": ["About"],
+        "operationId": "UpdateJourneyItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Image": { "type": "string", "format": "binary" },
+                  "Date": { "type": "string", "format": "date-time" },
+                  "Order": { "type": "integer", "format": "int32" }
+                }
+              },
+              "encoding": {
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Image": { "style": "form" },
+                "Date": { "style": "form" },
+                "Order": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["About"],
+        "operationId": "DeleteJourneyItem",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Banner": {
+      "get": {
+        "tags": ["Banner"],
+        "operationId": "GetBanners",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": { "$ref": "#/components/schemas/MediaType" }
+          },
+          {
+            "name": "scheduledStart",
+            "in": "query",
+            "schema": { "type": "string", "format": "date-time" }
+          },
+          {
+            "name": "scheduledEnd",
+            "in": "query",
+            "schema": { "type": "string", "format": "date-time" }
+          },
+          {
+            "name": "createdAfter",
+            "in": "query",
+            "schema": { "type": "string", "format": "date-time" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/BannerResponseDto" }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/BannerResponseDto" }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/BannerResponseDto" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Banner"],
+        "operationId": "CreateBanner",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Image": { "type": "string", "format": "binary" },
+                  "Type": { "$ref": "#/components/schemas/MediaType" },
+                  "Title": { "type": "string" },
+                  "SubTitle": { "type": "string" },
+                  "Caption": { "type": "string" },
+                  "Current": { "type": "boolean" },
+                  "Version": { "type": "integer", "format": "int32" },
+                  "ParentId": { "type": "string" },
+                  "ScheduledStart": { "type": "string", "format": "date-time" },
+                  "ScheduledEnd": { "type": "string", "format": "date-time" }
+                }
+              },
+              "encoding": {
+                "Image": { "style": "form" },
+                "Type": { "style": "form" },
+                "Title": { "style": "form" },
+                "SubTitle": { "style": "form" },
+                "Caption": { "style": "form" },
+                "Current": { "style": "form" },
+                "Version": { "style": "form" },
+                "ParentId": { "style": "form" },
+                "ScheduledStart": { "style": "form" },
+                "ScheduledEnd": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Banner/{id}": {
+      "get": {
+        "tags": ["Banner"],
+        "operationId": "GetBannerById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/BannerResponseDto" }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Banner"],
+        "operationId": "UpdateBanner",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Url": { "type": "string" },
+                  "Type": { "$ref": "#/components/schemas/MediaType" },
+                  "Title": { "type": "string" },
+                  "SubTitle": { "type": "string" },
+                  "Caption": { "type": "string" },
+                  "ScheduledStart": { "type": "string", "format": "date-time" },
+                  "ScheduledEnd": { "type": "string", "format": "date-time" }
+                }
+              },
+              "encoding": {
+                "Url": { "style": "form" },
+                "Type": { "style": "form" },
+                "Title": { "style": "form" },
+                "SubTitle": { "style": "form" },
+                "Caption": { "style": "form" },
+                "ScheduledStart": { "style": "form" },
+                "ScheduledEnd": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Banner"],
+        "operationId": "DeleteBanner",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Banner/{id}/activate": {
+      "put": {
+        "tags": ["Banner"],
+        "operationId": "ActivateBanner",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Banner/{id}/schedule": {
+      "put": {
+        "tags": ["Banner"],
+        "operationId": "ScheduleBanner",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BannerScheduleUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BannerScheduleUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BannerScheduleUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Categories": {
+      "get": {
+        "tags": ["Categories"],
+        "operationId": "GetCategories",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Categories"],
+        "operationId": "CreateCategory",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CategoryCreateDto" }
+            },
+            "text/json": {
+              "schema": { "$ref": "#/components/schemas/CategoryCreateDto" }
+            },
+            "application/*+json": {
+              "schema": { "$ref": "#/components/schemas/CategoryCreateDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Categories/{id}": {
+      "get": {
+        "tags": ["Categories"],
+        "operationId": "GetCategoryById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/CategoryResponseDto" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Categories"],
+        "operationId": "UpdateCategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CategoryUpdateDto" }
+            },
+            "text/json": {
+              "schema": { "$ref": "#/components/schemas/CategoryUpdateDto" }
+            },
+            "application/*+json": {
+              "schema": { "$ref": "#/components/schemas/CategoryUpdateDto" }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Categories"],
+        "operationId": "DeleteCategory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Companies": {
+      "get": {
+        "tags": ["Companies"],
+        "operationId": "GetCompanies",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/CompanyResponseDto" }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/CompanyResponseDto" }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/CompanyResponseDto" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Companies"],
+        "operationId": "CreateCompany",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": { "type": "string" },
+                  "Address": { "type": "string" },
+                  "ContactEmail": { "type": "string" },
+                  "Logo": { "type": "string", "format": "binary" },
+                  "Priority": { "type": "integer", "format": "int32" }
+                }
+              },
+              "encoding": {
+                "Name": { "style": "form" },
+                "Address": { "style": "form" },
+                "ContactEmail": { "style": "form" },
+                "Logo": { "style": "form" },
+                "Priority": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Companies/{id}": {
+      "get": {
+        "tags": ["Companies"],
+        "operationId": "GetCompanyById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/CompanyResponseDto" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Companies"],
+        "operationId": "UpdateCompany",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": { "type": "string" },
+                  "Address": { "type": "string" },
+                  "ContactEmail": { "type": "string" },
+                  "Logo": { "type": "string", "format": "binary" },
+                  "Priority": { "type": "integer", "format": "int32" }
+                }
+              },
+              "encoding": {
+                "Name": { "style": "form" },
+                "Address": { "style": "form" },
+                "ContactEmail": { "style": "form" },
+                "Logo": { "style": "form" },
+                "Priority": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Companies"],
+        "operationId": "DeleteCompany",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Contacts": {
+      "post": {
+        "tags": ["Contacts"],
+        "operationId": "CreateContactMessage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ContactCreateDto" }
+            },
+            "text/json": {
+              "schema": { "$ref": "#/components/schemas/ContactCreateDto" }
+            },
+            "application/*+json": {
+              "schema": { "$ref": "#/components/schemas/ContactCreateDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Contacts"],
+        "operationId": "GetContactMessages",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ContactResponseDto" }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ContactResponseDto" }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ContactResponseDto" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Contacts/{id}": {
+      "get": {
+        "tags": ["Contacts"],
+        "operationId": "GetContactMessageById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/ContactResponseDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Events": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetEvents",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EventResponseDto" }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EventResponseDto" }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/EventResponseDto" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Events"],
+        "operationId": "CreateEvent",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ParentEventId": { "type": "string", "format": "uuid" },
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Highlights": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "StartTime": { "type": "string", "format": "date-time" },
+                  "EndTime": { "type": "string", "format": "date-time" },
+                  "Location": { "type": "string" },
+                  "CoverImage": { "type": "string", "format": "binary" },
+                  "SeriesName": { "type": "string" },
+                  "IsTeamEvent": { "type": "boolean" },
+                  "MaxTeamMembers": { "type": "integer", "format": "int32" },
+                  "RegistrationStart": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "RegistrationEnd": { "type": "string", "format": "date-time" }
+                }
+              },
+              "encoding": {
+                "ParentEventId": { "style": "form" },
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Highlights": { "style": "form" },
+                "StartTime": { "style": "form" },
+                "EndTime": { "style": "form" },
+                "Location": { "style": "form" },
+                "CoverImage": { "style": "form" },
+                "SeriesName": { "style": "form" },
+                "IsTeamEvent": { "style": "form" },
+                "MaxTeamMembers": { "style": "form" },
+                "RegistrationStart": { "style": "form" },
+                "RegistrationEnd": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Events/{id}": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetEventById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/EventResponseDto" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Events"],
+        "operationId": "UpdateEvent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ParentEventId": { "type": "string", "format": "uuid" },
+                  "Title": { "type": "string" },
+                  "Description": { "type": "string" },
+                  "Highlights": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "StartTime": { "type": "string", "format": "date-time" },
+                  "EndTime": { "type": "string", "format": "date-time" },
+                  "Location": { "type": "string" },
+                  "CoverImage": { "type": "string", "format": "binary" },
+                  "SeriesName": { "type": "string" },
+                  "IsTeamEvent": { "type": "boolean" },
+                  "MaxTeamMembers": { "type": "integer", "format": "int32" },
+                  "RegistrationStart": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "RegistrationEnd": { "type": "string", "format": "date-time" }
+                }
+              },
+              "encoding": {
+                "ParentEventId": { "style": "form" },
+                "Title": { "style": "form" },
+                "Description": { "style": "form" },
+                "Highlights": { "style": "form" },
+                "StartTime": { "style": "form" },
+                "EndTime": { "style": "form" },
+                "Location": { "style": "form" },
+                "CoverImage": { "style": "form" },
+                "SeriesName": { "style": "form" },
+                "IsTeamEvent": { "style": "form" },
+                "MaxTeamMembers": { "style": "form" },
+                "RegistrationStart": { "style": "form" },
+                "RegistrationEnd": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Events"],
+        "operationId": "DeleteEvent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Events/{id}/agenda": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetEventAgenda",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventAgendaResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventAgendaResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventAgendaResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Events"],
+        "operationId": "CreateEventAgenda",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/EventAgendaCreateDto" }
+            },
+            "text/json": {
+              "schema": { "$ref": "#/components/schemas/EventAgendaCreateDto" }
+            },
+            "application/*+json": {
+              "schema": { "$ref": "#/components/schemas/EventAgendaCreateDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventAgendaResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventAgendaResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventAgendaResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Events/agenda/{agendaId}": {
+      "put": {
+        "tags": ["Events"],
+        "operationId": "UpdateEventAgenda",
+        "parameters": [
+          {
+            "name": "agendaId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/EventAgendaUpdateDto" }
+            },
+            "text/json": {
+              "schema": { "$ref": "#/components/schemas/EventAgendaUpdateDto" }
+            },
+            "application/*+json": {
+              "schema": { "$ref": "#/components/schemas/EventAgendaUpdateDto" }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Events"],
+        "operationId": "DeleteEventAgenda",
+        "parameters": [
+          {
+            "name": "agendaId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Events/{id}/register": {
+      "post": {
+        "tags": ["Events"],
+        "operationId": "RegisterForEvent",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": ["EventId", "Type", "TeamName", "Name", "Email"],
+                "type": "object",
+                "properties": {
+                  "EventId": {
+                    "type": "string",
+                    "format": "uuid",
+                    "description": "Required. The ID of the event to register for."
+                  },
+                  "Type": {
+                    "$ref": "#/components/schemas/EventRegistrationType",
+                    "description": "Required. Registration type — Solo or Team."
+                  },
+                  "TeamName": {
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 30,
+                    "description": "Required. Team or participant name (5–30 characters)."
+                  },
+                  "Name": {
+                    "type": "string",
+                    "minLength": 5,
+                    "maxLength": 30,
+                    "description": "Required. Full name of the registrant (5–30 characters)."
+                  },
+                  "Email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Required. Valid email address of the registrant."
+                  },
+                  "Phone": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Optional. Phone number of the registrant."
+                  },
+                  "Documents": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "minItems": 1,
+                    "nullable": true,
+                    "description": "Optional. One or more supporting documents (files)."
+                  },
+                  "Members": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/TeamMemberCreateDto"
+                    },
+                    "minItems": 1,
+                    "nullable": true,
+                    "description": "Optional. List of team members (at least 1 if provided)."
+                  },
+                  "RegistrationColleges": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
+                    },
+                    "minItems": 1,
+                    "nullable": true,
+                    "description": "Optional. List of colleges associated with the registration (at least 1 if provided)."
+                  }
+                }
+              },
+              "encoding": {
+                "EventId": { "style": "form" },
+                "Type": { "style": "form" },
+                "TeamName": { "style": "form" },
+                "Name": { "style": "form" },
+                "Email": { "style": "form" },
+                "Phone": { "style": "form" },
+                "Documents": { "style": "form" },
+                "Members": { "style": "form" },
+                "RegistrationColleges": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Events/{id}/registrations": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetEventRegistrations",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Events/registrations/{registrationId}": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetEventRegistration",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EventRegistrationResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Events"],
+        "operationId": "UpdateEventRegistration",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "TeamName": { "type": "string" },
+                  "Name": { "type": "string" },
+                  "Email": { "type": "string" },
+                  "Phone": { "type": "string" },
+                  "Documents": {
+                    "type": "array",
+                    "items": { "type": "string", "format": "binary" }
+                  },
+                  "Status": {
+                    "$ref": "#/components/schemas/EventRegistrationStatus"
+                  }
+                }
+              },
+              "encoding": {
+                "TeamName": { "style": "form" },
+                "Name": { "style": "form" },
+                "Email": { "style": "form" },
+                "Phone": { "style": "form" },
+                "Documents": { "style": "form" },
+                "Status": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Events"],
+        "operationId": "DeleteEventRegistration",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Events/registrations/{registrationId}/members": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetTeamMembers",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamMemberResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamMemberResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamMemberResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Events"],
+        "operationId": "AddTeamMember",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": { "type": "string" },
+                  "Faculty": { "type": "string" },
+                  "Email": { "type": "string" },
+                  "Phone": { "type": "string" },
+                  "Photo": { "type": "string", "format": "binary" },
+                  "Gender": { "$ref": "#/components/schemas/Gender" }
+                }
+              },
+              "encoding": {
+                "Name": { "style": "form" },
+                "Faculty": { "style": "form" },
+                "Email": { "style": "form" },
+                "Phone": { "style": "form" },
+                "Photo": { "style": "form" },
+                "Gender": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Events/members/{memberId}": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetTeamMember",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMemberResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Events"],
+        "operationId": "UpdateTeamMember",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": { "type": "string" },
+                  "Faculty": { "type": "string" },
+                  "Email": { "type": "string" },
+                  "Phone": { "type": "string" },
+                  "Photo": { "type": "string", "format": "binary" },
+                  "Gender": { "$ref": "#/components/schemas/Gender" }
+                }
+              },
+              "encoding": {
+                "Name": { "style": "form" },
+                "Faculty": { "style": "form" },
+                "Email": { "style": "form" },
+                "Phone": { "style": "form" },
+                "Photo": { "style": "form" },
+                "Gender": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Events"],
+        "operationId": "DeleteTeamMember",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Events/registrations/{registrationId}/colleges": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetRegistrationColleges",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Events"],
+        "operationId": "AddRegistrationCollege",
+        "parameters": [
+          {
+            "name": "registrationId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Events/colleges/{collegeId}": {
+      "get": {
+        "tags": ["Events"],
+        "operationId": "GetRegistrationCollege",
+        "parameters": [
+          {
+            "name": "collegeId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Events"],
+        "operationId": "UpdateRegistrationCollege",
+        "parameters": [
+          {
+            "name": "collegeId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationCollegeUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationCollegeUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationCollegeUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Events"],
+        "operationId": "DeleteRegistrationCollege",
+        "parameters": [
+          {
+            "name": "collegeId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Faqs": {
+      "get": {
+        "tags": ["Faqs"],
+        "operationId": "GetFaqs",
+        "parameters": [
+          { "name": "category", "in": "query", "schema": { "type": "string" } },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": { "type": "string", "default": "created_at" }
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "schema": { "type": "string", "default": "desc" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/FaqListResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FaqListResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/FaqListResponseDto" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Faqs"],
+        "operationId": "CreateFaq",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FaqCreateDto" }
+            },
+            "text/json": {
+              "schema": { "$ref": "#/components/schemas/FaqCreateDto" }
+            },
+            "application/*+json": {
+              "schema": { "$ref": "#/components/schemas/FaqCreateDto" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Faqs/{id}": {
+      "get": {
+        "tags": ["Faqs"],
+        "operationId": "GetFaqById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
+              },
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
+              },
+              "text/json": {
+                "schema": { "$ref": "#/components/schemas/FaqResponseDto" }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Faqs"],
+        "operationId": "UpdateFaq",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/FaqUpdateDto" }
+            },
+            "text/json": {
+              "schema": { "$ref": "#/components/schemas/FaqUpdateDto" }
+            },
+            "application/*+json": {
+              "schema": { "$ref": "#/components/schemas/FaqUpdateDto" }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Faqs"],
+        "operationId": "DeleteFaq",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    },
+    "/api/v1/Testimonials": {
+      "get": {
+        "tags": ["Testimonials"],
+        "operationId": "GetTestimonials",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 1 }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": { "type": "integer", "format": "int32", "default": 20 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TestimonialResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TestimonialResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TestimonialResponseDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Testimonials"],
+        "operationId": "CreateTestimonial",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": { "type": "string" },
+                  "Text": { "type": "string" },
+                  "Designation": { "type": "string" },
+                  "Organization": { "type": "string" },
+                  "ImageUrl": { "type": "string", "format": "binary" }
+                }
+              },
+              "encoding": {
+                "Name": { "style": "form" },
+                "Text": { "style": "form" },
+                "Designation": { "style": "form" },
+                "Organization": { "style": "form" },
+                "ImageUrl": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestimonialResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestimonialResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestimonialResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/Testimonials/{id}": {
+      "get": {
+        "tags": ["Testimonials"],
+        "operationId": "GetTestimonialById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestimonialResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestimonialResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestimonialResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Testimonials"],
+        "operationId": "UpdateTestimonial",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": { "type": "string" },
+                  "Text": { "type": "string" },
+                  "Designation": { "type": "string" },
+                  "Organization": { "type": "string" },
+                  "ImageUrl": { "type": "string", "format": "binary" }
+                }
+              },
+              "encoding": {
+                "Name": { "style": "form" },
+                "Text": { "style": "form" },
+                "Designation": { "style": "form" },
+                "Organization": { "style": "form" },
+                "ImageUrl": { "style": "form" }
+              }
+            }
+          }
+        },
+        "responses": { "200": { "description": "OK" } }
+      },
+      "delete": {
+        "tags": ["Testimonials"],
+        "operationId": "DeleteTestimonial",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": { "200": { "description": "OK" } }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AboutResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "mission": { "type": "string", "nullable": true },
+          "vision": { "type": "string", "nullable": true },
+          "parentOrgName": { "type": "string", "nullable": true },
+          "parentOrgDescription": { "type": "string", "nullable": true },
+          "parentOrgLogoUrl": { "type": "string", "nullable": true },
+          "parentOrgWebsiteUrl": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgendaItemCreateDto": {
+        "type": "object",
+        "properties": {
+          "startTime": { "type": "string", "format": "time" },
+          "endTime": { "type": "string", "format": "time" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true }
+        },
+        "additionalProperties": false
+      },
+      "AgendaItemResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "startTime": { "type": "string", "format": "time" },
+          "endTime": { "type": "string", "format": "time" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true }
+        },
+        "additionalProperties": false
+      },
+      "AgendaItemUpdateDto": {
+        "type": "object",
+        "properties": {
+          "startTime": { "type": "string", "format": "time" },
+          "endTime": { "type": "string", "format": "time" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true }
+        },
+        "additionalProperties": false
+      },
+      "BannerResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "url": { "type": "string", "nullable": true },
+          "type": { "$ref": "#/components/schemas/MediaType" },
+          "title": { "type": "string", "nullable": true },
+          "subTitle": { "type": "string", "nullable": true },
+          "caption": { "type": "string", "nullable": true },
+          "current": { "type": "boolean" },
+          "version": { "type": "integer", "format": "int32" },
+          "parentId": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scheduledStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scheduledEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BannerScheduleUpdateDto": {
+        "type": "object",
+        "properties": {
+          "scheduledStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "scheduledEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CategoryCreateDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "nullable": true },
+          "parentCategoryId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CategoryResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CategoryUpdateDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "nullable": true },
+          "parentCategoryId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompanyResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "address": { "type": "string", "nullable": true },
+          "contactEmail": { "type": "string", "nullable": true },
+          "logoUrl": { "type": "string", "nullable": true },
+          "priority": { "type": "integer", "format": "int32" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContactCreateDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phoneNumber": { "type": "string", "nullable": true },
+          "subject": { "type": "string", "nullable": true },
+          "message": { "type": "string", "nullable": true }
+        },
+        "additionalProperties": false
+      },
+      "ContactResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phoneNumber": { "type": "string", "nullable": true },
+          "subject": { "type": "string", "nullable": true },
+          "message": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoreValueResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true },
+          "iconUrl": { "type": "string", "nullable": true },
+          "order": { "type": "integer", "format": "int32" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": false
+      },
+      "Event": {
+        "required": [
+          "coverImageUrl",
+          "description",
+          "endTime",
+          "highlights",
+          "isRegistrationOpen",
+          "isTeamEvent",
+          "location",
+          "maxNumberOfTeams",
+          "maxTeamMembers",
+          "startTime",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "parentEventId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "parentEvent": { "$ref": "#/components/schemas/Event" },
+          "title": { "minLength": 1, "type": "string" },
+          "description": { "minLength": 1, "type": "string" },
+          "highlights": {
+            "maxItems": 6,
+            "minItems": 1,
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "startTime": { "type": "string", "format": "date-time" },
+          "endTime": { "type": "string", "format": "date-time" },
+          "location": { "minLength": 1, "type": "string" },
+          "coverImageUrl": { "minLength": 1, "type": "string" },
+          "seriesName": { "type": "string", "nullable": true },
+          "isTeamEvent": { "type": "boolean" },
+          "maxTeamMembers": { "type": "integer", "format": "int32" },
+          "maxNumberOfTeams": { "type": "integer", "format": "int32" },
+          "isRegistrationOpen": { "type": "boolean" },
+          "registrationStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "registrationEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventAgendaCreateDto": {
+        "type": "object",
+        "properties": {
+          "day": { "type": "integer", "format": "int32" },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AgendaItemCreateDto" },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventAgendaResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "eventId": { "type": "string", "format": "uuid" },
+          "day": { "type": "integer", "format": "int32" },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AgendaItemResponseDto" },
+            "nullable": true
+          },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventAgendaUpdateDto": {
+        "type": "object",
+        "properties": {
+          "day": { "type": "integer", "format": "int32" },
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AgendaItemUpdateDto" },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventRegistrationCreateDto": {
+        "required": ["EventId", "Type", "TeamName", "Name", "Email"],
+        "type": "object",
+        "properties": {
+          "EventId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Required. The ID of the event to register for."
+          },
+          "Type": {
+            "$ref": "#/components/schemas/EventRegistrationType",
+            "description": "Required. Registration type — Solo or Team."
+          },
+          "TeamName": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 30,
+            "description": "Required. Team or participant name (5–30 characters)."
+          },
+          "Name": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 30,
+            "description": "Required. Full name of the registrant (5–30 characters)."
+          },
+          "Email": {
+            "type": "string",
+            "format": "email",
+            "description": "Required. Valid email address of the registrant."
+          },
+          "Phone": {
+            "type": "string",
+            "nullable": true,
+            "description": "Optional. Phone number of the registrant."
+          },
+          "Documents": {
+            "type": "array",
+            "items": { "type": "string", "format": "binary" },
+            "minItems": 1,
+            "nullable": true,
+            "description": "Optional. One or more supporting documents (files)."
+          },
+          "Members": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TeamMemberCreateDto" },
+            "minItems": 1,
+            "nullable": true,
+            "description": "Optional. List of team members (at least 1 if provided)."
+          },
+          "RegistrationColleges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegistrationCollegeCreateDto"
+            },
+            "minItems": 1,
+            "nullable": true,
+            "description": "Optional. List of colleges associated with the registration (at least 1 if provided)."
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventRegistrationResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "eventId": { "type": "string", "format": "uuid" },
+          "event": { "$ref": "#/components/schemas/Event" },
+          "type": { "$ref": "#/components/schemas/EventRegistrationType" },
+          "teamName": { "type": "string", "nullable": true },
+          "name": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phone": { "type": "string", "nullable": true },
+          "documentUrls": {
+            "type": "array",
+            "items": { "type": "string" },
+            "nullable": true
+          },
+          "members": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TeamMemberResponseDto" },
+            "nullable": true
+          },
+          "registrationColleges": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegistrationCollegeResponseDto"
+            },
+            "nullable": true
+          },
+          "status": { "$ref": "#/components/schemas/EventRegistrationStatus" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventRegistrationStatus": {
+        "enum": ["Pending", "Approved", "Rejected"],
+        "type": "string"
+      },
+      "EventRegistrationType": {
+        "enum": ["Solo", "Team"],
+        "type": "string"
+      },
+      "EventResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "parentEventId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true },
+          "highlights": {
+            "type": "array",
+            "items": { "type": "string" },
+            "nullable": true
+          },
+          "startTime": { "type": "string", "format": "date-time" },
+          "endTime": { "type": "string", "format": "date-time" },
+          "location": { "type": "string", "nullable": true },
+          "coverImageUrl": { "type": "string", "nullable": true },
+          "seriesName": { "type": "string", "nullable": true },
+          "isTeamEvent": { "type": "boolean" },
+          "maxTeamMembers": { "type": "integer", "format": "int32" },
+          "maxNumberOfTeams": { "type": "integer", "format": "int32" },
+          "isRegistrationOpen": { "type": "boolean" },
+          "registrationStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "registrationEnd": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": false
+      },
+      "FaqCreateDto": {
+        "type": "object",
+        "properties": {
+          "question": { "type": "string", "nullable": true },
+          "answer": { "type": "string", "nullable": true },
+          "categoryId": { "type": "string", "format": "uuid" }
+        },
+        "additionalProperties": false
+      },
+      "FaqListResponseDto": {
+        "type": "object",
+        "properties": {
+          "page": { "type": "integer", "format": "int32" },
+          "limit": { "type": "integer", "format": "int32" },
+          "totalItems": { "type": "integer", "format": "int32" },
+          "data": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FaqResponseDto" },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FaqResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "question": { "type": "string", "nullable": true },
+          "answer": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "categoryId": { "type": "string", "format": "uuid" },
+          "categoryName": { "type": "string", "nullable": true }
+        },
+        "additionalProperties": false
+      },
+      "FaqUpdateDto": {
+        "type": "object",
+        "properties": {
+          "question": { "type": "string", "nullable": true },
+          "answer": { "type": "string", "nullable": true },
+          "categoryId": { "type": "string", "format": "uuid" }
+        },
+        "additionalProperties": false
+      },
+      "Gender": {
+        "enum": ["Male", "Female", "Others"],
+        "type": "string"
+      },
+      "JourneyItemResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "title": { "type": "string", "nullable": true },
+          "description": { "type": "string", "nullable": true },
+          "imageUrl": { "type": "string", "nullable": true },
+          "date": { "type": "string", "format": "date-time" },
+          "order": { "type": "integer", "format": "int32" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": false
+      },
+      "MediaType": {
+        "enum": ["Image", "Video", "Pdf", "NotSupported"],
+        "type": "string"
+      },
+      "RegistrationCollegeCreateDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "nullable": true },
+          "contactEmail": { "type": "string", "nullable": true },
+          "address": { "type": "string", "nullable": true },
+          "representativeName": { "type": "string", "nullable": true },
+          "representativePhone": { "type": "string", "nullable": true },
+          "representativeEmail": { "type": "string", "nullable": true },
+          "representativeDesignation": { "type": "string", "nullable": true }
+        },
+        "additionalProperties": false
+      },
+      "RegistrationCollegeResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "contactEmail": { "type": "string", "nullable": true },
+          "address": { "type": "string", "nullable": true },
+          "representativeName": { "type": "string", "nullable": true },
+          "representativePhone": { "type": "string", "nullable": true },
+          "representativeEmail": { "type": "string", "nullable": true },
+          "representativeDesignation": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "registrationId": { "type": "string", "format": "uuid" }
+        },
+        "additionalProperties": false
+      },
+      "RegistrationCollegeUpdateDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "nullable": true },
+          "contactEmail": { "type": "string", "nullable": true },
+          "address": { "type": "string", "nullable": true },
+          "representativeName": { "type": "string", "nullable": true },
+          "representativePhone": { "type": "string", "nullable": true },
+          "representativeEmail": { "type": "string", "nullable": true },
+          "representativeDesignation": { "type": "string", "nullable": true }
+        },
+        "additionalProperties": false
+      },
+      "TeamMemberCreateDto": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "nullable": true },
+          "faculty": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phone": { "type": "string", "nullable": true },
+          "photo": { "type": "string", "format": "binary", "nullable": true },
+          "gender": { "$ref": "#/components/schemas/Gender" }
+        },
+        "additionalProperties": false
+      },
+      "TeamMemberResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "faculty": { "type": "string", "nullable": true },
+          "email": { "type": "string", "nullable": true },
+          "phone": { "type": "string", "nullable": true },
+          "photoUrl": { "type": "string", "nullable": true },
+          "gender": { "$ref": "#/components/schemas/Gender" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "registrationId": { "type": "string", "format": "uuid" }
+        },
+        "additionalProperties": false
+      },
+      "TestimonialResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "name": { "type": "string", "nullable": true },
+          "text": { "type": "string", "nullable": true },
+          "designation": { "type": "string", "nullable": true },
+          "organization": { "type": "string", "nullable": true },
+          "imageUrl": { "type": "string", "nullable": true },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "deletedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

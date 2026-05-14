@@ -313,18 +313,22 @@ export function failure(
   status: number,
   requestId: string,
 ): NextResponse {
-  return NextResponse.json(
-    {
-      success: false,
-      data: null,
-      error,
-      meta: {
-        requestId,
-        timestamp: TIMESTAMP(),
-      },
+  const isProduction = process.env.NODE_ENV === "production";
+  const payload: any = {
+    success: false,
+    data: null,
+    error,
+    meta: {
+      requestId,
+      timestamp: TIMESTAMP(),
     },
-    { status },
-  );
+  };
+
+  if (isProduction && payload.error) {
+    delete payload.error.details;
+  }
+
+  return NextResponse.json(payload, { status });
 }
 
 export function relay(result: RelayResult, requestId: string): NextResponse {
@@ -366,10 +370,12 @@ export function handleUnknownError(
     stack: error instanceof Error ? error.stack : undefined,
   });
 
+  const isProduction = process.env.NODE_ENV === "production";
+
   return failure(
     {
       code: "INTERNAL_ERROR",
-      message,
+      message: isProduction ? "Unexpected server error." : message,
     },
     500,
     requestId,

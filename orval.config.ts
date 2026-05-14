@@ -3,7 +3,7 @@ import { defineConfig } from "orval";
 export default defineConfig({
   innovationLabFrontend: {
     input: {
-      target: "./public/innovation-lab-api-specs.json",
+      target: "./specs/innovation-lab-api-specs.json",
     },
     output: {
       target: "./src/lib/services/generated/frontend/index.ts",
@@ -24,7 +24,7 @@ export default defineConfig({
   },
   innovationLabNode: {
     input: {
-      target: "./public/innovation-lab-api-specs.json",
+      target: "./specs/innovation-lab-api-specs.json",
     },
     output: {
       target: "./src/lib/services/generated/node/index.ts",
