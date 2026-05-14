@@ -27,9 +27,9 @@ function AddView() {
 
 function ViewAsUser() {
   return (
-    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-[var(--neutral-100)]">
-      <h2 className="text-2xl font-semibold text-[var(--neutral-900)] mb-6">Event Registrations</h2>
-      <div className="text-[var(--neutral-500)] text-sm">Registration listing appears here.</div>
+    <div className="w-full bg-white p-8 rounded-lg shadow-sm border border-(--neutral-100)">
+      <h2 className="text-2xl font-semibold text-(--neutral-900) mb-6">Event Registrations</h2>
+      <div className="text-(--neutral-500) text-sm">Registration listing appears here.</div>
     </div>
   );
 }

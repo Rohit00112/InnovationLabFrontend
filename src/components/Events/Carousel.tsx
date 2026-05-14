@@ -21,6 +21,7 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
     description: event.description || "",
     image: event.coverImageUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
     eyebrow: event.seriesName || "Featured Event",
+    isRegistrationOpen: event.isRegistrationOpen || false,
   }));
 
   const scrollPrev = useCallback(() => {
@@ -94,12 +95,21 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
                     >
                       Learn More
                     </Link>
-                    <Link
-                      href={`/events/${slide.id}/register`}
-                      className="inline-flex border border-white/60 bg-white px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition hover:bg-cyan-400 hover:border-cyan-400"
-                    >
-                      Register
-                    </Link>
+                    {slide.isRegistrationOpen ? (
+                      <Link
+                        href={`/events/${slide.id}/register`}
+                        className="inline-flex border border-white/60 bg-white px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition hover:bg-cyan-400 hover:border-cyan-400"
+                      >
+                        Register
+                      </Link>
+                    ) : (
+                      <Link
+                        href="/contact"
+                        className="inline-flex border border-white/60 bg-white px-5 py-3 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition hover:bg-cyan-400 hover:border-cyan-400"
+                      >
+                        Contact Us
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
