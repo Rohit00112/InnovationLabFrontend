@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import PageLayout from "@/components/primitives/PageLayout";
 import PageHeader from "@/components/primitives/PageHeader";
 import EventRegistrationForm from "@/components/Events/EventRegistrationForm";
@@ -44,7 +45,39 @@ export default function EventRegisterPage({ params }: EventRegisterPageProps) {
     notFound();
   }
 
-  console.log("Event data for registration page:", event);
+  if (!event.isRegistrationOpen) {
+    return (
+      <PageLayout>
+        <PageHeader title={`Registration Closed for ${event.title}`} />
+        <section className="mx-auto w-full max-w-7xl px-4 py-12 md:px-8 md:py-16">
+          <div className="flex flex-col items-center justify-center gap-6 text-center py-12">
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold uppercase tracking-tight text-neutral-900">
+                Registration is Not Open
+              </h2>
+              <p className="text-neutral-600 max-w-md">
+                Unfortunately, registration for {event.title} is currently closed. Please contact us if you have any questions.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <Link
+                href="/events"
+                className="inline-flex border border-black px-8 py-3 text-sm font-bold uppercase tracking-widest transition hover:bg-black hover:text-white"
+              >
+                View All Events
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex border border-black bg-black px-8 py-3 text-sm font-bold uppercase tracking-widest text-white transition hover:bg-white hover:text-black"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </section>
+      </PageLayout>
+    );
+  }
 
   return (
     <PageLayout>

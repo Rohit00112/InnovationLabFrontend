@@ -2,6 +2,7 @@ import PageHeader from "@/components/primitives/PageHeader";
 import PageLayout from "@/components/primitives/PageLayout";
 import { getEventById } from "@/lib/services/domain/events";
 import JobFairCompanies from "../../../../components/Events/JobFairCompanies";
+import EventAgendaSection from "../../../../components/Events/EventAgendaSection";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -79,16 +80,29 @@ export default async function EventDetailPage({
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href={`/events/${event.id}/register`}
-                  className="group relative inline-flex font-medium"
-                >
-                  <span className="absolute bottom-0 left-0 h-0.5 w-full bg-cyan-400 transition-all duration-100 ease-out" />
+                {event.isRegistrationOpen ? (
+                  <Link
+                    href={`/events/${event.id}/register`}
+                    className="group relative inline-flex font-medium"
+                  >
+                    <span className="absolute bottom-0 left-0 h-0.5 w-full bg-cyan-400 transition-all duration-100 ease-out" />
 
-                  <span className="relative z-10 block -translate-y-0.5 transform border border-white/60 bg-white px-5 py-2 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition-all duration-100 ease-out group-active:translate-y-0 hover:border-cyan-400 hover:bg-cyan-400">
-                    Register Now
-                  </span>
-                </Link>
+                    <span className="relative z-10 block -translate-y-0.5 transform border border-white/60 bg-white px-5 py-2 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition-all duration-100 ease-out group-active:translate-y-0 hover:border-cyan-400 hover:bg-cyan-400">
+                      Register Now
+                    </span>
+                  </Link>
+                ) : (
+                  <Link
+                    href="/contact"
+                    className="group relative inline-flex font-medium"
+                  >
+                    <span className="absolute bottom-0 left-0 h-0.5 w-full bg-cyan-400 transition-all duration-100 ease-out" />
+
+                    <span className="relative z-10 block -translate-y-0.5 transform border border-white/60 bg-white px-5 py-2 text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-black transition-all duration-100 ease-out group-active:translate-y-0 hover:border-cyan-400 hover:bg-cyan-400">
+                      Contact Us
+                    </span>
+                  </Link>
+                )}
 
                 <Link
                   href="/events"
@@ -184,6 +198,9 @@ export default async function EventDetailPage({
 
       {/* Gallery Section */}
      
+      {/* Event Agenda Section */}
+      {event.id && <EventAgendaSection eventId={event.id} />}
+
       {/* Companies Attending the Event */}
       {isJobFairEvent && (
         <JobFairCompanies />

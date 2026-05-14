@@ -58,15 +58,27 @@ export default function LatestEventsSection({ events }: LatestEventsSectionProps
                     </span>
                   </Link>
 
-                  <Link
-                    href={`/events/${event.id}/register`}
-                    className="relative inline-flex flex-1 group font-medium"
-                  >
-                    <span className="absolute left-0 bottom-0 w-full h-0.5 bg-sky-400 transition-all duration-100 ease-out" />
-                    <span className="relative z-10 block w-full px-3 py-2 border border-transparent bg-black text-center text-xs font-bold uppercase tracking-wider text-white transform transition-all duration-100 ease-out -translate-y-0.5 group-active:translate-y-0 hover:bg-sky-400 hover:text-black">
-                      Register
-                    </span>
-                  </Link>
+                  {event.isRegistrationOpen ? (
+                    <Link
+                      href={`/events/${event.id}/register`}
+                      className="relative inline-flex flex-1 group font-medium"
+                    >
+                      <span className="absolute left-0 bottom-0 w-full h-0.5 bg-sky-400 transition-all duration-100 ease-out" />
+                      <span className="relative z-10 block w-full px-3 py-2 border border-transparent bg-black text-center text-xs font-bold uppercase tracking-wider text-white transform transition-all duration-100 ease-out -translate-y-0.5 group-active:translate-y-0 hover:bg-sky-400 hover:text-black">
+                        Register
+                      </span>
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/contact"
+                      className="relative inline-flex flex-1 group font-medium"
+                    >
+                      <span className="absolute left-0 bottom-0 w-full h-0.5 bg-sky-400 transition-all duration-100 ease-out" />
+                      <span className="relative z-10 block w-full px-3 py-2 border border-transparent bg-black text-center text-xs font-bold uppercase tracking-wider text-white transform transition-all duration-100 ease-out -translate-y-0.5 group-active:translate-y-0 hover:bg-sky-400 hover:text-black">
+                        Contact Us
+                      </span>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
