@@ -40,7 +40,7 @@ export const communityCards: CommunityCard[] = [
   {
     id: "01",
     slug: "coders",
-    title: "Coders",
+    title: "Tech",
     description:
       "Building product logic, platforms, and robust developer tooling.",
     image: "/about/32.jpg",
@@ -48,7 +48,7 @@ export const communityCards: CommunityCard[] = [
   {
     id: "02",
     slug: "creators",
-    title: "Creators",
+    title: "Creator",
     description:
       "Crafting content, interfaces, and meaningful visual narratives.",
     image: "/about/30.jpg",
@@ -56,7 +56,7 @@ export const communityCards: CommunityCard[] = [
   {
     id: "03",
     slug: "researchers",
-    title: "Researchers",
+    title: "Research",
     description:
       "Testing ideas, validating hypotheses, and publishing findings.",
     image: "/about/29.jpg",
@@ -64,7 +64,7 @@ export const communityCards: CommunityCard[] = [
   {
     id: "04",
     slug: "entrepreneurs",
-    title: "Entrepreneurs",
+    title: "Entrepreneur",
     description: "Turning concepts into prototypes and deployable innovation.",
     image: "/about/28.jpg",
   },
