@@ -1,9 +1,17 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const testimonialData = [
+type Testimonial = {
+  id: number;
+  quote: string;
+  author: string;
+  role: string;
+  image: string;
+};
+
+const testimonialData: Testimonial[] = [
   {
     id: 1,
     quote:
@@ -11,7 +19,6 @@ const testimonialData = [
     author: "Mr. Nishesh Bishwas",
     role: "Innovation Lab Lead",
     image: "/sir/nb.jpg",
-    image2: "/sir/nb.jpg",
   },
   {
     id: 2,
@@ -20,9 +27,72 @@ const testimonialData = [
     author: "Mr. Sujan Subedi",
     role: "Tech Community Mentor",
     image: "/sir/ss.jpg",
-    image2: "/sir/ss.jpg",
   },
 ];
+
+function PortraitCard({
+  testimonial,
+  parallaxY,
+}: {
+  testimonial: Testimonial;
+  parallaxY: ReturnType<typeof useTransform>;
+}) {
+  return (
+    <motion.div
+      style={{ y: parallaxY, willChange: "transform", translateZ: 0 }}
+      className="relative w-full"
+    >
+      <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-gradient-to-br from-iblue/10 via-iblue/5 to-transparent blur-2xl" />
+      <div className="absolute -bottom-4 -right-4 -z-10 h-2/3 w-2/3 rounded-[2rem] bg-iblue/90" />
+      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-neutral-100 shadow-[0_40px_80px_-20px_rgba(15,23,42,0.25)] ring-1 ring-black/5">
+        <img
+          src={testimonial.image}
+          alt={testimonial.author}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6 text-white">
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.3em] text-white/80">
+            {testimonial.role}
+          </p>
+          <p className="mt-1 text-xl font-black tracking-tight md:text-2xl">
+            {testimonial.author}
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function QuoteBlock({ testimonial }: { testimonial: Testimonial }) {
+  return (
+    <div className="flex flex-col">
+      <div className="flex items-center gap-3">
+        <span className="h-px w-12 bg-iblue" />
+        <span className="text-xs font-bold uppercase tracking-[0.3em] text-iblue">
+          {testimonial.role}
+        </span>
+      </div>
+      <h3 className="mt-4 text-3xl font-black uppercase tracking-tight text-neutral-900 md:text-4xl">
+        {testimonial.author}
+      </h3>
+
+      <div className="relative mt-8">
+        <span
+          aria-hidden
+          className="absolute -left-2 -top-10 select-none font-serif text-[8rem] leading-none text-iblue/15 md:-left-4 md:-top-14 md:text-[10rem]"
+        >
+          &ldquo;
+        </span>
+        <p className="relative text-lg leading-[1.75] text-neutral-700 md:text-xl md:leading-[1.8]">
+          {testimonial.quote}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export const TestimonialSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -32,103 +102,47 @@ export const TestimonialSection = () => {
     offset: ["start end", "end start"],
   });
 
-  const firstLeftY = useSpring(
-    useTransform(scrollYProgress, [0, 1], [10, 55]),
-    {
-      stiffness: 110,
-      damping: 26,
-    },
-  );
-  const firstRightY = useSpring(
-    useTransform(scrollYProgress, [0, 1], [95, -35]),
-    {
-      stiffness: 80,
-      damping: 22,
-    },
-  );
-  const secondLeftY = useSpring(
-    useTransform(scrollYProgress, [0, 1], [70, -80]),
-    {
-      stiffness: 78,
-      damping: 20,
-    },
-  );
-  const secondRightY = useSpring(
-    useTransform(scrollYProgress, [0, 1], [0, 45]),
-    {
-      stiffness: 112,
-      damping: 26,
-    },
-  );
+  const firstImageY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const secondImageY = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
     <section
       ref={sectionRef}
-      className="w-full overflow-hidden bg-gray-50 py-14 sm:py-16 md:py-24 lg:py-28"
+      className="relative overflow-hidden bg-white py-24 md:py-32"
     >
-      <div className="mx-auto flex w-full max-w-400 flex-col gap-12 px-4 sm:px-6 md:gap-16 md:px-8 lg:px-10">
-        <h2 className="max-w-[10ch] text-[clamp(36px,9vw,64px)] font-black uppercase leading-[0.9] tracking-[-0.08em] text-neutral-900">
-          TESTIM<span className="text-iblue">O</span>NIAL
-        </h2>
-        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12">
-          <div className="flex items-center gap-3 sm:gap-4 md:gap-8">
-            <motion.img
-              src={testimonialData[0].image}
-              alt={testimonialData[0].image}
-              style={{ y: firstLeftY }}
-              transition={{ type: "spring", stiffness: 110, damping: 26 }}
-              className="h-[42vw] w-[38vw] object-cover shadow-sm sm:h-[38vw] sm:w-[34vw] md:h-128 md:w-128"
-            />
-            {/* <motion.img
-              alt={testimonialData[0].author}
-              src={testimonialData[0].image2}
-              style={{ y: firstRightY }}
-              transition={{ type: "spring", stiffness: 80, damping: 22 }}
-              className="mt-8 h-[42vw] w-[38vw] object-cover shadow-sm sm:mt-10 sm:h-[38vw] sm:w-[34vw] md:mt-14 md:h-85 md:w-55"
-            /> */}
-          </div>
-
-          <div className="max-w-xl pt-1 text-[17px] leading-7 tracking-[0.01em] text-neutral-800 sm:text-[19px] sm:leading-8 md:pt-6 md:text-[22px] md:leading-9 md:tracking-[0.02em]">
-            <p className="mb-6 text-[clamp(1rem,2vw,1.25rem)] font-semibold text-neutral-900">
-              {testimonialData[0].author}
-            </p>
-            <p className="italic text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed">
-              &quot;{testimonialData[0].quote}&quot;
-            </p>
-            <p className="mt-6 text-[clamp(0.85rem,1.5vw,1rem)] font-semibold text-neutral-600">
-              {testimonialData[0].role}
-            </p>
-          </div>
+      <div className="container mx-auto px-6">
+        <div className="mb-20">
+          <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-iblue">
+            Voices of Innovation
+          </h2>
+          <p className="mt-2 text-4xl font-black uppercase tracking-tight text-neutral-900 md:text-6xl">
+            Testim<span className="text-iblue">o</span>nials
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 items-end gap-8 md:grid-cols-2 md:gap-12">
-          <div className="order-2 max-w-xl text-[17px] leading-7 tracking-[0.01em] text-neutral-800 sm:text-[19px] sm:leading-8 md:order-1 md:text-[22px] md:leading-9 md:tracking-[0.02em]">
-            <p className="mb-6 text-[clamp(1rem,2vw,1.25rem)] font-semibold text-neutral-900">
-              {testimonialData[1].author}
-            </p>
-            <p className="italic text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed">
-              &quot;{testimonialData[1].quote}&quot;
-            </p>
-            <p className="mt-6 text-[clamp(0.85rem,1.5vw,1rem)] font-semibold text-neutral-600">
-              {testimonialData[1].role}
-            </p>
+        <div className="space-y-28 md:space-y-40">
+          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-12 lg:gap-20">
+            <div className="md:col-span-5">
+              <PortraitCard
+                testimonial={testimonialData[0]}
+                parallaxY={firstImageY}
+              />
+            </div>
+            <div className="md:col-span-7">
+              <QuoteBlock testimonial={testimonialData[0]} />
+            </div>
           </div>
 
-          <div className="order-1 flex items-start justify-start gap-3 sm:gap-4 md:order-2 md:justify-end md:gap-8">
-            <motion.img
-              src={testimonialData[1].image}
-              alt={testimonialData[1].author}
-              style={{ y: secondLeftY }}
-              transition={{ type: "spring", stiffness: 78, damping: 20 }}
-              className="mt-6 h-[42vw] w-[100%] object-cover center shadow-sm sm:mt-8 sm:h-[38vw] sm:w-[34vw] md:mt-14 md:h-128 md:w-96"
-            />
-            {/* <motion.img
-              src={testimonialData[1].image2}
-              alt={testimonialData[1].author}
-              style={{ y: secondRightY }}
-              transition={{ type: "spring", stiffness: 112, damping: 26 }}
-              className="h-[42vw] w-[38vw] object-cover shadow-sm sm:h-[38vw] sm:w-[34vw] md:h-85 md:w-55"
-            /> */}
+          <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-12 lg:gap-20">
+            <div className="order-2 md:order-1 md:col-span-7">
+              <QuoteBlock testimonial={testimonialData[1]} />
+            </div>
+            <div className="order-1 md:order-2 md:col-span-5">
+              <PortraitCard
+                testimonial={testimonialData[1]}
+                parallaxY={secondImageY}
+              />
+            </div>
           </div>
         </div>
       </div>

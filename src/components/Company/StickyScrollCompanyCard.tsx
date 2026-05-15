@@ -56,77 +56,49 @@ const Component = forwardRef<HTMLElement, CompanyCardListProps>(({ companies }, 
   return (
     <ReactLenis root>
       <main className='bg-white' ref={ref}>
-        <section className='text-black w-full bg-transparent px-4 py-8'>
-          <div className='grid grid-cols-12 gap-2 border border-[#DFDFDF]'>
-            <div className='grid gap-0 col-span-4'>
-              {col1.map((company, index) => {
-                const trueIndex = index;
-                return (
-                  <div key={trueIndex} className='w-full'>
-                    <CompanyCard
-                      topText=""
-                      logoUrl={company.logoUrl}
-                      name={company.name}
-                      about={company.about}
-                      priority={company.priority}
-                      isMouSigned={company.isMouSigned}
-                      contactEmail={company.contactEmail}
-                      websiteUrl={company.websiteUrl}
-                      numberOfInterns={company.numberOfInterns}
-                      className={`h-full ${getCardBgClass(trueIndex)}`}
-                    />
-                  </div>
-                );
-              })}
+        <section className='w-full bg-transparent px-4 py-8 text-black'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-0 border border-[#DFDFDF]'>
+            {/* Column 1 */}
+            <div className='lg:col-span-4 grid gap-0'>
+              {col1.map((company, index) => (
+                <CompanyCard
+                  key={`col1-${index}`}
+                  {...company}
+                  topText=""
+                  className={`h-full ${getCardBgClass(index)}`}
+                />
+              ))}
             </div>
+
+            {/* Column 2 - Sticky on Desktop */}
             <div 
-              className={`sticky w-full col-span-4 gap-0 grid grid-rows-${Math.max(col2.length, 1)}`}
+              className='lg:col-span-4 lg:sticky lg:top-0 lg:h-screen grid gap-0 overflow-hidden'
               style={{
-                top: `${navHeight}px`,
+                top: `calc(${navHeight}px + 0px)`,
                 height: `calc(100vh - ${navHeight}px)`
               }}
             >
-              {col2.map((company, index) => {
-                const trueIndex = leftCount + index;
-                return (
-                  <div key={trueIndex} className='w-full h-full'>
-                    <CompanyCard
-                      topText=""
-                      logoUrl={company.logoUrl}
-                      name={company.name}
-                      about={company.about}
-                      priority={company.priority}
-                      isMouSigned={company.isMouSigned}
-                      contactEmail={company.contactEmail}
-                      websiteUrl={company.websiteUrl}
-                      numberOfInterns={company.numberOfInterns}
-                      compact={true}
-                      className={`h-full border-t border-[#DFDFDF] ${getCardBgClass(trueIndex)}`}
-                    />
-                  </div>
-                );
-              })}
+              {col2.map((company, index) => (
+                <CompanyCard
+                  key={`col2-${index}`}
+                  {...company}
+                  topText=""
+                  compact={true}
+                  className={`h-full border-t lg:border-t-0 lg:border-x border-[#DFDFDF] ${getCardBgClass(leftCount + index)}`}
+                />
+              ))}
             </div>
-            <div className='grid gap-0 col-span-4'>
-              {col3.map((company, index) => {
-                const trueIndex = leftCount + middleCount + index;
-                return (
-                  <div key={trueIndex} className='w-full'>
-                    <CompanyCard
-                      topText=""
-                      logoUrl={company.logoUrl}
-                      name={company.name}
-                      about={company.about}
-                      priority={company.priority}
-                      isMouSigned={company.isMouSigned}
-                      contactEmail={company.contactEmail}
-                      websiteUrl={company.websiteUrl}
-                      numberOfInterns={company.numberOfInterns}
-                      className={`h-full ${getCardBgClass(trueIndex)}`}
-                    />
-                  </div>
-                );
-              })}
+
+            {/* Column 3 */}
+            <div className='lg:col-span-4 grid gap-0 md:col-span-2 lg:md:col-span-4'>
+              {col3.map((company, index) => (
+                <CompanyCard
+                  key={`col3-${index}`}
+                  {...company}
+                  topText=""
+                  className={`h-full border-t lg:border-t-0 border-[#DFDFDF] ${getCardBgClass(leftCount + middleCount + index)}`}
+                />
+              ))}
             </div>
           </div>
         </section>

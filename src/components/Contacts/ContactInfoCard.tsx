@@ -63,7 +63,7 @@ export function ContactInfoCard({
         }
       />
       <motion.div className="absolute top-0 left-0 h-0.5 w-0 bg-linear-to-r from-cyan-400 via-cyan-300 to-transparent group-hover:w-full transition-all duration-700 ease-out pointer-events-none" />
-      <motion.div className="relative z-10 aspect-square">
+      <motion.div className="relative z-10 md:aspect-square">
         {Icon ? (
           <motion.div
             className="mb-4 inline-flex h-10 w-10 items-center justify-center  border border-neutral-300 bg-white text-neutral-900 transition-colors duration-300 group-hover:border-cyan-300 group-hover:text-cyan-600"

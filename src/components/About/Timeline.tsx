@@ -121,10 +121,7 @@ export default function Timeline({ items }: TimelineProps) {
                   key={`${item.year}-${item.title}-${index}`}
                   src={imageUrl}
                   alt={`${item.title} image ${index + 1}`}
-                  width={500}
-                  height={500}
-                  sizes="(min-width: 1024px) 24rem, 100vw"
-                  className="h-20 w-full object-cover md:h-44 lg:h-60"
+                  className="h-48 w-full rounded-lg object-cover shadow-sm md:h-56 lg:h-64"
                 />
               ))}
             </div>

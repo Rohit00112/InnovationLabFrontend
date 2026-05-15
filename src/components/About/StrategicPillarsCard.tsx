@@ -65,7 +65,7 @@ export default function StrategicPillarsCard({
           <div
             key={item.id}
             className={cn(
-              "bg-white p-6 aspect-square",
+              "bg-white p-6 md:aspect-square",
               !isLastOnMobile && "border-b border-gray-300 sm:border-b-0",
               !isRightColumn && "sm:border-r sm:border-gray-300",
               !isInDesktopLastRow && "sm:border-b sm:border-gray-300",
@@ -86,21 +86,17 @@ export default function StrategicPillarsCard({
   return (
     <article
       className={cn(
-        "relative grid grid-cols-1 lg:grid-cols-2 lg:before:pointer-events-none lg:before:absolute lg:before:top-0 lg:before:bottom-0 lg:before:left-1/2 lg:before:w-[3px] lg:before:-translate-x-1/2 lg:before:bg-black lg:before:content-['']",
+        "relative grid grid-cols-1 lg:grid-cols-2",
+        "lg:before:pointer-events-none lg:before:absolute lg:before:inset-y-0 lg:before:left-1/2 lg:before:w-[2px] lg:before:-translate-x-1/2 lg:before:bg-black lg:before:content-['']",
         className,
       )}
     >
-      {titleOnLeft ? (
-        <>
-          {titleBlock}
-          {itemsBlock}
-        </>
-      ) : (
-        <>
-          {itemsBlock}
-          {titleBlock}
-        </>
-      )}
+      <div className={cn("order-1", !titleOnLeft && "lg:order-2")}>
+        {titleBlock}
+      </div>
+      <div className={cn("order-2", !titleOnLeft && "lg:order-1")}>
+        {itemsBlock}
+      </div>
     </article>
   );
 }

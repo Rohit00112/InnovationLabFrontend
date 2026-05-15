@@ -61,7 +61,7 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
   if (slides.length === 0) return null;
 
   return (
-    <div className="relative min-h-screen w-full md:h-[82vh]">
+    <div className="relative h-[65vh] w-full md:h-[85vh]">
       <div className="h-full overflow-hidden" ref={emblaRef}>
         <div className="flex h-full">
           {slides.map((slide) => (
@@ -72,9 +72,9 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="object-cover"
+                className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-linear-to-r from-neutral-900/78 via-neutral-900/35 to-neutral-900/20" />
+              <div className="absolute inset-0 bg-linear-to-t from-neutral-900/90 via-neutral-900/40 to-transparent md:bg-linear-to-r md:from-neutral-900/80 md:via-neutral-900/30 md:to-transparent" />
 
               <div className="absolute inset-0 flex items-end p-5 md:p-10">
                 <div className="max-w-3xl text-white">
@@ -84,7 +84,7 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
                   <h3 className="text-[clamp(2rem,5vw,4.6rem)] font-black uppercase leading-[0.88] tracking-[-0.06em]">
                     {slide.title}
                   </h3>
-                  <p className="mt-4 max-w-xl text-sm leading-6 text-white/82 md:text-base">
+                  <p className="mt-4 max-w-xl line-clamp-3 text-sm leading-relaxed text-white/90 md:line-clamp-none md:text-base">
                     {slide.description}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
@@ -132,12 +132,12 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
         ))}
       </div>
 
-      <div className="absolute right-4 top-1/2 z-10 flex -translate-y-1/2 gap-2 md:right-6">
+      <div className="absolute bottom-5 right-5 z-10 flex gap-2 md:bottom-10 md:right-10">
         <button
           type="button"
           onClick={scrollPrev}
           aria-label="Previous slide"
-          className="h-10 w-10 border border-white/50 bg-black/30 text-xl text-white transition hover:bg-black/55"
+          className="flex h-10 w-10 items-center justify-center border border-white/40 bg-black/20 text-white backdrop-blur-sm transition hover:bg-white hover:text-black md:h-12 md:w-12"
         >
           ‹
         </button>
@@ -145,7 +145,7 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
           type="button"
           onClick={scrollNext}
           aria-label="Next slide"
-          className="h-10 w-10 border border-white/50 bg-black/30 text-xl text-white transition hover:bg-black/55"
+          className="flex h-10 w-10 items-center justify-center border border-white/40 bg-black/20 text-white backdrop-blur-sm transition hover:bg-white hover:text-black md:h-12 md:w-12"
         >
           ›
         </button>

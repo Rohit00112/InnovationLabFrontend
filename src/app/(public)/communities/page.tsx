@@ -22,23 +22,18 @@ export default function CommunitiesPage() {
             <img
               src={community.image}
               alt={community.title}
-              className="object-cover"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-neutral-50/92 to-neutral-100/78" />
-            <div className="relative z-10 flex h-full flex-col justify-between">
-              <span className="text-small font-extrabold tracking-[0.25em] text-accent">
-                {community.id}
-              </span>
-              <div>
-                <h2 className="text-2xl font-black uppercase tracking-tight">
-                  {community.title}
-                </h2>
-                <p className="mt-ds-2 max-w-[24ch] text-body text-black">
-                  {community.description}
-                </p>
-              </div>
+            <div className="pointer-events-none absolute inset-0 z-10 bg-black/30 md:bg-black/20" />
+            <div className="pointer-events-none absolute inset-0 z-10 bg-linear-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-300 group-hover:from-black/90" />
+            <div className="relative z-10 flex h-full flex-col justify-end p-4 transition-transform duration-300 group-hover:-translate-y-2">
+              <h2 className="text-xl font-black uppercase tracking-tight text-white md:text-2xl">
+                {community.title}
+              </h2>
+              <p className="mt-2 line-clamp-3 text-xs leading-relaxed text-white/80 md:text-sm">
+                {community.description}
+              </p>
             </div>
-            <div className="pointer-events-none absolute inset-0 bg-white/25 opacity-70 transition-opacity duration-300 group-hover:opacity-95" />
           </div>
         ))}
       </section>

@@ -63,19 +63,20 @@ const bottomRowImages: GalleryImage[] = [
   },
 ];
 
-function ImageRow({ images }: { images: GalleryImage[] }) {
+function ImageRow({ images, eager = false }: { images: GalleryImage[]; eager?: boolean }) {
   return (
     <div className="flex w-max overflow-visible">
-      {images.map((image) => (
+      {images.map((image, index) => (
         <div
           key={image.src}
-          className="relative h-[55vw] w-[46vw] shrink-0 overflow-hidden bg-neutral-100 sm:h-[42vw] sm:w-[36vw] md:h-[32vw] md:w-[28vw] md:min-h-64 md:max-h-120 md:min-w-[18rem] md:max-w-[24rem]"
+          className="relative h-[32vw] w-[42vw] shrink-0 overflow-hidden border border-gray-300 bg-neutral-100 sm:h-[26vw] sm:w-[32vw] md:h-[20vw] md:w-[24vw] md:min-h-56 md:max-h-96 md:min-w-[18rem] md:max-w-[24rem]"
         >
           <img
             src={image.src}
             alt={image.alt}
-            sizes="(max-width: 768px) 70vw, 24rem"
-            className="object-cover border aspect-square border-gray-300"
+            decoding="async"
+            loading={eager && index < 2 ? "eager" : "lazy"}
+            className="pointer-events-none h-full w-full object-cover"
           />
         </div>
       ))}
@@ -90,8 +91,8 @@ export default function Carousel() {
     offset: ["start end", "end start"],
   });
 
-  const topX = useTransform(scrollYProgress, [0, 1], [0, -180]);
-  const bottomX = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const topX = useTransform(scrollYProgress, [0, 1], [0, -400]);
+  const bottomX = useTransform(scrollYProgress, [0, 1], [0, 400]);
 
   return (
     <div
@@ -99,10 +100,14 @@ export default function Carousel() {
       className="relative left-1/2 w-[120vw] -translate-x-1/2 overflow-hidden max-w-none"
     >
       <div className="flex flex-col">
-        <motion.div style={{ x: topX }}>
-          <ImageRow images={topRowImages} />
+        <motion.div
+          style={{ x: topX, willChange: "transform", translateZ: 0 }}
+        >
+          <ImageRow images={topRowImages} eager />
         </motion.div>
-        <motion.div style={{ x: bottomX }}>
+        <motion.div
+          style={{ x: bottomX, willChange: "transform", translateZ: 0 }}
+        >
           <ImageRow images={bottomRowImages} />
         </motion.div>
       </div>

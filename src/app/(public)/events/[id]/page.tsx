@@ -56,10 +56,10 @@ export default async function EventDetailPage({
           <img
             src={event.coverImageUrl || dummyGallery[0]}
             alt={event.title || "Event Image"}
-            className="aspect-square object-cover"
+            className="h-full w-full object-cover"
           />
 
-          <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent md:bg-linear-to-r md:from-black/70 md:via-black/40 md:to-transparent" />
 
           <div className="absolute inset-x-0 bottom-0 p-4 md:p-10">
             <div className="max-w-3xl text-white">

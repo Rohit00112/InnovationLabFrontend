@@ -24,8 +24,6 @@ export default async function EventsPage() {
       </section>
 
       <div className="line-bg w-full md:h-16 h-6"></div>
-
-      <div className="line-bg w-full md:h-16 h-6"></div>
       <LatestEventsSection events={upcomingEvents} />
       <PastEventsSection events={allEvents} />
     </PageLayout>

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 export interface StoryItem {
   image: string;
@@ -14,137 +15,116 @@ interface StoriesProps {
 }
 
 export default function Stories({ storiesData }: StoriesProps) {
-  const numOfStories = storiesData.length;
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const [currentStory, setCurrentStory] = useState(0);
-  const [scrollDistance, setScrollDistance] = useState(70);
-
-  useEffect(() => {
-    const handleResize = () => {
-      // Use higher vh distance on mobile so it requires more scrolling (less sensitive)
-      setScrollDistance(window.innerWidth < 768 ? 90 : 70);
-    };
-
-    handleResize(); // Initial check
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!wrapperRef.current) return;
-
-      const rect = wrapperRef.current.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const stepPx = (scrollDistance / 100) * vh;
-
-      // How far the wrapper's top has scrolled past the viewport top
-      const scrolledInto = -rect.top;
-
-      if (scrolledInto <= 0) {
-        setCurrentStory(0);
-        return;
-      }
-
-      const maxScroll = (numOfStories - 1) * stepPx;
-
-      if (scrolledInto >= maxScroll) {
-        setCurrentStory(numOfStories - 1);
-        return;
-      }
-
-      setCurrentStory(Math.floor(scrolledInto / stepPx));
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // set initial state on mount
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [numOfStories, scrollDistance]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
   return (
-    <div
-      ref={wrapperRef}
-      className="relative z-0"
-      style={{ height: `${100 + numOfStories * scrollDistance}vh` }}
-    >
-      {/* Sticky container — pins while the wrapper scrolls behind it */}
-      <div className="sticky top-0 h-screen overflow-hidden bg-white border-x border-b border-gray-300">
-        {storiesData.map((story, i) => {
-          const isActive = currentStory === i;
-          const isPast = i < currentStory;
-          const isImageOnLeft = i % 2 === 0;
-
-          // Left half enters from below, exits upward
-          const leftTrans = isActive
-            ? "translateY(0)"
-            : isPast
-              ? "translateY(-100%)"
-              : "translateY(100%)";
-
-          // Right half enters from above, exits downward
-          const rightTrans = isActive
-            ? "translateY(0)"
-            : isPast
-              ? "translateY(100%)"
-              : "translateY(-100%)";
-
-          return (
-            <div key={i} className="absolute inset-0">
-              {/* Left Half */}
-              <div
-                className="absolute top-0 left-0 w-1/2 h-full transition-transform duration-[1000ms] bg-white flex flex-col justify-center"
-                style={{ transform: leftTrans }}
-              >
-                {isImageOnLeft ? (
-                  <div
-                    className="w-full max-md:w-[95%] max-md:mx-auto max-md:rounded-xl h-[60vh] md:h-full bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: `url(${story.image})` }}
-                  />
-                ) : (
-                  <div className="flex flex-col items-center justify-center h-full text-black px-2 py-4 md:p-8">
-                    <div className="mb-2 md:mb-4 text-center">
-                      <h2 className="text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
-                        {story.storyTeller}
-                      </h2>
-                    </div>
-                    <p className="text-center italic text-[13px] md:text-[18px] leading-snug text-[#515151]">
-                      {'"'}
-                      {story.description}
-                      {'"'}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {/* Right Half */}
-              <div
-                className="absolute top-0 left-1/2 w-1/2 h-full transition-transform duration-1000 bg-white flex flex-col justify-center"
-                style={{ transform: rightTrans }}
-              >
-                {!isImageOnLeft ? (
-                  <div
-                    className="w-full max-md:w-[95%] max-md:mx-auto max-md:rounded-xl h-[60vh] md:h-full bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: `url(${story.image})` }}
-                  />
-                ) : (
-                  <div className="flex flex-col items-center justify-center h-full text-black px-2 py-4 md:p-8">
-                    <div className="mb-2 md:mb-4 text-center">
-                      <h2 className="font-serif text-xl md:text-[34px] font-bold uppercase leading-tight break-words max-w-full">
-                        {story.storyTeller}
-                      </h2>
-                    </div>
-                    <p className="text-center text-[13px] italic md:text-[18px] leading-snug text-[#515151]">
-                      {'"'}
-                      {story.description}
-                      {'"'}
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
+    <div ref={containerRef} className="relative h-[600vh]">
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-white">
+        {storiesData.map((story, i) => (
+          <StorySlide
+            key={i}
+            story={story}
+            index={i}
+            total={storiesData.length}
+            progress={scrollYProgress}
+          />
+        ))}
       </div>
+    </div>
+  );
+}
+
+function StorySlide({
+  story,
+  index,
+  total,
+  progress,
+}: {
+  story: StoryItem;
+  index: number;
+  total: number;
+  progress: any;
+}) {
+  const start = index / total;
+  const end = (index + 1) / total;
+
+  // Opacity and scale for the whole slide
+  const opacity = useTransform(progress, [start, start + 0.05, end - 0.05, end], [0, 1, 1, 0]);
+  const scale = useTransform(progress, [start, start + 0.05, end - 0.05, end], [0.98, 1, 1, 0.98]);
+
+  // Opposite directions for left/right halves
+  const leftY = useTransform(
+    progress,
+    [start - 0.05, start, end, end + 0.05],
+    ["100%", "0%", "0%", "-100%"]
+  );
+  const rightY = useTransform(
+    progress,
+    [start - 0.05, start, end, end + 0.05],
+    ["-100%", "0%", "0%", "100%"]
+  );
+
+  const isImageOnLeft = index % 2 === 0;
+
+  return (
+    <motion.div
+      style={{ opacity, scale }}
+      className="absolute inset-0 grid grid-cols-1 md:grid-cols-2"
+    >
+      {/* Left Column / Top Half */}
+      <motion.div
+        style={{ y: leftY }}
+        className="relative h-1/2 w-full overflow-hidden bg-white md:h-full"
+      >
+        {isImageOnLeft ? (
+          <div
+            className="h-full w-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${story.image})` }}
+          />
+        ) : (
+          <StoryContent story={story} />
+        )}
+      </motion.div>
+
+      {/* Right Column / Bottom Half */}
+      <motion.div
+        style={{ y: rightY }}
+        className="relative h-1/2 w-full overflow-hidden bg-white md:h-full"
+      >
+        {!isImageOnLeft ? (
+          <div
+            className="h-full w-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${story.image})` }}
+          />
+        ) : (
+          <StoryContent story={story} />
+        )}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function StoryContent({ story }: { story: StoryItem }) {
+  return (
+    <div className="flex h-full flex-col items-center justify-center space-y-8 p-8 text-center md:p-16">
+      <div className="space-y-4">
+        <span className="inline-block h-1 w-12 bg-iblue" />
+        <div className="space-y-1">
+          <h2 className="text-2xl font-black uppercase tracking-[0.1em] text-neutral-900 md:text-4xl">
+            {story.storyTeller}
+          </h2>
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-iblue">
+            {story.companyName}
+          </p>
+        </div>
+      </div>
+      <p className="max-w-md text-sm font-medium italic leading-[1.6] text-neutral-800 md:text-xl lg:text-2xl">
+        &quot;{story.description}&quot;
+      </p>
     </div>
   );
 }
