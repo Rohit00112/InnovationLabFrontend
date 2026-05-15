@@ -148,11 +148,12 @@ function isBffEnvelope(value: unknown): value is BffEnvelope<unknown> {
 
 function getBaseUrl(): string {
   if (typeof window !== "undefined") {
+    console.log(window.location.origin,"window location")
     return window.location.origin;
   }
+  console.log("returning localhost")
+  return "http://localhost:3000";
 
-  // return "http://localhost:3000";
-  return process.env.BACKEND_API_BASE_URL ?? "http://localhost:3000";
 }
 
 export const localApi = {
