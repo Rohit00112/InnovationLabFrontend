@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 type Brand = {
   name: string;
   image: string;
@@ -42,7 +40,7 @@ const BrandScroller = ({
           >
             {brands.map((brand, index) => (
               <div key={index} className="flex items-center w-32 gap-3">
-                <Image
+                <img
                   src={brand.image}
                   alt={brand.name}
                   width={24}

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageLayout from "@/components/primitives/PageLayout";
@@ -69,10 +68,9 @@ export default function CommunityDetailPage({
               ].join(" ")}
             >
               <div className="relative h-44 w-full overflow-hidden border border-black/10">
-                <Image
+                <img
                   src={member.image}
                   alt={member.name}
-                  fill
                   className="object-cover"
                 />
               </div>
@@ -109,10 +107,9 @@ export default function CommunityDetailPage({
               className="grid gap-4 border-b border-black/10 pb-5 last:border-b-0 last:pb-0 md:grid-cols-[110px_1fr]"
             >
               <div className="relative h-20 w-full overflow-hidden border border-black/10">
-                <Image
+                <img
                   src={item.image}
                   alt={item.title}
-                  fill
                   className="object-cover"
                 />
               </div>

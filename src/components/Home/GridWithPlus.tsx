@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 type GridProps = {
   rows?: number;
   logos: string[];
@@ -17,7 +15,7 @@ export const GridWithPlus = ({ rows = 1, logos }: GridProps) => {
           className="relative hover:bg-gray-50 h-28 md:h-48 aspect-square border border-gray-300 flex items-center justify-center bg-white "
         >
           {hasLogos && (
-            <Image
+            <img
               src={logos[i % logos.length]}
               alt={`logo-${i}`}
               width={120}

@@ -1,7 +1,6 @@
 "use client";
 
 import type React from "react";
-import Image from "next/image";
 
 import { useState, useRef, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
@@ -143,12 +142,10 @@ export default function LatestNewsShowcase() {
       >
         <div className="relative h-45 w-70 overflow-hidden rounded-xl bg-accent">
           {projects.map((project, index) => (
-            <Image
+            <img
               key={project.title}
               src={project.image || "/placeholder.svg"}
               alt={project.title}
-              fill
-              unoptimized
               sizes="280px"
               className="absolute inset-0 h-full w-full object-cover transition-all duration-500 ease-out"
               style={{

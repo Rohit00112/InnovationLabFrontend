@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { EventResponseDto } from "@/lib/services/generated/frontend/schemas";
 
@@ -8,7 +7,9 @@ type LatestEventsSectionProps = {
   events: EventResponseDto[];
 };
 
-export default function LatestEventsSection({ events }: LatestEventsSectionProps) {
+export default function LatestEventsSection({
+  events,
+}: LatestEventsSectionProps) {
   return (
     <section className="border-t border-gray-300 py-14 md:py-20">
       <div className="mx-auto px-4 md:px-8">
@@ -26,10 +27,12 @@ export default function LatestEventsSection({ events }: LatestEventsSectionProps
                 href={`/events/${event.id}`}
                 className="group relative h-52 w-full overflow-hidden bg-neutral-100 md:h-56"
               >
-                <Image
-                  src={event.coverImageUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80"}
+                <img
+                  src={
+                    event.coverImageUrl ||
+                    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80"
+                  }
                   alt={event.title || "Untitled Event"}
-                  fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </Link>
@@ -88,4 +91,3 @@ export default function LatestEventsSection({ events }: LatestEventsSectionProps
     </section>
   );
 }
-

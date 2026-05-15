@@ -42,20 +42,32 @@ export default function ManageList({
       // Attach Authorization header from localStorage if available
       const headers: HeadersInit = {};
       try {
-        if (typeof window !== 'undefined') {
-          const token = localStorage.getItem('authToken') || localStorage.getItem('token') || localStorage.getItem('accessToken');
+        if (typeof window !== "undefined") {
+          const token =
+            localStorage.getItem("authToken") ||
+            localStorage.getItem("token") ||
+            localStorage.getItem("accessToken");
           if (token) {
-            headers['authorization'] = `Bearer ${token}`;
+            headers["authorization"] = `Bearer ${token}`;
             // eslint-disable-next-line no-console
-            console.log('[ManageList] Authorization header added from localStorage');
+            console.log(
+              "[ManageList] Authorization header added from localStorage",
+            );
           }
         }
       } catch (e) {
         // eslint-disable-next-line no-console
-        console.warn('[ManageList] Error reading auth token from localStorage', e);
+        console.warn(
+          "[ManageList] Error reading auth token from localStorage",
+          e,
+        );
       }
 
-      const response = await fetch(apiEndpoint, { headers, credentials: 'include', mode: 'cors' });
+      const response = await fetch(apiEndpoint, {
+        headers,
+        credentials: "include",
+        mode: "cors",
+      });
       if (!response.ok) {
         throw new Error(`Failed to fetch ${resourceName}`);
       }
@@ -76,7 +88,9 @@ export default function ManageList({
       } else if (Array.isArray((data as any).data?.items)) {
         itemsArray = (data as any).data.items;
       } else {
-        const firstArray = Object.values(data || {}).find((v) => Array.isArray(v));
+        const firstArray = Object.values(data || {}).find((v) =>
+          Array.isArray(v),
+        );
         if (Array.isArray(firstArray)) {
           itemsArray = firstArray as any[];
         } else {
@@ -111,15 +125,21 @@ export default function ManageList({
         // Default delete behavior
         const delHeaders: HeadersInit = {};
         try {
-          if (typeof window !== 'undefined') {
-            const token = localStorage.getItem('authToken') || localStorage.getItem('token') || localStorage.getItem('accessToken');
+          if (typeof window !== "undefined") {
+            const token =
+              localStorage.getItem("authToken") ||
+              localStorage.getItem("token") ||
+              localStorage.getItem("accessToken");
             if (token) {
-              delHeaders['authorization'] = `Bearer ${token}`;
+              delHeaders["authorization"] = `Bearer ${token}`;
             }
           }
         } catch (e) {
           // eslint-disable-next-line no-console
-          console.warn('[ManageList] Error reading auth token from localStorage', e);
+          console.warn(
+            "[ManageList] Error reading auth token from localStorage",
+            e,
+          );
         }
 
         const response = await fetch(`${apiEndpoint}/${id}`, {

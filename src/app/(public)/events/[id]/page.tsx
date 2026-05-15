@@ -3,7 +3,7 @@ import PageLayout from "@/components/primitives/PageLayout";
 import { getEventById } from "@/lib/services/domain/events";
 import JobFairCompanies from "../../../../components/Events/JobFairCompanies";
 import EventAgendaSection from "../../../../components/Events/EventAgendaSection";
-import Image from "next/image";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -53,11 +53,9 @@ export default async function EventDetailPage({
       {/* Hero Section */}
       <section className="mx-auto w-full border">
         <div className="relative h-[52vh] min-h-72 w-full md:h-[68vh] md:min-h-90">
-          <Image
+          <img
             src={event.coverImageUrl || dummyGallery[0]}
             alt={event.title || "Event Image"}
-            fill
-            priority
             className="aspect-square object-cover"
           />
 
@@ -69,9 +67,7 @@ export default async function EventDetailPage({
                 <span className="bg-cyan-400 px-2 py-1 text-[0.55rem] font-bold uppercase tracking-[0.2em] text-black">
                   {event.seriesName || "Special Event"}
                 </span>
-
               </div>
-
 
               <div className="mt-6 flex flex-wrap gap-3">
                 {event.isRegistrationOpen ? (
@@ -212,14 +208,12 @@ export default async function EventDetailPage({
       </section>
 
       {/* Gallery Section */}
-     
+
       {/* Event Agenda Section */}
       {event.id && <EventAgendaSection eventId={event.id} />}
 
       {/* Companies Attending the Event */}
-      {isJobFairEvent && (
-        <JobFairCompanies />
-      )}
+      {isJobFairEvent && <JobFairCompanies />}
       {/* Related Events Section */}
       <section className="mx-auto w-full border-x border-b border-gray-300 bg-neutral-100 px-6 py-12 text-center md:px-10 md:py-16">
         <Link

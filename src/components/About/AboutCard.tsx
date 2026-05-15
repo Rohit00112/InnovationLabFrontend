@@ -1,5 +1,5 @@
 import * as React from "react";
-import Image from "next/image";
+
 import { cn } from "@/lib/utils/util";
 
 interface AboutCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -22,11 +22,9 @@ const AboutCard = React.forwardRef<HTMLDivElement, AboutCardProps>(
         <a aria-label={title}>
           {/* Image container with aspect ratio */}
           <div className="relative aspect-square overflow-hidden">
-            <Image
+            <img
               src={imageUrl}
               alt={title}
-              fill
-              unoptimized
               sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
               className="h-full w-full border-black object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
             />

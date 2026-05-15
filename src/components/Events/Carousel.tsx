@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import React, { useCallback, useEffect, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
 import type { EventResponseDto } from "@/lib/services/generated/frontend/schemas";
+import useEmblaCarousel from "embla-carousel-react";
+import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 
 type EmblaCarouselProps = {
   events: EventResponseDto[];
@@ -19,7 +18,9 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
     id: event.id,
     title: event.title || "Untitled Event",
     description: event.description || "",
-    image: event.coverImageUrl || "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
+    image:
+      event.coverImageUrl ||
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&q=80",
     eyebrow: event.seriesName || "Featured Event",
     isRegistrationOpen: event.isRegistrationOpen || false,
   }));
@@ -68,14 +69,12 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
               key={slide.id}
               className="relative h-full min-w-0 flex-[0_0_100%]"
             >
-              <Image
+              <img
                 src={slide.image}
                 alt={slide.title}
-                fill
-                priority
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-neutral-900/78 via-neutral-900/35 to-neutral-900/20" />
+              <div className="absolute inset-0 bg-linear-to-r from-neutral-900/78 via-neutral-900/35 to-neutral-900/20" />
 
               <div className="absolute inset-0 flex items-end p-5 md:p-10">
                 <div className="max-w-3xl text-white">
@@ -154,4 +153,3 @@ export function EmblaCarousel({ events }: EmblaCarouselProps) {
     </div>
   );
 }
-

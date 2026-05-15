@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+
 import { useState } from "react";
 import TransitionLink from "./TransitionLink";
 import PageLayout from "./primitives/PageLayout";
@@ -17,7 +17,7 @@ export default function Navbar() {
       <nav className="site-navbar sticky top-0 z-50 border-b border-gray-300 bg-white/80 px-4 py-4 backdrop-blur-md md:px-12 md:py-5">
         <div className="flex items-center justify-between gap-4">
           <div className="text-lg font-black tracking-tighter uppercase">
-            <Image
+            <img
               src="/ivLabsLogo.svg"
               alt="Innovation Lab Logo"
               width={120}
@@ -80,10 +80,11 @@ export default function Navbar() {
         </div>
 
         <div
-          className={`grid overflow-hidden transition-all duration-300 md:hidden ${isMenuOpen
-            ? "mt-4 grid-rows-[1fr] opacity-100"
-            : "grid-rows-[0fr] opacity-0"
-            }`}
+          className={`grid overflow-hidden transition-all duration-300 md:hidden ${
+            isMenuOpen
+              ? "mt-4 grid-rows-[1fr] opacity-100"
+              : "grid-rows-[0fr] opacity-0"
+          }`}
         >
           <div className="min-h-0">
             <div className="grid gap-1 border border-gray-300 bg-white p-2 text-xs font-bold uppercase tracking-[0.2em]">

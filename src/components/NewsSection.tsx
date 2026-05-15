@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const newsItems = [
   {
     category: "Events",
@@ -33,7 +31,7 @@ export default function News() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {newsItems.map((item, index) => (
           <div key={index} className="bg-white border border-gray-100 group">
-            <Image
+            <img
               src={`https://picsum.photos/seed/${item.img}/600/400`}
               alt={item.title}
               width={600}

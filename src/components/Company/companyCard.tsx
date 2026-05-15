@@ -2,7 +2,6 @@
 
 "use client";
 
-import Image from "next/image";
 import React, { useRef } from "react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils/util"; // Assuming shadcn/ui's utility function
@@ -78,13 +77,18 @@ export default function CompanyCard({
         className,
       )}
     >
-      <div style={{ transform: 'translateZ(20px)' }} className="relative h-full flex flex-col justify-between">
+      <div
+        style={{ transform: "translateZ(20px)" }}
+        className="relative h-full flex flex-col justify-between"
+      >
         {/* Image Section */}
-        <div 
-          className={`relative ${compact ? 'px-4 pt-4' : 'px-6 pt-6'} cursor-pointer`}
-          onClick={() => window.open(websiteUrl, '_blank')}
+        <div
+          className={`relative ${compact ? "px-4 pt-4" : "px-6 pt-6"} cursor-pointer`}
+          onClick={() => window.open(websiteUrl, "_blank")}
         >
-          <div className={`absolute ${compact ? 'top-6 left-6' : 'top-10 left-10'} z-10 flex flex-col gap-2`}>
+          <div
+            className={`absolute ${compact ? "top-6 left-6" : "top-10 left-10"} z-10 flex flex-col gap-2`}
+          >
             {topText && (
               <span className="text-xs font-semibold uppercase tracking-widest text-white/90 mix-blend-difference">
                 {topText}
@@ -92,12 +96,11 @@ export default function CompanyCard({
             )}
           </div>
           <div className="h-64 w-full flex items-center justify-center p-8 bg-white overflow-hidden">
-            <Image
+            <img
               src={logoUrl}
               alt={name}
               width={400}
               height={400}
-              unoptimized
               sizes="(min-width: 1024px) 33vw, 100vw"
               className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110"
             />
@@ -105,16 +108,39 @@ export default function CompanyCard({
         </div>
 
         {/* Content Section */}
-        <div className={`flex-1 flex flex-col justify-center ${compact ? 'p-4' : 'p-6'}`}>
-          <h2 className={`${compact ? 'text-[18px]' : 'text-[24px]'} font-bold leading-tight uppercase`}>
+        <div
+          className={`flex-1 flex flex-col justify-center ${compact ? "p-4" : "p-6"}`}
+        >
+          <h2
+            className={`${compact ? "text-[18px]" : "text-[24px]"} font-bold leading-tight uppercase`}
+          >
             {name}
           </h2>
-          <p className={`mt-2 ${compact ? 'text-[12px]' : 'text-[14px]'} leading-snug text-[#515151] line-clamp-3`}>
+          <p
+            className={`mt-2 ${compact ? "text-[12px]" : "text-[14px]"} leading-snug text-[#515151] line-clamp-3`}
+          >
             {about}
           </p>
           {contactEmail && (
-            <a href={`mailto:${contactEmail}`} className={`mt-2 ${compact ? 'text-[11px]' : 'text-[12px]'} text-neutral-800 font-medium hover:underline flex items-center gap-1`}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <a
+              href={`mailto:${contactEmail}`}
+              className={`mt-2 ${compact ? "text-[11px]" : "text-[12px]"} text-neutral-800 font-medium hover:underline flex items-center gap-1`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-mail"
+              >
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
               {contactEmail}
             </a>
           )}
