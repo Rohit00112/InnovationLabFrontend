@@ -30,7 +30,7 @@ export const publicCommunitiesLatestNews = [
 
 export const publicCommunityCards = [
   {
-    id: "Community_01",
+    id: "",
     slug: "coders",
     title: "Tech Community",
     description:
@@ -43,11 +43,11 @@ export const publicCommunityCards = [
       "Web applications, digital systems, software solutions, and technical platforms",
   },
   {
-    id: "Community_02",
+    id: "",
     slug: "researchers",
-    title: "Researchers Community",
+    title: "Research Community",
     description:
-      "The researchers community ensures that every project is grounded in facts and real-world insights by exploring trends, user needs, and data-driven validation.",
+      "The research community ensures that every project is grounded in facts and real-world insights by exploring trends, user needs, and data-driven validation.",
     image: "/about/30.jpg",
     focus: "Data collection, problem analysis, and idea validation",
     members: "Analysts and research-driven thinkers",
@@ -56,11 +56,11 @@ export const publicCommunityCards = [
       "Trend analysis, research reports, user insights, and validation studies",
   },
   {
-    id: "Community_03",
+    id: "",
     slug: "creators",
-    title: "Creators Community",
+    title: "Creator Community",
     description:
-      "The creators community brings ideas to life visually and creatively, building the Innovation Lab’s public presence through branding, storytelling, and design.",
+      "The creator community brings ideas to life visually and creatively, building the Innovation Lab’s public presence through branding, storytelling, and design.",
     image: "/about/27.jpg",
     focus: "Branding, design, and content production",
     members: "Designers, storytellers, and creative communicators",
@@ -70,11 +70,11 @@ export const publicCommunityCards = [
       "Social media campaigns, promotional content, branding materials, and digital creatives",
   },
   {
-    id: "Community_04",
+    id: "",
     slug: "entrepreneurs",
-    title: "Entrepreneurs Community",
+    title: "Entrepreneur Community",
     description:
-      "The entrepreneurs community transforms innovative ideas into sustainable ventures while nurturing business strategy, leadership, and entrepreneurial growth.",
+      "The entrepreneur community transforms innovative ideas into sustainable ventures while nurturing business strategy, leadership, and entrepreneurial growth.",
     image: "/about/26.jpg",
     focus: "Business planning, marketing, and strategy",
     members: "Startup thinkers and business innovators",

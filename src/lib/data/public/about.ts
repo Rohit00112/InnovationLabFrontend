@@ -2,25 +2,25 @@ import type { LatestEventItem } from "@/components/Events/LatestEventsList";
 
 export const aboutCards = [
   {
-    title: "01. CODER",
+    title: "TECH",
     category:
       "Coders build solutions through code. They turn ideas into functional products and systems.",
     imageUrl: "/about/32.jpg",
   },
   {
-    title: "02 / RESEARCHERS",
+    title: "RESEARCH",
     category:
       "Researchers explore problems with depth and curiosity, publish research  and turn questions into insights and knowledge.",
     imageUrl: "/about/30.jpg",
   },
   {
-    title: "03 / ENTREPRENEURS",
+    title: "ENTREPRENEUR",
     category:
       "Entrepreneurs identify opportunities and create ventures that drive economic growth and innovation.",
     imageUrl: "/about/29.jpg",
   },
   {
-    title: "04 / CREATORS",
+    title: "CREATOR",
     category:
       "Creators Design experiences and tell stories. They make ideas visible, engaging, and meaningful.",
     imageUrl: "/about/28.jpg",
@@ -33,25 +33,25 @@ export const strategicPillars = [
     title: "Mission",
     items: [
       {
-        id: "01",
+        id: "",
         title: "COLLABORATION",
         description:
           "Creating an environment where individuals learn and build together.",
       },
       {
-        id: "02",
+        id: "",
         title: "PRACTICAL LEARNING",
         description:
           "Encouraging hands-on work, experimentation, and real project experience.",
       },
       {
-        id: "03",
+        id: "",
         title: "CONNECTION",
         description:
           "Bridging academia, industry, and innovation through mentorship and exposure.",
       },
       {
-        id: "04",
+        id: "",
         title: "IMPACT",
         description:
           "Focusing on solutions that address real social and community challenges.",
@@ -59,29 +59,29 @@ export const strategicPillars = [
     ],
   },
   {
-    Section: "Section 02",
+    Section: "",
     title: "Vision",
     items: [
       {
-        id: "V_01",
+        id: "",
         title: "Leadership Growth",
         description:
           "To develop learners into founders, professionals, and leaders who create meaningful impact across industries and communities.",
       },
       {
-        id: "V_02",
+        id: "",
         title: "Global Innovation",
         description:
           "To build an ecosystem where local ideas grow with a global mindset, driven by collaboration, creativity, and continuous innovation.",
       },
       {
-        id: "V_03",
+        id: "",
         title: "Lifelong Learning",
         description:
           "To foster a culture of curiosity, adaptability, and lifelong learning that prepares individuals for an evolving global future.",
       },
       {
-        id: "V_04",
+        id: "",
         title: "Community Empowerment",
         description:
           "To empower communities through technology, research, and entrepreneurship, creating sustainable solutions for real-world challenges.",

@@ -8,7 +8,7 @@ const testimonialData = [
     id: 1,
     quote:
       "At the Innovation Lab, we are committed to fostering a culture where creativity, critical thinking, and practical learning come together. Our objective is to create an environment that empowers students to explore ideas, develop innovative solutions, and gain hands-on experience that extends beyond traditional classroom learning. By bridging academic knowledge with real-world application, we aim to prepare students to become confident, future-ready innovators who can contribute meaningfully to society.",
-    author: "Mr. Nishes Biswas",
+    author: "Mr. Nishesh Bishwas",
     role: "Innovation Lab Lead",
     image: "/sir/nb.jpg",
     image2: "/sir/nb.jpg",

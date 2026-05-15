@@ -174,7 +174,7 @@ export default function Partner() {
       {/**Section: MOU Companieswhich are top 12 will be passed to this component and remainig will be sent to the company list table below it */}
       <MOUCompaniesScroll
         companies={featuredMouCompanies}
-        heading="MOU Signed"
+        heading="MoU Signed"
         highlight="Companies"
       />
       {/**More MOU signed Companies */}
@@ -183,7 +183,7 @@ export default function Partner() {
           <section className="w-full px-4 pb-20 pt-12">
             <CompanyListTable
               companies={moreMouCompanies}
-              title="More MOU signed companies"
+              title="More MoU signed companies"
               description="Explore the full list of companies where college has MOU signed with"
               variant="mou"
             />
