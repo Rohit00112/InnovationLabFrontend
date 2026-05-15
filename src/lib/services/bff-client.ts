@@ -147,13 +147,7 @@ function isBffEnvelope(value: unknown): value is BffEnvelope<unknown> {
 }
 
 function getBaseUrl(): string {
-  if (typeof window !== "undefined") {
-    console.log(window.location.origin,"window location")
-    return window.location.origin;
-  }
-  console.log("returning localhost")
-  return "http://localhost:3000";
-
+  return process.env.NEXT_PUBLIC_APP_URL!;
 }
 
 export const localApi = {
