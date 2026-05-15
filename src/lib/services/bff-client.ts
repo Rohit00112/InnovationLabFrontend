@@ -151,7 +151,8 @@ function getBaseUrl(): string {
     return window.location.origin;
   }
 
-  return "http://localhost:3000";
+  // return "http://localhost:3000";
+  return process.env.BACKEND_API_BASE_URL ?? "http://localhost:3000";
 }
 
 export const localApi = {
