@@ -120,13 +120,11 @@ export default function JobFairCompanies() {
         if (!response.ok) {
           throw new Error("Failed to fetch companies");
         }
-        //console.log(response);
 
         const payload = (await response.json()) as CompaniesApiResponse;
         if (!payload?.success || !Array.isArray(payload.data)) {
           throw new Error("Invalid companies payload");
         }
-        //console.log(payload);
 
         const mappedCompanies: CompanyListItem[] = payload.data
           .map((company) => ({

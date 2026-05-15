@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+
 import {
   LayoutDashboard as Dashboard,
   Settings as SettingsIcon,
@@ -397,12 +397,11 @@ function IconNavigation({
       {/* Logo */}
       <div className="mb-2 size-10 flex items-center justify-center">
         <div className="size-7">
-          <Image
+          <img
             src="/ivLabsLogo.svg"
             alt="Innovation Lab"
             width={28}
             height={28}
-            priority
           />
         </div>
       </div>

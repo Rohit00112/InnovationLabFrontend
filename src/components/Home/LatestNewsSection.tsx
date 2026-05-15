@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const latestNewsItems = [
   {
     category: "Events",
@@ -38,7 +36,7 @@ export default function LatestNewsSection() {
               key={index}
               className="bg-white border border-gray-100 group aspect-square"
             >
-              <Image
+              <img
                 src={`https://picsum.photos/seed/${item.img}/600/400`}
                 alt={item.title}
                 width={600}

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -118,13 +117,12 @@ export default function Timeline({ items }: TimelineProps) {
           {imageCount > 0 && (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {item.images.map((imageUrl, index) => (
-                <Image
+                <img
                   key={`${item.year}-${item.title}-${index}`}
                   src={imageUrl}
                   alt={`${item.title} image ${index + 1}`}
                   width={500}
                   height={500}
-                  unoptimized
                   sizes="(min-width: 1024px) 24rem, 100vw"
                   className="h-20 w-full object-cover md:h-44 lg:h-60"
                 />

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+
 import Button from "@/components/primitives/Button";
 import PageLayout from "@/components/primitives/PageLayout";
 import PageHeader from "@/components/primitives/PageHeader";
@@ -19,10 +19,9 @@ export default function CommunitiesPage() {
             key={community.slug}
             className="group relative aspect-square min-h-56 overflow-hidden p-5 lg:min-h-64"
           >
-            <Image
+            <img
               src={community.image}
               alt={community.title}
-              fill
               className="object-cover"
             />
             <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-neutral-50/92 to-neutral-100/78" />
@@ -58,10 +57,9 @@ export default function CommunitiesPage() {
             >
               <div>
                 <div className="relative aspect-video w-full overflow-hidden border border-gray-300">
-                  <Image
+                  <img
                     src={item.image}
                     alt={item.title}
-                    fill
                     className="object-cover"
                   />
                 </div>
@@ -92,10 +90,9 @@ export default function CommunitiesPage() {
             ].join(" ")}
           >
             <div className="relative aspect-4/3 w-full lg:w-5/12 lg:aspect-square">
-              <Image
+              <img
                 src={community.image}
                 alt={community.title}
-                fill
                 className="object-cover"
               />
             </div>

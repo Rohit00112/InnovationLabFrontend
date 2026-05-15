@@ -29,8 +29,10 @@ export function getRequestId(request: NextRequest): string {
 
 export function ensureBackendBaseUrl(requestId: string): NextResponse | null {
   if (process.env.BACKEND_API_BASE_URL) {
-    console.log(`[BFF] Request ${requestId} using BACKEND_API_BASE_URL:`, 
-      process.env.BACKEND_API_BASE_URL);
+    console.log(
+      `[BFF] Request ${requestId} using BACKEND_API_BASE_URL:`,
+      process.env.BACKEND_API_BASE_URL,
+    );
     return null;
   }
 

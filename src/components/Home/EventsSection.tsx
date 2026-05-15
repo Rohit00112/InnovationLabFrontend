@@ -4,7 +4,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Image from "next/image";
+
 import { useRouter } from "next/navigation";
 import type { EventResponseDto } from "@/lib/services/generated/frontend/schemas";
 import Button from "../primitives/Button";
@@ -174,10 +174,9 @@ export function EventsSection() {
                 className="overflow-hidden border border-neutral-300 bg-white"
               >
                 <div className="relative h-56 overflow-hidden border-b border-neutral-200">
-                  <Image
+                  <img
                     src={slide?.coverImageUrl || "/placeholder.jpg"}
                     alt={slide?.title || ""}
-                    fill
                     className="object-cover"
                   />
                 </div>

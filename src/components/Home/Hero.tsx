@@ -64,7 +64,8 @@ export default function Hero({ partnerLogos }: HeroProps) {
       <div className="w-full h-auto">
         <div className="flex items-center justify-center border-t border-gray-300 bg-white px-3 py-4 sm:py-5">
           <h2 className="text-[clamp(2rem,4vw,4rem)] font-semibold">
-            <span className="text-iblue">O</span>UR PARTNERS
+            <span className="text-iblue">O</span>UR PARTNER C
+            <span className="text-iblue">O</span>MPANIES
           </h2>
         </div>
 

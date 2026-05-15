@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
+
 import { cn } from "@/lib/utils/util";
 import type { CompanyListItem } from "@/components/Company/companyList";
 import {
@@ -141,7 +141,7 @@ export function CompanyCard({
   const cardContent = (
     <>
       <div className="relative w-full flex flex-1 items-center justify-center min-h-0">
-        <Image
+        <img
           src={company.logoUrl}
           alt={company.name}
           width={200}

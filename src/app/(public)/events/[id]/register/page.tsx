@@ -6,7 +6,7 @@ import Link from "next/link";
 import PageLayout from "@/components/primitives/PageLayout";
 import PageHeader from "@/components/primitives/PageHeader";
 import EventRegistrationForm from "@/components/Events/EventRegistrationForm";
-import Image from "next/image";
+
 import { getEventById } from "@/lib/services/domain/events";
 import { useQuery } from "@tanstack/react-query";
 
@@ -56,7 +56,8 @@ export default function EventRegisterPage({ params }: EventRegisterPageProps) {
                 Registration is Not Open
               </h2>
               <p className="text-neutral-600 max-w-md">
-                Unfortunately, registration for {event.title} is currently closed. Please contact us if you have any questions.
+                Unfortunately, registration for {event.title} is currently
+                closed. Please contact us if you have any questions.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -148,7 +149,7 @@ export default function EventRegisterPage({ params }: EventRegisterPageProps) {
                 Event Payment
               </h3>
               <div className="flex justify-center">
-                <Image
+                <img
                   width={400}
                   height={400}
                   alt="QR Code"

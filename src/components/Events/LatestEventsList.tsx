@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export type LatestEventItem = {
   date: string;
   title: string;
@@ -18,12 +16,11 @@ export default function LatestEvents({ events }: LatestEventsProps) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {events.map((item, index) => (
           <div key={index} className="bg-white border border-gray-100 group">
-            <Image
+            <img
               src={`https://picsum.photos/seed/${item.img}/600/400`}
               alt={item.title}
               width={600}
               height={400}
-              unoptimized
               sizes="(min-width: 768px) 33vw, 100vw"
               className="w-full h-56 object-cover"
             />

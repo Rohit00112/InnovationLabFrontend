@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import React, {
   useState,
   useEffect,
@@ -583,11 +582,9 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           onClick={() => setSelectedImage(image)}
         >
           <div className="relative w-full h-full rounded-full overflow-hidden shadow-lg border-2 border-white/20">
-            <Image
+            <img
               src={image.src}
               alt={image.alt}
-              fill
-              unoptimized
               sizes="(min-width: 1024px) 12vw, 20vw"
               className="w-full h-full object-cover"
             />
@@ -617,11 +614,9 @@ const SphereImageGrid: React.FC<SphereImageGridProps> = ({
           }}
         >
           <div className="relative aspect-square">
-            <Image
+            <img
               src={selectedImage.src}
               alt={selectedImage.alt}
-              fill
-              unoptimized
               sizes="(min-width: 768px) 28rem, 100vw"
               className="w-full h-full object-cover"
             />
