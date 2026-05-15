@@ -161,7 +161,7 @@ function renderHtml(payload: {
             </tr>
             <tr>
               <td style="background:#fafafa;padding:16px 32px;font-size:11px;color:#9ca3af;letter-spacing:0.06em;">
-                Sent from innovationlab.iic.edu.np &middot; Itahari International College
+                Sent from innovation.iic.edu.np &middot; Itahari International College
               </td>
             </tr>
           </table>
