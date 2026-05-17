@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 type Testimonial = {
@@ -35,7 +35,7 @@ function PortraitCard({
   parallaxY,
 }: {
   testimonial: Testimonial;
-  parallaxY: ReturnType<typeof useTransform>;
+  parallaxY: MotionValue<number>;
 }) {
   return (
     <motion.div
